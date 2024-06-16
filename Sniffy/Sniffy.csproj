@@ -1,0 +1,126 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0-windows7.0</TargetFramework>
+    <RollForward>Major</RollForward>
+    <OutputType>WinExe</OutputType>
+    <Nullable>disable</Nullable>
+    <UseWindowsForms>True</UseWindowsForms>
+    <UseWPF>true</UseWPF>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <StartupObject>Sniffy.App</StartupObject>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <Optimize>True</Optimize>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Resources\Assets\Window\**" />
+    <EmbeddedResource Remove="Resources\Assets\Window\**" />
+    <None Remove="Resources\Assets\Window\**" />
+    <Page Remove="Resources\Assets\Window\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Resources\Assets\MenuItems\CalculatorItem.png" />
+    <None Remove="Resources\Assets\MenuItems\CalendarItem.png" />
+    <None Remove="Resources\Assets\MenuItems\ChromeItem.png" />
+    <None Remove="Resources\Assets\MenuItems\ClockItem.png" />
+    <None Remove="Resources\Assets\MenuItems\CloseItem.png" />
+    <None Remove="Resources\Assets\MenuItems\ControlPanelItem.png" />
+    <None Remove="Resources\Assets\MenuItems\DocumentaionItem.png" />
+    <None Remove="Resources\Assets\MenuItems\EdgeItem.png" />
+    <None Remove="Resources\Assets\MenuItems\ExitItem.png" />
+    <None Remove="Resources\Assets\MenuItems\FileItem.png" />
+    <None Remove="Resources\Assets\MenuItems\FirefoxItem.png" />
+    <None Remove="Resources\Assets\MenuItems\FolderItem.png" />
+    <None Remove="Resources\Assets\MenuItems\MapItem.png" />
+    <None Remove="Resources\Assets\MenuItems\MediaPlayerItem.png" />
+    <None Remove="Resources\Assets\MenuItems\OneDriveItem.png" />
+    <None Remove="Resources\Assets\MenuItems\RefreshItem.png" />
+    <None Remove="Resources\Assets\MenuItems\SaveItem.png" />
+    <None Remove="Resources\Assets\MenuItems\TaskManagerItem.png" />
+    <None Remove="UI\Windows\Application.png" />
+    <None Remove="UI\Windows\Calculator\Cancel.png" />
+    <None Remove="UI\Windows\Calculator\Main.png" />
+    <None Remove="UI\Windows\Sniffy\Application.png" />
+    <None Remove="UI\Windows\Sniffy\pymtoedh.4xd~" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.SqlServer.Compact" Version="4.0.8876.1" />
+    <PackageReference Include="Syncfusion.Licensing" Version="21.1.41" />
+    <PackageReference Include="Syncfusion.SfSkinManager.WPF" Version="21.1.41" />
+    <PackageReference Include="Syncfusion.Shared.Base" Version="21.1.41" />
+    <PackageReference Include="Syncfusion.Shared.WPF" Version="21.1.41" />
+    <PackageReference Include="Syncfusion.Themes.FluentDark.WPF" Version="21.1.41" />
+    <PackageReference Include="Syncfusion.UI.WPF.NET" Version="21.1.41" />
+    <PackageReference Include="System.Data.OleDb" Version="8.0.0" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.6" />
+    <PackageReference Include="System.Data.SQLite.Core" Version="1.0.118" />
+    <PackageReference Include="ToastNotifications" Version="2.5.1" />
+    <PackageReference Include="ToastNotifications.Messages" Version="2.5.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\Assets\MenuItems\CalculatorItem.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Assets\MenuItems\CalendarItem.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Assets\MenuItems\ChromeItem.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Assets\MenuItems\ClockItem.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Assets\MenuItems\CloseItem.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Assets\MenuItems\ControlPanelItem.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Assets\MenuItems\DocumentaionItem.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Assets\MenuItems\EdgeItem.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Assets\MenuItems\ExitItem.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Assets\MenuItems\FileItem.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Assets\MenuItems\FirefoxItem.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Assets\MenuItems\FolderItem.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Assets\MenuItems\MapItem.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Assets\MenuItems\MediaPlayerItem.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Assets\MenuItems\OneDriveItem.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Assets\MenuItems\RefreshItem.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Assets\MenuItems\SaveItem.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Assets\MenuItems\TaskManagerItem.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="UI\Windows\Calculator\Cancel.png" />
+    <Resource Include="UI\Windows\Calculator\Main.png" />
+    <Resource Include="UI\Windows\Sniffy\Application.png" />
+  </ItemGroup>
+
+</Project>
