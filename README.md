@@ -1,6 +1,6 @@
-# Sissy
+# Sniffy
 
-A simple .NET WPF application that can be used to establish TCP (raw) or WebSocket connections and exchange
+Sniffy is a simple .NET WPF application that can be used to establish TCP (raw) or WebSocket connections and exchange
 text messages for testing/debugging purposes.
 
 - Supports TCP connections with a dual-mode socket (IPv6 and IPv4) and optionally using TLS
