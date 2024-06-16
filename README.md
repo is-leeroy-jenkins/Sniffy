@@ -8,10 +8,14 @@ text messages for testing/debugging purposes.
 - Supports half-closing the socket (send channel) before fully closing it
 - Binary messages are encoded/decoded using a specified encoding like Windows-1252 (1 character per byte) or UTF-8
 
+## Example (General)
+![](https://github.com/is-leeroy-jenkins/Sniffy/blob/master/Sniffy/Resources/Assets/Github/Sniffy-Intro.gif)
+
+
 ## Example (TCP):
 
-![](https://github.com/is-leeroy-jenkins/Sniffy/blob/master/Sniffy/Resources/Assets/Github/example-tcp.png)
+![](https://github.com/is-leeroy-jenkins/Sniffy/blob/master/Sniffy/Resources/Assets/Github/example-tcp.gif)
 
 ## Example (WebSocket):
 
-![](https://github.com/is-leeroy-jenkins/Sniffy/blob/master/Sniffy/Resources/Assets/Github/example-websocket.png)
+![](https://github.com/is-leeroy-jenkins/Sniffy/blob/master/Sniffy/Resources/Assets/Github/example-websocket.gif)
