@@ -62,6 +62,13 @@ namespace Sniffy
     public class SocketHandler
     {
         /// <summary>
+        /// The text encoding
+        /// </summary>
+        private static readonly Encoding _textEncoding =
+            new UTF8Encoding( encoderShouldEmitUTF8Identifier: false, 
+                throwOnInvalidBytes: true );
+
+        /// <summary>
         /// The is websocket
         /// </summary>
         private readonly bool _isSocket;
@@ -87,14 +94,9 @@ namespace Sniffy
         private Uri _uri;
 
         /// <summary>
-        /// The binary message encoding
-        /// </summary>
-        private Encoding _encoding;
-
-        /// <summary>
         /// The socket encoding
         /// </summary>
-        private Encoding _socketEncoding;
+        private Encoding _binaryEncoding;
 
         /// <summary>
         /// The use SSL
@@ -176,7 +178,7 @@ namespace Sniffy
                 _addressFamily = addressFamily;
             }
 
-            _encoding = encoding;
+            _binaryEncoding = encoding;
             _useSsl = useSsl;
             _ignoreErrors = ignoreSslCertErrors;
             _sslProtocols = sslProtocols;
@@ -367,11 +369,11 @@ namespace Sniffy
                                 }
                                 else
                                 {
-                                    var _bytes = _encoding.GetByteCount( _tuple.text! );
+                                    var _bytes = _binaryEncoding.GetByteCount( _tuple.text! );
                                     var _buffer = ArrayPool<byte>.Shared.Rent( _bytes );
-                                    _bytes = _encoding.GetBytes( _tuple.text, _buffer );
+                                    _bytes = _binaryEncoding.GetBytes( _tuple.text, _buffer );
                                     var _memory = _buffer.AsMemory( )[ .._bytes ];
-                                    var _stxt = _encoding.GetString( _memory.Span );
+                                    var _stxt = _binaryEncoding.GetString( _memory.Span );
                                     _ = InvokeAsync( ( ) =>
                                     {
                                         var _sargs = 
@@ -400,7 +402,7 @@ namespace Sniffy
                     try
                     {
                         using( var _reader = new StreamReader( _clientStream,
-                                  _encoding,
+                                  _binaryEncoding,
                                   false,
                                   leaveOpen: true ) )
                         {
@@ -513,9 +515,9 @@ namespace Sniffy
                                         isSendText: true ) );
                                 } );
 
-                                var _bytes = _socketEncoding.GetByteCount( _tuple.text! );
+                                var _bytes = _binaryEncoding.GetByteCount( _tuple.text! );
                                 var _buffer = ArrayPool<byte>.Shared.Rent( _bytes );
-                                _bytes = _socketEncoding.GetBytes( _tuple.text, _buffer );
+                                _bytes = _binaryEncoding.GetBytes( _tuple.text, _buffer );
                                 var _memory = new Memory<byte>( _buffer, 0, _bytes );
                                 await _socket.SendAsync( _memory, WebSocketMessageType.Text, true,
                                     _cancel.Token );
@@ -563,8 +565,8 @@ namespace Sniffy
                             }
 
                             var _results = _received.MessageType == WebSocketMessageType.Text
-                                ? _socketEncoding.GetString( _streamBuffer )
-                                : _encoding.GetString( _streamBuffer );
+                                ? _binaryEncoding.GetString( _streamBuffer )
+                                : _textEncoding.GetString( _streamBuffer );
 
                             _stream.Seek( 0, SeekOrigin.Begin );
                             _stream.SetLength( 0 );
