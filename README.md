@@ -1,5 +1,5 @@
 # Sniffy
-
+![](https://github.com/is-leeroy-jenkins/Sniffy/blob/master/Sniffy/Resources/Assets/Github/Sniffy.png)
 Sniffy is a simple .NET WPF application that can be used to establish TCP (raw) or WebSocket connections and exchange
 text messages for testing/debugging purposes.
 
@@ -10,8 +10,8 @@ text messages for testing/debugging purposes.
 
 ## Example (TCP):
 
-![](example-tcp.png)
+![](https://github.com/is-leeroy-jenkins/Sniffy/blob/master/Sniffy/Resources/Assets/Github/example-tcp.png)
 
 ## Example (WebSocket):
 
-![](example-websocket.png)
+![](https://github.com/is-leeroy-jenkins/Sniffy/blob/master/Sniffy/Resources/Assets/Github/example-websocket.png)
