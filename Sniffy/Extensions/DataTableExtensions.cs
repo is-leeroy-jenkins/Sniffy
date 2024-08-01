@@ -115,7 +115,7 @@ namespace Sniffy
                         for( var _i = 0; _i < dataTable.Rows.Count; _i++ )
                         {
                             if( ( _col.DataType == typeof( int ) )
-                               && ( _col.Ordinal == 0 ) )
+                                && ( _col.Ordinal == 0 ) )
                             {
                                 var _row = dataTable.Rows[ _i ];
                                 var _value = _row[ _col.ColumnName ]?.ToString( );
