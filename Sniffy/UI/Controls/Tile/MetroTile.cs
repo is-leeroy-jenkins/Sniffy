@@ -7,10 +7,10 @@
 //     Last Modified On:        08-03-2024
 // ******************************************************************************************
 // <copyright file="MetroTile.cs" company="Terry D. Eppler">
-//    Sniffy is tiny .NET WPF tool that can be used to establish TCP (raw) or
-//    WebSocket connections and exchange text messages for
-//    testing/debugging purposes based on WPF, Net 6, and written in C
-//    Copyright ©  2022  Terry Eppler
+//    Sniffy is a tiny .NET WPF tool that can be used to establish TCP (raw) or 
+//    WebSocket connections and exchange text messages for testing/debugging purposes.
+//
+//    Copyright ©  2023 Terry Eppler
 // 
 //    Permission is hereby granted, free of charge, to any person obtaining a copy
 //    of this software and associated documentation files (the “Software”),

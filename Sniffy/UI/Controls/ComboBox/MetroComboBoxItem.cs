@@ -7,8 +7,9 @@
 //     Last Modified On:        08-01-2024
 // ******************************************************************************************
 // <copyright file="MetroComboBoxItem.cs" company="Terry D. Eppler">
-//    Sniffy is data analysis and reporting tool for EPA Analysts
-//    based on WPF, NET6.0, and written in C-Sharp.
+//    Sniffy is a tiny web browser used is a budget, finance, and accounting tool for analysts with
+//    the US Environmental Protection Agency (US EPA).
+//    Copyright ©  2024  Terry Eppler
 // 
 //    Copyright ©  2024  Terry D. Eppler
 // 

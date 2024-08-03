@@ -7,9 +7,10 @@
 //     Last Modified On:        08-02-2024
 // ******************************************************************************************
 // <copyright file="MetroCheckBox.cs" company="Terry D. Eppler">
-//    Sniffy is a tiny web browser used is a budget, finance, and accounting tool for analysts with
-//    the US Environmental Protection Agency (US EPA).
-//    Copyright ©  2022 Terry Eppler
+//    Sniffy is a tiny .NET WPF tool that can be used to establish TCP (raw) or 
+//    WebSocket connections and exchange text messages for testing/debugging purposes.
+//
+//    Copyright ©  2023 Terry Eppler
 // 
 //    Permission is hereby granted, free of charge, to any person obtaining a copy
 //    of this software and associated documentation files (the “Software”),
@@ -65,32 +66,42 @@ namespace Sniffy
         public static string[ ] Controls =
         {
             "ComboBoxAdv",
+            "MetroComboBox",
+            "MetroDatagrid",
             "SfDataGrid",
             "ToolBarAdv",
             "ToolStrip",
+            "MetroCalendar",
             "CalendarEdit",
             "PivotGridControl",
-            "SfChart3D",
+            "MetroPivotGrid",
             "SfChart",
-            "SfSmithChart",
-            "SfSunburstChart",
-            "SfSurfaceChart",
+            "SfChart3D",
             "SfHeatMap",
             "SfMap",
+            "MetroMap",
             "EditControl",
             "CheckListBox",
+            "MetroEditor",
             "DropDownButtonAdv",
+            "MetroDropDown",
+            "SfTextBoxExt",
             "SfCircularProgressBar",
             "SfLinearProgressBar",
             "GridControl",
+            "MetroGridControl",
             "TabControlExt",
+            "MetroTabControl",
             "SfTextInputLayout",
-            "SfTextBoxExt",
+            "MetroTextInput",
             "SfSpreadsheet",
             "SfSpreadsheetRibbon",
             "MenuItemAdv",
             "ButtonAdv",
-            "Carousel"
+            "Carousel",
+            "ColorEdit",
+            "SfCalculator",
+            "SfMultiColumnDropDownControl"
         };
 
         static App( )

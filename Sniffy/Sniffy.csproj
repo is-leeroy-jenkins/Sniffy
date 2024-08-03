@@ -23,6 +23,11 @@
     </ItemGroup>
 
     <ItemGroup>
+      <None Remove="Resources\Assets\Windows\SplashNotification.png" />
+      <None Remove="Sniffy.DotSettings" />
+    </ItemGroup>
+
+    <ItemGroup>
         <PackageReference Include="Syncfusion.Licensing" Version="24.1.41" />
         <PackageReference Include="Syncfusion.SfSkinManager.WPF" Version="24.1.41" />
         <PackageReference Include="Syncfusion.Shared.Base" Version="24.1.41" />
@@ -65,6 +70,7 @@
         <Resource Include="Resources\Assets\Windows\Calculator\Cancel.png" />
         <Resource Include="Resources\Assets\Windows\Calculator\Main.png" />
         <Resource Include="Resources\Assets\Windows\Sissy\Application.png" />
+        <Resource Include="Resources\Assets\Windows\SplashNotification.png" />
         <Resource Include="UI\Windows\Calculator\Cancel.png" />
         <Resource Include="UI\Windows\Calculator\Main.png" />
         <Resource Include="UI\Windows\Sniffy\Application.png" />

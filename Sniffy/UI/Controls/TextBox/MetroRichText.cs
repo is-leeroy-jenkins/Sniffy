@@ -7,10 +7,11 @@
 //     Last Modified On:        08-01-2024
 // ******************************************************************************************
 // <copyright file="MetroRichText.cs" company="Terry D. Eppler">
-//    Sniffy is data analysis and reporting tool for EPA Analysts
-//    based on WPF, NET6.0, and written in C-Sharp.
+//    Sniffy is a tiny .NET WPF tool that can be used to establish TCP (raw) or 
+//    WebSocket connections and exchange text messages for testing/debugging purposes.
+//
+//    Copyright ©  2023 Terry Eppler
 // 
-//    Copyright ©  2024  Terry D. Eppler
 // 
 //    Permission is hereby granted, free of charge, to any person obtaining a copy
 //    of this software and associated documentation files (the “Software”),

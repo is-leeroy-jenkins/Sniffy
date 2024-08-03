@@ -5,11 +5,10 @@
     xmlns:syncfusionskin ="clr-namespace:Syncfusion.SfSkinManager;assembly=Syncfusion.SfSkinManager.WPF"
     xmlns:syncfusion="http://schemas.syncfusion.com/wpf"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:gif="http://wpfanimatedgif.codeplex.com"
     xmlns:sys="clr-namespace:System;assembly=mscorlib"
     xmlns:local="clr-namespace:Sniffy"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:av="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     x:Name="SissyView"
     Title="Sniffy"
     Width="710"
@@ -22,7 +21,7 @@
     Foreground="#FFDEDEDE"
     Icon="/Resources/Assets/Windows/Sissy/Application.png"
     Left="0"
-    av:TextOptions.TextFormattingMode="Display"
+    TextOptions.TextFormattingMode="Display"
     Top="0"
     WindowStartupLocation="CenterScreen"
     mc:Ignorable="d">
@@ -42,7 +41,7 @@
 
 <!--  ******************************************** Context Menu ******************************************  -->
 
-    <av:Window.ContextMenu>
+    <Window.ContextMenu>
         <ContextMenu Name="SniffyContextMenu">
             <syncfusion:MenuItemAdv
                 Click="OnFileMenuOptionClick"
@@ -132,7 +131,7 @@
             </syncfusion:MenuItemAdv>
         </ContextMenu>
 
-    </av:Window.ContextMenu>
+    </Window.ContextMenu>
     <Canvas
         x:Name="SissyCanvas"
         Background="#FF141414">
