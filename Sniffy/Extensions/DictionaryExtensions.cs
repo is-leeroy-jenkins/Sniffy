@@ -1,13 +1,14 @@
 ﻿// ******************************************************************************************
-//     Assembly:                Sniffy
+//     Assembly:             Bitsy
 //     Author:                  Terry D. Eppler
-//     Created:                 12-24-2023
+//     Created:                 08-02-2024
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        03-23-2024
+//     Last Modified On:        08-02-2024
 // ******************************************************************************************
-// <copyright file="Terry Eppler" company="Terry D. Eppler">
-//    Sniffy is a tiny, WPF web socket client/server application.
+// <copyright file="DictionaryExtensions.cs" company="Terry D. Eppler">
+//    Sniffy is a tiny web browser used is a budget, finance, and accounting tool for analysts with
+//    the US Environmental Protection Agency (US EPA).
 //    Copyright ©  2024  Terry Eppler
 // 
 //    Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -30,7 +31,7 @@
 //    ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 //    DEALINGS IN THE SOFTWARE.
 // 
-//    You can contact me at:  terryeppler@gmail.com or eppler.terry@epa.gov
+//    You can contact me at:   terryeppler@gmail.com or eppler.terry@epa.gov
 // </copyright>
 // <summary>
 //   DictionaryExtensions.cs
@@ -89,7 +90,8 @@ namespace Sniffy
             }
             catch( Exception _ex )
             {
-                Fail( _ex );
+                DictionaryExtensions.Fail( _ex );
+
                 return default( TValue );
             }
         }
@@ -101,7 +103,7 @@ namespace Sniffy
         /// <returns>
         /// NameValueCollection
         /// </returns>
-        public static NameValueCollection ToNameValueCollection( 
+        public static NameValueCollection ToNameValueCollection(
             this IDictionary<string, object> dict )
         {
             try
@@ -119,7 +121,8 @@ namespace Sniffy
             }
             catch( Exception _ex )
             {
-                Fail( _ex );
+                DictionaryExtensions.Fail( _ex );
+
                 return default( NameValueCollection );
             }
         }
@@ -142,13 +145,15 @@ namespace Sniffy
                     }
 
                     var _sql = _criteria.TrimEnd( " AND ".ToCharArray( ) );
+
                     return !string.IsNullOrEmpty( _sql )
                         ? _sql
                         : string.Empty;
                 }
                 catch( Exception _ex )
                 {
-                    Fail( _ex );
+                    DictionaryExtensions.Fail( _ex );
+
                     return string.Empty;
                 }
             }
@@ -178,7 +183,8 @@ namespace Sniffy
             }
             catch( Exception _ex )
             {
-                Fail( _ex );
+                DictionaryExtensions.Fail( _ex );
+
                 return default( BindingList<KeyValuePair<string, object>> );
             }
         }
@@ -203,9 +209,9 @@ namespace Sniffy
                     for( var _i = 0; _i < dict?.Count; _i++ )
                     {
                         if( _values[ _i ] != null
-                           && !string.IsNullOrEmpty( _keys[ _i ] ) )
+                            && !string.IsNullOrEmpty( _keys[ _i ] ) )
                         {
-                            var _kvp = 
+                            var _kvp =
                                 new KeyValuePair<string, object>( _keys[ _i ], _values[ _i ] );
 
                             _sortedList?.Add( _i, _kvp );
@@ -221,7 +227,8 @@ namespace Sniffy
             }
             catch( Exception _ex )
             {
-                Fail( _ex );
+                DictionaryExtensions.Fail( _ex );
+
                 return default( SortedList<int, KeyValuePair<string, object>> );
             }
         }
@@ -321,7 +328,8 @@ namespace Sniffy
             }
             catch( Exception _ex )
             {
-                Fail( _ex );
+                DictionaryExtensions.Fail( _ex );
+
                 return default( List<DbParameter> );
             }
         }
@@ -332,7 +340,8 @@ namespace Sniffy
         /// <typeparam name="T"></typeparam>
         /// <param name="dict">The dictionary.</param>
         /// <returns></returns>
-        public static BindingList<string> ToKeyBindingList<T>( this IDictionary<string, object> dict )
+        public static BindingList<string> ToKeyBindingList<T>(
+            this IDictionary<string, object> dict )
         {
             if( dict?.Any( ) == true )
             {
@@ -350,7 +359,8 @@ namespace Sniffy
                 }
                 catch( Exception _ex )
                 {
-                    Fail( _ex );
+                    DictionaryExtensions.Fail( _ex );
+
                     return default( BindingList<string> );
                 }
             }
@@ -383,7 +393,8 @@ namespace Sniffy
                 }
                 catch( Exception _ex )
                 {
-                    Fail( _ex );
+                    DictionaryExtensions.Fail( _ex );
+
                     return default( BindingList<object> );
                 }
             }

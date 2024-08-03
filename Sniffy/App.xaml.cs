@@ -1,14 +1,15 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Sniffy
 //     Author:                  Terry D. Eppler
-//     Created:                 06-14-2024
+//     Created:                 08-02-2024
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        06-14-2024
+//     Last Modified On:        08-02-2024
 // ******************************************************************************************
-// <copyright file="App.xaml.cs" company="Terry D. Eppler">
-//    Sniffy is a tiny, WPF web socket client/server application.
-//    Copyright ©  2024  Terry Eppler
+// <copyright file="MetroCheckBox.cs" company="Terry D. Eppler">
+//    Sniffy is a tiny web browser used is a budget, finance, and accounting tool for analysts with
+//    the US Environmental Protection Agency (US EPA).
+//    Copyright ©  2022 Terry Eppler
 // 
 //    Permission is hereby granted, free of charge, to any person obtaining a copy
 //    of this software and associated documentation files (the “Software”),
@@ -39,6 +40,7 @@
 
 namespace Sniffy
 {
+    using System;
     using System.Configuration;
     using System.Diagnostics.CodeAnalysis;
     using System.Windows;

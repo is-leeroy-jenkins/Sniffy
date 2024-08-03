@@ -1,15 +1,16 @@
 ﻿// ******************************************************************************************
-//     Assembly:                Sniffy
+//     Assembly:             Bitsy
 //     Author:                  Terry D. Eppler
-//     Created:                 12-24-2023
-// 
+//     Created:                 08-02-2024
+//
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        03-23-2024
+//     Last Modified On:        08-02-2024
 // ******************************************************************************************
-// <copyright file="Terry Eppler" company="Terry D. Eppler">
-//    Sniffy is a tiny, WPF web socket client/server application.
+// <copyright file="DataTableExtensions.cs" company="Terry D. Eppler">
+//    Sniffy is a tiny web browser used is a budget, finance, and accounting tool for analysts with
+//    the US Environmental Protection Agency (US EPA).
 //    Copyright ©  2024  Terry Eppler
-// 
+//
 //    Permission is hereby granted, free of charge, to any person obtaining a copy
 //    of this software and associated documentation files (the “Software”),
 //    to deal in the Software without restriction,
@@ -18,10 +19,10 @@
 //    and/or sell copies of the Software,
 //    and to permit persons to whom the Software is furnished to do so,
 //    subject to the following conditions:
-// 
+//
 //    The above copyright notice and this permission notice shall be included in all
 //    copies or substantial portions of the Software.
-// 
+//
 //    THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
 //    INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 //    FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT.
@@ -29,8 +30,8 @@
 //    DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
 //    ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 //    DEALINGS IN THE SOFTWARE.
-// 
-//    You can contact me at:  terryeppler@gmail.com or eppler.terry@epa.gov
+//
+//    You can contact me at:   terryeppler@gmail.com or eppler.terry@epa.gov
 // </copyright>
 // <summary>
 //   DataTableExtensions.cs
@@ -48,7 +49,7 @@ namespace Sniffy
     using System.Xml.Linq;
 
     /// <summary>
-    /// 
+    ///
     /// </summary>
     [ SuppressMessage( "ReSharper", "AssignNullToNotNullAttribute" ) ]
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
@@ -71,7 +72,11 @@ namespace Sniffy
             try
             {
                 ThrowIf.Null( rootName, nameof( rootName ) );
-                var _xml = new XDocument { Declaration = new XDeclaration( "1.0", "utf-8", "" ) };
+                var _xml = new XDocument
+                {
+                    Declaration = new XDeclaration( "1.0", "utf-8", "" )
+                };
+
                 _xml.Add( new XElement( rootName ) );
                 foreach( DataRow _dataRow in dataTable.Rows )
                 {
@@ -91,7 +96,8 @@ namespace Sniffy
             }
             catch( Exception _ex )
             {
-                Fail( _ex );
+                DataTableExtensions.Fail( _ex );
+
                 return default( XDocument );
             }
         }
@@ -137,7 +143,8 @@ namespace Sniffy
             }
             catch( Exception _ex )
             {
-                Fail( _ex );
+                DataTableExtensions.Fail( _ex );
+
                 return default( IEnumerable<int> );
             }
         }
@@ -159,13 +166,13 @@ namespace Sniffy
                 if( _names.Contains( columnName ) == false )
                 {
                     var _message = $"{columnName} not in DataColumns!";
+
                     throw new ArgumentOutOfRangeException( columnName, _message );
                 }
                 else
                 {
                     var _enumerable = dataTable?.AsEnumerable( )
-                        ?.Select( p => p.Field<string>( columnName ) )
-                        ?.Distinct( );
+                        ?.Select( p => p.Field<string>( columnName ) )?.Distinct( );
 
                     return ( _enumerable?.Any( ) == true )
                         ? _enumerable?.ToArray( )
@@ -174,7 +181,8 @@ namespace Sniffy
             }
             catch( Exception _ex )
             {
-                Fail( _ex );
+                DataTableExtensions.Fail( _ex );
+
                 return default( string[ ] );
             }
         }
@@ -198,13 +206,13 @@ namespace Sniffy
                 if( _names.Contains( columnName ) == false )
                 {
                     var _message = $"{columnName} not in DataColumns!";
+
                     throw new ArgumentOutOfRangeException( columnName, _message );
                 }
                 else
                 {
                     var _query = dataTable.Select( _criteria )
-                        ?.Select( p => p.Field<string>( columnName ) )
-                        ?.Distinct( );
+                        ?.Select( p => p.Field<string>( columnName ) )?.Distinct( );
 
                     return ( _query?.Any( ) == true )
                         ? _query?.ToArray( )
@@ -213,7 +221,8 @@ namespace Sniffy
             }
             catch( Exception _ex )
             {
-                Fail( _ex );
+                DataTableExtensions.Fail( _ex );
+
                 return default( string[ ] );
             }
         }
@@ -232,9 +241,7 @@ namespace Sniffy
             try
             {
                 ThrowIf.Null( dict, nameof( dict ) );
-                var _query = dataTable
-                    ?.Select( dict.ToCriteria( ) )
-                    ?.ToList( );
+                var _query = dataTable?.Select( dict.ToCriteria( ) )?.ToList( );
 
                 return ( _query?.Any( ) == true )
                     ? _query
@@ -242,7 +249,8 @@ namespace Sniffy
             }
             catch( Exception _ex )
             {
-                Fail( _ex );
+                DataTableExtensions.Fail( _ex );
+
                 return default( IEnumerable<DataRow> );
             }
         }
@@ -262,10 +270,7 @@ namespace Sniffy
                     _fields[ _i ] = dataTable.Columns[ _i ].ColumnName;
                 }
 
-                var _names = _fields
-                    ?.OrderBy( f => f.IndexOf( f ) )
-                    ?.Select( f => f )
-                    ?.ToArray( );
+                var _names = _fields?.OrderBy( f => f.IndexOf( f ) )?.Select( f => f )?.ToArray( );
 
                 return ( _names?.Any( ) == true )
                     ? _names
@@ -273,7 +278,8 @@ namespace Sniffy
             }
             catch( Exception _ex )
             {
-                Fail( _ex );
+                DataTableExtensions.Fail( _ex );
+
                 return default( string[ ] );
             }
         }
@@ -293,14 +299,14 @@ namespace Sniffy
                 foreach( DataColumn _col in dataTable.Columns )
                 {
                     if( !_col.ColumnName.EndsWith( "Id" )
-                       && ( _col.Ordinal > 0 )
-                       && ( ( _col.DataType == typeof( decimal ) )
-                           | ( _col.DataType == typeof( float ) )
-                           | ( _col.DataType == typeof( double ) )
-                           | ( _col.DataType == typeof( int ) )
-                           | ( _col.DataType == typeof( uint ) )
-                           | ( _col.DataType == typeof( ushort ) )
-                           | ( _col.DataType == typeof( short ) ) ) )
+                        && ( _col.Ordinal > 0 )
+                        && ( ( _col.DataType == typeof( decimal ) )
+                            | ( _col.DataType == typeof( float ) )
+                            | ( _col.DataType == typeof( double ) )
+                            | ( _col.DataType == typeof( int ) )
+                            | ( _col.DataType == typeof( uint ) )
+                            | ( _col.DataType == typeof( ushort ) )
+                            | ( _col.DataType == typeof( short ) ) ) )
                     {
                         _columns.Add( _col );
                     }
@@ -312,7 +318,8 @@ namespace Sniffy
             }
             catch( Exception _ex )
             {
-                Fail( _ex );
+                DataTableExtensions.Fail( _ex );
+
                 return default( IList<DataColumn> );
             }
         }
@@ -332,9 +339,9 @@ namespace Sniffy
                 foreach( DataColumn _col in dataTable.Columns )
                 {
                     if( _col.ColumnName.EndsWith( "Date" )
-                       || _col.ColumnName.EndsWith( "Day" )
-                       || ( ( _col.DataType == typeof( DateTime ) )
-                           | ( _col.DataType == typeof( DateTimeOffset ) ) ) )
+                        || _col.ColumnName.EndsWith( "Day" )
+                        || ( ( _col.DataType == typeof( DateTime ) )
+                            | ( _col.DataType == typeof( DateTimeOffset ) ) ) )
                     {
                         _columns.Add( _col );
                     }
@@ -346,7 +353,8 @@ namespace Sniffy
             }
             catch( Exception _ex )
             {
-                Fail( _ex );
+                DataTableExtensions.Fail( _ex );
+
                 return default( IList<DataColumn> );
             }
         }
@@ -367,7 +375,7 @@ namespace Sniffy
             }
             catch( Exception _ex )
             {
-                Fail( _ex );
+                DataTableExtensions.Fail( _ex );
             }
         }
 
@@ -392,7 +400,8 @@ namespace Sniffy
             }
             catch( Exception _ex )
             {
-                Fail( _ex );
+                DataTableExtensions.Fail( _ex );
+
                 return default( BindingList<DataRow> );
             }
         }
@@ -427,7 +436,8 @@ namespace Sniffy
             }
             catch( Exception _ex )
             {
-                Fail( _ex );
+                DataTableExtensions.Fail( _ex );
+
                 return default( SortedList<int, DataRow> );
             }
         }

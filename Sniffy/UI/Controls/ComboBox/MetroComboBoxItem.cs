@@ -6,7 +6,7 @@
 //     Last Modified By:        Terry D. Eppler
 //     Last Modified On:        08-01-2024
 // ******************************************************************************************
-// <copyright file="MetroTextBox.cs" company="Terry D. Eppler">
+// <copyright file="MetroComboBoxItem.cs" company="Terry D. Eppler">
 //    Sniffy is data analysis and reporting tool for EPA Analysts
 //    based on WPF, NET6.0, and written in C-Sharp.
 // 
@@ -35,67 +35,115 @@
 //    You can contact me at: terryeppler@gmail.com or eppler.terry@epa.gov
 // </copyright>
 // <summary>
-//   MetroTextBox.cs
+//   MetroComboBoxItem.cs
 // </summary>
 // ******************************************************************************************
 
 namespace Sniffy
 {
+    using Syncfusion.Windows.Tools.Controls;
     using System;
     using System.Diagnostics.CodeAnalysis;
     using System.Windows;
-    using System.Windows.Controls;
-    using System.Windows.Media;
 
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    /// <seealso cref="T:System.Windows.Controls.TextBox" />
+    /// <seealso cref="T:Syncfusion.Windows.Tools.Controls.ComboBoxItemAdv" />
     [ SuppressMessage( "ReSharper", "UnusedType.Global" ) ]
-    [ SuppressMessage( "ReSharper", "FieldCanBeMadeReadOnly.Local" ) ]
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
     [ SuppressMessage( "ReSharper", "InconsistentNaming" ) ]
-    [ SuppressMessage( "ReSharper", "FieldCanBeMadeReadOnly.Global" ) ]
-    [ SuppressMessage( "ReSharper", "MemberCanBeProtected.Global" ) ]
+    [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
     [ SuppressMessage( "ReSharper", "MemberCanBeInternal" ) ]
     [ SuppressMessage( "ReSharper", "ClassCanBeSealed.Global" ) ]
-    public class MetroTextBox : TextBox
+    [ SuppressMessage( "ReSharper", "MemberCanBeInternal" ) ]
+    public class MetroComboBoxItem : ComboBoxItemAdv
     {
         /// <summary>
-        /// The dark
+        /// The theme
         /// </summary>
         private protected readonly DarkMode _theme = new DarkMode( );
+
+        /// <summary>
+        /// Gets or sets an arbitrary object value that can be used
+        /// to store custom information about this element.
+        /// </summary>
+        public new object Tag { get; set; }
 
         /// <inheritdoc />
         /// <summary>
         /// Initializes a new instance of the
-        /// <see cref="T:Sniffy.TextBox" /> class.
+        /// <see cref="T:Sniffy.MetroComboBoxItem" /> class.
         /// </summary>
-        public MetroTextBox( )
+        public MetroComboBoxItem( )
             : base( )
         {
-            Width = 200;
-            Height = 24;
-            FontFamily = new FontFamily( "Segoe UI" );
-            FontSize = 12d;
-            HorizontalAlignment = HorizontalAlignment.Left;
-            VerticalAlignment = VerticalAlignment.Top;
-            HorizontalContentAlignment = HorizontalAlignment.Left;
-            VerticalContentAlignment = VerticalAlignment.Center;
-            Padding = new Thickness( 5, 1, 1, 1 );
+            // Control Properties
+            SetResourceReference( StyleProperty, typeof( ComboBoxItemAdv ) );
+            Height = 22;
+            Padding = new Thickness( 10, 1, 1, 1 );
             Background = _theme.ControlColor;
+            BorderBrush = _theme.ControlColor;
             Foreground = _theme.ForeColor;
-            BorderBrush = _theme.BorderColor;
-            SelectionBrush = _theme.SteelBlueColor;
+
+            // Event Wiring
+            MouseEnter += OnItemMouseEnter;
+            MouseLeave += OnItemMouseLeave;
         }
 
         /// <summary>
-        /// Fails the specified _ex.
+        /// Called when [item mouse enter].
         /// </summary>
-        /// <param name="_ex">The _ex.</param>
-        private protected void Fail( Exception _ex )
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="EventArgs"/>
+        /// instance containing the event data.</param>
+        private protected void OnItemMouseEnter( object sender, EventArgs e )
         {
-            var _error = new ErrorWindow( _ex );
+            try
+            {
+                if( sender is MetroComboBoxItem _item )
+                {
+                    _item.Foreground = _theme.WhiteColor;
+                    _item.Background = _theme.SteelBlueColor;
+                    _item.BorderBrush = _theme.SteelBlueColor;
+                }
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Called when [item mouse leave].
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="EventArgs"/>
+        /// instance containing the event data.</param>
+        private protected void OnItemMouseLeave( object sender, EventArgs e )
+        {
+            try
+            {
+                if( sender is MetroComboBoxItem _item )
+                {
+                    _item.Foreground = _theme.ForeColor;
+                    _item.Background = _theme.ControlColor;
+                    _item.BorderBrush = _theme.ControlColor;
+                }
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Fails the specified ex.
+        /// </summary>
+        /// <param name="ex">The ex.</param>
+        private protected void Fail( Exception ex )
+        {
+            var _error = new ErrorWindow( ex );
             _error?.SetText( );
             _error?.ShowDialog( );
         }

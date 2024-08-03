@@ -1,13 +1,14 @@
 ﻿// ******************************************************************************************
-//     Assembly:                Sniffy
+//     Assembly:             Bitsy
 //     Author:                  Terry D. Eppler
-//     Created:                 12-24-2023
+//     Created:                 08-02-2024
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        03-23-2024
+//     Last Modified On:        08-02-2024
 // ******************************************************************************************
-// <copyright file="Terry Eppler" company="Terry D. Eppler">
-//    Sniffy is a tiny, WPF web socket client/server application.
+// <copyright file="DateTimeExtensions.cs" company="Terry D. Eppler">
+//    Sniffy is a tiny web browser used is a budget, finance, and accounting tool for analysts with
+//    the US Environmental Protection Agency (US EPA).
 //    Copyright ©  2024  Terry Eppler
 // 
 //    Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -30,7 +31,7 @@
 //    ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 //    DEALINGS IN THE SOFTWARE.
 // 
-//    You can contact me at:  terryeppler@gmail.com or eppler.terry@epa.gov
+//    You can contact me at:   terryeppler@gmail.com or eppler.terry@epa.gov
 // </copyright>
 // <summary>
 //   DateTimeExtensions.cs
@@ -67,7 +68,8 @@ namespace Sniffy
             }
             catch( Exception _ex )
             {
-                Fail( _ex );
+                DateTimeExtensions.Fail( _ex );
+
                 return false;
             }
         }
@@ -89,7 +91,8 @@ namespace Sniffy
             }
             catch( Exception _ex )
             {
-                Fail( _ex );
+                DateTimeExtensions.Fail( _ex );
+
                 return false;
             }
         }
@@ -111,7 +114,8 @@ namespace Sniffy
             }
             catch( Exception _ex )
             {
-                Fail( _ex );
+                DateTimeExtensions.Fail( _ex );
+
                 return false;
             }
         }
@@ -164,7 +168,8 @@ namespace Sniffy
             }
             catch( Exception _ex )
             {
-                Fail( _ex );
+                DateTimeExtensions.Fail( _ex );
+
                 return default( IEnumerable<DateTime> );
             }
         }
@@ -217,7 +222,8 @@ namespace Sniffy
             }
             catch( Exception _ex )
             {
-                Fail( _ex );
+                DateTimeExtensions.Fail( _ex );
+
                 return default( IEnumerable<DateTime> );
             }
         }
@@ -272,7 +278,8 @@ namespace Sniffy
             }
             catch( Exception _ex )
             {
-                Fail( _ex );
+                DateTimeExtensions.Fail( _ex );
+
                 return default( IEnumerable<DateTime> );
             }
         }
@@ -297,7 +304,7 @@ namespace Sniffy
                     {
                         var _dateTime = startDate.AddDays( _days );
                         if( !_dateTime.IsFederalHoliday( )
-                           && !_dateTime.IsWeekEnd( ) )
+                            && !_dateTime.IsWeekEnd( ) )
                         {
                             _workdays.Add( _dateTime );
                         }
@@ -315,7 +322,7 @@ namespace Sniffy
                     {
                         var _dateTime = endDate.AddDays( _days );
                         if( !_dateTime.IsFederalHoliday( )
-                           && !_dateTime.IsWeekEnd( ) )
+                            && !_dateTime.IsWeekEnd( ) )
                         {
                             _workdays.Add( _dateTime );
                         }
@@ -328,7 +335,8 @@ namespace Sniffy
             }
             catch( Exception _ex )
             {
-                Fail( _ex );
+                DateTimeExtensions.Fail( _ex );
+
                 return default( IEnumerable<DateTime> );
             }
         }
@@ -354,7 +362,8 @@ namespace Sniffy
             }
             catch( Exception _ex )
             {
-                Fail( _ex );
+                DateTimeExtensions.Fail( _ex );
+
                 return false;
             }
         }
@@ -390,7 +399,8 @@ namespace Sniffy
             }
             catch( Exception _ex )
             {
-                Fail( _ex );
+                DateTimeExtensions.Fail( _ex );
+
                 return default( DateTime );
             }
         }
@@ -444,7 +454,8 @@ namespace Sniffy
             }
             catch( Exception _ex )
             {
-                Fail( _ex );
+                DateTimeExtensions.Fail( _ex );
+
                 return 0;
             }
         }
@@ -499,7 +510,8 @@ namespace Sniffy
             }
             catch( Exception _ex )
             {
-                Fail( _ex );
+                DateTimeExtensions.Fail( _ex );
+
                 return 0;
             }
         }
@@ -524,7 +536,7 @@ namespace Sniffy
                     {
                         var _dateTime = startDate.AddDays( _i );
                         if( !_dateTime.IsFederalHoliday( )
-                           && !_dateTime.IsWeekEnd( ) )
+                            && !_dateTime.IsWeekEnd( ) )
                         {
                             _workdays += 1;
                         }
@@ -542,7 +554,7 @@ namespace Sniffy
                     {
                         var _dateTime = endDate.AddDays( _i );
                         if( !_dateTime.IsFederalHoliday( )
-                           && !_dateTime.IsWeekEnd( ) )
+                            && !_dateTime.IsWeekEnd( ) )
                         {
                             _workdays += 1;
                         }
@@ -555,7 +567,8 @@ namespace Sniffy
             }
             catch( Exception _ex )
             {
-                Fail( _ex );
+                DateTimeExtensions.Fail( _ex );
+
                 return 0;
             }
         }
@@ -606,7 +619,8 @@ namespace Sniffy
             }
             catch( Exception _ex )
             {
-                Fail( _ex );
+                DateTimeExtensions.Fail( _ex );
+
                 return 0;
             }
         }

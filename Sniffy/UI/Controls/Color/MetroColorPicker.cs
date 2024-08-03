@@ -1,15 +1,16 @@
 ﻿// ******************************************************************************************
-//     Assembly:             Bitsy
+//     Assembly:                Sniffy
 //     Author:                  Terry D. Eppler
-//     Created:                 08-02-2024
+//     Created:                 08-01-2024
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        08-02-2024
+//     Last Modified On:        08-01-2024
 // ******************************************************************************************
-// <copyright file="Provider.cs" company="Terry D. Eppler">
-//    Sniffy is a tiny web browser used is a budget, finance, and accounting tool for analysts with
-//    the US Environmental Protection Agency (US EPA).
-//    Copyright ©  2024  Terry Eppler
+// <copyright file="MetroColorPicker.cs" company="Terry D. Eppler">
+//    Sniffy is data analysis and reporting tool for EPA Analysts
+//    based on WPF, NET6.0, and written in C-Sharp.
+// 
+//    Copyright ©  2024  Terry D. Eppler
 // 
 //    Permission is hereby granted, free of charge, to any person obtaining a copy
 //    of this software and associated documentation files (the “Software”),
@@ -31,60 +32,60 @@
 //    ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 //    DEALINGS IN THE SOFTWARE.
 // 
-//    You can contact me at:   terryeppler@gmail.com or eppler.terry@epa.gov
+//    You can contact me at: terryeppler@gmail.com or eppler.terry@epa.gov
 // </copyright>
 // <summary>
-//   Provider.cs
+//   MetroColorPicker.cs
 // </summary>
 // ******************************************************************************************
 
 namespace Sniffy
 {
+    using Syncfusion.Windows.Shared;
     using System;
+    using System.Diagnostics.CodeAnalysis;
+    using System.Windows.Media;
 
+    /// <inheritdoc />
     /// <summary>
-    /// 
     /// </summary>
-    public enum Provider
+    [ SuppressMessage( "ReSharper", "UnusedType.Global" ) ]
+    [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
+    [ SuppressMessage( "ReSharper", "InconsistentNaming" ) ]
+    [ SuppressMessage( "ReSharper", "MemberCanBeInternal" ) ]
+    [ SuppressMessage( "ReSharper", "ClassCanBeSealed.Global" ) ]
+    public class MetroColorPicker : ColorEdit
     {
         /// <summary>
-        /// The SQLite data provider
+        /// The theme
         /// </summary>
-        SQLite = 0,
+        private protected readonly DarkMode _theme = new DarkMode( );
+
+        /// <inheritdoc />
+        /// <summary>
+        /// Initializes a new instance of the
+        /// <see cref="T:Sniffy.MetroColorPicker" /> class.
+        /// </summary>
+        public MetroColorPicker( )
+            : base( )
+        {
+            // Control Properties
+            SetResourceReference( MetroColorPicker.StyleProperty, typeof( ColorEdit ) );
+            Width = 250;
+            Height = 200;
+            FontSize = 12;
+            FontFamily = new FontFamily( "Segoe UI" );
+        }
 
         /// <summary>
-        /// The excel
+        /// Fails the specified _ex.
         /// </summary>
-        Excel = 1,
-
-        /// <summary>
-        /// The SQL server data provider
-        /// </summary>
-        SqlServer = 2,
-
-        /// <summary>
-        /// The SQL Compact data provider
-        /// </summary>
-        SqlCe = 3,
-
-        /// <summary>
-        /// The MS Access data provider
-        /// </summary>
-        Access = 4,
-
-        /// <summary>
-        /// The OLE DB data provider
-        /// </summary>
-        OleDb = 5,
-
-        /// <summary>
-        /// The CSV data provider
-        /// </summary>
-        CSV = 6,
-
-        /// <summary>
-        /// The TXT data provider
-        /// </summary>
-        Text = 7
+        /// <param name="_ex">The _ex.</param>
+        private protected void Fail( Exception _ex )
+        {
+            var _error = new ErrorWindow( _ex );
+            _error?.SetText( );
+            _error?.ShowDialog( );
+        }
     }
 }

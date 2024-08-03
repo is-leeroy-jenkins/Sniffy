@@ -1,13 +1,14 @@
 ﻿// ******************************************************************************************
-//     Assembly:                Sniffy
+//     Assembly:             Bitsy
 //     Author:                  Terry D. Eppler
-//     Created:                 12-24-2023
+//     Created:                 08-02-2024
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        03-23-2024
+//     Last Modified On:        08-02-2024
 // ******************************************************************************************
-// <copyright file="Terry Eppler" company="Terry D. Eppler">
-//    Sniffy is a tiny, WPF web socket client/server application.
+// <copyright file="CollectionExtensions.cs" company="Terry D. Eppler">
+//    Sniffy is a tiny web browser used is a budget, finance, and accounting tool for analysts with
+//    the US Environmental Protection Agency (US EPA).
 //    Copyright ©  2024  Terry Eppler
 // 
 //    Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -30,7 +31,7 @@
 //    ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 //    DEALINGS IN THE SOFTWARE.
 // 
-//    You can contact me at:  terryeppler@gmail.com or eppler.terry@epa.gov
+//    You can contact me at:   terryeppler@gmail.com or eppler.terry@epa.gov
 // </copyright>
 // <summary>
 //   CollectionExtensions.cs
@@ -71,11 +72,13 @@ namespace Sniffy
                 try
                 {
                     collection.Add( value );
+
                     return true;
                 }
                 catch( Exception _ex )
                 {
-                    Fail( _ex );
+                    CollectionExtensions.Fail( _ex );
+
                     return false;
                 }
             }
@@ -107,7 +110,7 @@ namespace Sniffy
                 }
                 catch( Exception _ex )
                 {
-                    Fail( _ex );
+                    CollectionExtensions.Fail( _ex );
                 }
             }
         }
@@ -131,7 +134,8 @@ namespace Sniffy
             }
             catch( Exception _ex )
             {
-                Fail( _ex );
+                CollectionExtensions.Fail( _ex );
+
                 return false;
             }
         }
@@ -152,7 +156,7 @@ namespace Sniffy
                 }
                 catch( Exception _ex )
                 {
-                    Fail( _ex );
+                    CollectionExtensions.Fail( _ex );
                 }
             }
         }
@@ -176,7 +180,7 @@ namespace Sniffy
                 }
                 catch( Exception _ex )
                 {
-                    Fail( _ex );
+                    CollectionExtensions.Fail( _ex );
                 }
             }
         }
@@ -191,10 +195,7 @@ namespace Sniffy
         {
             try
             {
-                var _list = collection
-                    ?.Where( child => predicate( child ) )
-                    ?.ToList( );
-
+                var _list = collection?.Where( child => predicate( child ) )?.ToList( );
                 if( _list?.Any( ) == true )
                 {
                     _list.ForEach( t => collection.Remove( t ) );
@@ -202,7 +203,7 @@ namespace Sniffy
             }
             catch( Exception _ex )
             {
-                Fail( _ex );
+                CollectionExtensions.Fail( _ex );
             }
         }
 
@@ -224,7 +225,8 @@ namespace Sniffy
             }
             catch( Exception _ex )
             {
-                Fail( _ex );
+                CollectionExtensions.Fail( _ex );
+
                 return true;
             }
         }
@@ -251,7 +253,8 @@ namespace Sniffy
             }
             catch( Exception _ex )
             {
-                Fail( _ex );
+                CollectionExtensions.Fail( _ex );
+
                 return default( BindingList<T> );
             }
         }

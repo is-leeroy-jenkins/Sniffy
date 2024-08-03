@@ -1,15 +1,15 @@
 ﻿// ******************************************************************************************
-//     Assembly:                Sniffy
+//     Assembly:             Bitsy
 //     Author:                  Terry D. Eppler
-//     Created:                 04-29-2023
+//     Created:                 08-02-2024
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        05-31-2023
+//     Last Modified On:        08-02-2024
 // ******************************************************************************************
 // <copyright file="ThrowIf.cs" company="Terry D. Eppler">
-//    This is a Federal Budget, Finance, and Accounting application for the
-//    US Environmental Protection Agency (US EPA).
-//    Copyright ©  2023  Terry Eppler
+//    Sniffy is a tiny web browser used is a budget, finance, and accounting tool for analysts with
+//    the US Environmental Protection Agency (US EPA).
+//    Copyright ©  2024  Terry Eppler
 // 
 //    Permission is hereby granted, free of charge, to any person obtaining a copy
 //    of this software and associated documentation files (the “Software”),
@@ -76,6 +76,7 @@ namespace Sniffy
                     if( string.IsNullOrEmpty( _args ) )
                     {
                         var _message = @$"The '{paramName}' is null!";
+
                         throw new ArgumentNullException( _message );
                     }
 
@@ -86,6 +87,7 @@ namespace Sniffy
                     if( _action == null )
                     {
                         var _message = @$"The '{paramName}' is null!";
+
                         throw new ArgumentNullException( _message );
                     }
 
@@ -96,6 +98,7 @@ namespace Sniffy
                     if( _control == null )
                     {
                         var _message = @$"The '{paramName}' is null!";
+
                         throw new ArgumentNullException( _message );
                     }
 
@@ -106,6 +109,7 @@ namespace Sniffy
                     if( _eventArgs == null )
                     {
                         var _message = @$"The '{paramName}' is null!";
+
                         throw new ArgumentNullException( _message );
                     }
 
@@ -116,6 +120,7 @@ namespace Sniffy
                     if( _adapter == null )
                     {
                         var _message = @$"The '{paramName}' is null!";
+
                         throw new ArgumentNullException( _message );
                     }
 
@@ -124,10 +129,11 @@ namespace Sniffy
                 case DataRow _row:
                 {
                     var _items = _row?.ItemArray;
-                    if( ( _items.Length == 0 ) 
-                       || ( _items == null ) )
+                    if( _items.Length == 0
+                        || _items == null )
                     {
                         var _message = @$"The '{paramName}' is null!";
+
                         throw new ArgumentNullException( _message );
                     }
 
@@ -138,6 +144,7 @@ namespace Sniffy
                     if( _mailMessage == null )
                     {
                         var _message = @$"The '{paramName}' is null!";
+
                         throw new ArgumentNullException( _message );
                     }
 
@@ -148,6 +155,7 @@ namespace Sniffy
                     if( argument == null )
                     {
                         var _message = @$"The '{paramName}' is null!";
+
                         throw new ArgumentNullException( _message );
                     }
 
@@ -172,6 +180,7 @@ namespace Sniffy
                     if( string.IsNullOrEmpty( _args ) )
                     {
                         var _message = @$"The '{paramName}' is empty!";
+
                         throw new ArgumentNullException( _message );
                     }
 
@@ -182,17 +191,19 @@ namespace Sniffy
                     if( _listSource == null )
                     {
                         var _message = @$"The IListSource '{paramName}' is empty!";
+
                         throw new ArgumentException( _message );
                     }
-                    
+
                     break;
                 }
                 case IBindingList _bindingList:
                 {
-                    if( _bindingList == null 
-                       || _bindingList.IsEmpty( ) )
+                    if( _bindingList == null
+                        || _bindingList.IsEmpty( ) )
                     {
                         var _message = @$"The IBindingList '{paramName}' is empty!";
+
                         throw new ArgumentException( _message );
                     }
 
@@ -200,21 +211,23 @@ namespace Sniffy
                 }
                 case IEnumerable<string> _list:
                 {
-                    if( _list == null 
-                       || _list.Any( ) != true )
+                    if( _list == null
+                        || _list.Any( ) != true )
                     {
                         var _message = @$"The IEnumerable<string> '{paramName}' is empty!";
+
                         throw new ArgumentException( _message );
                     }
-                    
+
                     break;
                 }
                 case IEnumerable<byte> _data:
                 {
                     if( _data == null
-                       || _data.Any( ) != true )
+                        || _data.Any( ) != true )
                     {
                         var _message = @$"The IEnumerable<string> '{paramName}' is empty!";
+
                         throw new ArgumentException( _message );
                     }
 
@@ -222,43 +235,47 @@ namespace Sniffy
                 }
                 case IEnumerable<DataRow> _rows:
                 {
-                    if( _rows == null 
-                       || _rows?.Any( ) != true )
+                    if( _rows == null
+                        || _rows?.Any( ) != true )
                     {
                         var _message = @$"The IEnumerable<DataRow> '{paramName}' is empty!";
+
                         throw new ArgumentException( _message );
                     }
-                    
+
                     break;
                 }
                 case ICollection _collection:
                 {
-                    if( _collection == null 
-                       || _collection.IsEmpty( ) )
+                    if( _collection == null
+                        || _collection.IsEmpty( ) )
                     {
                         var _message = @$"The ICollection '{paramName}' is empty!";
+
                         throw new ArgumentException( _message );
                     }
-                    
+
                     break;
                 }
                 case IDictionary<string, object> _dict:
                 {
-                    if( _dict == null 
-                       || _dict.Keys.IsEmpty( ) )
+                    if( _dict == null
+                        || _dict.Keys.IsEmpty( ) )
                     {
                         var _message = @$"The IDictionary<string, object> '{paramName}' is empty!";
+
                         throw new ArgumentException( _message );
                     }
-                    
+
                     break;
                 }
                 case IDictionary<string, string> _nvp:
                 {
                     if( _nvp == null
-                       || _nvp.Keys.IsEmpty( ) )
+                        || _nvp.Keys.IsEmpty( ) )
                     {
                         var _message = @$"The IDictionary<string, string> '{paramName}' is empty!";
+
                         throw new ArgumentException( _message );
                     }
 
@@ -269,6 +286,7 @@ namespace Sniffy
                     if( argument == null )
                     {
                         var _message = @$"The '{paramName}' is null!";
+
                         throw new ArgumentNullException( _message );
                     }
 

@@ -2,19 +2,19 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Sniffy" xmlns:syncfusion="http://schemas.syncfusion.com/wpf"
-        xmlns:syncfusionskin="clr-namespace:Syncfusion.SfSkinManager;assembly=Syncfusion.SfSkinManager.WPF"
+        xmlns:local="clr-namespace:Sniffy"
         x:Name="CalculationView" x:Class="Sniffy.CalculatorWindow" mc:Ignorable="d"
         Title="Calculator" Height="460" Width="410" Background="Black" BorderBrush="#FF0078D4"
         FontSize="9" Foreground="#FFC5D1DA" Topmost="True" BorderThickness="1,1,1,1"
         WindowStartupLocation="CenterScreen" WindowStyle="None">
-    <Canvas>
-        <Image x:Name="PictureBox" Height="18" Canvas.Left="14" Canvas.Top="15" Width="82"
-                HorizontalAlignment="Left" VerticalAlignment="Top" ToolTip="Click for more"
-                Source="/UI/Windows/Calculator/Main.png" />
-        <Image x:Name="CloseButton" Height="12" Canvas.Left="385" Canvas.Top="10" Width="12"
-                ToolTip="Click to close" Source="/UI/Windows/Calculator/Cancel.png" />
-        <local:MetroCalculator x:Name="Calculator" Canvas.Left="20" Canvas.Top="45" Height="400" Width="370"
-                HorizontalAlignment="Center" VerticalAlignment="Top" />
-    </Canvas>
+<Canvas>
+<Image x:Name="PictureBox" Height="18" Canvas.Left="14" Canvas.Top="15" Width="82"
+       HorizontalAlignment="Left" VerticalAlignment="Top" ToolTip="Click for more"
+       Source="/UI/Windows/Calculator/Main.png" />
+<Image x:Name="CloseButton" Height="12" Canvas.Left="385" Canvas.Top="10" Width="12"
+       ToolTip="Click to close" Source="/UI/Windows/Calculator/Cancel.png" />
+<local:MetroCalculator x:Name="Calculator" Canvas.Left="20" Canvas.Top="45" Height="400"
+                       Width="370"
+                       HorizontalAlignment="Center" VerticalAlignment="Top" />
+</Canvas>
 </Window>

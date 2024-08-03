@@ -1,15 +1,17 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Sniffy
 //     Author:                  Terry D. Eppler
-//     Created:                 ${CurrentDate.Month}-${CurrentDate.Day}-${CurrentDate.Year}
-//
+//     Created:                 08-01-2024
+// 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        ${CurrentDate.Month}-${CurrentDate.Day}-${CurrentDate.Year}
+//     Last Modified On:        08-01-2024
 // ******************************************************************************************
 // <copyright file="MetroComboBox.cs" company="Terry D. Eppler">
-//    Sniffy is a tiny, WPF web socket client/server application.
-//    Copyright ©  2024  Terry Eppler
-//
+//    Sniffy is data analysis and reporting tool for EPA Analysts
+//    based on WPF, NET6.0, and written in C-Sharp.
+// 
+//    Copyright ©  2024  Terry D. Eppler
+// 
 //    Permission is hereby granted, free of charge, to any person obtaining a copy
 //    of this software and associated documentation files (the “Software”),
 //    to deal in the Software without restriction,
@@ -18,10 +20,10 @@
 //    and/or sell copies of the Software,
 //    and to permit persons to whom the Software is furnished to do so,
 //    subject to the following conditions:
-//
+// 
 //    The above copyright notice and this permission notice shall be included in all
 //    copies or substantial portions of the Software.
-//
+// 
 //    THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
 //    INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 //    FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT.
@@ -29,129 +31,64 @@
 //    DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
 //    ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 //    DEALINGS IN THE SOFTWARE.
-//
-//    You can contact me at:   terryeppler@gmail.com or eppler.terry@epa.gov
+// 
+//    You can contact me at: terryeppler@gmail.com or eppler.terry@epa.gov
 // </copyright>
 // <summary>
-//   ${File.FileName}
+//   MetroComboBox.cs
 // </summary>
 // ******************************************************************************************
 
 namespace Sniffy
 {
+    using Syncfusion.Windows.Tools.Controls;
     using System;
     using System.Diagnostics.CodeAnalysis;
     using System.Windows;
-    using System.Windows.Media;
-    using Syncfusion.Windows.Tools.Controls;
 
+    /// <inheritdoc />
     /// <summary>
-    /// 
     /// </summary>
-    /// <seealso cref="Syncfusion.Windows.Tools.Controls.ComboBoxAdv" />
+    /// <seealso cref="T:System.Windows.Controls.ComboBox" />
     [ SuppressMessage( "ReSharper", "UnusedType.Global" ) ]
     [ SuppressMessage( "ReSharper", "InconsistentNaming" ) ]
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
+    [ SuppressMessage( "ReSharper", "ClassCanBeSealed.Global" ) ]
+    [ SuppressMessage( "ReSharper", "MemberCanBeInternal" ) ]
     [ SuppressMessage( "ReSharper", "FieldCanBeMadeReadOnly.Local" ) ]
     public class MetroComboBox : ComboBoxAdv
     {
         /// <summary>
-        /// The back color
+        /// The theme
         /// </summary>
-        private protected Color _backColor = new Color( )
-        {
-            A = 255,
-            R = 45,
-            G = 45,
-            B = 45
-        };
-
-        /// <summary>
-        /// The back hover color
-        /// </summary>
-        private protected Color _dropColor = new Color( )
-        {
-            A = 255,
-            R = 0,
-            G = 0,
-            B = 0
-        };
-
-        /// <summary>
-        /// The fore color
-        /// </summary>
-        private protected Color _foreColor = new Color( )
-        {
-            A = 255,
-            R = 222,
-            G = 222,
-            B = 222
-        };
-
-        /// <summary>
-        /// The fore hover color
-        /// </summary>
-        private protected Color _foreHover = new Color( )
-        {
-            A = 255,
-            R = 255,
-            G = 255,
-            B = 255
-        };
-
-        /// <summary>
-        /// The border color
-        /// </summary>
-        private Color _borderColor = new Color( )
-        {
-            A = 255,
-            R = 0,
-            G = 120,
-            B = 212
-        };
-
-        /// <summary>
-        /// The selection color
-        /// </summary>
-        private Color _selectionColor = new Color( )
-        {
-            A = 255,
-            R = 70,
-            G = 130,
-            B = 180
-        };
-
-        /// <summary>
-        /// The border hover color
-        /// </summary>
-        private protected Color _borderHover = new Color( )
-        {
-            A = 255,
-            R = 50,
-            G = 93,
-            B = 129
-        };
+        private protected readonly DarkMode _theme = new DarkMode( );
 
         /// <inheritdoc />
         /// <summary>
         /// Initializes a new instance of the
-        /// <see cref="T:Sniffy.MetroComboBox" /> class.
+        /// <see cref="T:Sniffy.UI.Controls.ComboBox.MetroComboBox" /> class.
         /// </summary>
         public MetroComboBox( )
             : base( )
+
         {
             // Control Properties
-            SetResourceReference( StyleProperty, typeof( ComboBoxAdv ) );
+            SetResourceReference( MetroComboBox.StyleProperty, typeof( ComboBoxAdv ) );
             Width = 150;
             Height = 30;
-            FontFamily = new FontFamily( "Segoe UI" );
-            FontSize = 12;
-            Padding = new Thickness( 15, 1, 1, 1 );
-            Margin = new Thickness( 3 );
+            FontFamily = _theme.FontFamily;
+            FontSize = _theme.FontSize;
+            Padding = new Thickness( 10, 1, 1, 1 );
+            Margin = new Thickness( 1 );
             BorderThickness = new Thickness( 1 );
-            Background = new SolidColorBrush( _backColor );
-            Foreground = new SolidColorBrush( _foreColor );
-            BorderBrush = new SolidColorBrush( _borderColor );
+            IsEditable = true;
+            AutoCompleteMode = AutoCompleteModes.None;
+            AllowMultiSelect = false;
+            IsTextSearchEnabled = false;
+            AllowSelectAll = false;
+            Background = _theme.ControlColor;
+            Foreground = _theme.ForeColor;
+            BorderBrush = _theme.BorderColor;
         }
 
         /// <summary>
@@ -162,19 +99,21 @@ namespace Sniffy
         {
             try
             {
-                var _item = new ComboBoxItemAdv
+                var _item = new MetroComboBoxItem
                 {
-                    Background = new SolidColorBrush( _backColor ),
-                    Foreground = new SolidColorBrush( _foreColor ),
-                    BorderBrush = new SolidColorBrush( _borderColor ),
-                    Content = name
+                    Background = _theme.ControlColor,
+                    Foreground = _theme.ForeColor,
+                    BorderBrush = _theme.ControlColor,
+                    Content = name,
+                    Tag = name,
+                    Height = 22
                 };
 
                 Items.Add( _item );
             }
-            catch( Exception _ex )
+            catch( Exception ex )
             {
-                Fail( _ex );
+                Fail( ex );
             }
         }
 

@@ -1,13 +1,14 @@
 ﻿// ******************************************************************************************
-//     Assembly:                Sniffy
+//     Assembly:             Bitsy
 //     Author:                  Terry D. Eppler
-//     Created:                 06-14-2024
+//     Created:                 08-02-2024
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        06-14-2024
+//     Last Modified On:        08-02-2024
 // ******************************************************************************************
 // <copyright file="SocketConfig.cs" company="Terry D. Eppler">
-//    Sniffy is a tiny, WPF web socket client/server application.
+//    Sniffy is a tiny web browser used is a budget, finance, and accounting tool for analysts with
+//    the US Environmental Protection Agency (US EPA).
 //    Copyright ©  2024  Terry Eppler
 // 
 //    Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -78,11 +79,10 @@ namespace Sniffy
         public static void ConfigureSocket( Socket socket, bool enableKeepAlive = false )
         {
             socket.NoDelay = true;
-            DisableTcpDelayedAck( socket );
-            if( enableKeepAlive &&
-               ( !OperatingSystem.IsWindows( ) ||
-                   OperatingSystem.IsWindowsVersionAtLeast( Win10Version1703.Major,
-                       Win10Version1703.Minor, Win10Version1703.Build ) ) )
+            SocketConfig.DisableTcpDelayedAck( socket );
+            if( enableKeepAlive && ( !OperatingSystem.IsWindows( )
+                || OperatingSystem.IsWindowsVersionAtLeast( SocketConfig.Win10Version1703.Major,
+                    SocketConfig.Win10Version1703.Minor, SocketConfig.Win10Version1703.Build ) ) )
             {
                 try
                 {
@@ -112,12 +112,12 @@ namespace Sniffy
         private static void DisableTcpDelayedAck( Socket socket )
         {
             if( socket.ProtocolType is ProtocolType.Tcp
-               && OperatingSystem.IsWindows( ) )
+                && OperatingSystem.IsWindows( ) )
             {
                 try
                 {
                     const int SIO_TCP_SET_ACK_FREQUENCY = unchecked( (int)0x98000017 );
-                    socket.IOControl( SIO_TCP_SET_ACK_FREQUENCY, IntOneAsBytes,
+                    socket.IOControl( SIO_TCP_SET_ACK_FREQUENCY, SocketConfig.IntOneAsBytes,
                         Array.Empty<byte>( ) );
                 }
                 catch( SocketException )

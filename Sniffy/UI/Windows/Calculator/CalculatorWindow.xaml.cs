@@ -1,13 +1,14 @@
 ﻿// ******************************************************************************************
-//     Assembly:                Siffy
+//     Assembly:             Bitsy
 //     Author:                  Terry D. Eppler
-//     Created:                 05-28-2024
+//     Created:                 08-02-2024
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        05-28-2024
+//     Last Modified On:        08-02-2024
 // ******************************************************************************************
 // <copyright file="CalculatorWindow.xaml.cs" company="Terry D. Eppler">
-//    Sniffy is a tiny, WPF web socket client/server application.
+//    Sniffy is a tiny web browser used is a budget, finance, and accounting tool for analysts with
+//    the US Environmental Protection Agency (US EPA).
 //    Copyright ©  2024  Terry Eppler
 // 
 //    Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -95,9 +96,9 @@ namespace Sniffy
         /// <inheritdoc />
         /// <summary>
         /// Initializes a new instance of the
-        /// <see cref="T:Badger.CalculatorWindow" /> class.
+        /// <see cref="T:Sniffy.CalculatorWindow" /> class.
         /// </summary>
-        public CalculatorWindow( ) 
+        public CalculatorWindow( )
             : base( )
         {
             // Theme Properties

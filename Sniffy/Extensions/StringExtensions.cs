@@ -1,13 +1,14 @@
 ﻿// ******************************************************************************************
-//     Assembly:                Sniffy
+//     Assembly:             Bitsy
 //     Author:                  Terry D. Eppler
-//     Created:                 12-24-2023
+//     Created:                 08-02-2024
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        03-23-2024
+//     Last Modified On:        08-02-2024
 // ******************************************************************************************
-// <copyright file="Terry Eppler" company="Terry D. Eppler">
-//    Sniffy is a tiny, WPF web socket client/server application.
+// <copyright file="StringExtensions.cs" company="Terry D. Eppler">
+//    Sniffy is a tiny web browser used is a budget, finance, and accounting tool for analysts with
+//    the US Environmental Protection Agency (US EPA).
 //    Copyright ©  2024  Terry Eppler
 // 
 //    Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -30,7 +31,7 @@
 //    ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 //    DEALINGS IN THE SOFTWARE.
 // 
-//    You can contact me at:  terryeppler@gmail.com or eppler.terry@epa.gov
+//    You can contact me at:   terryeppler@gmail.com or eppler.terry@epa.gov
 // </copyright>
 // <summary>
 //   StringExtensions.cs
@@ -68,7 +69,7 @@ namespace Sniffy
             try
             {
                 if( !string.IsNullOrEmpty( text )
-                   && ( text.Length > 4 ) )
+                    && text.Length > 4 )
                 {
                     var _pascal = Regex.Replace( text, "([A-Z])", " $1", RegexOptions.Compiled )
                         ?.Trim( );
@@ -125,7 +126,8 @@ namespace Sniffy
             }
             catch( Exception _ex )
             {
-                Fail( _ex );
+                StringExtensions.Fail( _ex );
+
                 return default( string );
             }
         }
@@ -146,11 +148,13 @@ namespace Sniffy
             try
             {
                 ThrowIf.Null( alt, nameof( alt ) );
+
                 return text ?? alt ?? string.Empty;
             }
             catch( Exception _ex )
             {
-                Fail( _ex );
+                StringExtensions.Fail( _ex );
+
                 return string.Empty;
             }
         }
@@ -168,11 +172,13 @@ namespace Sniffy
             try
             {
                 ThrowIf.Null( values, nameof( values ) );
+
                 return Array.IndexOf( values, text ) != -1;
             }
             catch( Exception _ex )
             {
-                Fail( _ex );
+                StringExtensions.Fail( _ex );
+
                 return false;
             }
         }
@@ -193,13 +199,15 @@ namespace Sniffy
             try
             {
                 ThrowIf.NegativeOrZero( length, nameof( length ) );
+
                 return text?.Length > length
                     ? text.Substring( text.Length - length )
                     : text;
             }
             catch( Exception _ex )
             {
-                Fail( _ex );
+                StringExtensions.Fail( _ex );
+
                 return string.Empty;
             }
         }
@@ -220,13 +228,15 @@ namespace Sniffy
             try
             {
                 ThrowIf.NegativeOrZero( length, nameof( length ) );
+
                 return text?.Length > length
                     ? text[ length ].ToString( )
                     : text;
             }
             catch( Exception _ex )
             {
-                Fail( _ex );
+                StringExtensions.Fail( _ex );
+
                 return string.Empty;
             }
         }
@@ -246,11 +256,13 @@ namespace Sniffy
             {
                 var _letters = text.ToCharArray( );
                 _letters[ 0 ] = char.ToUpper( _letters[ 0 ] );
+
                 return new string( _letters );
             }
             catch( Exception _ex )
             {
-                Fail( _ex );
+                StringExtensions.Fail( _ex );
+
                 return string.Empty;
             }
         }
@@ -269,13 +281,15 @@ namespace Sniffy
             try
             {
                 var _date = DateTime.TryParse( text, out var _dateTime );
+
                 return _date
                     ? _dateTime
                     : default( DateTime );
             }
             catch( Exception _ex )
             {
-                Fail( _ex );
+                StringExtensions.Fail( _ex );
+
                 return default( DateTime );
             }
         }
@@ -294,11 +308,13 @@ namespace Sniffy
             try
             {
                 var _buffer = Encoding.UTF8.GetBytes( text );
+
                 return new MemoryStream( _buffer );
             }
             catch( Exception _ex )
             {
-                Fail( _ex );
+                StringExtensions.Fail( _ex );
+
                 return default( MemoryStream );
             }
         }
@@ -316,11 +332,13 @@ namespace Sniffy
             {
                 var _document = new XmlDocument( );
                 _document.LoadXml( xml );
+
                 return _document;
             }
             catch( Exception _ex )
             {
-                Fail( _ex );
+                StringExtensions.Fail( _ex );
+
                 return default( XmlDocument );
             }
         }
@@ -337,11 +355,13 @@ namespace Sniffy
             try
             {
                 Encoding _encoding = Activator.CreateInstance<ASCIIEncoding>( );
+
                 return _encoding.GetBytes( text );
             }
             catch( Exception _ex )
             {
-                Fail( _ex );
+                StringExtensions.Fail( _ex );
+
                 return default( byte[ ] );
             }
         }
@@ -366,7 +386,8 @@ namespace Sniffy
             }
             catch( Exception _ex )
             {
-                Fail( _ex );
+                StringExtensions.Fail( _ex );
+
                 return _count;
             }
 
@@ -388,7 +409,7 @@ namespace Sniffy
             }
             catch( Exception _ex )
             {
-                Fail( _ex );
+                StringExtensions.Fail( _ex );
             }
         }
 
@@ -421,11 +442,13 @@ namespace Sniffy
                 var _credentials = new NetworkCredential( );
                 _client.Credentials = _credentials;
                 _client.Send( _message );
+
                 return true;
             }
             catch( Exception _ex )
             {
-                Fail( _ex );
+                StringExtensions.Fail( _ex );
+
                 return false;
             }
         }
@@ -447,7 +470,8 @@ namespace Sniffy
                 }
                 catch( Exception _ex )
                 {
-                    Fail( _ex );
+                    StringExtensions.Fail( _ex );
+
                     return text;
                 }
             }
@@ -470,11 +494,13 @@ namespace Sniffy
             try
             {
                 var _regex = new Regex( @"^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$" );
+
                 return _regex.IsMatch( s );
             }
             catch( Exception _ex )
             {
-                Fail( _ex );
+                StringExtensions.Fail( _ex );
+
                 return false;
             }
         }

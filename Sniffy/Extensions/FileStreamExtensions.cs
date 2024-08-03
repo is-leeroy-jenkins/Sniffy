@@ -1,15 +1,16 @@
 ﻿// ******************************************************************************************
-//     Assembly:                Sniffy
+//     Assembly:             Bitsy
 //     Author:                  Terry D. Eppler
-//     Created:                 12-24-2023
+//     Created:                 08-02-2024
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        03-23-2024
+//     Last Modified On:        08-02-2024
 // ******************************************************************************************
-// <copyright file="Terry Eppler" company="Terry D. Eppler">
-//    Sniffy is a tiny, WPF web socket client/server application.
+// <copyright file="FileStreamExtensions.cs" company="Terry D. Eppler">
+//    Sniffy is a tiny web browser used is a budget, finance, and accounting tool for analysts with
+//    the US Environmental Protection Agency (US EPA).
 //    Copyright ©  2024  Terry Eppler
-//
+// 
 //    Permission is hereby granted, free of charge, to any person obtaining a copy
 //    of this software and associated documentation files (the “Software”),
 //    to deal in the Software without restriction,
@@ -30,7 +31,7 @@
 //    ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 //    DEALINGS IN THE SOFTWARE.
 // 
-//    You can contact me at:  terryeppler@gmail.com or eppler.terry@epa.gov
+//    You can contact me at:   terryeppler@gmail.com or eppler.terry@epa.gov
 // </copyright>
 // <summary>
 //   FileStreamExtensions.cs
@@ -84,7 +85,7 @@ namespace Sniffy
             }
             catch( Exception _ex )
             {
-                Fail( _ex );
+                FileStreamExtensions.Fail( _ex );
             }
         }
 
@@ -103,7 +104,8 @@ namespace Sniffy
             }
             catch( Exception _ex )
             {
-                Fail( _ex );
+                FileStreamExtensions.Fail( _ex );
+
                 return default( StreamReader );
             }
         }
@@ -121,11 +123,13 @@ namespace Sniffy
             try
             {
                 encoding ??= Encoding.Default;
+
                 return new StreamReader( stream, encoding );
             }
             catch( Exception _ex )
             {
-                Fail( _ex );
+                FileStreamExtensions.Fail( _ex );
+
                 return default( StreamReader );
             }
         }
@@ -147,7 +151,8 @@ namespace Sniffy
             }
             catch( Exception _ex )
             {
-                Fail( _ex );
+                FileStreamExtensions.Fail( _ex );
+
                 return default( StreamWriter );
             }
         }
@@ -167,11 +172,13 @@ namespace Sniffy
                 try
                 {
                     encoding ??= Encoding.Default;
+
                     return new StreamWriter( stream, encoding );
                 }
                 catch( Exception _ex )
                 {
-                    Fail( _ex );
+                    FileStreamExtensions.Fail( _ex );
+
                     return default( StreamWriter );
                 }
             }
@@ -194,7 +201,8 @@ namespace Sniffy
             }
             catch( Exception _ex )
             {
-                Fail( _ex );
+                FileStreamExtensions.Fail( _ex );
+
                 return string.Empty;
             }
         }
@@ -212,11 +220,13 @@ namespace Sniffy
             try
             {
                 using var _reader = stream.GetReader( encoding );
+
                 return _reader.ReadToEnd( );
             }
             catch( Exception _ex )
             {
-                Fail( _ex );
+                FileStreamExtensions.Fail( _ex );
+
                 return string.Empty;
             }
         }
@@ -235,11 +245,13 @@ namespace Sniffy
                 try
                 {
                     stream.Seek( 0, SeekOrigin.Begin );
+
                     return stream;
                 }
                 catch( Exception _ex )
                 {
-                    Fail( _ex );
+                    FileStreamExtensions.Fail( _ex );
+
                     return default( Stream );
                 }
             }
@@ -261,11 +273,13 @@ namespace Sniffy
                 try
                 {
                     stream.Seek( 0, SeekOrigin.End );
+
                     return stream;
                 }
                 catch( Exception _ex )
                 {
-                    Fail( _ex );
+                    FileStreamExtensions.Fail( _ex );
+
                     return default( Stream );
                 }
             }
@@ -284,9 +298,9 @@ namespace Sniffy
         /// </returns>
         public static Stream CopyTo( this Stream stream, Stream target, int buffer )
         {
-            if( ( target != null )
-               && stream.CanRead
-               && target.CanWrite )
+            if( target != null
+                && stream.CanRead
+                && target.CanWrite )
             {
                 try
                 {
@@ -301,7 +315,8 @@ namespace Sniffy
                 }
                 catch( Exception _ex )
                 {
-                    Fail( _ex );
+                    FileStreamExtensions.Fail( _ex );
+
                     return default( MemoryStream );
                 }
             }
@@ -322,11 +337,13 @@ namespace Sniffy
             {
                 var _memory = new MemoryStream( (int)stream.Length );
                 stream.CopyTo( _memory, (int)stream.Length );
+
                 return _memory;
             }
             catch( Exception _ex )
             {
-                Fail( _ex );
+                FileStreamExtensions.Fail( _ex );
+
                 return default( MemoryStream );
             }
         }
@@ -343,11 +360,13 @@ namespace Sniffy
             try
             {
                 var _memory = stream.CopyToMemory( );
+
                 return _memory.ToArray( );
             }
             catch( Exception _ex )
             {
-                Fail( _ex );
+                FileStreamExtensions.Fail( _ex );
+
                 return default( IEnumerable<byte> );
             }
         }
@@ -383,7 +402,8 @@ namespace Sniffy
             }
             catch( Exception _ex )
             {
-                Fail( _ex );
+                FileStreamExtensions.Fail( _ex );
+
                 return default( IEnumerable<byte> );
             }
         }
@@ -402,7 +422,7 @@ namespace Sniffy
             }
             catch( Exception _ex )
             {
-                Fail( _ex );
+                FileStreamExtensions.Fail( _ex );
             }
         }
 

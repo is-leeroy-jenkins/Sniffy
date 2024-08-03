@@ -1,13 +1,14 @@
 ﻿// ******************************************************************************************
-//     Assembly:                Sniffy
+//     Assembly:             Bitsy
 //     Author:                  Terry D. Eppler
-//     Created:                 06-13-2024
+//     Created:                 08-02-2024
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        06-13-2024
+//     Last Modified On:        08-02-2024
 // ******************************************************************************************
 // <copyright file="SocketHandler.cs" company="Terry D. Eppler">
-//    Sniffy is a tiny, WPF web socket client/server application.
+//    Sniffy is a tiny web browser used is a budget, finance, and accounting tool for analysts with
+//    the US Environmental Protection Agency (US EPA).
 //    Copyright ©  2024  Terry Eppler
 // 
 //    Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -64,9 +65,7 @@ namespace Sniffy
         /// <summary>
         /// The text encoding
         /// </summary>
-        private static readonly Encoding _textEncoding =
-            new UTF8Encoding( encoderShouldEmitUTF8Identifier: false, 
-                throwOnInvalidBytes: true );
+        private static readonly Encoding _textEncoding = new UTF8Encoding( false, true );
 
         /// <summary>
         /// The is websocket
@@ -121,7 +120,8 @@ namespace Sniffy
         /// <summary>
         /// The send queue
         /// </summary>
-        private ConcurrentQueue<(string text, bool close)> _queue = new ConcurrentQueue<(string, bool)>( );
+        private ConcurrentQueue<(string text, bool close)> _queue =
+            new ConcurrentQueue<(string, bool)>( );
 
         /// <summary>
         /// The send queue semaphore
@@ -162,7 +162,7 @@ namespace Sniffy
         /// <param name="sslProtocols">The SSL protocols.</param>
         /// <exception cref="ArgumentNullException">addressFamily</exception>
         public SocketHandler( Func<Action, CancellationToken, Task> async, bool isSocket,
-            string host, int port, AddressFamily addressFamily, Encoding encoding, 
+            string host, int port, AddressFamily addressFamily, Encoding encoding,
             bool useSsl, bool ignoreSslCertErrors, SslProtocols sslProtocols )
         {
             _async = async;
@@ -231,9 +231,7 @@ namespace Sniffy
         {
             // Cancel with token
             _cancel.Cancel( );
-            _task!.GetAwaiter( )
-                .GetResult( );
-
+            _task!.GetAwaiter( ).GetResult( );
             var _cnlmsg = "Connection closed/aborted.";
             OnSocketMessage( new SocketEventArgs( _cnlmsg, true ) );
             _cancel.Dispose( );
@@ -291,18 +289,18 @@ namespace Sniffy
                 SocketConfig.ConfigureSocket( _client.Client, true );
                 Stream _clientStream = new NetworkStream( _client.Client, false );
                 var _remoteEndpoint = _client.Client.RemoteEndPoint;
-                _ = InvokeAsync( ( ) => 
-                    OnSocketMessage( new SocketEventArgs( $"TCP connection established to '{_remoteEndpoint}'." 
-                        + ( _useSsl
-                            ? " Negotiating TLS…"
-                            : "" ), true ) ) );
+                _ = InvokeAsync( ( ) => OnSocketMessage( new SocketEventArgs(
+                    $"TCP connection established to '{_remoteEndpoint}'." + ( _useSsl
+                        ? " Negotiating TLS…"
+                        : "" ), true ) ) );
 
                 if( _useSsl )
                 {
                     var _sslStream = new SslStream( _clientStream );
                     try
                     {
-                        await _sslStream.AuthenticateAsClientAsync( new SslClientAuthenticationOptions( )
+                        await _sslStream.AuthenticateAsClientAsync(
+                            new SslClientAuthenticationOptions( )
                             {
                                 TargetHost = _host,
                                 EnabledSslProtocols = _sslProtocols,
@@ -316,24 +314,24 @@ namespace Sniffy
 
                                     return sslPolicyErrors == SslPolicyErrors.None;
                                 }
-                            },
-                            _cancel.Token );
+                            }, _cancel.Token );
 
                         var _sslProtocol = _sslStream.SslProtocol;
                         var _cipherSuite = _sslStream.NegotiatedCipherSuite;
                         var _remoteCertificate = _sslStream.RemoteCertificate!;
-                        _ = InvokeAsync( ( ) => 
-                            OnSocketMessage( new SocketEventArgs( $"TLS negotiated. Protocol: " 
-                                + $"{FormatSslProtocol( _sslProtocol )}, " 
-                                + "CipherSuite: {cipherSuite}, Certificate SHA-1 Hash: " 
-                                + $"{_remoteCertificate.GetCertHashString( )} (issued by: " 
-                                + $"{_remoteCertificate.Issuer}; not after: " 
-                                + $"{_remoteCertificate.GetExpirationDateString( )})", true ) ) );
+                        _ = InvokeAsync( ( ) => OnSocketMessage( new SocketEventArgs(
+                            $"TLS negotiated. Protocol: "
+                            + $"{SocketHandler.FormatSslProtocol( _sslProtocol )}, "
+                            + "CipherSuite: {cipherSuite}, Certificate SHA-1 Hash: "
+                            + $"{_remoteCertificate.GetCertHashString( )} (issued by: "
+                            + $"{_remoteCertificate.Issuer}; not after: "
+                            + $"{_remoteCertificate.GetExpirationDateString( )})", true ) ) );
                     }
                     catch
                     {
                         await _sslStream.DisposeAsync( );
                         _client.Client.Close( 0 );
+
                         throw;
                     }
 
@@ -365,6 +363,7 @@ namespace Sniffy
                                     }
 
                                     _client.Client.Shutdown( SocketShutdown.Send );
+
                                     break;
                                 }
                                 else
@@ -376,16 +375,12 @@ namespace Sniffy
                                     var _stxt = _binaryEncoding.GetString( _memory.Span );
                                     _ = InvokeAsync( ( ) =>
                                     {
-                                        var _sargs = 
-                                            new SocketEventArgs( _stxt, isSendText: true );
-
+                                        var _sargs = new SocketEventArgs( _stxt, isSendText: true );
                                         OnSocketMessage( new SocketEventArgs( _stxt,
                                             isSendText: true ) );
                                     } );
 
-                                    await _clientStream.WriteAsync( _memory,
-                                        _cancel.Token );
-
+                                    await _clientStream.WriteAsync( _memory, _cancel.Token );
                                     await _clientStream.FlushAsync( _cancel.Token );
                                     ArrayPool<byte>.Shared.Return( _buffer );
                                 }
@@ -401,15 +396,13 @@ namespace Sniffy
 
                     try
                     {
-                        using( var _reader = new StreamReader( _clientStream,
-                                  _binaryEncoding,
-                                  false,
-                                  leaveOpen: true ) )
+                        using( var _reader = new StreamReader( _clientStream, _binaryEncoding,
+                            false, leaveOpen: true ) )
                         {
                             int _read;
                             var _input = new char[ 32768 ];
                             while( ( _read = await _reader.ReadAsync( _input, _cancel.Token ) )
-                                  > 0 )
+                                > 0 )
                             {
                                 var _text = new string( _input, 0, _read );
                                 var _rdrarg = new SocketEventArgs( _text );
@@ -452,8 +445,7 @@ namespace Sniffy
                 {
                     var _connText = "Error when establishing connection: " + _ex.Message;
                     var _connarg = new SocketEventArgs( _connText, true );
-                    _ = InvokeAsync( ( ) => 
-                        OnSocketMessage( _connarg ) );
+                    _ = InvokeAsync( ( ) => OnSocketMessage( _connarg ) );
                 }
                 catch( OperationCanceledException )
                 {
@@ -500,8 +492,8 @@ namespace Sniffy
                                 var _csdmsg = "Send Channel closing.";
                                 var _csdarg = new SocketEventArgs( _csdmsg, true );
                                 _ = InvokeAsync( ( ) => OnSocketMessage( _csdarg ) );
-                                await _socket.CloseOutputAsync( WebSocketCloseStatus.NormalClosure, null, 
-                                    _cancel.Token );
+                                await _socket.CloseOutputAsync( WebSocketCloseStatus.NormalClosure,
+                                    null, _cancel.Token );
 
                                 break;
                             }
@@ -551,8 +543,7 @@ namespace Sniffy
                         _stream.Write( _input.AsSpan( )[ .._received.Count ] );
                         if( _stream.Length > size )
                         {
-                            var _err = $"The message exceeds " 
-                                + $"{size / 1024 / 1024} MiB.";
+                            var _err = $"The message exceeds " + $"{size / 1024 / 1024} MiB.";
 
                             throw new InvalidOperationException( _err );
                         }
@@ -561,12 +552,12 @@ namespace Sniffy
                         {
                             if( !_stream.TryGetBuffer( out var _streamBuffer ) )
                             {
-                                throw new InvalidOperationException( ); 
+                                throw new InvalidOperationException( );
                             }
 
                             var _results = _received.MessageType == WebSocketMessageType.Text
                                 ? _binaryEncoding.GetString( _streamBuffer )
-                                : _textEncoding.GetString( _streamBuffer );
+                                : SocketHandler._textEncoding.GetString( _streamBuffer );
 
                             _stream.Seek( 0, SeekOrigin.Begin );
                             _stream.SetLength( 0 );
@@ -628,15 +619,14 @@ namespace Sniffy
         private Task InvokeAsync( Action action )
         {
             return _async( ( ) =>
+            {
+                if( _cancel.Token.IsCancellationRequested )
                 {
-                    if( _cancel.Token.IsCancellationRequested )
-                    {
-                        return;
-                    }
+                    return;
+                }
 
-                    action( );
-                },
-                _cancel.Token );
+                action( );
+            }, _cancel.Token );
         }
     }
 }

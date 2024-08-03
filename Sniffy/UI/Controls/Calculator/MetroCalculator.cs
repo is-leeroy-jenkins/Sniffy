@@ -1,14 +1,16 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Sniffy
 //     Author:                  Terry D. Eppler
-//     Created:                 05-28-2024
+//     Created:                 08-01-2024
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        05-28-2024
+//     Last Modified On:        08-01-2024
 // ******************************************************************************************
 // <copyright file="MetroCalculator.cs" company="Terry D. Eppler">
-//    Sniffy is a tiny, WPF web socket client/server application.
-//    Copyright ©  2024  Terry Eppler
+//    Sniffy is data analysis and reporting tool for EPA Analysts
+//    based on WPF, NET6.0, and written in C-Sharp.
+// 
+//    Copyright ©  2024  Terry D. Eppler
 // 
 //    Permission is hereby granted, free of charge, to any person obtaining a copy
 //    of this software and associated documentation files (the “Software”),
@@ -30,7 +32,7 @@
 //    ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 //    DEALINGS IN THE SOFTWARE.
 // 
-//    You can contact me at:  terryeppler@gmail.com or eppler.terry@epa.gov
+//    You can contact me at: terryeppler@gmail.com or eppler.terry@epa.gov
 // </copyright>
 // <summary>
 //   MetroCalculator.cs
@@ -39,11 +41,10 @@
 
 namespace Sniffy
 {
+    using Syncfusion.Windows.Controls.Input;
     using System;
     using System.Diagnostics.CodeAnalysis;
     using System.Windows.Media;
-    using Syncfusion.SfSkinManager;
-    using Syncfusion.Windows.Controls.Input;
 
     /// <inheritdoc />
     /// <summary>
@@ -57,65 +58,34 @@ namespace Sniffy
     public class MetroCalculator : SfCalculator
     {
         /// <summary>
-        /// The back color
+        /// The theme
         /// </summary>
-        private protected Color _backColor = new Color( )
-        {
-            A = 255,
-            R = 0,
-            G = 0,
-            B = 0
-        };
-
-        /// <summary>
-        /// The fore color
-        /// </summary>
-        private protected Color _foreColor = new Color( )
-        {
-            A = 255,
-            R = 0,
-            G = 120,
-            B = 212
-        };
-
-        /// <summary>
-        /// The border color
-        /// </summary>
-        private Color _borderColor = new Color( )
-        {
-            A = 255,
-            R = 0,
-            G = 0,
-            B = 0
-        };
+        private protected readonly DarkMode _theme = new DarkMode( );
 
         /// <inheritdoc />
         /// <summary>
         /// Initializes a new instance of the
-        /// <see cref="T:Badger.Calculator" /> class.
+        /// <see cref="T:Sniffy.Calculator" /> class.
         /// </summary>
         public MetroCalculator( )
             : base( )
         {
-            // Theme Properties
-            SfSkinManager.SetTheme( this, new Theme( "FluentDark" ) );
-            SetResourceReference( StyleProperty, typeof( SfCalculator ) );
-
             // Control Properties
+            SetResourceReference( MetroCalculator.StyleProperty, typeof( SfCalculator ) );
             FontFamily = new FontFamily( "Segoe UI" );
             FontSize = 12;
-            Background = new SolidColorBrush( _backColor );
-            BorderBrush = new SolidColorBrush( _backColor );
-            Foreground = new SolidColorBrush( _foreColor );
+            Background = _theme.BackColor;
+            BorderBrush = _theme.BorderColor;
+            Foreground = _theme.ForeColor;
         }
 
         /// <summary>
-        /// Fails the specified ex.
+        /// Fails the specified _ex.
         /// </summary>
-        /// <param name="ex">The ex.</param>
-        private protected void Fail( Exception ex )
+        /// <param name="_ex">The _ex.</param>
+        private protected void Fail( Exception _ex )
         {
-            var _error = new ErrorWindow( ex );
+            var _error = new ErrorWindow( _ex );
             _error?.SetText( );
             _error?.ShowDialog( );
         }

@@ -2,22 +2,23 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Sniffy" x:Name="ErrorView" x:Class="Sniffy.ErrorWindow"
+        x:Name="ErrorView" x:Class="Sniffy.ErrorWindow"
         mc:Ignorable="d" Height="250" Width="560" Background="#FF280000"
-        BorderBrush="Red" Foreground="White" WindowStartupLocation="CenterScreen" WindowStyle="None"
+        BorderBrush="Red" Foreground="White" WindowStartupLocation="CenterScreen"
+        WindowStyle="None"
         BorderThickness="1,1,1,1" SnapsToDevicePixels="True"
         Icon="/UI/Windows/Error/SplashNotification.png" Margin="3,3,3,3" ResizeMode="NoResize">
-    <Canvas x:Name="ErrorCanvas">
-        <Image x:Name="PictureBox" Height="18" Width="20"
-                Source="/UI/Windows/Error/SplashNotification.png" HorizontalAlignment="Left"
-                Canvas.Left="2" Canvas.Top="3" VerticalAlignment="Top" />
-        <Label x:Name="Title" Content="Label" Width="305" Foreground="White"
-                HorizontalAlignment="Left" Canvas.Left="35" VerticalAlignment="Center" />
-        <Label  x:Name="StatusLabel" Content="MetroLabel" Width="165" Height="20"
-                Foreground="White" Padding="1,1,1,1" FontSize="9" HorizontalContentAlignment="Right"
-                HorizontalAlignment="Left" Canvas.Left="385" Canvas.Top="5" VerticalAlignment="Top" />
-        <Label  x:Name="MessageText" Content="MetroLabel" Height="145" Width="402"
-                Foreground="#FFF5F7F7" FontSize="10" HorizontalAlignment="Left" Canvas.Left="78"
-                Canvas.Top="55" VerticalAlignment="Top" />
-    </Canvas>
+<Canvas x:Name="ErrorCanvas">
+<Image x:Name="PictureBox" Height="18" Width="20"
+       Source="/UI/Windows/Error/SplashNotification.png" HorizontalAlignment="Left"
+       Canvas.Left="2" Canvas.Top="3" VerticalAlignment="Top" />
+<Label x:Name="Title" Content="Label" Width="305" Foreground="White"
+       HorizontalAlignment="Left" Canvas.Left="35" VerticalAlignment="Center" />
+<Label x:Name="StatusLabel" Content="MetroLabel" Width="165" Height="20"
+       Foreground="White" Padding="1,1,1,1" FontSize="9" HorizontalContentAlignment="Right"
+       HorizontalAlignment="Left" Canvas.Left="385" Canvas.Top="5" VerticalAlignment="Top" />
+<Label x:Name="MessageText" Content="MetroLabel" Height="145" Width="402"
+       Foreground="#FFF5F7F7" FontSize="10" HorizontalAlignment="Left" Canvas.Left="78"
+       Canvas.Top="55" VerticalAlignment="Top" />
+</Canvas>
 </Window>

@@ -1,13 +1,14 @@
 ﻿// ******************************************************************************************
-//     Assembly:                Sniffy
+//     Assembly:             Bitsy
 //     Author:                  Terry D. Eppler
-//     Created:                 2-3-2024
+//     Created:                 08-02-2024
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        2-3-2024
+//     Last Modified On:        08-02-2024
 // ******************************************************************************************
 // <copyright file="MenuOption.cs" company="Terry D. Eppler">
-//    Sniffy is a tiny, WPF web socket client/server application.
+//    Sniffy is a tiny web browser used is a budget, finance, and accounting tool for analysts with
+//    the US Environmental Protection Agency (US EPA).
 //    Copyright ©  2024  Terry Eppler
 // 
 //    Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -30,7 +31,7 @@
 //    ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 //    DEALINGS IN THE SOFTWARE.
 // 
-//    Contact at:  terryeppler@gmail.com or eppler.terry@epa.gov
+//    You can contact me at:   terryeppler@gmail.com or eppler.terry@epa.gov
 // </copyright>
 // <summary>
 //   MenuOption.cs
@@ -97,7 +98,7 @@ namespace Sniffy
         /// <summary>
         /// The windows clock
         /// </summary>
-        Clock = 12, 
+        Clock = 12,
 
         /// <summary>
         /// The guidance
@@ -117,7 +118,7 @@ namespace Sniffy
         /// <summary>
         /// The edge
         /// </summary>
-        Edge = 16, 
+        Edge = 16,
 
         /// <summary>
         /// The save
@@ -127,7 +128,7 @@ namespace Sniffy
         /// <summary>
         /// The refresh
         /// </summary>
-        Refresh = 18, 
+        Refresh = 18,
 
         /// <summary>
         /// The exit

@@ -1,13 +1,14 @@
 ﻿// ******************************************************************************************
-//     Assembly:                Sniffy
+//     Assembly:             Bitsy
 //     Author:                  Terry D. Eppler
-//     Created:                 12-24-2023
+//     Created:                 08-02-2024
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        03-23-2024
+//     Last Modified On:        08-02-2024
 // ******************************************************************************************
-// <copyright file="Terry Eppler" company="Terry D. Eppler">
-//    Sniffy is a tiny, WPF web socket client/server application.
+// <copyright file="EnumerableExtensions.cs" company="Terry D. Eppler">
+//    Sniffy is a tiny web browser used is a budget, finance, and accounting tool for analysts with
+//    the US Environmental Protection Agency (US EPA).
 //    Copyright ©  2024  Terry Eppler
 // 
 //    Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -30,7 +31,7 @@
 //    ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 //    DEALINGS IN THE SOFTWARE.
 // 
-//    You can contact me at:  terryeppler@gmail.com or eppler.terry@epa.gov
+//    You can contact me at:   terryeppler@gmail.com or eppler.terry@epa.gov
 // </copyright>
 // <summary>
 //   EnumerableExtensions.cs
@@ -84,7 +85,8 @@ namespace Sniffy
             }
             catch( Exception _ex )
             {
-                Fail( _ex );
+                EnumerableExtensions.Fail( _ex );
+
                 return default( BindingList<T> );
             }
         }
@@ -113,7 +115,8 @@ namespace Sniffy
             }
             catch( Exception _ex )
             {
-                Fail( _ex );
+                EnumerableExtensions.Fail( _ex );
+
                 return default( IEnumerable<T> );
             }
         }
@@ -142,7 +145,8 @@ namespace Sniffy
             }
             catch( Exception _ex )
             {
-                Fail( _ex );
+                EnumerableExtensions.Fail( _ex );
+
                 return default( IEnumerable<T> );
             }
         }
@@ -166,8 +170,7 @@ namespace Sniffy
                 var _array = _dictionary.Keys.ToArray( );
                 if( _array?.Contains( name ) == true )
                 {
-                    var _select = dataRow
-                        ?.Where( p => p.Field<string>( name ) == value )
+                    var _select = dataRow?.Where( p => p.Field<string>( name ) == value )
                         ?.Select( p => p );
 
                     return _select?.Any( ) == true
@@ -179,7 +182,8 @@ namespace Sniffy
             }
             catch( Exception _ex )
             {
-                Fail( _ex );
+                EnumerableExtensions.Fail( _ex );
+
                 return default( IEnumerable<DataRow> );
             }
         }
@@ -195,20 +199,22 @@ namespace Sniffy
         public static IEnumerable<DataRow> Filter( this IEnumerable<DataRow> dataRow,
             IDictionary<string, object> where )
         {
-            if( ( dataRow?.Any( ) == true )
-               && ( where?.Any( ) == true ) )
+            if( dataRow?.Any( ) == true
+                && where?.Any( ) == true )
             {
                 try
                 {
                     var _table = dataRow.CopyToDataTable( );
                     var _rows = _table?.Select( where.ToCriteria( ) );
+
                     return _rows?.Any( ) == true
                         ? _rows
                         : default( IEnumerable<DataRow> );
                 }
                 catch( Exception _ex )
                 {
-                    Fail( _ex );
+                    EnumerableExtensions.Fail( _ex );
+
                     return default( IEnumerable<DataRow> );
                 }
             }
@@ -250,6 +256,7 @@ namespace Sniffy
         {
             ThrowIf.NegativeOrZero( startIndex, nameof( startIndex ) );
             ThrowIf.NegativeOrZero( count, nameof( count ) );
+
             return sequence switch
             {
                 IList<T> _list => SliceList( _list.Count, i => _list[ i ] ),
@@ -261,8 +268,8 @@ namespace Sniffy
             {
                 var _countdown = count;
                 var _index = startIndex;
-                while( ( _index < listCount )
-                      && ( _countdown-- > 0 ) )
+                while( _index < listCount
+                    && _countdown-- > 0 )
                 {
                     yield return indexer( _index++ );
                 }
@@ -316,11 +323,12 @@ namespace Sniffy
         {
             try
             {
-                return CycleIterator( source );
+                return EnumerableExtensions.CycleIterator( source );
             }
             catch( Exception _ex )
             {
-                Fail( _ex );
+                EnumerableExtensions.Fail( _ex );
+
                 return default( IEnumerable<T> );
             }
         }

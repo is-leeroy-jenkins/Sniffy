@@ -1,15 +1,16 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Sniffy
 //     Author:                  Terry D. Eppler
-//     Created:                 ${CurrentDate.Month}-${CurrentDate.Day}-${CurrentDate.Year}
-//
+//     Created:                 08-02-2024
+// 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        ${CurrentDate.Month}-${CurrentDate.Day}-${CurrentDate.Year}
+//     Last Modified On:        08-02-2024
 // ******************************************************************************************
-// <copyright file="MetroTextBox" company="Terry D. Eppler">
-//    Sniffy is a tiny, WPF web socket client/server application.
+// <copyright file="MetroCheckBox.cs" company="Terry D. Eppler">
+//    Sniffy is a tiny web browser used is a budget, finance, and accounting tool for analysts with
+//    the US Environmental Protection Agency (US EPA).
 //    Copyright ©  2024  Terry Eppler
-//
+// 
 //    Permission is hereby granted, free of charge, to any person obtaining a copy
 //    of this software and associated documentation files (the “Software”),
 //    to deal in the Software without restriction,
@@ -18,10 +19,10 @@
 //    and/or sell copies of the Software,
 //    and to permit persons to whom the Software is furnished to do so,
 //    subject to the following conditions:
-//
+// 
 //    The above copyright notice and this permission notice shall be included in all
 //    copies or substantial portions of the Software.
-//
+// 
 //    THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
 //    INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 //    FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT.
@@ -29,11 +30,11 @@
 //    DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
 //    ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 //    DEALINGS IN THE SOFTWARE.
-//
+// 
 //    You can contact me at:   terryeppler@gmail.com or eppler.terry@epa.gov
 // </copyright>
 // <summary>
-//   ${File.FileName}
+//   MetroCheckBox.cs
 // </summary>
 // ******************************************************************************************
 
@@ -54,6 +55,11 @@ namespace Sniffy
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
     public class MetroCheckBox : CheckBox
     {
+        /// <summary>
+        /// The dark
+        /// </summary>
+        private protected readonly DarkMode _theme = new DarkMode( );
+
         /// <summary>
         /// The back color
         /// </summary>
@@ -93,8 +99,8 @@ namespace Sniffy
             FontFamily = new FontFamily( "Segoe UI" );
             FontSize = 12;
             Width = 100;
-            Background = new SolidColorBrush( _backColor );
-            Foreground = new SolidColorBrush( _foreColor );
+            Background = _theme.BackColor;
+            Foreground = _theme.LightBlueColor;
 
             // Event Wiring
             MouseEnter += OnMouseEnter;
@@ -112,7 +118,7 @@ namespace Sniffy
         {
             try
             {
-                Foreground = new SolidColorBrush( _foreHover );
+                Foreground = _theme.WhiteColor;
             }
             catch( Exception _ex )
             {
@@ -131,7 +137,7 @@ namespace Sniffy
         {
             try
             {
-                Foreground = new SolidColorBrush( _foreColor );
+                Foreground = _theme.LightBlueColor;
             }
             catch( Exception _ex )
             {

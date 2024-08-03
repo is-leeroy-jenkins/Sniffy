@@ -1,13 +1,14 @@
-﻿// ************************************************************************************************
-//     Assembly:                Sniffy
+﻿// ******************************************************************************************
+//     Assembly:             Bitsy
 //     Author:                  Terry D. Eppler
-//     Created:              19-10-2023
+//     Created:                 08-02-2024
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        14-11-2023
-// ************************************************************************************************
-// <copyright file="Static.cs.cs" company="Terry D. Eppler">
-//    Sniffy is a tiny, WPF web socket client/server application.
+//     Last Modified On:        08-02-2024
+// ******************************************************************************************
+// <copyright file="Static.cs" company="Terry D. Eppler">
+//    Sniffy is a tiny web browser used is a budget, finance, and accounting tool for analysts with
+//    the US Environmental Protection Agency (US EPA).
 //    Copyright ©  2024  Terry Eppler
 // 
 //    Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -30,12 +31,13 @@
 //    ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 //    DEALINGS IN THE SOFTWARE.
 // 
-//    You can contact me at: terryeppler@gmail.com or eppler.terry@epa.gov
+//    You can contact me at:   terryeppler@gmail.com or eppler.terry@epa.gov
 // </copyright>
 // <summary>
-//   Eppler, Terry.cs
+//   Static.cs
 // </summary>
-// ************************************************************************************************
+// ******************************************************************************************
+
 namespace Sniffy
 {
     using System;
@@ -49,7 +51,7 @@ namespace Sniffy
     /// <summary>
     /// 
     /// </summary>
-    [SuppressMessage( "ReSharper", "MemberCanBeInternal" ) ]
+    [ SuppressMessage( "ReSharper", "MemberCanBeInternal" ) ]
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
     public static class Static
     {
@@ -92,7 +94,8 @@ namespace Sniffy
             }
             catch( Exception _ex )
             {
-                Fail( _ex );
+                Static.Fail( _ex );
+
                 return default( string );
             }
         }
@@ -113,13 +116,15 @@ namespace Sniffy
                 ThrowIf.Null( sql, nameof( sql ) );
                 var _command = connection.CreateCommand( );
                 _command.CommandText = sql;
+
                 return !string.IsNullOrEmpty( _command?.CommandText )
                     ? _command
                     : default( IDbCommand );
             }
             catch( Exception _ex )
             {
-                Fail( _ex );
+                Static.Fail( _ex );
+
                 return default( IDbCommand );
             }
         }
@@ -138,11 +143,13 @@ namespace Sniffy
             {
                 ThrowIf.Null( sql, nameof( sql ) );
                 using var _command = connection?.CreateCommand( sql );
+
                 return _command?.ExecuteNonQuery( ) ?? 0;
             }
             catch( Exception _ex )
             {
-                Fail( _ex );
+                Static.Fail( _ex );
+
                 return default( int );
             }
         }
@@ -234,7 +241,8 @@ namespace Sniffy
             }
             catch( Exception _ex )
             {
-                Fail( _ex );
+                Static.Fail( _ex );
+
                 return string.Empty;
             }
         }
@@ -266,7 +274,8 @@ namespace Sniffy
             }
             catch( Exception _ex )
             {
-                Fail( _ex );
+                Static.Fail( _ex );
+
                 return default( IDictionary<string, object> );
             }
         }

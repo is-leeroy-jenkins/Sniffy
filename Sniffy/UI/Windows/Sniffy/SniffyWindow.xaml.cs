@@ -1,13 +1,14 @@
 ﻿// ******************************************************************************************
-//     Assembly:                Sniffy
+//     Assembly:             Bitsy
 //     Author:                  Terry D. Eppler
-//     Created:                 06-14-2024
+//     Created:                 08-02-2024
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        06-14-2024
+//     Last Modified On:        08-02-2024
 // ******************************************************************************************
 // <copyright file="SniffyWindow.xaml.cs" company="Terry D. Eppler">
-//    Sniffy is a tiny, WPF web socket client/server application.
+//    Sniffy is a tiny web browser used is a budget, finance, and accounting tool for analysts with
+//    the US Environmental Protection Agency (US EPA).
 //    Copyright ©  2024  Terry Eppler
 // 
 //    Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -204,15 +205,16 @@ namespace Sniffy
             Encoding.RegisterProvider( CodePagesEncodingProvider.Instance );
             var _win1252 = Encoding.GetEncoding( 1252 );
             var _utf8 = new UTF8Encoding( false );
-            _encodings = new Dictionary<string, Encoding>( StringComparer.OrdinalIgnoreCase )
-            {
+            SniffyWindow._encodings =
+                new Dictionary<string, Encoding>( StringComparer.OrdinalIgnoreCase )
                 {
-                    _win1252.WebName, _win1252
-                },
-                {
-                    _utf8.WebName, _utf8
-                }
-            };
+                    {
+                        _win1252.WebName, _win1252
+                    },
+                    {
+                        _utf8.WebName, _utf8
+                    }
+                };
         }
 
         /// <inheritdoc />
@@ -307,28 +309,19 @@ namespace Sniffy
         /// </summary>
         private void UpdateControls( )
         {
-            ProtocolComboBox.IsEnabled =
-                UrlTextBox.IsEnabled =
-                    SingleLineCheckBox.IsEnabled =
-                        BinaryEncodingComboBox.IsEnabled =
-                            _socketHandler == null;
+            ProtocolComboBox.IsEnabled = UrlTextBox.IsEnabled = SingleLineCheckBox.IsEnabled =
+                BinaryEncodingComboBox.IsEnabled = _socketHandler == null;
 
-            CloseSendChannelButton.IsEnabled =
-                SendButton.IsEnabled =
-                    _socketHandler != null;
+            CloseSendChannelButton.IsEnabled = SendButton.IsEnabled = _socketHandler != null;
+            var _isWebSocket =
+                ( (ComboBoxItemAdv)ProtocolComboBox.SelectedItem ).Tag is "websocket";
 
-            var _isWebSocket = ( (ComboBoxItemAdv)ProtocolComboBox.SelectedItem ).Tag is "websocket";
-            PortTextBox.IsEnabled =
-                SslCheckBox.IsEnabled =
-                    DualModeComboBox.IsEnabled =
-                        _socketHandler == null && !_isWebSocket;
+            PortTextBox.IsEnabled = SslCheckBox.IsEnabled =
+                DualModeComboBox.IsEnabled = _socketHandler == null && !_isWebSocket;
 
-            IgnoreCertErrorsCheckBox.IsEnabled =
-                Tls1CheckBox.IsEnabled =
-                    Tls11CheckBox.IsEnabled =
-                        Tls12CheckBox.IsEnabled =
-                            Tls13CheckBox.IsEnabled =
-                                SslCheckBox.IsEnabled && SslCheckBox.IsChecked == true;
+            IgnoreCertErrorsCheckBox.IsEnabled = Tls1CheckBox.IsEnabled = Tls11CheckBox.IsEnabled =
+                Tls12CheckBox.IsEnabled = Tls13CheckBox.IsEnabled =
+                    SslCheckBox.IsEnabled && SslCheckBox.IsChecked == true;
         }
 
         /// <summary>
@@ -419,6 +412,7 @@ namespace Sniffy
             catch( Exception _ex )
             {
                 Fail( _ex );
+
                 return default( Notifier );
             }
         }
@@ -634,7 +628,8 @@ namespace Sniffy
         /// <param name="sender">The sender.</param>
         /// <param name="e">The <see cref="SelectionChangedEventArgs"/>
         /// instance containing the event data.</param>
-        private void OnProtocolComboBoxSelectionChanged( object sender, SelectionChangedEventArgs e )
+        private void OnProtocolComboBoxSelectionChanged( object sender,
+            SelectionChangedEventArgs e )
         {
             UpdateControls( );
         }
@@ -664,7 +659,9 @@ namespace Sniffy
                 FlowDocument.Blocks.Clear( );
                 try
                 {
-                    var _isWebSocket = ( (ComboBoxItemAdv)ProtocolComboBox.SelectedItem ).Tag is "websocket";
+                    var _isWebSocket =
+                        ( (ComboBoxItemAdv)ProtocolComboBox.SelectedItem ).Tag is "websocket";
+
                     var _host = UrlTextBox.Text;
                     var _port = _isWebSocket
                         ? 0
@@ -680,8 +677,8 @@ namespace Sniffy
                             _ => throw new InvalidOperationException( )
                         };
 
-                    var _encoding = 
-                        _encodings[ (string)( (ComboBoxItemAdv)BinaryEncodingComboBox.SelectedItem ).Tag ];
+                    var _encoding = SniffyWindow._encodings[
+                        (string)( (ComboBoxItemAdv)BinaryEncodingComboBox.SelectedItem ).Tag ];
 
                     var _useSsl = SslCheckBox.IsChecked == true;
                     var _ignoreSslCertErrors = IgnoreCertErrorsCheckBox.IsChecked == true;
@@ -706,11 +703,11 @@ namespace Sniffy
                         _sslProtocols |= SslProtocols.Tls13;
                     }
 
-                    var _clientState = new SocketHandler( async ( action, token ) =>
-                            await Dispatcher.InvokeAsync( action, DispatcherPriority.Normal, token ),
-                        _isWebSocket, _host, _port, _addressFamily, 
-                        _encoding, _useSsl, _ignoreSslCertErrors,
-                        _sslProtocols );
+                    var _clientState = new SocketHandler(
+                        async ( action, token ) =>
+                            await Dispatcher.InvokeAsync( action, DispatcherPriority.Normal,
+                                token ), _isWebSocket, _host, _port, _addressFamily, _encoding,
+                        _useSsl, _ignoreSslCertErrors, _sslProtocols );
 
                     _clientState.SocketMessage += ( s, e ) =>
                         AddStreamText( e.Text, e.IsMetaText, e.IsSendText );
@@ -793,8 +790,8 @@ namespace Sniffy
         private void OnSendTextBoxKeyDown( object sender, KeyEventArgs e )
         {
             if( e.Key == Key.Enter
-               && SingleLineCheckBox.IsChecked == true
-               && SendButton.IsEnabled )
+                && SingleLineCheckBox.IsChecked == true
+                && SendButton.IsEnabled )
             {
                 OnSendButtonClick( sender, e );
             }
@@ -816,9 +813,9 @@ namespace Sniffy
 
             _timer?.Dispose( );
             FadeOutAsync( this );
-            App.Current.Shutdown( );
+            Application.Current.Shutdown( );
         }
-        
+
         /// <summary>
         /// Called when [calculator menu option click].
         /// </summary>

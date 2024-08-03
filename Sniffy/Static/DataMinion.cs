@@ -1,13 +1,14 @@
 ﻿// ******************************************************************************************
-//     Assembly:                Sniffy
+//     Assembly:             Bitsy
 //     Author:                  Terry D. Eppler
-//     Created:                 03-24-2023
+//     Created:                 08-02-2024
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        05-31-2023
+//     Last Modified On:        08-02-2024
 // ******************************************************************************************
 // <copyright file="DataMinion.cs" company="Terry D. Eppler">
-//    Sniffy is a tiny, WPF web socket client/server application.
+//    Sniffy is a tiny web browser used is a budget, finance, and accounting tool for analysts with
+//    the US Environmental Protection Agency (US EPA).
 //    Copyright ©  2024  Terry Eppler
 // 
 //    Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -76,7 +77,7 @@ namespace Sniffy
             }
             catch( Exception _ex )
             {
-                Fail( _ex );
+                DataMinion.Fail( _ex );
             }
         }
 
@@ -105,7 +106,7 @@ namespace Sniffy
             }
             catch( Exception _ex )
             {
-                Fail( _ex );
+                DataMinion.Fail( _ex );
             }
         }
 
@@ -130,7 +131,7 @@ namespace Sniffy
             }
             catch( Exception _ex )
             {
-                Fail( _ex );
+                DataMinion.Fail( _ex );
             }
         }
 
@@ -155,7 +156,7 @@ namespace Sniffy
             }
             catch( Exception _ex )
             {
-                Fail( _ex );
+                DataMinion.Fail( _ex );
             }
         }
 
@@ -180,7 +181,7 @@ namespace Sniffy
             }
             catch( Exception _ex )
             {
-                Fail( _ex );
+                DataMinion.Fail( _ex );
             }
         }
 
@@ -207,7 +208,7 @@ namespace Sniffy
             }
             catch( Exception _ex )
             {
-                Fail( _ex );
+                DataMinion.Fail( _ex );
             }
         }
 
@@ -231,7 +232,7 @@ namespace Sniffy
             }
             catch( Exception _ex )
             {
-                Fail( _ex );
+                DataMinion.Fail( _ex );
             }
         }
 
@@ -256,7 +257,7 @@ namespace Sniffy
             }
             catch( Exception _ex )
             {
-                Fail( _ex );
+                DataMinion.Fail( _ex );
             }
         }
 
@@ -283,7 +284,7 @@ namespace Sniffy
             }
             catch( Exception _ex )
             {
-                Fail( _ex );
+                DataMinion.Fail( _ex );
             }
         }
 
@@ -308,7 +309,7 @@ namespace Sniffy
             }
             catch( Exception _ex )
             {
-                Fail( _ex );
+                DataMinion.Fail( _ex );
             }
         }
 
@@ -335,7 +336,7 @@ namespace Sniffy
             }
             catch( Exception _ex )
             {
-                Fail( _ex );
+                DataMinion.Fail( _ex );
             }
         }
 

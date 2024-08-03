@@ -1,14 +1,16 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Sniffy
 //     Author:                  Terry D. Eppler
-//     Created:                 06-14-2024
+//     Created:                 08-03-2024
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        06-14-2024
+//     Last Modified On:        08-03-2024
 // ******************************************************************************************
 // <copyright file="MetroTile.cs" company="Terry D. Eppler">
-//    Sniffy is a tiny, WPF web socket client/server application.
-//    Copyright ©  2024  Terry Eppler
+//    Sniffy is tiny .NET WPF tool that can be used to establish TCP (raw) or
+//    WebSocket connections and exchange text messages for
+//    testing/debugging purposes based on WPF, Net 6, and written in C
+//    Copyright ©  2022  Terry Eppler
 // 
 //    Permission is hereby granted, free of charge, to any person obtaining a copy
 //    of this software and associated documentation files (the “Software”),
@@ -50,8 +52,14 @@ namespace Sniffy
     [ SuppressMessage( "ReSharper", "InconsistentNaming" ) ]
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
     [ SuppressMessage( "ReSharper", "UnusedType.Global" ) ]
+    [ SuppressMessage( "ReSharper", "MemberCanBeInternal" ) ]
     public class MetroTile : SfHubTile
     {
+        /// <summary>
+        /// The dark
+        /// </summary>
+        private protected readonly DarkMode _theme = new DarkMode( );
+
         /// <summary>
         /// The back color
         /// </summary>
@@ -125,12 +133,12 @@ namespace Sniffy
             SetResourceReference( StyleProperty, typeof( SfHubTile ) );
             Width = 200;
             Height = 100;
-            FontFamily = new FontFamily( "Segoe UI" );
-            FontSize = 12d;
-            BorderThickness = new Thickness( 1 );
-            Background = new SolidColorBrush( _backColor );
-            Foreground = new SolidColorBrush( _foreColor );
-            BorderBrush = new SolidColorBrush( _borderColor );
+            FontFamily = _theme.FontFamily;
+            FontSize = _theme.FontSize;
+            BorderThickness = _theme.BorderThickness;
+            Background = _theme.ControlColor;
+            Foreground = _theme.ForeColor;
+            BorderBrush = _theme.ControlColor;
 
             // Wire Events
             MouseEnter += OnMouseEnter;
@@ -148,9 +156,9 @@ namespace Sniffy
         {
             try
             {
-                Background = new SolidColorBrush( _backHover );
-                Foreground = new SolidColorBrush( _foreHover );
-                BorderBrush = new SolidColorBrush( _borderHover );
+                Background = _theme.DarkBlueColor;
+                Foreground = _theme.WhiteColor;
+                BorderBrush = _theme.LightBlueColor;
             }
             catch( Exception _ex )
             {
@@ -169,9 +177,9 @@ namespace Sniffy
         {
             try
             {
-                Background = new SolidColorBrush( _backColor );
-                Foreground = new SolidColorBrush( _foreColor );
-                BorderBrush = new SolidColorBrush( _borderColor );
+                Background = _theme.ControlColor;
+                Foreground = _theme.LightBlueColor;
+                BorderBrush = _theme.ControlColor;
             }
             catch( Exception _ex )
             {
