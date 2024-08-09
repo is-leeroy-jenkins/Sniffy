@@ -9,7 +9,8 @@ text messages for testing/debugging purposes.
 - Binary messages are encoded/decoded using a specified encoding like Windows-1252 (1 character per byte) or UTF-8
 
 
-#![](https://github.com/is-leeroy-jenkins/Sniffy/blob/master/Resources/Assets/Github/csharp.png) Code
+![](https://github.com/is-leeroy-jenkins/Sniffy/blob/master/Resources/Assets/Github/csharp.png) 
+## Code 
 
 Sniffy is built on NET 6 and supports AnyCPU as well as x86/x64 specific builds
 
