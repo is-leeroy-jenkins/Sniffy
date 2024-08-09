@@ -61,6 +61,11 @@ namespace Sniffy
     public partial class CalculatorWindow : Window
     {
         /// <summary>
+        /// The theme
+        /// </summary>
+        private protected DarkMode _theme = new DarkMode( );
+
+        /// <summary>
         /// The back color
         /// </summary>
         private protected Color _backColor = new Color( )
