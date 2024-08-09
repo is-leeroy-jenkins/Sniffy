@@ -2,14 +2,14 @@
     x:Class="Sniffy.SniffyWindow"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:syncfusionskin ="clr-namespace:Syncfusion.SfSkinManager;assembly=Syncfusion.SfSkinManager.WPF"
-    xmlns:syncfusion="http://schemas.syncfusion.com/wpf"
+    xmlns:sync="http://schemas.syncfusion.com/wpf"
+    xmlns:skin="clr-namespace:Syncfusion.SfSkinManager;assembly=Syncfusion.SfSkinManager.WPF"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:gif="http://wpfanimatedgif.codeplex.com"
-    xmlns:sys="clr-namespace:System;assembly=mscorlib"
     xmlns:local="clr-namespace:Sniffy"
-    x:Name="SissyView"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:sys="clr-namespace:System;assembly=mscorlib"
+    x:Name="SniffyView"
     Title="Sniffy"
     Width="710"
     Height="625"
@@ -19,19 +19,19 @@
     BorderThickness="1,1,1,1"
     Closed="OnClosing"
     Foreground="#FFDEDEDE"
-    Icon="/Resources/Assets/Windows/Sissy/Application.png"
+    sync:SfSkinManager.Theme="{skin:SkinManagerExtension ThemeName=FluentDark}"
+    Icon="/Resources/Assets/Windows/Sniffy/Application.png"
     Left="0"
     TextOptions.TextFormattingMode="Display"
     Top="0"
     WindowStartupLocation="CenterScreen"
     mc:Ignorable="d">
 
-<!--  ******************************************** Resources *********************************************  -->
+    <!--  ******************************************** Resources *********************************************  -->
 
     <Window.Resources>
         <Style
-            x:Name="ToolTipStyle"
-            TargetType="ToolTip" >
+            TargetType="ToolTip">
             <Setter Property="BorderThickness" Value="1,1,1,1" />
             <Setter Property="BorderBrush" Value="#0078D4" />
             <Setter Property="Background" Value="#FF000000" />
@@ -39,103 +39,103 @@
         </Style>
     </Window.Resources>
 
-<!--  ******************************************** Context Menu ******************************************  -->
+    <!--  ******************************************** Context Menu ******************************************  -->
 
     <Window.ContextMenu>
         <ContextMenu Name="SniffyContextMenu">
-            <syncfusion:MenuItemAdv
+            <sync:MenuItemAdv
                 Click="OnFileMenuOptionClick"
                 Header="File"
                 ToolTip="Browse File System">
-                <syncfusion:MenuItemAdv.Icon>
+                <sync:MenuItemAdv.Icon>
                     <Image Source="/Resources/Assets/MenuItems/FileItem.png" />
-                </syncfusion:MenuItemAdv.Icon>
-            </syncfusion:MenuItemAdv>
+                </sync:MenuItemAdv.Icon>
+            </sync:MenuItemAdv>
 
-            <syncfusion:MenuItemAdv
+            <sync:MenuItemAdv
                 Click="OnFolderMenuOptionClick"
                 Header="Folder"
                 ToolTip="Browse Directories">
-                <syncfusion:MenuItemAdv.Icon>
+                <sync:MenuItemAdv.Icon>
                     <Image Source="/Resources/Assets/MenuItems/FolderItem.png" />
-                </syncfusion:MenuItemAdv.Icon>
-            </syncfusion:MenuItemAdv>
+                </sync:MenuItemAdv.Icon>
+            </sync:MenuItemAdv>
 
             <Separator />
 
-            <syncfusion:MenuItemAdv
+            <sync:MenuItemAdv
                 Click="OnChromeOptionClick"
                 Header="Chrome"
                 ToolTip="Launch Chrome Browser">
-                <syncfusion:MenuItemAdv.Icon>
+                <sync:MenuItemAdv.Icon>
                     <Image Source="/Resources/Assets/MenuItems/ChromeItem.png" />
-                </syncfusion:MenuItemAdv.Icon>
-            </syncfusion:MenuItemAdv>
+                </sync:MenuItemAdv.Icon>
+            </sync:MenuItemAdv>
 
-            <syncfusion:MenuItemAdv
+            <sync:MenuItemAdv
                 Click="OnEdgeOptionClick"
                 Header="Edge"
                 ToolTip="Launch Edge Browser">
-                <syncfusion:MenuItemAdv.Icon>
+                <sync:MenuItemAdv.Icon>
                     <Image Source="/Resources/Assets/MenuItems/EdgeItem.png" />
-                </syncfusion:MenuItemAdv.Icon>
-            </syncfusion:MenuItemAdv>
+                </sync:MenuItemAdv.Icon>
+            </sync:MenuItemAdv>
 
-            <syncfusion:MenuItemAdv
+            <sync:MenuItemAdv
                 Click="OnFirefoxOptionClick"
                 Header="FireFox"
                 ToolTip="Launch Firefox Browser">
-                <syncfusion:MenuItemAdv.Icon>
+                <sync:MenuItemAdv.Icon>
                     <Image Source="/Resources/Assets/MenuItems/FirefoxItem.png" />
-                </syncfusion:MenuItemAdv.Icon>
-            </syncfusion:MenuItemAdv>
+                </sync:MenuItemAdv.Icon>
+            </sync:MenuItemAdv>
 
             <Separator />
 
-            <syncfusion:MenuItemAdv
+            <sync:MenuItemAdv
                 Click="OnCalculatorMenuOptionClick"
                 Header="Calculator"
                 ToolTip="Open Calculator">
-                <syncfusion:MenuItemAdv.Icon>
+                <sync:MenuItemAdv.Icon>
                     <Image Source="/Resources/Assets/MenuItems/CalculatorItem.png" />
-                </syncfusion:MenuItemAdv.Icon>
-            </syncfusion:MenuItemAdv>
+                </sync:MenuItemAdv.Icon>
+            </sync:MenuItemAdv>
 
-            <syncfusion:MenuItemAdv
+            <sync:MenuItemAdv
                 Click="OnControlPanelOptionClick"
                 Header="Control Panel"
                 ToolTip="Windows 10 Control Panel">
-                <syncfusion:MenuItemAdv.Icon>
+                <sync:MenuItemAdv.Icon>
                     <Image Source="/Resources/Assets/MenuItems/ControlPanelItem.png" />
-                </syncfusion:MenuItemAdv.Icon>
-            </syncfusion:MenuItemAdv>
+                </sync:MenuItemAdv.Icon>
+            </sync:MenuItemAdv>
 
-            <syncfusion:MenuItemAdv
+            <sync:MenuItemAdv
                 Click="OnTaskManagerOptionClick"
                 Header="Task Manager"
                 ToolTip="Windows 10 Task Manager">
-                <syncfusion:MenuItemAdv.Icon>
+                <sync:MenuItemAdv.Icon>
                     <Image Source="/Resources/Assets/MenuItems/TaskManagerItem.png" />
-                </syncfusion:MenuItemAdv.Icon>
-            </syncfusion:MenuItemAdv>
+                </sync:MenuItemAdv.Icon>
+            </sync:MenuItemAdv>
 
             <Separator />
 
-            <syncfusion:MenuItemAdv
+            <sync:MenuItemAdv
                 Click="OnCloseOptionClick"
                 Header="Exit"
                 ToolTip="Exit Application">
-                <syncfusion:MenuItemAdv.Icon>
+                <sync:MenuItemAdv.Icon>
                     <Image Source="/Resources/Assets/MenuItems/ExitItem.png" />
-                </syncfusion:MenuItemAdv.Icon>
-            </syncfusion:MenuItemAdv>
+                </sync:MenuItemAdv.Icon>
+            </sync:MenuItemAdv>
         </ContextMenu>
 
     </Window.ContextMenu>
     <Canvas
         x:Name="SissyCanvas"
         Background="#FF141414">
-        <Label
+        <local:MetroLabel
             x:Name="HostLabel"
             Canvas.Left="177"
             Canvas.Top="10"
@@ -143,7 +143,7 @@
             VerticalAlignment="Top"
             Content="Hostname/URL:"
             Foreground="#FFDEDEDE" />
-        <Label
+        <local:MetroLabel
             x:Name="ProtocolLabel"
             Canvas.Left="5"
             Canvas.Top="10"
@@ -151,7 +151,7 @@
             VerticalAlignment="Center"
             Content="Protocol:"
             Foreground="#FFDEDEDE" />
-        <Label
+        <local:MetroLabel
             x:Name="PortLabel"
             Canvas.Left="499"
             Canvas.Top="10"
@@ -161,7 +161,7 @@
             Content="Port:"
             Foreground="#FFDEDEDE" />
 
-        <CheckBox
+        <local:MetroCheckBox
             x:Name="SslCheckBox"
             Canvas.Left="10"
             Canvas.Top="43"
@@ -172,7 +172,7 @@
             Foreground="#FFDEDEDE"
             Unchecked="OnUseSslCheckBoxChanged" />
 
-        <CheckBox
+        <local:MetroCheckBox
             x:Name="IgnoreCertErrorsCheckBox"
             Canvas.Left="78"
             Canvas.Top="43"
@@ -181,7 +181,7 @@
             Content="Ignore Cert Errors (Insecure!)"
             Foreground="#FFDEDEDE" />
 
-        <CheckBox
+        <local:MetroCheckBox
             x:Name="Tls1CheckBox"
             Canvas.Left="336"
             Canvas.Top="43"
@@ -190,7 +190,7 @@
             Content="TLS 1.0"
             Foreground="#FFDEDEDE" />
 
-        <CheckBox
+        <local:MetroCheckBox
             x:Name="Tls11CheckBox"
             Canvas.Left="397"
             Canvas.Top="43"
@@ -199,7 +199,7 @@
             Content="TLS 1.1"
             Foreground="#FFDEDEDE" />
 
-        <CheckBox
+        <local:MetroCheckBox
             x:Name="Tls12CheckBox"
             Canvas.Left="458"
             Canvas.Top="43"
@@ -209,7 +209,7 @@
             Foreground="#FFDEDEDE"
             IsChecked="True" />
 
-        <CheckBox
+        <local:MetroCheckBox
             x:Name="Tls13CheckBox"
             Canvas.Left="519"
             Canvas.Top="43"
@@ -228,7 +228,7 @@
             VerticalAlignment="Top"
             Stroke="#FF0078D4" />
 
-        <RichTextBox
+        <local:MetroRichText
             x:Name="InputTextBox"
             Canvas.Left="15"
             Canvas.Top="113"
@@ -244,11 +244,11 @@
             Foreground="#FFDEDEDE"
             IsReadOnly="True"
             IsReadOnlyCaretVisible="True"
-            VerticalScrollBarVisibility="Visible">
+            VerticalScrollBarVisibility="Auto">
             <FlowDocument x:Name="FlowDocument" />
-        </RichTextBox>
+        </local:MetroRichText>
 
-        <TextBox
+        <local:MetroTextBox
             x:Name="OutputTextBox"
             Canvas.Left="15"
             Canvas.Top="485"
@@ -262,8 +262,8 @@
             FontFamily="Consolas"
             KeyDown="OnSendTextBoxKeyDown"
             TextWrapping="Wrap"
-            VerticalScrollBarVisibility="Visible" />
-        <Label
+            VerticalScrollBarVisibility="Hidden" />
+        <local:MetroLabel
             x:Name="LineEncodingLabel"
             Canvas.Left="160"
             Canvas.Top="545"
@@ -272,7 +272,7 @@
             Content="Line Ending:"
             Foreground="#FFDEDEDE" />
 
-        <CheckBox
+        <local:MetroCheckBox
             x:Name="SingleLineCheckBox"
             Canvas.Left="15"
             Canvas.Top="540"
@@ -282,15 +282,17 @@
             Content="Single Line Text Box"
             Foreground="#FFDEDEDE"
             Unchecked="OnSingleLineCheckChanged" />
-        <Label
+
+        <local:MetroLabel
             x:Name="EncodingLabel"
             Canvas.Left="10"
             Canvas.Top="63"
             HorizontalAlignment="Left"
-            VerticalAlignment="Top"
+            VerticalAlignment="Center"
             Content="Binary Message Encoding:"
-            Foreground="#FFDEDEDE" />
-        <Label
+            Foreground="#FFDEDEDE" Width="146" />
+
+        <local:MetroLabel
             x:Name="ProtocolsLabel"
             Canvas.Left="268"
             Canvas.Top="37"
@@ -299,7 +301,7 @@
             Content="Protocols:"
             Foreground="#FFDEDEDE" />
 
-        <syncfusion:ComboBoxAdv
+        <local:MetroComboBox
             x:Name="DualModeComboBox"
             Canvas.Left="585"
             Canvas.Top="11"
@@ -309,26 +311,27 @@
             VerticalAlignment="Top"
             HorizontalContentAlignment="Center"
             AllowMultiSelect="False"
+            ToolTip="Select Mode"
             Background="#FF282828"
             BorderBrush="#FF0078D4"
             DefaultText="Select Mode"
             Foreground="#FFDEDEDE"
             SelectedIndex="0">
-            <syncfusion:ComboBoxItemAdv
+            <local:MetroComboBoxItem
                 Content="Dual Mode"
                 Foreground="#FFDEDEDE"
                 Tag="dual" />
-            <syncfusion:ComboBoxItemAdv
+            <local:MetroComboBoxItem
                 Content="IPv4"
                 Foreground="#FFDEDEDE"
                 Tag="ipv4" />
-            <syncfusion:ComboBoxItemAdv
+            <local:MetroComboBoxItem
                 Content="IPv6"
                 Foreground="#FFDEDEDE"
                 Tag="ipv6" />
-        </syncfusion:ComboBoxAdv>
+        </local:MetroComboBox>
 
-        <syncfusion:ComboBoxAdv
+        <local:MetroComboBox
             x:Name="ProtocolComboBox"
             Canvas.Left="65"
             Canvas.Top="10"
@@ -342,20 +345,21 @@
             BorderBrush="#FF0078D4"
             DefaultText="Select Protocol"
             Foreground="#FFDEDEDE">
-            <syncfusion:ComboBoxItemAdv
+            <local:MetroComboBoxItem
                 Content="TCP (Raw)"
                 Foreground="#FFDEDEDE"
                 Tag="tcp" />
-            <syncfusion:ComboBoxItemAdv
+            <local:MetroComboBoxItem
                 Content="WebSocket"
                 Foreground="#FFDEDEDE"
                 Tag="websocket" />
-        </syncfusion:ComboBoxAdv>
+        </local:MetroComboBox>
 
-        <syncfusion:ComboBoxAdv
+        <local:MetroComboBox
             x:Name="LineEncodingComboBox"
             Canvas.Left="240"
             Canvas.Top="545"
+            ToolTip="Select Line Ending"
             Width="140"
             Height="24"
             HorizontalAlignment="Left"
@@ -367,21 +371,21 @@
             DefaultText="Select Encoding"
             Foreground="#FFDEDEDE"
             SelectedIndex="0">
-            <syncfusion:ComboBoxItemAdv
+            <local:MetroComboBoxItem
                 Content="CR+LF (0x0D, 0x0A)"
                 Foreground="#FFDEDEDE"
                 Tag="&#xd;&#xa;" />
-            <syncfusion:ComboBoxItemAdv
+            <local:MetroComboBoxItem
                 Content="LF (0x0A)"
                 Foreground="#FFDEDEDE"
                 Tag="&#xa;" />
-            <syncfusion:ComboBoxItemAdv
+            <local:MetroComboBoxItem
                 Content="CR (0x0D)"
                 Foreground="#FFDEDEDE"
                 Tag="&#xd;" />
-            <syncfusion:ComboBoxItemAdv Content="None" />
-        </syncfusion:ComboBoxAdv>
-        <syncfusion:ComboBoxAdv
+            <local:MetroComboBoxItem Content="None" />
+        </local:MetroComboBox>
+        <local:MetroComboBox
             x:Name="BinaryEncodingComboBox"
             Canvas.Left="160"
             Canvas.Top="66"
@@ -391,20 +395,21 @@
             VerticalAlignment="Top"
             HorizontalContentAlignment="Center"
             AllowMultiSelect="false"
+            ToolTip="Select Binary Encoding"
             Background="#FF282828"
             BorderBrush="#FF0078D4"
             DefaultText="Encodings"
             Foreground="#FFDEDEDE"
             SelectedIndex="0">
-            <syncfusion:ComboBoxItemAdv
+            <local:MetroComboBoxItem
                 Content="Windows-1252 (Single Byte)"
                 Foreground="#FFDEDEDE"
                 Tag="windows-1252" />
-            <syncfusion:ComboBoxItemAdv
+            <local:MetroComboBoxItem
                 Content="UTF-8 (Multi Byte)"
                 Foreground="#FFDEDEDE"
                 Tag="utf-8" />
-        </syncfusion:ComboBoxAdv>
+        </local:MetroComboBox>
         <local:MetroLabel
             x:Name="SendTextLabel"
             Canvas.Left="10"
@@ -417,7 +422,7 @@
             Canvas.Left="271"
             Canvas.Top="10"
             Width="219"
-            Height="22"
+            Height="24"
             Padding="5,1,1,1"
             HorizontalAlignment="Center"
             VerticalAlignment="Center"
@@ -430,7 +435,7 @@
             Canvas.Left="535"
             Canvas.Top="10"
             Width="40"
-            Height="22"
+            Height="24"
             Padding="5,1,1,1"
             HorizontalAlignment="Center"
             VerticalAlignment="Center"
@@ -441,6 +446,7 @@
         <local:MetroTile
             x:Name="SendButton"
             Title="Send"
+            ToolTip="Send Message"
             Canvas.Left="410"
             Canvas.Top="540"
             Width="85"
@@ -451,11 +457,13 @@
 
         <local:MetroTile
             x:Name="ConnectButton"
-            Title=""
+            Title="Connect"
+            ToolTip="Click to Connect"
             Canvas.Left="590"
-            Canvas.Top="65"
+            Canvas.Top="51"
+            Padding="15,1,1,1"
             Width="95"
-            Height="25"
+            Height="35"
             HorizontalAlignment="Center"
             VerticalAlignment="Top"
             Header="" />
@@ -463,6 +471,7 @@
         <local:MetroTile
             x:Name="CloseSendChannelButton"
             Title="Close Send Channel"
+            ToolTip="Close Connection"
             Canvas.Left="545"
             Canvas.Top="540"
             Width="140"

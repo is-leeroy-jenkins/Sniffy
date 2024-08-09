@@ -76,7 +76,7 @@ namespace Sniffy
             FontFamily = new FontFamily( "Segoe UI" );
             FontSize = 12;
             Background = _theme.BackColor;
-            BorderBrush = _theme.BorderColor;
+            BorderBrush = _theme.BackColor;
             Foreground = _theme.ForeColor;
         }
 

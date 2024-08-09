@@ -1,5 +1,5 @@
 ﻿// ******************************************************************************************
-//     Assembly:             Bitsy
+//     Assembly:                Sniffy
 //     Author:                  Terry D. Eppler
 //     Created:                 08-02-2024
 // 
@@ -66,7 +66,6 @@ namespace Sniffy
     using ToastNotifications.Position;
     using static App;
     using Application = System.Windows.Application;
-    using Timer = System.Windows.Forms.Timer;
 
     /// <inheritdoc />
     /// <summary>
@@ -413,7 +412,6 @@ namespace Sniffy
             catch( Exception _ex )
             {
                 Fail( _ex );
-
                 return default( Notifier );
             }
         }
@@ -704,8 +702,7 @@ namespace Sniffy
                         _sslProtocols |= SslProtocols.Tls13;
                     }
 
-                    var _clientState = new SocketHandler(
-                        async ( action, token ) =>
+                    var _clientState = new SocketHandler( async ( action, token ) =>
                             await Dispatcher.InvokeAsync( action, DispatcherPriority.Normal,
                                 token ), _isWebSocket, _host, _port, _addressFamily, _encoding,
                         _useSsl, _ignoreSslCertErrors, _sslProtocols );
