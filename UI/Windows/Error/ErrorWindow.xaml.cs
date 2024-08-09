@@ -1,5 +1,5 @@
 ﻿// ******************************************************************************************
-//     Assembly:             Bitsy
+//     Assembly:                Sniffy
 //     Author:                  Terry D. Eppler
 //     Created:                 08-02-2024
 // 
@@ -130,14 +130,9 @@ namespace Sniffy
         };
 
         /// <summary>
-        /// The locked object
-        /// </summary>
-        private object _path;
-
-        /// <summary>
         /// The busy
         /// </summary>
-        private bool _busy;
+        private protected DarkMode _theme = new DarkMode( );
 
         /// <summary>
         /// The exception
@@ -394,64 +389,6 @@ namespace Sniffy
                 }
 
                 window.Opacity = 0;
-            }
-            catch( Exception _ex )
-            {
-                Fail( _ex );
-            }
-        }
-
-        /// <summary>
-        /// Begins the initialize.
-        /// </summary>
-        private void Busy( )
-        {
-            try
-            {
-                if( _path == null )
-                {
-                    _path = new object( );
-                    lock( _path )
-                    {
-                        _busy = true;
-                    }
-                }
-                else
-                {
-                    lock( _path )
-                    {
-                        _busy = true;
-                    }
-                }
-            }
-            catch( Exception _ex )
-            {
-                Fail( _ex );
-            }
-        }
-
-        /// <summary>
-        /// Ends the initialize.
-        /// </summary>
-        private protected void Chill( )
-        {
-            try
-            {
-                if( _path == null )
-                {
-                    _path = new object( );
-                    lock( _path )
-                    {
-                        _busy = false;
-                    }
-                }
-                else
-                {
-                    lock( _path )
-                    {
-                        _busy = false;
-                    }
-                }
             }
             catch( Exception _ex )
             {
