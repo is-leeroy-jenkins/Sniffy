@@ -38,8 +38,8 @@
         <PackageReference Include="System.Data.OleDb" Version="8.0.0" />
         <PackageReference Include="System.Data.SqlClient" Version="4.8.6" />
         <PackageReference Include="System.Data.SQLite.Core" Version="1.0.118" />
-        <PackageReference Include="ToastNotifications" Version="2.5.1" />
-        <PackageReference Include="ToastNotifications.Messages" Version="2.5.1" />
+        <PackageReference Include="ToastNotifications.Messages.Net6" Version="1.0.4" />
+        <PackageReference Include="ToastNotifications.Net6" Version="1.0.4" />
     </ItemGroup>
 
     <ItemGroup>

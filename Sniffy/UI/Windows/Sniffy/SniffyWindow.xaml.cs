@@ -38,6 +38,7 @@
 // </summary>
 // ******************************************************************************************
 
+#pragma warning disable SYSLIB0039
 namespace Sniffy
 {
     using System;

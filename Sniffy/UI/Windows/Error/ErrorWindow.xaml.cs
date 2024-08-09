@@ -48,7 +48,6 @@ namespace Sniffy
     using System.Windows;
     using System.Windows.Input;
     using System.Windows.Media;
-    using System.Windows.Media.Imaging;
 
     /// <inheritdoc />
     /// <summary>
@@ -209,7 +208,7 @@ namespace Sniffy
         {
             _exception = exception;
             MessageText.Content = exception.ToLogString( exception.Message );
-            Title.Content = "There has been an error!";
+            Header.Content = "There has been an error!";
         }
 
         /// <inheritdoc />
@@ -224,7 +223,7 @@ namespace Sniffy
         {
             _exception = exception;
             MessageText.Content = exception.ToLogString( exception.Message );
-            Title.Content = title;
+            Header.Content = title;
         }
 
         /// <inheritdoc />
@@ -238,7 +237,7 @@ namespace Sniffy
             : this( )
         {
             MessageText.Content = message;
-            Title.Content = "There has been an error!";
+            Header.Content = "There has been an error!";
         }
 
         /// <inheritdoc />
@@ -251,7 +250,7 @@ namespace Sniffy
         public ErrorWindow( string title, string message )
             : this( )
         {
-            Title.Content = title;
+            Header.Content = title;
             MessageText.Content = message;
         }
 

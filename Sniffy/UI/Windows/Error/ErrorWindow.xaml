@@ -51,7 +51,7 @@
             Source="/Resources/Assets/Windows/SplashNotification.png" />
 
         <Label
-            x:Name="Title"
+            x:Name="Header"
             Canvas.Left="35"
             Width="305"
             HorizontalAlignment="Left"

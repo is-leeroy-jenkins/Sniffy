@@ -40,6 +40,7 @@
 // </summary>
 // ******************************************************************************************
 
+#pragma warning disable SYSLIB0039
 namespace Sniffy
 {
     using System;
@@ -164,8 +165,9 @@ namespace Sniffy
         /// <param name="sslProtocols">The SSL protocols.</param>
         /// <exception cref="ArgumentNullException">addressFamily</exception>
         public SocketHandler( Func<Action, CancellationToken, Task> async, bool isSocket,
-            string host, int port, AddressFamily addressFamily, Encoding encoding,
-            bool useSsl, bool ignoreSslCertErrors, SslProtocols sslProtocols )
+            string host, int port, AddressFamily addressFamily,
+            Encoding encoding,bool useSsl, bool ignoreSslCertErrors, 
+            SslProtocols sslProtocols )
         {
             _async = async;
             _isSocket = isSocket;
