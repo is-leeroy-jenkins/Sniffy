@@ -69,7 +69,7 @@
         <Resource Include="Resources\Assets\MenuItems\TaskManagerItem.png" />
         <Resource Include="Resources\Assets\Windows\Calculator\Cancel.png" />
         <Resource Include="Resources\Assets\Windows\Calculator\Main.png" />
-        <Resource Include="Resources\Assets\Windows\Sissy\Application.png" />
+        <Resource Include="Resources\Assets\Windows\Sniffy\Application.png" />
         <Resource Include="Resources\Assets\Windows\SplashNotification.png" />
         <Resource Include="UI\Windows\Calculator\Cancel.png" />
         <Resource Include="UI\Windows\Calculator\Main.png" />
