@@ -19,7 +19,7 @@ text messages for testing/debugging purposes.
  - [Extensions](https://github.com/is-leeroy-jenkins/Sniffy/tree/master/Extensions)- extension methods for sniffy.
  - [Static](https://github.com/is-leeroy-jenkins/Sniffy/tree/master/Static) - static types used by sniffy.
  - [Controls](https://github.com/is-leeroy-jenkins/Sniffy/tree/master/UI/Controls) - classes associated with the user controls.
- - [Windows](https://github.com/is-leeroy-jenkins/Sniffy/tree/master/UI/Windows) - classes associated with the user controls.
+ - [Windows](https://github.com/is-leeroy-jenkins/Sniffy/tree/master/UI/Windows) - classes associated with the application windows.
 
 
 ## Example (General)
