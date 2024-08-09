@@ -10,25 +10,26 @@ text messages for testing/debugging purposes.
 
 
 ## ![](https://github.com/is-leeroy-jenkins/Sniffy/blob/master/Sniffy/Resources/Assets/Github/csharp.png) Code
+#
+Sniffy is built on NET 6 and supports AnyCPU as well as x86/x64 specific builds
 
- - Sniffy is built on NET 8
- - Supports AnyCPU as well as x86/x64 specific builds
  - [Callbacks](https://github.com/is-leeroy-jenkins/Sniffy/tree/master/Sniffy/Callbacks) - Delegates, Events, etc.
- - [Enumerations](https://github.com/is-leeroy-jenkins/Sniffy/tree/master/Sniffy/Enumerations) - various enumerations used for budgetary accounting.
+ - [Configuration](https://github.com/is-leeroy-jenkins/Sniffy/tree/master/Configuration) - Configuration classes used by sockethandlers
+ - [Enumerations](https://github.com/is-leeroy-jenkins/Sniffy/tree/master/Sniffy/Enumerations) - various enumerations used in Sniffy.
  - [Extensions](https://github.com/is-leeroy-jenkins/Sniffy/tree/master/Sniffy/Extensions)- extension methods for sniffy.
- - [Config](https://github.com/is-leeroy-jenkins/Sniffy/tree/master/Sniffy/Config) - configuration class used by sockethandlers.
  - [Static](https://github.com/is-leeroy-jenkins/Sniffy/tree/master/Sniffy/Static) - static types used by sniffy.
- - [UI](https://github.com/is-leeroy-jenkins/Sniffy/tree/master/Sniffy/UI) - classes associated with the user interface.
+ - [Controls](https://github.com/is-leeroy-jenkins/Sniffy/tree/master/Sniffy/UI/Controls) - classes associated with the user controls.
+ - [Windows](https://github.com/is-leeroy-jenkins/Sniffy/tree/master/Sniffy/UI/Windows) - classes associated with the user controls.
 
 
 ## Example (General)
-![](https://github.com/is-leeroy-jenkins/Sniffy/blob/master/Sniffy/Resources/Assets/Github/Sniffy-Intro.gif)
+![](https://github.com/is-leeroy-jenkins/Sniffy/blob/master/Resources/Assets/Github/Sniffy-Intro.gif)
 
 
 ## Example (TCP):
 
-![](https://github.com/is-leeroy-jenkins/Sniffy/blob/master/Sniffy/Resources/Assets/Github/example-tcp.gif)
+![](https://github.com/is-leeroy-jenkins/Sniffy/blob/master/Resources/Assets/Github/example-tcp.gif)
 
 ## Example (WebSocket):
 
-![](https://github.com/is-leeroy-jenkins/Sniffy/blob/master/Sniffy/Resources/Assets/Github/example-websocket.gif)
+![](https://github.com/is-leeroy-jenkins/Sniffy/blob/master/Resources/Assets/Github/example-websocket.gif)
