@@ -72,7 +72,7 @@ namespace Sniffy
             }
             catch( Exception _ex )
             {
-                WinMinion.Fail( _ex );
+                Fail( _ex );
             }
         }
 
@@ -95,7 +95,7 @@ namespace Sniffy
             }
             catch( Exception _ex )
             {
-                WinMinion.Fail( _ex );
+                Fail( _ex );
             }
         }
 
@@ -118,7 +118,7 @@ namespace Sniffy
             }
             catch( Exception _ex )
             {
-                WinMinion.Fail( _ex );
+                Fail( _ex );
             }
         }
 
@@ -141,7 +141,7 @@ namespace Sniffy
             }
             catch( Exception _ex )
             {
-                WinMinion.Fail( _ex );
+                Fail( _ex );
             }
         }
 
@@ -164,7 +164,7 @@ namespace Sniffy
             }
             catch( Exception _ex )
             {
-                WinMinion.Fail( _ex );
+                Fail( _ex );
             }
         }
 
@@ -187,7 +187,7 @@ namespace Sniffy
             }
             catch( Exception _ex )
             {
-                WinMinion.Fail( _ex );
+                Fail( _ex );
             }
         }
 
@@ -210,7 +210,7 @@ namespace Sniffy
             }
             catch( Exception _ex )
             {
-                WinMinion.Fail( _ex );
+                Fail( _ex );
             }
         }
 
@@ -233,7 +233,7 @@ namespace Sniffy
             }
             catch( Exception _ex )
             {
-                WinMinion.Fail( _ex );
+                Fail( _ex );
             }
         }
 
@@ -256,7 +256,7 @@ namespace Sniffy
             }
             catch( Exception _ex )
             {
-                WinMinion.Fail( _ex );
+                Fail( _ex );
             }
         }
 

@@ -1,16 +1,16 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Sniffy
 //     Author:                  Terry D. Eppler
-//     Created:                 08-02-2024
+//     Created:                 08-14-2024
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        08-02-2024
+//     Last Modified On:        08-14-2024
 // ******************************************************************************************
-// <copyright file="MetroCheckBox.cs" company="Terry D. Eppler">
-//    Sniffy is a tiny .NET WPF tool that can be used to establish TCP (raw) or 
-//    WebSocket connections and exchange text messages for testing/debugging purposes.
-//
-//    Copyright ©  2023 Terry Eppler
+// <copyright file="App.xaml.cs" company="Terry D. Eppler">
+//     A tiny .NET WPF tool that can be used to establish TCP (raw) or WebSocket connections
+//     and exchange text messages for testing/debugging purposes.
+// 
+//     Copyright ©  2020 Terry D. Eppler
 // 
 //    Permission is hereby granted, free of charge, to any person obtaining a copy
 //    of this software and associated documentation files (the “Software”),
@@ -32,7 +32,7 @@
 //    ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 //    DEALINGS IN THE SOFTWARE.
 // 
-//    You can contact me at:   terryeppler@gmail.com or eppler.terry@epa.gov
+//    You can contact me at:  terryeppler@gmail.com or eppler.terry@epa.gov
 // </copyright>
 // <summary>
 //   App.xaml.cs
@@ -46,20 +46,29 @@ namespace Sniffy
     using System.Diagnostics.CodeAnalysis;
     using System.Windows;
     using System.Windows.Media;
+    using OfficeOpenXml;
     using Syncfusion.Licensing;
     using Syncfusion.SfSkinManager;
     using Syncfusion.Themes.FluentDark.WPF;
 
     /// <inheritdoc />
     /// <summary>
-    /// Interaction logic for App.xaml
+    /// App.xaml  
     /// </summary>
+    [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
     [ SuppressMessage( "ReSharper", "MemberCanBeInternal" ) ]
     [ SuppressMessage( "ReSharper", "RedundantExtendsListEntry" ) ]
-    [ SuppressMessage( "ReSharper", "FieldCanBeMadeReadOnly.Global" ) ]
     [ SuppressMessage( "ReSharper", "ClassCanBeSealed.Global" ) ]
+    [ SuppressMessage( "ReSharper", "FieldCanBeMadeReadOnly.Global" ) ]
+    [ SuppressMessage( "ReSharper", "UnusedParameter.Global" ) ]
+    [ SuppressMessage( "ReSharper", "SuggestVarOrType_SimpleTypes" ) ]
     public partial class App : Application
     {
+        /// <summary>
+        /// The key
+        /// </summary>
+        private static readonly string _key = ConfigurationManager.AppSettings[ "UI" ];
+
         /// <summary>
         /// The controls
         /// </summary>
@@ -68,46 +77,53 @@ namespace Sniffy
             "ComboBoxAdv",
             "MetroComboBox",
             "MetroDatagrid",
-            "SfDataGrid",
             "ToolBarAdv",
             "ToolStrip",
             "MetroCalendar",
             "CalendarEdit",
             "PivotGridControl",
             "MetroPivotGrid",
-            "SfChart",
-            "SfChart3D",
-            "SfHeatMap",
-            "SfMap",
             "MetroMap",
             "EditControl",
             "CheckListBox",
             "MetroEditor",
             "DropDownButtonAdv",
             "MetroDropDown",
-            "SfTextBoxExt",
-            "SfCircularProgressBar",
-            "SfLinearProgressBar",
             "GridControl",
             "MetroGridControl",
             "TabControlExt",
             "MetroTabControl",
-            "SfTextInputLayout",
             "MetroTextInput",
-            "SfSpreadsheet",
-            "SfSpreadsheetRibbon",
             "MenuItemAdv",
             "ButtonAdv",
             "Carousel",
             "ColorEdit",
+            "SfChart",
+            "SfChart3D",
+            "SfHeatMap",
+            "SfMap",
+            "SfDataGrid",
+            "SfTextBoxExt",
+            "SfCircularProgressBar",
+            "SfLinearProgressBar",
+            "SfTextInputLayout",
+            "SfSpreadsheet",
+            "SfSpreadsheetRibbon",
             "SfCalculator",
             "SfMultiColumnDropDownControl"
         };
 
-        static App( )
+        /// <inheritdoc />
+        /// <summary>
+        /// Initializes a new instance of the
+        /// <see cref="T:Sniffy.App" /> class.
+        /// </summary>
+        public App( )
+            : base( )
         {
-            var _key = ConfigurationManager.AppSettings[ "UI" ];
             SyncfusionLicenseProvider.RegisterLicense( _key );
+            ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
+            RegisterTheme( );
         }
 
         /// <summary>
@@ -119,17 +135,40 @@ namespace Sniffy
             {
                 PrimaryBackground = new SolidColorBrush( Color.FromRgb( 0, 120, 212 ) ),
                 PrimaryForeground = new SolidColorBrush( Color.FromRgb( 222, 222, 222 ) ),
-                BodyFontSize = 12,
+                BodyFontSize = 11,
                 HeaderFontSize = 16,
-                SubHeaderFontSize = 14,
+                SubHeaderFontSize = 12,
                 TitleFontSize = 14,
-                SubTitleFontSize = 126,
-                BodyAltFontSize = 10,
+                SubTitleFontSize = 10,
+                BodyAltFontSize = 9,
                 FontFamily = new FontFamily( "Segoe UI" )
             };
 
             SfSkinManager.RegisterThemeSettings( "FluentDark", _theme );
             SfSkinManager.ApplyStylesOnApplication = true;
+        }
+
+        /// <summary>
+        /// Handles the UnhandledException event of the CurrentDomain control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="UnhandledExceptionEventArgs"/>
+        /// instance containing the event data.</param>
+        private static void OnUnhandledException( object sender, UnhandledExceptionEventArgs e )
+        {
+            var _exception = ( Exception )e.ExceptionObject;
+            App.Fail( _exception );
+        }
+
+        /// <summary>
+        /// Fails the specified _ex.
+        /// </summary>
+        /// <param name="ex">The _ex.</param>
+        private static void Fail( Exception ex )
+        {
+            var _error = new ErrorWindow( ex );
+            _error?.SetText( );
+            _error?.ShowDialog( );
         }
     }
 }

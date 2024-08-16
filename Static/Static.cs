@@ -1,17 +1,16 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Sniffy
 //     Author:                  Terry D. Eppler
-//     Created:                 08-02-2024
+//     Created:                 08-15-2021
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        08-02-2024
+//     Last Modified On:        08-15-2024
 // ******************************************************************************************
 // <copyright file="Static.cs" company="Terry D. Eppler">
-//    Sniffy is a tiny .NET WPF tool that can be used to establish TCP (raw) or 
-//    WebSocket connections and exchange text messages for testing/debugging purposes.
-//
-//    Copyright ©  2023 Terry Eppler
+//     A tiny .NET WPF tool that can be used to establish TCP (raw) or WebSocket connections
+//     and exchange text messages for testing/debugging purposes.
 // 
+//     Copyright ©  2021 Terry D. Eppler
 // 
 //    Permission is hereby granted, free of charge, to any person obtaining a copy
 //    of this software and associated documentation files (the “Software”),
@@ -33,7 +32,7 @@
 //    ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 //    DEALINGS IN THE SOFTWARE.
 // 
-//    You can contact me at:   terryeppler@gmail.com or eppler.terry@epa.gov
+//    You can contact me at:  terryeppler@gmail.com or eppler.terry@epa.gov
 // </copyright>
 // <summary>
 //   Static.cs
@@ -47,7 +46,6 @@ namespace Sniffy
     using System.Collections.Specialized;
     using System.Data;
     using System.Diagnostics.CodeAnalysis;
-    using System.Linq;
     using System.Text;
 
     /// <summary>
@@ -55,6 +53,7 @@ namespace Sniffy
     /// </summary>
     [ SuppressMessage( "ReSharper", "MemberCanBeInternal" ) ]
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
+    [ SuppressMessage( "ReSharper", "ConvertSwitchStatementToSwitchExpression" ) ]
     public static class Static
     {
         /// <summary>
@@ -94,10 +93,9 @@ namespace Sniffy
                     }
                 }
             }
-            catch( Exception _ex )
+            catch( Exception ex )
             {
-                Static.Fail( _ex );
-
+                Static.Fail( ex );
                 return default( string );
             }
         }
@@ -118,15 +116,13 @@ namespace Sniffy
                 ThrowIf.Null( sql, nameof( sql ) );
                 var _command = connection.CreateCommand( );
                 _command.CommandText = sql;
-
                 return !string.IsNullOrEmpty( _command?.CommandText )
                     ? _command
                     : default( IDbCommand );
             }
-            catch( Exception _ex )
+            catch( Exception ex )
             {
-                Static.Fail( _ex );
-
+                Static.Fail( ex );
                 return default( IDbCommand );
             }
         }
@@ -145,13 +141,11 @@ namespace Sniffy
             {
                 ThrowIf.Null( sql, nameof( sql ) );
                 using var _command = connection?.CreateCommand( sql );
-
                 return _command?.ExecuteNonQuery( ) ?? 0;
             }
-            catch( Exception _ex )
+            catch( Exception ex )
             {
-                Static.Fail( _ex );
-
+                Static.Fail( ex );
                 return default( int );
             }
         }
@@ -241,10 +235,9 @@ namespace Sniffy
                     ? _builder.ToString( )
                     : string.Empty;
             }
-            catch( Exception _ex )
+            catch( Exception ex )
             {
-                Static.Fail( _ex );
-
+                Static.Fail( ex );
                 return string.Empty;
             }
         }
@@ -274,10 +267,9 @@ namespace Sniffy
 
                 return _dictionary;
             }
-            catch( Exception _ex )
+            catch( Exception ex )
             {
-                Static.Fail( _ex );
-
+                Static.Fail( ex );
                 return default( IDictionary<string, object> );
             }
         }

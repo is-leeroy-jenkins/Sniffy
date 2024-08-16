@@ -1,79 +1,134 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-    <PropertyGroup>
-        <TargetFramework>net8.0-windows7.0</TargetFramework>
-        <RollForward>Major</RollForward>
-        <OutputType>WinExe</OutputType>
-        <Nullable>disable</Nullable>
-        <UseWindowsForms>True</UseWindowsForms>
-        <UseWPF>true</UseWPF>
-        <ApplicationManifest>app.manifest</ApplicationManifest>
-        <StartupObject>Sniffy.App</StartupObject>
-    </PropertyGroup>
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <Nullable>disable</Nullable>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+    <AssemblyName>Sniffy</AssemblyName>
+    <RootNamespace>Sniffy</RootNamespace>
+    <StartupObject>Sniffy.App</StartupObject>
+    <ApplicationIcon>Resources\Assets\Forms\Application.ico</ApplicationIcon>
+    <PackageId>Sniffy</PackageId>
+    <Title>Sniffy</Title>
+    <Authors>Terry D. Eppler</Authors>
+    <Company>Terry D. Eppler</Company>
+    <Description>A .NET WPF tool that can be used to establish TCP (raw) or WebSocket connections and exchange text messages for testing/debugging purposes.</Description>
+    <PackageProjectUrl>https://github.com/is-leeroy-jenkins/Sniffy</PackageProjectUrl>
+    <PackageIcon>Application.png</PackageIcon>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <RepositoryUrl>https://github.com/is-leeroy-jenkins/Sniffy</RepositoryUrl>
+    <PackageTags>tcp-server; tcp-client; tcp-socket; wpf</PackageTags>
+    <RepositoryType>git</RepositoryType>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+  </PropertyGroup>
 
-    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-        <Optimize>True</Optimize>
-    </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <Optimize>True</Optimize>
+  </PropertyGroup>
 
-    <ItemGroup>
-        <Compile Remove="Resources\Assets\Window\**" />
-        <EmbeddedResource Remove="Resources\Assets\Window\**" />
-        <None Remove="Resources\Assets\Window\**" />
-        <Page Remove="Resources\Assets\Window\**" />
-    </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\Assets\Forms\Application.ico" />
+  </ItemGroup>
 
-    <ItemGroup>
-      <None Remove="Resources\Assets\Windows\SplashNotification.png" />
-      <None Remove="Sniffy.DotSettings" />
-    </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\Assets\Folder\" />
+    <Folder Include="Themes\Groupbox\" />
+    <Folder Include="Views\Controls\CheckList\" />
+  </ItemGroup>
 
-    <ItemGroup>
-        <PackageReference Include="Syncfusion.Licensing" Version="24.1.41" />
-        <PackageReference Include="Syncfusion.SfSkinManager.WPF" Version="24.1.41" />
-        <PackageReference Include="Syncfusion.Shared.Base" Version="24.1.41" />
-        <PackageReference Include="Syncfusion.Shared.WPF" Version="24.1.41" />
-        <PackageReference Include="Syncfusion.Themes.FluentDark.WPF" Version="24.1.41" />
-        <PackageReference Include="Syncfusion.Tools.WPF" Version="24.1.41" />
-        <PackageReference Include="Syncfusion.UI.WPF.NET" Version="24.1.41" />
-        <PackageReference Include="System.Data.OleDb" Version="8.0.0" />
-        <PackageReference Include="System.Data.SqlClient" Version="4.8.6" />
-        <PackageReference Include="System.Data.SQLite.Core" Version="1.0.118" />
-        <PackageReference Include="ToastNotifications.Messages.Net6" Version="1.0.4" />
-        <PackageReference Include="ToastNotifications.Net6" Version="1.0.4" />
-    </ItemGroup>
+  
+  <ItemGroup>
+    <PackageReference Include="EPPlus" Version="7.2.2" />
+    <PackageReference Include="ModernWpfUI" Version="0.9.6" />
+    <PackageReference Include="OxyPlot.Core" Version="2.1.2" />
+    <PackageReference Include="OxyPlot.Wpf" Version="2.1.2" />
+    <PackageReference Include="SkiaSharp.NativeAssets.Win32" Version="2.88.8" />
+    <PackageReference Include="Syncfusion.Licensing" Version="24.1.41" />
+    <PackageReference Include="Syncfusion.PdfViewer.WPF" Version="24.1.41" />
+    <PackageReference Include="Syncfusion.PivotTable.Wpf" Version="24.1.41" />
+    <PackageReference Include="Syncfusion.SfAccordion.WPF" Version="24.1.41" />
+    <PackageReference Include="Syncfusion.SfBusyIndicator.WPF" Version="24.1.41" />
+    <PackageReference Include="Syncfusion.SfChromelessWindow.WPF" Version="24.1.41" />
+    <PackageReference Include="Syncfusion.SfHubTile.WPF" Version="24.1.41" />
+    <PackageReference Include="Syncfusion.SfInput.WPF" Version="24.1.41" />
+    <PackageReference Include="Syncfusion.SfNavigationDrawer.WPF" Version="24.1.41" />
+    <PackageReference Include="Syncfusion.SfRichTextBoxAdv.WPF" Version="24.1.41" />
+    <PackageReference Include="Syncfusion.SfSkinManager.WPF" Version="24.1.41" />
+    <PackageReference Include="Syncfusion.SfSpreadsheet.WPF" Version="24.1.41" />
+    <PackageReference Include="Syncfusion.SfTextInputLayout.WPF" Version="24.1.41" />
+    <PackageReference Include="Syncfusion.Shared.Base" Version="24.1.41" />
+    <PackageReference Include="Syncfusion.Shared.WPF" Version="24.1.41" />
+    <PackageReference Include="Syncfusion.Themes.FluentDark.WPF" Version="24.1.41" />
+    <PackageReference Include="Syncfusion.Tools.WPF" Version="24.1.41" />
+    <PackageReference Include="System.Configuration.ConfigurationManager" Version="8.0.0" />
+    <PackageReference Include="System.Data.OleDb" Version="8.0.0" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.6" />
+    <PackageReference Include="System.Data.SQLite" Version="1.0.118" />
+    <PackageReference Include="ToastNotifications.Messages.Net6" Version="1.0.4" />
+    <PackageReference Include="ToastNotifications.Net6" Version="1.0.4" />
+  </ItemGroup>
 
-    <ItemGroup>
-      <Reference Include="System.Data.SqlServerCe">
-        <HintPath>Libraries\System.Data.SqlServerCe.dll</HintPath>
-      </Reference>
-    </ItemGroup>
+  
+  <ItemGroup>
+    <Reference Include="PcapDotNet.Base">
+      <HintPath>Libraries\PcapDotNet.Base.dll</HintPath>
+    </Reference>
+    <Reference Include="PcapDotNet.Core">
+      <HintPath>Libraries\PcapDotNet.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="PcapDotNet.Core.Extensions">
+      <HintPath>Libraries\PcapDotNet.Core.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="PcapDotNet.Packets">
+      <HintPath>Libraries\PcapDotNet.Packets.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.SQLite">
+      <HintPath>Libraries\System.Data.SQLite.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.SQLite.EF6">
+      <HintPath>Libraries\System.Data.SQLite.EF6.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.SQLite.Linq">
+      <HintPath>Libraries\System.Data.SQLite.Linq.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.SqlServerCe">
+      <HintPath>Libraries\System.Data.SqlServerCe.dll</HintPath>
+    </Reference>
+    <Reference Include="websocket-sharp">
+      <HintPath>Libraries\websocket-sharp.dll</HintPath>
+    </Reference>
+  </ItemGroup>
 
-    <ItemGroup>
-        <Resource Include="Resources\Assets\MenuItems\CalculatorItem.png" />
-        <Resource Include="Resources\Assets\MenuItems\CalendarItem.png" />
-        <Resource Include="Resources\Assets\MenuItems\ChromeItem.png" />
-        <Resource Include="Resources\Assets\MenuItems\ClockItem.png" />
-        <Resource Include="Resources\Assets\MenuItems\CloseItem.png" />
-        <Resource Include="Resources\Assets\MenuItems\ControlPanelItem.png" />
-        <Resource Include="Resources\Assets\MenuItems\DocumentaionItem.png" />
-        <Resource Include="Resources\Assets\MenuItems\EdgeItem.png" />
-        <Resource Include="Resources\Assets\MenuItems\ExitItem.png" />
-        <Resource Include="Resources\Assets\MenuItems\FileItem.png" />
-        <Resource Include="Resources\Assets\MenuItems\FirefoxItem.png" />
-        <Resource Include="Resources\Assets\MenuItems\FolderItem.png" />
-        <Resource Include="Resources\Assets\MenuItems\MapItem.png" />
-        <Resource Include="Resources\Assets\MenuItems\MediaPlayerItem.png" />
-        <Resource Include="Resources\Assets\MenuItems\OneDriveItem.png" />
-        <Resource Include="Resources\Assets\MenuItems\RefreshItem.png" />
-        <Resource Include="Resources\Assets\MenuItems\SaveItem.png" />
-        <Resource Include="Resources\Assets\MenuItems\TaskManagerItem.png" />
-        <Resource Include="Resources\Assets\Windows\Calculator\Cancel.png" />
-        <Resource Include="Resources\Assets\Windows\Calculator\Main.png" />
-        <Resource Include="Resources\Assets\Windows\Sniffy\Application.png" />
-        <Resource Include="Resources\Assets\Windows\SplashNotification.png" />
-        <Resource Include="UI\Windows\Calculator\Cancel.png" />
-        <Resource Include="UI\Windows\Calculator\Main.png" />
-        <Resource Include="UI\Windows\Sniffy\Application.png" />
-    </ItemGroup>
+  
+  <ItemGroup>
+    <None Update="LICENSE">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Update="README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Update="Resources\Assets\Forms\Application.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
+
+  
+  <ItemGroup>
+    <Page Update="Views\Pages\TcpView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Pages\UdpView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Pages\WebSocketView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+
 
 </Project>

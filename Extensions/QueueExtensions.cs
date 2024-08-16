@@ -1,16 +1,15 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Sniffy
 //     Author:                  Terry D. Eppler
-//     Created:                 08-02-2024
+//     Created:                 08-11-2024
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        08-02-2024
+//     Last Modified On:        08-11-2024
 // ******************************************************************************************
 // <copyright file="QueueExtensions.cs" company="Terry D. Eppler">
-//    Sniffy is a tiny .NET WPF tool that can be used to establish TCP (raw) or 
-//    WebSocket connections and exchange text messages for testing/debugging purposes.
-//
-//    Copyright ©  2023 Terry Eppler
+//    Sniffy is a tiny .NET WPF tool for network interaction written C sharp.
+// 
+//     Copyright ©  2020 Terry D. Eppler
 // 
 //    Permission is hereby granted, free of charge, to any person obtaining a copy
 //    of this software and associated documentation files (the “Software”),
@@ -32,7 +31,7 @@
 //    ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 //    DEALINGS IN THE SOFTWARE.
 // 
-//    You can contact me at:   terryeppler@gmail.com or eppler.terry@epa.gov
+//    You can contact me at:  terryeppler@gmail.com or eppler.terry@epa.gov
 // </copyright>
 // <summary>
 //   QueueExtensions.cs
@@ -41,25 +40,25 @@
 
 namespace Sniffy
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Diagnostics.CodeAnalysis;
+	using System;
+	using System.Collections.Generic;
+	using System.Diagnostics.CodeAnalysis;
 
-    /// <summary>
-    /// 
-    /// </summary>
-    [ SuppressMessage( "ReSharper", "UnusedType.Global" ) ]
-    public static class QueueExtensions
-    {
-        /// <summary>
-        /// Adds the specified item.
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="queue">The queue.</param>
-        /// <param name="item">The item.</param>
-        public static void Add<T>( this Queue<T> queue, T item )
-        {
-            queue.Enqueue( item );
-        }
-    }
+	/// <summary>
+	/// 
+	/// </summary>
+	[ SuppressMessage( "ReSharper", "UnusedType.Global" ) ]
+	public static class QueueExtensions
+	{
+		/// <summary>
+		/// Adds the specified item.
+		/// </summary>
+		/// <typeparam name="T"></typeparam>
+		/// <param name="queue">The queue.</param>
+		/// <param name="item">The item.</param>
+		public static void Add<T>( this Queue<T> queue, T item )
+		{
+			queue.Enqueue( item );
+		}
+	}
 }

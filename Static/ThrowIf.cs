@@ -1,17 +1,16 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Sniffy
 //     Author:                  Terry D. Eppler
-//     Created:                 08-02-2024
+//     Created:                 08-15-2021
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        08-02-2024
+//     Last Modified On:        08-15-2024
 // ******************************************************************************************
 // <copyright file="ThrowIf.cs" company="Terry D. Eppler">
-//    Sniffy is a tiny .NET WPF tool that can be used to establish TCP (raw) or 
-//    WebSocket connections and exchange text messages for testing/debugging purposes.
-//
-//    Copyright ©  2023 Terry Eppler
+//     A tiny .NET WPF tool that can be used to establish TCP (raw) or WebSocket connections
+//     and exchange text messages for testing/debugging purposes.
 // 
+//     Copyright ©  2021 Terry D. Eppler
 // 
 //    Permission is hereby granted, free of charge, to any person obtaining a copy
 //    of this software and associated documentation files (the “Software”),
@@ -33,7 +32,7 @@
 //    ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 //    DEALINGS IN THE SOFTWARE.
 // 
-//    You can contact me at:   terryeppler@gmail.com or eppler.terry@epa.gov
+//    You can contact me at:  terryeppler@gmail.com or eppler.terry@epa.gov
 // </copyright>
 // <summary>
 //   ThrowIf.cs
@@ -77,8 +76,7 @@ namespace Sniffy
                 {
                     if( string.IsNullOrEmpty( _args ) )
                     {
-                        var _message = @$"The '{paramName}' is null!";
-
+                        var _message = $"The '{paramName}' is null!";
                         throw new ArgumentNullException( _message );
                     }
 
@@ -88,8 +86,7 @@ namespace Sniffy
                 {
                     if( _action == null )
                     {
-                        var _message = @$"The '{paramName}' is null!";
-
+                        var _message = $"The '{paramName}' is null!";
                         throw new ArgumentNullException( _message );
                     }
 
@@ -99,8 +96,7 @@ namespace Sniffy
                 {
                     if( _control == null )
                     {
-                        var _message = @$"The '{paramName}' is null!";
-
+                        var _message = $"The '{paramName}' is null!";
                         throw new ArgumentNullException( _message );
                     }
 
@@ -110,8 +106,7 @@ namespace Sniffy
                 {
                     if( _eventArgs == null )
                     {
-                        var _message = @$"The '{paramName}' is null!";
-
+                        var _message = $"The '{paramName}' is null!";
                         throw new ArgumentNullException( _message );
                     }
 
@@ -121,8 +116,7 @@ namespace Sniffy
                 {
                     if( _adapter == null )
                     {
-                        var _message = @$"The '{paramName}' is null!";
-
+                        var _message = $"The '{paramName}' is null!";
                         throw new ArgumentNullException( _message );
                     }
 
@@ -134,8 +128,7 @@ namespace Sniffy
                     if( _items.Length == 0
                         || _items == null )
                     {
-                        var _message = @$"The '{paramName}' is null!";
-
+                        var _message = $"The '{paramName}' is null!";
                         throw new ArgumentNullException( _message );
                     }
 
@@ -145,8 +138,7 @@ namespace Sniffy
                 {
                     if( _mailMessage == null )
                     {
-                        var _message = @$"The '{paramName}' is null!";
-
+                        var _message = $"The '{paramName}' is null!";
                         throw new ArgumentNullException( _message );
                     }
 
@@ -156,8 +148,7 @@ namespace Sniffy
                 {
                     if( argument == null )
                     {
-                        var _message = @$"The '{paramName}' is null!";
-
+                        var _message = $"The '{paramName}' is null!";
                         throw new ArgumentNullException( _message );
                     }
 
@@ -181,8 +172,7 @@ namespace Sniffy
                 {
                     if( string.IsNullOrEmpty( _args ) )
                     {
-                        var _message = @$"The '{paramName}' is empty!";
-
+                        var _message = $"The '{paramName}' is empty!";
                         throw new ArgumentNullException( _message );
                     }
 
@@ -192,8 +182,7 @@ namespace Sniffy
                 {
                     if( _listSource == null )
                     {
-                        var _message = @$"The IListSource '{paramName}' is empty!";
-
+                        var _message = $"The IListSource '{paramName}' is empty!";
                         throw new ArgumentException( _message );
                     }
 
@@ -204,8 +193,7 @@ namespace Sniffy
                     if( _bindingList == null
                         || _bindingList.IsEmpty( ) )
                     {
-                        var _message = @$"The IBindingList '{paramName}' is empty!";
-
+                        var _message = $"The IBindingList '{paramName}' is empty!";
                         throw new ArgumentException( _message );
                     }
 
@@ -216,8 +204,7 @@ namespace Sniffy
                     if( _list == null
                         || _list.Any( ) != true )
                     {
-                        var _message = @$"The IEnumerable<string> '{paramName}' is empty!";
-
+                        var _message = $"The IEnumerable<string> '{paramName}' is empty!";
                         throw new ArgumentException( _message );
                     }
 
@@ -228,8 +215,7 @@ namespace Sniffy
                     if( _data == null
                         || _data.Any( ) != true )
                     {
-                        var _message = @$"The IEnumerable<string> '{paramName}' is empty!";
-
+                        var _message = $"The IEnumerable<string> '{paramName}' is empty!";
                         throw new ArgumentException( _message );
                     }
 
@@ -240,8 +226,7 @@ namespace Sniffy
                     if( _rows == null
                         || _rows?.Any( ) != true )
                     {
-                        var _message = @$"The IEnumerable<DataRow> '{paramName}' is empty!";
-
+                        var _message = $"The IEnumerable<DataRow> '{paramName}' is empty!";
                         throw new ArgumentException( _message );
                     }
 
@@ -252,8 +237,7 @@ namespace Sniffy
                     if( _collection == null
                         || _collection.IsEmpty( ) )
                     {
-                        var _message = @$"The ICollection '{paramName}' is empty!";
-
+                        var _message = $"The ICollection '{paramName}' is empty!";
                         throw new ArgumentException( _message );
                     }
 
@@ -264,8 +248,7 @@ namespace Sniffy
                     if( _dict == null
                         || _dict.Keys.IsEmpty( ) )
                     {
-                        var _message = @$"The IDictionary<string, object> '{paramName}' is empty!";
-
+                        var _message = $"The IDictionary<string, object> '{paramName}' is empty!";
                         throw new ArgumentException( _message );
                     }
 
@@ -276,8 +259,7 @@ namespace Sniffy
                     if( _nvp == null
                         || _nvp.Keys.IsEmpty( ) )
                     {
-                        var _message = @$"The IDictionary<string, string> '{paramName}' is empty!";
-
+                        var _message = $"The IDictionary<string, string> '{paramName}' is empty!";
                         throw new ArgumentException( _message );
                     }
 
@@ -287,8 +269,7 @@ namespace Sniffy
                 {
                     if( argument == null )
                     {
-                        var _message = @$"The '{paramName}' is null!";
-
+                        var _message = $"The '{paramName}' is null!";
                         throw new ArgumentNullException( _message );
                     }
 
@@ -305,7 +286,7 @@ namespace Sniffy
         /// <exception cref="System.ArgumentOutOfRangeException"></exception>
         public static void NegativeOrZero( object argument, string paramName )
         {
-            var _message = @$"{paramName} must be greater than zero";
+            var _message = $"{paramName} must be greater than zero";
             switch( argument )
             {
                 case sbyte _sbyte:

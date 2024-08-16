@@ -131,8 +131,8 @@ $tf/
 _ReSharper*/
 *.[Rr]e[Ss]harper
 *.DotSettings
-*Sniffy\.editorconfig*
-*Sniffy\.idea*
+*Sniffy\.editorconfig
+*Sniffy\.idea
 *.editorconfig
 *\.idea
 

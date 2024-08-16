@@ -1,0 +1,111 @@
+﻿<Window
+    x:Class="Sniffy.AboutWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:Sniffy"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:oxy="http://oxyplot.org/wpf"
+    xmlns:skin="clr-namespace:Syncfusion.SfSkinManager;assembly=Syncfusion.SfSkinManager.WPF"
+    xmlns:sync="http://schemas.syncfusion.com/wpf"
+    xmlns:ui="http://schemas.modernwpf.com/2019"
+    Title="Sniffy - About V1.0.1"
+    Width="800"
+    Height="450"
+    sync:SfSkinManager.Theme="{skin:SkinManagerExtension ThemeName=FluentDark}"
+    mc:Ignorable="d">
+
+
+
+
+    <!--  ******************************************** Resources *********************************************  -->
+
+    <Window.Resources>
+
+        <Style TargetType="ToolTip">
+            <Setter Property="BorderThickness" Value="1,1,1,1" />
+            <Setter Property="BorderBrush" Value="#0078D4" />
+            <Setter Property="Background" Value="#FF000000" />
+            <Setter Property="Foreground" Value="#FFA0BDFC" />
+        </Style>
+
+    </Window.Resources>
+
+
+    <Canvas Background="#FF141414">
+        <Grid
+            Canvas.Left="10"
+            Canvas.Top="10"
+            Width="40"
+            Height="414">
+            <Image
+                VerticalAlignment="Top"
+                Source="/Resources/Assets/Forms/Application.ico" />
+        </Grid>
+        <Grid
+            Canvas.Left="70"
+            Canvas.Top="10"
+            Width="720"
+            Height="414">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="80" />
+            </Grid.RowDefinitions>
+            <TextBlock
+                Grid.Row="0"
+                Foreground="#FFA0BDFC"
+                Text="Sniffy for Desktop" />
+            <TextBlock
+                Grid.Row="1"
+                Margin="0,10,0,10"
+                Foreground="#FFA0BDFC"
+                Text="Copyright © 2022 Terry D. Eppler (terryeppler@gmail.com)" />
+
+            <TextBlock
+                Grid.Row="2"
+                HorizontalAlignment="Left"
+                Foreground="#FFA0BDFC"
+                Text="Github:" />
+            <TextBlock
+                Grid.Row="2"
+                Margin="50,0,0,0"
+                HorizontalAlignment="Left"
+                Foreground="#FFA0BDFC"><Hyperlink
+                    x:Name="Github"
+                    Click="OnGithubButtonClick"
+                    NavigateUri="https://github.com/is-leeroy-jenkins/Sniffy">
+                    <Run Text="https://github.com/is-leeroy-jenkins/Sniffy" />
+                </Hyperlink></TextBlock>
+            <TextBlock
+                Grid.Row="3"
+                HorizontalAlignment="Left"
+                Foreground="#FFA0BDFC"
+                Text="Gitee:" />
+            <TextBlock
+                Grid.Row="3"
+                Margin="50,00,0,0"
+                HorizontalAlignment="Left"
+                Foreground="#FFA0BDFC"><Hyperlink
+                    x:Name="gitee"
+                    Click="OnGiteeButtonClick"
+                    NavigateUri="https://github.com/is-leeroy-jenkins/Sniffy">
+                    <Run Text="https://github.com/is-leeroy-jenkins/Sniffy" />
+                </Hyperlink></TextBlock>
+            <local:ButtonEx
+                Grid.Row="6"
+                Width="75"
+                Margin="0,20,0,0"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Bottom"
+                Click="OnButtonExClick"
+                Content="OK" />
+            <!--</Grid>-->
+        </Grid>
+    </Canvas>
+</Window>

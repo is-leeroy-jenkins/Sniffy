@@ -1,16 +1,15 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Sniffy
 //     Author:                  Terry D. Eppler
-//     Created:                 08-02-2024
+//     Created:                 08-11-2024
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        08-02-2024
+//     Last Modified On:        08-11-2024
 // ******************************************************************************************
 // <copyright file="Provider.cs" company="Terry D. Eppler">
-//    Sniffy is a tiny .NET WPF tool that can be used to establish TCP (raw) or 
-//    WebSocket connections and exchange text messages for testing/debugging purposes.
-//
-//    Copyright ©  2023 Terry Eppler
+//    Sniffy is a tiny .NET WPF tool for network interaction written C sharp.
+// 
+//     Copyright ©  2020 Terry D. Eppler
 // 
 //    Permission is hereby granted, free of charge, to any person obtaining a copy
 //    of this software and associated documentation files (the “Software”),
@@ -32,7 +31,7 @@
 //    ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 //    DEALINGS IN THE SOFTWARE.
 // 
-//    You can contact me at:   terryeppler@gmail.com or eppler.terry@epa.gov
+//    You can contact me at:  terryeppler@gmail.com or eppler.terry@epa.gov
 // </copyright>
 // <summary>
 //   Provider.cs
@@ -41,51 +40,51 @@
 
 namespace Sniffy
 {
-    using System;
+	using System;
 
-    /// <summary>
-    /// 
-    /// </summary>
-    public enum Provider
-    {
-        /// <summary>
-        /// The SQLite data provider
-        /// </summary>
-        SQLite = 0,
+	/// <summary>
+	/// 
+	/// </summary>
+	public enum Provider
+	{
+		/// <summary>
+		/// The SQLite data provider
+		/// </summary>
+		SQLite = 0,
 
-        /// <summary>
-        /// The excel
-        /// </summary>
-        Excel = 1,
+		/// <summary>
+		/// The excel
+		/// </summary>
+		Excel = 1,
 
-        /// <summary>
-        /// The SQL server data provider
-        /// </summary>
-        SqlServer = 2,
+		/// <summary>
+		/// The SQL server data provider
+		/// </summary>
+		SqlServer = 2,
 
-        /// <summary>
-        /// The SQL Compact data provider
-        /// </summary>
-        SqlCe = 3,
+		/// <summary>
+		/// The SQL Compact data provider
+		/// </summary>
+		SqlCe = 3,
 
-        /// <summary>
-        /// The MS Access data provider
-        /// </summary>
-        Access = 4,
+		/// <summary>
+		/// The MS Access data provider
+		/// </summary>
+		Access = 4,
 
-        /// <summary>
-        /// The OLE DB data provider
-        /// </summary>
-        OleDb = 5,
+		/// <summary>
+		/// The OLE DB data provider
+		/// </summary>
+		OleDb = 5,
 
-        /// <summary>
-        /// The CSV data provider
-        /// </summary>
-        CSV = 6,
+		/// <summary>
+		/// The CSV data provider
+		/// </summary>
+		CSV = 6,
 
-        /// <summary>
-        /// The TXT data provider
-        /// </summary>
-        Text = 7
-    }
+		/// <summary>
+		/// The TXT data provider
+		/// </summary>
+		Text = 7
+	}
 }

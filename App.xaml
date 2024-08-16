@@ -2,16 +2,37 @@
     x:Class="Sniffy.App"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:Sniffy"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:sync="http://schemas.syncfusion.com/wpf"
     xmlns:skin="clr-namespace:Syncfusion.SfSkinManager;assembly=Syncfusion.SfSkinManager.WPF"
+    xmlns:sync="http://schemas.syncfusion.com/wpf"
     xmlns:ui="http://schemas.modernwpf.com/2019"
-    StartupUri="/UI/Windows/Sniffy/SniffyWindow.xaml">
+    StartupUri="/MainWindow.xaml">
     <Application.Resources>
+
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
+                <ui:ThemeResources />
+                <ui:XamlControlsResources />
+
+                <!--  ************** Dark Mode  ****************  -->
+                <ResourceDictionary Source="/Themes/Generic.xaml" />
+                <ResourceDictionary Source="/Themes/Styles.xaml" />
+                <ResourceDictionary Source="/Themes/TextBox/TextBoxEx.xaml" />
+                <ResourceDictionary Source="/Themes/Button/ButtonEx.xaml" />
+                <ResourceDictionary Source="/Themes/GroupBox.xaml" />
+                <ResourceDictionary Source="/Themes/InputGroup/InputGroup.xaml" />
+                <ResourceDictionary Source="/Themes/Form/FormControl.xaml" />
+                <ResourceDictionary Source="/Themes/Datagrid/DataGrid.xaml" />
+                <ResourceDictionary Source="/Themes/Checkbox/CheckBox.xaml" />
+                <ResourceDictionary Source="/Themes/TabControl/TabControlEx.xaml" />
+
+
+                <!--  ************** Notifications  ****************  -->
                 <ResourceDictionary Source="pack://application:,,,/ToastNotifications.Messages;component/Themes/Default.xaml" />
             </ResourceDictionary.MergedDictionaries>
+            <!--  Other app resources here  -->
         </ResourceDictionary>
+
     </Application.Resources>
 </Application>
