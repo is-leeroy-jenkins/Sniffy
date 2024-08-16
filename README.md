@@ -35,8 +35,8 @@ Sniffy is built on NET 6 and supports AnyCPU as well as x86/x64 specific builds
  - [Network](https://github.com/is-leeroy-jenkins/Sniffy/tree/master/Network)- IO classes (Sockets, Models, etc) used in Sniffy
  - [Static](https://github.com/is-leeroy-jenkins/Sniffy/tree/master/Static) - static types used by sniffy.
  - [Themes](https://github.com/is-leeroy-jenkins/Sniffy/tree/master/Themes) - classes providing sniffy's look and feel. 
- - [Controls](https://github.com/is-leeroy-jenkins/Sniffy/tree/master/UI/Controls) - classes associated with the user controls.
- - [Windows](https://github.com/is-leeroy-jenkins/Sniffy/tree/master/UI/Windows) - classes associated with the application windows.
+ - [Controls](https://github.com/is-leeroy-jenkins/Sniffy/tree/master/Views/Controls) - classes associated with the user controls.
+ - [Windows](https://github.com/is-leeroy-jenkins/Sniffy/tree/master/Views/Windows) - classes associated with the application windows.
 
 
 ## Example (General)
