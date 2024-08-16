@@ -4,7 +4,7 @@
     xmlns:local="clr-namespace:Sniffy">
 
     <!--<ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="/Styles;component/Themes/Colors/Colors.xaml" />
+        <ResourceDictionary Source="/Styles;component/Themes/Colors.xaml" />
         <ResourceDictionary Source="/Styles;component/Themes/Common/CommonControls.xaml" />
     </ResourceDictionary.MergedDictionaries>-->
 
