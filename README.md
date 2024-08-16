@@ -29,7 +29,6 @@ Sniffy is built on NET 6 and supports AnyCPU as well as x86/x64 specific builds
 
 
  - [Callbacks](https://github.com/is-leeroy-jenkins/Sniffy/tree/master/Callbacks) - Delegates, Events, etc.
- - [Configuration](https://github.com/is-leeroy-jenkins/Sniffy/tree/master/Configuration) - Configuration classes used by sockethandlers
  - [Enumerations](https://github.com/is-leeroy-jenkins/Sniffy/tree/master/Enumerations) - various enumerations used in Sniffy.
  - [Extensions](https://github.com/is-leeroy-jenkins/Sniffy/tree/master/Extensions)- extension methods for sniffy.
  - [Network](https://github.com/is-leeroy-jenkins/Sniffy/tree/master/Network)- IO classes (Sockets, Models, etc) used in Sniffy
