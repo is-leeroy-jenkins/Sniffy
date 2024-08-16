@@ -4,14 +4,14 @@
     xmlns:local="clr-namespace:Sniffy">
 
     <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="/Themes/TextBox/TextBoxEx.xaml" />
-        <ResourceDictionary Source="/Themes/Button/ButtonEx.xaml" />
+        <ResourceDictionary Source="/Themes/TextBoxEx.xaml" />
+        <ResourceDictionary Source="/Themes/ButtonEx.xaml" />
         <ResourceDictionary Source="/Themes/GroupBox.xaml" />
-        <ResourceDictionary Source="/Themes/InputGroup/InputGroup.xaml" />
-        <ResourceDictionary Source="/Themes/Form/FormControl.xaml" />
-        <ResourceDictionary Source="/Themes/Datagrid/DataGrid.xaml" />
-        <ResourceDictionary Source="/Themes/Checkbox/CheckBox.xaml" />
-        <ResourceDictionary Source="/Themes/TabControl/TabControlEx.xaml" />
+        <ResourceDictionary Source="/Themes/InputGroup.xaml" />
+        <ResourceDictionary Source="/Themes/FormControl.xaml" />
+        <ResourceDictionary Source="/Themes/DataGrid.xaml" />
+        <ResourceDictionary Source="/Themes/CheckBox.xaml" />
+        <ResourceDictionary Source="/Themes/TabControlEx.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
     <Style

@@ -4,8 +4,8 @@
     xmlns:local="clr-namespace:Sniffy">
 
     <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="/Themes/Button/Button.xaml" />
-        <ResourceDictionary Source="/Themes/Label/Label.xaml" />
+        <ResourceDictionary Source="/Themes/Button.xaml" />
+        <ResourceDictionary Source="/Themes/Label.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
     <Style

@@ -34,7 +34,6 @@
 
   <ItemGroup>
     <Folder Include="Resources\Assets\Folder\" />
-    <Folder Include="Themes\Groupbox\" />
     <Folder Include="Views\Controls\CheckList\" />
   </ItemGroup>
 

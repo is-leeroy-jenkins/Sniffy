@@ -584,83 +584,83 @@
 
     <Image
         x:Key="ACCDB"
-        Source="/Resources/Assets/ExtensionImages/ACCDB.png" />
+        Source="/Resources/Assets/ExtensionsImages/ACCDB.png" />
 
     <Image
         x:Key="CSV"
-        Source="/Resources/Assets/ExtensionImages/CSV.png" />
+        Source="/Resources/Assets/ExtensionsImages/CSV.png" />
 
     <Image
         x:Key="DB"
-        Source="/Resources/Assets/ExtensionImages/DB.png" />
+        Source="/Resources/Assets/ExtensionsImages/DB.png" />
 
     <Image
         x:Key="DLL"
-        Source="/Resources/Assets/ExtensionImages/DLL.png" />
+        Source="/Resources/Assets/ExtensionsImages/DLL.png" />
 
     <Image
         x:Key="DOC"
-        Source="/Resources/Assets/ExtensionImages/DOC.png" />
+        Source="/Resources/Assets/ExtensionsImages/DOC.png" />
 
     <Image
         x:Key="DOCX"
-        Source="/Resources/Assets/ExtensionImages/DOCX.png" />
+        Source="/Resources/Assets/ExtensionsImages/DOCX.png" />
 
     <Image
         x:Key="EXE"
-        Source="/Resources/Assets/ExtensionImages/EXE.png" />
+        Source="/Resources/Assets/ExtensionsImages/EXE.png" />
 
     <Image
         x:Key="MDB"
-        Source="/Resources/Assets/ExtensionImages/MDB.png" />
+        Source="/Resources/Assets/ExtensionsImages/MDB.png" />
 
     <Image
         x:Key="MDF"
-        Source="/Resources/Assets/ExtensionImages/MDF.png" />
+        Source="/Resources/Assets/ExtensionsImages/MDF.png" />
 
     <Image
         x:Key="PDF"
-        Source="/Resources/Assets/ExtensionImages/PDF.png" />
+        Source="/Resources/Assets/ExtensionsImages/PDF.png" />
 
     <Image
         x:Key="PNG"
-        Source="/Resources/Assets/ExtensionImages/PNG.png" />
+        Source="/Resources/Assets/ExtensionsImages/PNG.png" />
 
     <Image
         x:Key="PPTX"
-        Source="/Resources/Assets/ExtensionImages/PPTX.png" />
+        Source="/Resources/Assets/ExtensionsImages/PPTX.png" />
 
     <Image
         x:Key="PY"
-        Source="/Resources/Assets/ExtensionImages/PY.png" />
+        Source="/Resources/Assets/ExtensionsImages/PY.png" />
 
     <Image
         x:Key="SDF"
-        Source="/Resources/Assets/ExtensionImages/SDF.png" />
+        Source="/Resources/Assets/ExtensionsImages/SDF.png" />
 
     <Image
         x:Key="SQL"
-        Source="/Resources/Assets/ExtensionImages/SQL.png" />
+        Source="/Resources/Assets/ExtensionsImages/SQL.png" />
 
     <Image
         x:Key="TXT"
-        Source="/Resources/Assets/ExtensionImages/TXT.png" />
+        Source="/Resources/Assets/ExtensionsImages/TXT.png" />
 
     <Image
         x:Key="XLS"
-        Source="/Resources/Assets/ExtensionImages/XLS.png" />
+        Source="/Resources/Assets/ExtensionsImages/XLS.png" />
 
     <Image
         x:Key="XLSX"
-        Source="/Resources/Assets/ExtensionImages/XLSX.png" />
+        Source="/Resources/Assets/ExtensionsImages/XLSX.png" />
 
     <Image
         x:Key="XML"
-        Source="/Resources/Assets/ExtensionImages/XML.png" />
+        Source="/Resources/Assets/ExtensionsImages/XML.png" />
 
     <Image
         x:Key="HTML"
-        Source="/Resources/Assets/ExtensionImages/HTML.png" />
+        Source="/Resources/Assets/ExtensionsImages/HTML.png" />
 
     <!--  Provider Resources  -->
 

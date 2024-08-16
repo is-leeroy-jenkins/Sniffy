@@ -3,10 +3,10 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="clr-namespace:Sniffy">
 
-    <ResourceDictionary.MergedDictionaries>
+    <!--<ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="/Styles;component/Themes/Colors/Colors.xaml" />
         <ResourceDictionary Source="/Styles;component/Themes/Common/CommonControls.xaml" />
-    </ResourceDictionary.MergedDictionaries>
+    </ResourceDictionary.MergedDictionaries>-->
 
     <BorderGapMaskConverter x:Key="BorderGapMaskConverter" />
     <Style TargetType="{x:Type GroupBox}">
