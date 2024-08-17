@@ -30,7 +30,7 @@
     <!--  ******************************************** Context Menu ******************************************  -->
 
     <UserControl.ContextMenu>
-        <ContextMenu Name="MainWindowContextMenu">
+        <ContextMenu Name="UdpViewContextMenu">
             <sync:MenuItemAdv
                 Background="#FF282828"
                 Foreground="#FFA0BDFC"

@@ -244,7 +244,7 @@
         </Setter>
     </Style>
 
-    <!--**********************************************       ***********************************************-->
+    <!--  **********************************************       ***********************************************  -->
 
     <Style TargetType="{x:Type DataGridRow}">
         <Setter Property="Background" Value="{StaticResource DataGrid.Row.Background}" />
@@ -311,7 +311,7 @@
         </Style.Triggers>
     </Style>
 
-    <!--**********************************************       ***********************************************-->
+    <!--  **********************************************       ***********************************************  -->
 
     <Style TargetType="{x:Type DataGrid}">
         <Setter Property="HorizontalGridLinesBrush" Value="{StaticResource DataGrid.GridLines}" />

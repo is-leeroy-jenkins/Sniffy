@@ -10,6 +10,8 @@
         <ResourceDictionary Source="/Themes/FormControl.xaml" />
         <ResourceDictionary Source="/Themes/DataGrid.xaml" />
         <ResourceDictionary Source="/Themes/CheckBox.xaml" />
+        <ResourceDictionary Source="/Themes/Label.xaml" />
+        <ResourceDictionary Source="/Themes/ScrollViewer.xaml" />
         <ResourceDictionary Source="/Themes/TabControlEx.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
