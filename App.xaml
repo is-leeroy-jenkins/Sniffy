@@ -15,9 +15,8 @@
                 <ui:XamlControlsResources />
 
                 <!--  ************** Dark Mode  ****************  -->
-                <ResourceDictionary Source="/Themes/Generic.xaml" />
                 <ResourceDictionary Source="/Themes/Styles.xaml" />
-                <ResourceDictionary Source="/Themes/BaseStyle.xaml" />
+                <ResourceDictionary Source="/Themes/Generic.xaml" />
 
 
                 <!--  ************** Notifications  ****************  -->

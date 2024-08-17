@@ -7,8 +7,8 @@
 
 
     <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="/Styles;component/Themes/Colors.xaml" />
-        <ResourceDictionary Source="/Styles;component/Themes/CommonControls.xaml" />
+        <ResourceDictionary Source="/Themes/Colors.xaml" />
+        <ResourceDictionary Source="/Themes/CommonControls.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
     <BorderGapMaskConverter x:Key="BorderGapMaskConverter" />

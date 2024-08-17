@@ -144,6 +144,9 @@
 
     <Canvas>
         <Grid
+            Height="440"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Top"
             Background="#FF141414"
             UseLayoutRounding="True">
             <Grid.RowDefinitions>
@@ -154,7 +157,7 @@
             </Grid.RowDefinitions>
             <TextBlock
                 Grid.Row="0"
-                Margin="10,10,0,0"
+                Margin="1,1,1,1"
                 HorizontalAlignment="Stretch"
                 VerticalAlignment="Top"
                 FontSize="24"
@@ -170,7 +173,7 @@
             <StackPanel
                 Grid.Row="1"
                 MinWidth="200"
-                Margin="10,10,10,0">
+                Margin="10,10,10,3">
                 <GroupBox
                     DataContext="{Binding SnifferViews[0]}"
                     Header="Capture Control"
@@ -322,11 +325,24 @@
                 </GroupBox>
             </StackPanel>
         </Grid>
-        <Grid Canvas.Left="250">
+        <Canvas
+            Canvas.Left="225"
+            Canvas.Top="10"
+            Width="565"
+            Height="430"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Center">
             <Grid
+                Canvas.Top="10"
                 Width="Auto"
-                HorizontalAlignment="Stretch">
-                <TabControl>
+                Height="Auto">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <TabControl
+                    Height="425"
+                    Margin="3,0,3,0"
+                    VerticalAlignment="Bottom">
 
                     <TabItem
                         DataContext="{Binding SnifferViews[0]}"
@@ -334,15 +350,16 @@
                         Style="{DynamicResource TabControlEx}">
                         <local:SnifferCaptureView />
                     </TabItem>
+
                     <TabItem
                         DataContext="{Binding SnifferViews[1]}"
                         Header="Statistics View"
                         Style="{DynamicResource TabControlEx}">
-                        <local:SnifferStatsView />
+                        <local:SnifferStatsView Width="560" />
                     </TabItem>
 
                 </TabControl>
             </Grid>
-        </Grid>
+        </Canvas>
     </Canvas>
 </UserControl>

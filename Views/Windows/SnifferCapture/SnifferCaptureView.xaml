@@ -38,7 +38,7 @@
     <!--  ******************************************** Context Menu ******************************************  -->
 
     <UserControl.ContextMenu>
-        <ContextMenu Name="MainWindowContextMenu">
+        <ContextMenu Name="CaptureWindowContextMenu">
             <sync:MenuItemAdv
                 Background="#FF282828"
                 Foreground="#FFA0BDFC"
