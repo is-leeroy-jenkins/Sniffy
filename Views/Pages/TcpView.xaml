@@ -29,7 +29,8 @@
     <!--  ******************************************** Context Menu ******************************************  -->
 
     <UserControl.ContextMenu>
-        <ContextMenu Name="MainWindowContextMenu">
+        <ContextMenu 
+            x:Name="TcpViewContextMenu">
             <sync:MenuItemAdv
                 Background="#FF282828"
                 Foreground="#FFA0BDFC"
@@ -150,7 +151,7 @@
         <GroupBox
             Grid.Row="0"
             Header="TCP Server"
-            Style="{StaticResource AccentGroupBox}">
+            Style="{DynamicResource AccentGroupBox}">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="1*" />
@@ -185,7 +186,7 @@
                         HorizontalAlignment="Right"
                         ButtonType="Normal"
                         Command="{Binding StartListenCommand}"
-                        Content="{Binding TcpModel.ServerListenBtnName}" />
+                        Content="{Binding TcpModel.ServerListenButtonName}" />
                     <!--<btnex:ButtonEx Margin="0,15,0,10" Content="Disconnect" ButtonType="Normal" Grid.Row="1" HorizontalAlignment="Center" Width="100" Height="30" Command="{Binding DisconnectCommand}" />-->
 
                     <Grid
@@ -215,7 +216,7 @@
                         local:TextBoxBehaviour.ScrollOnTextChanged="True"
                         FontSize="12"
                         HorizontalScrollBarVisibility="Visible"
-                        Text="{Binding TcpModel.ServerRecv}"
+                        Text="{Binding TcpModel.ReceivingServer}"
                         TextWrapping="NoWrap"
                         VerticalScrollBarVisibility="Visible" />
                     <local:ButtonEx
@@ -244,7 +245,7 @@
                         Width="Auto"
                         Margin="75,5,0,0"
                         HorizontalAlignment="Stretch"
-                        Text="{Binding TcpModel.ServerSendStr}" />
+                        Text="{Binding TcpModel.SendingServerText}" />
                     <TextBlock
                         Grid.Row="1"
                         HorizontalAlignment="Left"
@@ -265,7 +266,7 @@
                         HorizontalAlignment="Right"
                         ButtonType="Normal"
                         Command="{Binding ServerAutoSendCommand}"
-                        Content="{Binding TcpModel.ServerSendBtnName}" />
+                        Content="{Binding TcpModel.ServerSendButtonName}" />
 
                     <Grid Grid.Row="2">
                         <Grid.RowDefinitions>
@@ -297,7 +298,7 @@
                             VerticalContentAlignment="Top"
                             local:TextBoxBehaviour.ScrollOnTextChanged="True"
                             FontSize="12"
-                            Text="{Binding TcpModel.ServerSend}"
+                            Text="{Binding TcpModel.SendingServer}"
                             TextWrapping="Wrap"
                             VerticalScrollBarVisibility="Visible" />
                         <local:ButtonEx
@@ -325,7 +326,7 @@
             Grid.Row="1"
             Height="1"
             HorizontalAlignment="Stretch"
-            Background="LightGray"
+            Background="#FF0078D4"
             ClipToBounds="True"
             RenderTransformOrigin="0.5,0.5"
             SnapsToDevicePixels="True" />
@@ -333,7 +334,7 @@
         <GroupBox
             Grid.Row="2"
             Header="TCP Client"
-            Style="{StaticResource AccentGroupBox}">
+            Style="{DynamicResource AccentGroupBox}">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="1*" />
@@ -358,7 +359,7 @@
                         Width="130"
                         Margin="65,5,0,0"
                         HorizontalAlignment="Left"
-                        Text="{Binding TcpModel.ServerIp}" />
+                        Text="{Binding TcpModel.ServerIpAddress}" />
                     <local:ButtonEx
                         Grid.Row="0"
                         Width="100"
@@ -367,7 +368,7 @@
                         HorizontalAlignment="Right"
                         ButtonType="Normal"
                         Command="{Binding ClientConnectCommand}"
-                        Content="{Binding TcpModel.ClientConnectBtnName}" />
+                        Content="{Binding TcpModel.ClientConnectButtonName}" />
 
                     <TextBlock
                         Grid.Row="1"
@@ -405,7 +406,7 @@
                         VerticalContentAlignment="Top"
                         local:TextBoxBehaviour.ScrollOnTextChanged="True"
                         FontSize="12"
-                        Text="{Binding TcpModel.ClientRecv}"
+                        Text="{Binding TcpModel.ReceivingClient}"
                         TextWrapping="Wrap"
                         VerticalScrollBarVisibility="Visible" />
                     <local:ButtonEx
@@ -435,7 +436,7 @@
                         Width="Auto"
                         Margin="75,5,0,0"
                         HorizontalAlignment="Stretch"
-                        Text="{Binding TcpModel.ClientSendStr}" />
+                        Text="{Binding TcpModel.SendingClientText}" />
                     <TextBlock
                         Grid.Row="1"
                         Margin="5,0,0,0"
@@ -457,7 +458,7 @@
                         HorizontalAlignment="Right"
                         ButtonType="Normal"
                         Command="{Binding ClientAutoSendCommand}"
-                        Content="{Binding TcpModel.ClientSendBtnName}" />
+                        Content="{Binding TcpModel.ClientSendButtonName}" />
 
                     <TextBox
                         Grid.Row="2"
@@ -465,7 +466,7 @@
                         VerticalContentAlignment="Top"
                         local:TextBoxBehaviour.ScrollOnTextChanged="True"
                         FontSize="12"
-                        Text="{Binding TcpModel.ClientSend}"
+                        Text="{Binding TcpModel.SendingClient}"
                         TextWrapping="Wrap"
                         VerticalScrollBarVisibility="Visible" />
                     <local:ButtonEx

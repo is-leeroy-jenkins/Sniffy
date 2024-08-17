@@ -44,6 +44,7 @@ namespace Sniffy
 	using System.Collections.Generic;
 	using System.ComponentModel;
 	using System.Diagnostics.CodeAnalysis;
+	using System.Runtime.CompilerServices;
 
 	/// <inheritdoc />
 	/// <summary>
@@ -66,7 +67,7 @@ namespace Sniffy
 		/// <param name="field">The field.</param>
 		/// <param name="value">The value.</param>
 		/// <param name="propertyName">Name of the property.</param>
-		public void Update<T>( ref T field, T value, string propertyName = null )
+		public void Update<T>( ref T field, T value, [ CallerMemberName ] string propertyName = null )
 		{
 			if( EqualityComparer<T>.Default.Equals( field, value ) )
 			{
@@ -81,7 +82,7 @@ namespace Sniffy
 		/// Called when [property changed].
 		/// </summary>
 		/// <param name="propertyName">Name of the property.</param>
-		public void OnPropertyChanged( string propertyName = null )
+		public void OnPropertyChanged( [ CallerMemberName ] string propertyName = null )
 		{
 			var _handler = PropertyChanged;
 			_handler?.Invoke( this, new PropertyChangedEventArgs( propertyName ) );

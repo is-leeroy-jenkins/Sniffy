@@ -13,22 +13,21 @@
     mc:Ignorable="d">
 
 
-<!--  ******************************************** Resources *********************************************  -->
+    <!--  ******************************************** Resources *********************************************  -->
 
     <UserControl.Resources>
-        <local:BytesSuffixConverter 
-            x:Key="ABytesSuffixConverter" />
+        <local:BytesSuffixConverter x:Key="BytesSuffixConverter" />
 
         <Style TargetType="ToolTip">
             <Setter Property="BorderThickness" Value="1,1,1,1" />
             <Setter Property="BorderBrush" Value="#0078D4" />
             <Setter Property="Background" Value="#FF000000" />
-            <Setter Property="Foreground" Value="#FFA0BDFC"/>
+            <Setter Property="Foreground" Value="#FFA0BDFC" />
         </Style>
 
     </UserControl.Resources>
 
-<!--  ******************************************** Context Menu ******************************************  -->
+    <!--  ******************************************** Context Menu ******************************************  -->
 
     <UserControl.ContextMenu>
         <ContextMenu Name="MainWindowContextMenu">
@@ -139,7 +138,7 @@
     </UserControl.ContextMenu>
 
 
-<!--  ******************************************** Canvass ******************************************  -->
+    <!--  ******************************************** Canvass ******************************************  -->
 
 
     <Grid>
@@ -152,7 +151,7 @@
         <GroupBox
             Grid.Row="0"
             Header="UDP Server"
-            Style="{StaticResource AccentGroupBox}">
+            Style="{DynamicResource AccentGroupBox}">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="1*" />
@@ -187,7 +186,7 @@
                         HorizontalAlignment="Right"
                         ButtonType="Normal"
                         Command="{Binding StartListenCommand}"
-                        Content="{Binding UdpModel.ServerListenBtnName}" />
+                        Content="{Binding UdpModel.ServerListenButtonName}" />
 
                     <Grid
                         Grid.Row="1"
@@ -216,7 +215,7 @@
                         local:TextBoxBehaviour.ScrollOnTextChanged="True"
                         FontSize="12"
                         HorizontalScrollBarVisibility="Visible"
-                        Text="{Binding UdpModel.ServerRecv}"
+                        Text="{Binding UdpModel.ReceivingServer}"
                         TextWrapping="NoWrap"
                         VerticalScrollBarVisibility="Visible" />
                     <local:ButtonEx
@@ -245,7 +244,7 @@
                         Width="Auto"
                         Margin="75,5,0,0"
                         HorizontalAlignment="Stretch"
-                        Text="{Binding UdpModel.ServerSendStr}" />
+                        Text="{Binding UdpModel.SendingServerText}" />
                     <TextBlock
                         Grid.Row="1"
                         HorizontalAlignment="Left"
@@ -266,7 +265,7 @@
                         HorizontalAlignment="Right"
                         ButtonType="Normal"
                         Command="{Binding ServerAutoSendCommand}"
-                        Content="{Binding UdpModel.ServerSendBtnName}" />
+                        Content="{Binding UdpModel.ServerSendButtonName}" />
 
                     <Grid Grid.Row="2">
                         <Grid.RowDefinitions>
@@ -298,7 +297,7 @@
                             VerticalContentAlignment="Top"
                             local:TextBoxBehaviour.ScrollOnTextChanged="True"
                             FontSize="12"
-                            Text="{Binding UdpModel.ServerSend}"
+                            Text="{Binding UdpModel.SendingServer}"
                             TextWrapping="Wrap"
                             VerticalScrollBarVisibility="Visible" />
                         <local:ButtonEx
@@ -334,12 +333,13 @@
         <GroupBox
             Grid.Row="2"
             Header="UDP Client"
-            Style="{StaticResource AccentGroupBox}">
+            Style="{DynamicResource AccentGroupBox}">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="1*" />
                     <ColumnDefinition Width="1*" />
                 </Grid.ColumnDefinitions>
+
                 <Grid Grid.Column="0">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
@@ -354,12 +354,14 @@
                         VerticalAlignment="Center"
                         Foreground="#FFDEDEDE"
                         Text="Server IP" />
+
                     <TextBox
                         Grid.Row="0"
                         Width="130"
                         Margin="65,5,0,0"
                         HorizontalAlignment="Left"
-                        Text="{Binding UdpModel.ServerIp}" />
+                        Text="{Binding UdpModel.ServerIpAddress}" />
+
                     <local:ButtonEx
                         Grid.Row="0"
                         Width="100"
@@ -368,7 +370,7 @@
                         HorizontalAlignment="Right"
                         ButtonType="Normal"
                         Command="{Binding ClientConnectCommand}"
-                        Content="{Binding UdpModel.ClientConnectBtnName}" />
+                        Content="{Binding UdpModel.ClientConnectButtonName}" />
 
                     <TextBlock
                         Grid.Row="1"
@@ -377,6 +379,7 @@
                         VerticalAlignment="Center"
                         Foreground="#FFDEDEDE"
                         Text="Server Port" />
+
                     <local:TextBoxEx
                         Grid.Row="1"
                         Margin="75,5,0,0"
@@ -391,6 +394,7 @@
                         VerticalAlignment="Center"
                         Foreground="#FFDEDEDE"
                         Text="Local Port:" />
+
                     <TextBlock
                         Grid.Row="1"
                         Margin="0,5,15,0"
@@ -406,9 +410,10 @@
                         VerticalContentAlignment="Top"
                         local:TextBoxBehaviour.ScrollOnTextChanged="True"
                         FontSize="12"
-                        Text="{Binding UdpModel.ClientRecv}"
+                        Text="{Binding UdpModel.ReceivingClient}"
                         TextWrapping="Wrap"
                         VerticalScrollBarVisibility="Visible" />
+
                     <local:ButtonEx
                         Grid.Row="2"
                         Margin="0,0,25,5"
@@ -436,7 +441,7 @@
                         Width="Auto"
                         Margin="75,5,0,0"
                         HorizontalAlignment="Stretch"
-                        Text="{Binding UdpModel.ClientSendStr}" />
+                        Text="{Binding UdpModel.SendingClientText}" />
                     <TextBlock
                         Grid.Row="1"
                         Margin="5,0,0,0"
@@ -458,7 +463,7 @@
                         HorizontalAlignment="Right"
                         ButtonType="Normal"
                         Command="{Binding ClientAutoSendCommand}"
-                        Content="{Binding UdpModel.ClientSendBtnName}" />
+                        Content="{Binding UdpModel.ClientSendButtonName}" />
 
                     <TextBox
                         Grid.Row="2"
@@ -466,7 +471,7 @@
                         VerticalContentAlignment="Top"
                         local:TextBoxBehaviour.ScrollOnTextChanged="True"
                         FontSize="12"
-                        Text="{Binding UdpModel.ClientSend}"
+                        Text="{Binding UdpModel.SendingClient}"
                         TextWrapping="Wrap"
                         VerticalScrollBarVisibility="Visible" />
                     <local:ButtonEx

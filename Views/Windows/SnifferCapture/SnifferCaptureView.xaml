@@ -217,7 +217,7 @@
                             Header="Time">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <TextBlock Text="{Binding Path=Timestamp, StringFormat=\{0:yyyy-MM-dd hh:mm:ss.fffff\}}" />
+                                    <TextBlock Text="{Binding Path=TimeStamp, StringFormat=\{0:yyyy-MM-dd hh:mm:ss.fffff\}}" />
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>

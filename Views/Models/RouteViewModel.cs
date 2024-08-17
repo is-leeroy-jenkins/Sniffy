@@ -65,7 +65,7 @@ namespace Sniffy
 		/// <summary>
 		/// The ip interface
 		/// </summary>
-		public IpInterface IpInterface;
+		public InternetInterface InternetInterface;
 
 		/// <summary>
 		/// The route process
@@ -78,7 +78,7 @@ namespace Sniffy
 		public RouteViewModel( )
 		{
 			RouteModel = new RouteModel( );
-			IpInterface = new IpInterface( );
+			InternetInterface = new InternetInterface( );
 			RouteProcess = new ProcessInterface( );
 			GetRouteInfo( );
 			RouteModel.NetInfoItemSource = GetLocalNetworkInterface( );

@@ -61,6 +61,10 @@ namespace Sniffy
 	[ SuppressMessage( "ReSharper", "ConvertIfStatementToSwitchStatement" ) ]
 	public class PerformanceCommandConverter : IMultiValueConverter
 	{
+		public PerformanceCommandConverter( )
+		{
+		}
+
 		/// <summary>
 		/// Converts source values to a value for the binding target.
 		/// The data binding engine calls this method when it propagates the values

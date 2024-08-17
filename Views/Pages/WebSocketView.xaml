@@ -19,15 +19,15 @@
             <Setter Property="BorderThickness" Value="1,1,1,1" />
             <Setter Property="BorderBrush" Value="#0078D4" />
             <Setter Property="Background" Value="#FF000000" />
-            <Setter Property="Foreground" Value="#FFA0BDFC"/>
+            <Setter Property="Foreground" Value="#FFA0BDFC" />
         </Style>
 
     </UserControl.Resources>
 
-<!--  ******************************************** Context Menu ******************************************  -->
+    <!--  ******************************************** Context Menu ******************************************  -->
 
     <UserControl.ContextMenu>
-        <ContextMenu Name="MainWindowContextMenu">
+        <ContextMenu x:Name="WebSocketContextMenu">
             <sync:MenuItemAdv
                 Background="#FF282828"
                 Foreground="#FFA0BDFC"
@@ -135,7 +135,7 @@
     </UserControl.ContextMenu>
 
 
-<!--  ******************************************** Canvass ******************************************  -->
+    <!--  ******************************************** Canvass ******************************************  -->
 
 
     <Grid>
@@ -148,7 +148,7 @@
         <GroupBox
             Grid.Row="0"
             Header="WebSocket Server"
-            Style="{StaticResource AccentGroupBox}">
+            Style="{DynamicResource AccentGroupBox}">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
@@ -184,7 +184,7 @@
                         HorizontalAlignment="Left"
                         ButtonType="Normal"
                         Command="{Binding StartListenCommand}"
-                        Content="{Binding WebSocketModel.ServerListenBtnName}" />
+                        Content="{Binding WebSocketModel.ServerListenButtonName}" />
                 </Grid>
                 <Grid Grid.Row="1">
                     <Grid.ColumnDefinitions>
@@ -215,7 +215,7 @@
                         Grid.Column="3"
                         Width="Auto"
                         HorizontalAlignment="Stretch"
-                        Text="{Binding WebSocketModel.ServerSendStr}" />
+                        Text="{Binding WebSocketModel.SendingServerText}" />
 
                     <local:ButtonEx
                         Grid.Column="4"
@@ -225,7 +225,7 @@
                         HorizontalAlignment="Right"
                         ButtonType="Normal"
                         Command="{Binding ServerAutoSendCommand}"
-                        Content="{Binding WebSocketModel.ServerSendBtnName}" />
+                        Content="{Binding WebSocketModel.ServerSendButtonName}" />
 
                 </Grid>
 
@@ -259,7 +259,7 @@
                         Height="30"
                         Margin="5,0,115,10"
                         FontSize="12"
-                        Text="{Binding WebSocketModel.ServerSend}" />
+                        Text="{Binding WebSocketModel.SendingServer}" />
                     <local:ButtonEx
                         Width="50"
                         Height="30"
@@ -292,7 +292,7 @@
         <GroupBox
             Grid.Row="2"
             Header="WebSocket Client"
-            Style="{StaticResource AccentGroupBox}">
+            Style="{DynamicResource AccentGroupBox}">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
@@ -319,7 +319,7 @@
                         Margin="0,5,0,5"
                         HorizontalAlignment="Stretch"
                         VerticalAlignment="Center"
-                        Text="{Binding WebSocketModel.ServerIp}" />
+                        Text="{Binding WebSocketModel.ServerIpAddress}" />
                     <local:ButtonEx
                         Grid.Column="2"
                         Width="100"
@@ -328,9 +328,10 @@
                         HorizontalAlignment="Left"
                         ButtonType="Normal"
                         Command="{Binding ClientConnectCommand}"
-                        Content="{Binding WebSocketModel.ClientConnectBtnName}" />
+                        Content="{Binding WebSocketModel.ClientConnectButtonName}" />
                 </Grid>
-                <Grid Grid.Row="1">
+                <Grid 
+                    Grid.Row="1">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="80" />
                         <ColumnDefinition Width="70" />
@@ -351,15 +352,15 @@
                         Text="{Binding WebSocketModel.ClientSendInterval}" />
                     <TextBlock
                         Grid.Column="2"
-                        Foreground="#FFDEDEDE"
                         HorizontalAlignment="Left"
                         VerticalAlignment="Center"
+                        Foreground="#FFDEDEDE"
                         Text="Send String" />
                     <TextBox
                         Grid.Column="3"
                         Width="Auto"
                         HorizontalAlignment="Stretch"
-                        Text="{Binding WebSocketModel.ClientSendStr}" />
+                        Text="{Binding WebSocketModel.SendingClientText}" />
 
                     <local:ButtonEx
                         Grid.Column="4"
@@ -369,7 +370,7 @@
                         HorizontalAlignment="Right"
                         ButtonType="Normal"
                         Command="{Binding ClientAutoSendCommand}"
-                        Content="{Binding WebSocketModel.ClientSendBtnName}" />
+                        Content="{Binding WebSocketModel.ClientSendButtonName}" />
 
                 </Grid>
 
@@ -403,7 +404,7 @@
                         Height="30"
                         Margin="5,0,115,5"
                         FontSize="12"
-                        Text="{Binding WebSocketModel.ClientSend}" />
+                        Text="{Binding WebSocketModel.SendingClient}" />
                     <local:ButtonEx
                         Width="50"
                         Height="30"

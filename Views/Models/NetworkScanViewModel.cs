@@ -84,7 +84,7 @@ namespace Sniffy
 		/// <summary>
 		/// The ip interface
 		/// </summary>
-		public IpInterface IpInterface;
+		public InternetInterface InternetInterface;
 
 		/// <summary>
 		/// Initializes a new instance of the
@@ -93,7 +93,7 @@ namespace Sniffy
 		public NetworkScanViewModel( )
 		{
 			NetworkScanModel = new NetworkScanModel( );
-			IpInterface = new IpInterface( );
+			InternetInterface = new InternetInterface( );
 			NetworkScanModel.NetInfoItemSource = GetLocalNetworkInterface( );
 		}
 
@@ -140,14 +140,14 @@ namespace Sniffy
 			string _time;
 			string _ttl;
 			Console.WriteLine( ip );
-			_reply = IpInterface.PingSweep( ip );
+			_reply = InternetInterface.PingSweep( ip );
 			NetworkScanModel.Ip = ip;
 			if( _reply != null )
 			{
 				if( _reply.Status == IPStatus.Success )
 				{
 					_status = "Online";
-					_hostname = IpInterface.GetHostName( ip );
+					_hostname = InternetInterface.GetHostName( ip );
 					_time = _reply.RoundtripTime.ToString( );
 					_ttl = _reply.Options.Ttl.ToString( );
 					Application.Current.Dispatcher.Invoke( ( ) =>
@@ -191,10 +191,10 @@ namespace Sniffy
 		{
 			_scanTokenSource = new CancellationTokenSource( );
 			_cancelScanToken = _scanTokenSource.Token;
-			var _startIpVal = IpInterface.IpAddressToLongBackwards( NetworkScanModel.StartIp );
-			var _startIpStr = IpInterface.LongToIpAddress( _startIpVal );
-			var _endIpVal = IpInterface.IpAddressToLongBackwards( NetworkScanModel.StopIp );
-			var _endIpStr = IpInterface.LongToIpAddress( _endIpVal );
+			var _startIpVal = InternetInterface.IpAddressToLongBackwards( NetworkScanModel.StartIp );
+			var _startIpStr = InternetInterface.LongToIpAddress( _startIpVal );
+			var _endIpVal = InternetInterface.IpAddressToLongBackwards( NetworkScanModel.StopIp );
+			var _endIpStr = InternetInterface.LongToIpAddress( _endIpVal );
 			IpCount = ( int )( _endIpVal - _startIpVal );
 			if( IpCount <= 0 )
 			{
@@ -210,7 +210,7 @@ namespace Sniffy
 					{
 						Console.WriteLine( _i.ToString( ) );
 						var _j = _i;
-						var _ipStr = IpInterface.LongToIpAddress( _j );
+						var _ipStr = InternetInterface.LongToIpAddress( _j );
 						var _task = Task.Run( ( ) =>
 						{
 							_doScan( _ipStr );

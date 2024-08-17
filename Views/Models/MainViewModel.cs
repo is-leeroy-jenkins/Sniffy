@@ -60,6 +60,8 @@ namespace Sniffy
 	[ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
 	[ SuppressMessage( "ReSharper", "FieldCanBeMadeReadOnly.Global" ) ]
 	[ SuppressMessage( "ReSharper", "UnusedParameter.Global" ) ]
+	[ SuppressMessage( "ReSharper", "ConvertIfStatementToNullCoalescingExpression" ) ]
+	[ SuppressMessage( "ReSharper", "RedundantEmptySwitchSection" ) ]
 	public class MainViewModel : MainWindowBase
 	{
 		/// <summary>
@@ -124,7 +126,8 @@ namespace Sniffy
 		public SnifferViewModel SnifferViewModel;
 
 		/// <summary>
-		/// Initializes a new instance of the <see cref="MainViewModel"/> class.
+		/// Initializes a new instance of the
+		/// <see cref="MainViewModel"/> class.
 		/// </summary>
 		public MainViewModel( )
 		{
@@ -133,37 +136,37 @@ namespace Sniffy
 				new MenuItems
 				{
 					MenuName = "Iperf",
-					MenuImage = "Resources/Speed.png"
+					MenuImage = "/Resources/Speed.png"
 				},
 				new MenuItems
 				{
 					MenuName = "NetworkScan",
-					MenuImage = "Resources/IP.png"
+					MenuImage = "/Resources/IP.png"
 				},
 				new MenuItems
 				{
 					MenuName = "PortScan",
-					MenuImage = "Resources/port.png"
+					MenuImage = "/Resources/port.png"
 				},
 				new MenuItems
 				{
 					MenuName = "RouteTable",
-					MenuImage = "Resources/route.png"
+					MenuImage = "/Resources/route.png"
 				},
 				new MenuItems
 				{
 					MenuName = "PortListen",
-					MenuImage = "Resources/portlisten.png"
+					MenuImage = "/Resources/portlisten.png"
 				},
 				new MenuItems
 				{
 					MenuName = "Server",
-					MenuImage = "Resources/servers.png"
+					MenuImage = "/Resources/servers.png"
 				},
 				new MenuItems
 				{
 					MenuName = "Sniffer",
-					MenuImage = "Resources/sniffer.png"
+					MenuImage = "/Resources/sniffer.png"
 				}
 			};
 
@@ -174,7 +177,7 @@ namespace Sniffy
 
 			_menuItemsCollection.Filter += OnMenuItemsFilter;
 			PerformanceViewModel = new PerformanceViewModel( );
-			SelectedViewModel = PerformanceViewModel;
+			_selectedViewModel = PerformanceViewModel;
 		}
 
 		// ICollectionView enables collections to have the
@@ -257,7 +260,7 @@ namespace Sniffy
 			set
 			{
 				_selectedViewModel = value;
-				OnPropertyChanged( "SelectedViewModel" );
+				OnPropertyChanged( nameof( SelectedViewModel ) );
 			}
 		}
 
@@ -271,11 +274,10 @@ namespace Sniffy
 		{
 			get
 			{
-				_menucommand = _menucommand switch
+				if( _menucommand == null )
 				{
-					null => new RelayCommand( param => SwitchViews( param ) ),
-					_ => _menucommand
-				};
+					_menucommand = new RelayCommand( param => SwitchViews( param ) );
+				}
 
 				return _menucommand;
 			}
@@ -285,7 +287,8 @@ namespace Sniffy
 		/// Handles the Filter event of the MenuItems control.
 		/// </summary>
 		/// <param name="sender">The source of the event.</param>
-		/// <param name="e">The <see cref="FilterEventArgs"/> instance containing the event data.</param>
+		/// <param name="e">The <see cref="FilterEventArgs"/>
+		/// instance containing the event data.</param>
 		private void OnMenuItemsFilter( object sender, FilterEventArgs e )
 		{
 			if( string.IsNullOrEmpty( FilterText ) )
@@ -374,7 +377,7 @@ namespace Sniffy
 						PerformanceViewModel = new PerformanceViewModel( );
 					}
 
-					SelectedViewModel = PerformanceViewModel;// new IperfViewModel();
+					_selectedViewModel = PerformanceViewModel;
 					break;
 				}
 				case "NetworkScan":
@@ -384,7 +387,7 @@ namespace Sniffy
 						NetworkScanViewModel = new NetworkScanViewModel( );
 					}
 
-					SelectedViewModel = NetworkScanViewModel;// new NetworkScanViewModel();
+					_selectedViewModel = NetworkScanViewModel;
 					break;
 				}
 				case "PortScan":
@@ -394,7 +397,7 @@ namespace Sniffy
 						PortScanViewModel = new PortScanViewModel( );
 					}
 
-					SelectedViewModel = PortScanViewModel;
+					_selectedViewModel = PortScanViewModel;
 					break;
 				}
 				case "RouteTable":
@@ -404,7 +407,7 @@ namespace Sniffy
 						RouteViewModel = new RouteViewModel( );
 					}
 
-					SelectedViewModel = RouteViewModel;
+					_selectedViewModel = RouteViewModel;
 					break;
 				}
 				case "PortListen":
@@ -414,7 +417,7 @@ namespace Sniffy
 						PortViewModel = new PortViewModel( );
 					}
 
-					SelectedViewModel = PortViewModel;
+					_selectedViewModel = PortViewModel;
 					break;
 				}
 				case "Server":
@@ -424,7 +427,7 @@ namespace Sniffy
 						ServerViewModel = new ServerViewModel( );
 					}
 
-					SelectedViewModel = ServerViewModel;
+					_selectedViewModel = ServerViewModel;
 					break;
 				}
 				case "Sniffer":
@@ -434,7 +437,11 @@ namespace Sniffy
 						SnifferViewModel = new SnifferViewModel( );
 					}
 
-					SelectedViewModel = SnifferViewModel;
+					_selectedViewModel = SnifferViewModel;
+					break;
+				}
+				default:
+				{
 					break;
 				}
 			}

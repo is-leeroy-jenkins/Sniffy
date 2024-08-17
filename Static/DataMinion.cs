@@ -80,7 +80,7 @@ namespace Sniffy
             }
             catch( Exception _ex )
             {
-                Fail( _ex );
+                DataMinion.Fail( _ex );
             }
         }
 
@@ -109,7 +109,7 @@ namespace Sniffy
             }
             catch( Exception _ex )
             {
-                Fail( _ex );
+                DataMinion.Fail( _ex );
             }
         }
 
@@ -134,7 +134,7 @@ namespace Sniffy
             }
             catch( Exception _ex )
             {
-                Fail( _ex );
+                DataMinion.Fail( _ex );
             }
         }
 
@@ -159,7 +159,7 @@ namespace Sniffy
             }
             catch( Exception _ex )
             {
-                Fail( _ex );
+                DataMinion.Fail( _ex );
             }
         }
 
@@ -184,7 +184,7 @@ namespace Sniffy
             }
             catch( Exception _ex )
             {
-                Fail( _ex );
+                DataMinion.Fail( _ex );
             }
         }
 
@@ -211,7 +211,7 @@ namespace Sniffy
             }
             catch( Exception _ex )
             {
-                Fail( _ex );
+                DataMinion.Fail( _ex );
             }
         }
 
@@ -235,7 +235,7 @@ namespace Sniffy
             }
             catch( Exception _ex )
             {
-                Fail( _ex );
+                DataMinion.Fail( _ex );
             }
         }
 
@@ -260,7 +260,7 @@ namespace Sniffy
             }
             catch( Exception _ex )
             {
-                Fail( _ex );
+                DataMinion.Fail( _ex );
             }
         }
 
@@ -287,7 +287,7 @@ namespace Sniffy
             }
             catch( Exception _ex )
             {
-                Fail( _ex );
+                DataMinion.Fail( _ex );
             }
         }
 
@@ -312,7 +312,7 @@ namespace Sniffy
             }
             catch( Exception _ex )
             {
-                Fail( _ex );
+                DataMinion.Fail( _ex );
             }
         }
 
@@ -339,7 +339,7 @@ namespace Sniffy
             }
             catch( Exception _ex )
             {
-                Fail( _ex );
+                DataMinion.Fail( _ex );
             }
         }
 

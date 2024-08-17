@@ -234,9 +234,9 @@ namespace Sniffy
         /// <param name="parameter">The parameter.</param>
         public void StartListen( object parameter )
         {
-            if( WebSocketModel.ServerListenBtnName == "Start Listen" )
+            if( WebSocketModel.ServerListenButtonName == "Start Listen" )
             {
-                WebSocketModel.ServerListenBtnName = "Stop Listen";
+                WebSocketModel.ServerListenButtonName = "Stop Listen";
                 _serverSocket = new WebSocketServer( WebSocketModel.ServerAddress );
                 _serverSocket.AddWebSocketService<EchoHandler>( "/echo" );
                 _serverSocket.Start( );
@@ -244,7 +244,7 @@ namespace Sniffy
             }
             else
             {
-                WebSocketModel.ServerListenBtnName = "Start Listen";
+                WebSocketModel.ServerListenButtonName = "Start Listen";
                 _serverSocket.Stop( );
                 WsRecv.Add( "[" + DateTime.Now + "][" + "WebSocket Server Stopped]\n" );
             }
@@ -257,7 +257,7 @@ namespace Sniffy
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void ServerAutoSendTimerFunc( object sender, EventArgs e )
         {
-            _serverSocket.WebSocketServices.Broadcast( WebSocketModel.ServerSendStr );
+            _serverSocket.WebSocketServices.Broadcast( WebSocketModel.SendingServerText );
         }
 
         /// <summary>
@@ -266,9 +266,9 @@ namespace Sniffy
         /// <param name="parameter">The parameter.</param>
         public void ServerAutoSend( object parameter )
         {
-            if( WebSocketModel.ServerSendBtnName == "Auto Send Start" )
+            if( WebSocketModel.ServerSendButtonName == "Auto Send Start" )
             {
-                WebSocketModel.ServerSendBtnName = "Auto Send Stop";
+                WebSocketModel.ServerSendButtonName = "Auto Send Stop";
                 _serverAutoSendTimer = new DispatcherTimer( )
                 {
                     Interval = new TimeSpan( 0, 0, 0, 0,
@@ -280,7 +280,7 @@ namespace Sniffy
             }
             else
             {
-                WebSocketModel.ServerSendBtnName = "Auto Send Start";
+                WebSocketModel.ServerSendButtonName = "Auto Send Start";
                 _serverAutoSendTimer.Stop( );
             }
         }
@@ -291,7 +291,7 @@ namespace Sniffy
         /// <param name="parameter">The parameter.</param>
         public void ServerSendClear( object parameter )
         {
-            WebSocketModel.ServerSend = "";
+            WebSocketModel.SendingServer = "";
             WsRecv.Clear( );
         }
 
@@ -301,7 +301,7 @@ namespace Sniffy
         /// <param name="parameter">The parameter.</param>
         public void ServerSend( object parameter )
         {
-            _serverSocket.WebSocketServices.Broadcast( WebSocketModel.ServerSend );
+            _serverSocket.WebSocketServices.Broadcast( WebSocketModel.SendingServer );
         }
 
         /// <summary>
@@ -310,7 +310,7 @@ namespace Sniffy
         /// <param name="parameter">The parameter.</param>
         public void ClientConnect( object parameter )
         {
-            if( WebSocketModel.ClientConnectBtnName == "Connect" )
+            if( WebSocketModel.ClientConnectButtonName == "Connect" )
             {
                 using( var _ws = new WebSocket( WebSocketModel.ServerIp ) )
                 {
@@ -349,7 +349,7 @@ namespace Sniffy
                             var _time = "[" + DateTime.Now + "]";
                             var _str = "[WebSocket Error][" + e.Message + "]\n";
                             WsClientRecv.Add( _time + _str );
-                            WebSocketModel.ClientConnectBtnName = "Connect";
+                            WebSocketModel.ClientConnectButtonName = "Connect";
                         } ) );
                     };
 
@@ -362,7 +362,7 @@ namespace Sniffy
                             var _time = "[" + DateTime.Now + "]";
                             var _str = "[WebSocket Close][" + e.Reason + "]\n";
                             WsClientRecv.Add( _time + _str );
-                            WebSocketModel.ClientConnectBtnName = "Connect";
+                            WebSocketModel.ClientConnectButtonName = "Connect";
                         } ) );
                     };
 
@@ -375,7 +375,7 @@ namespace Sniffy
                     Task.Run( ( ) =>
                     {
                         ClientSocket.Connect( );
-                        WebSocketModel.ClientConnectBtnName = "DisConnect";
+                        WebSocketModel.ClientConnectButtonName = "DisConnect";
                     } );
                 }
                 catch( Exception )
@@ -385,7 +385,7 @@ namespace Sniffy
             }
             else
             {
-                WebSocketModel.ClientConnectBtnName = "Connect";
+                WebSocketModel.ClientConnectButtonName = "Connect";
                 ClientSocket.Close( );
             }
         }
@@ -396,7 +396,7 @@ namespace Sniffy
         /// <param name="parameter">The parameter.</param>
         public void ClientSendClear( object parameter )
         {
-            WebSocketModel.ClientSend = "";
+            WebSocketModel.SendingClient = "";
             WsClientRecv.Clear( );
         }
 
@@ -406,7 +406,7 @@ namespace Sniffy
         /// <param name="parameter">The parameter.</param>
         public void ClientSend( object parameter )
         {
-            ClientSocket.Send( WebSocketModel.ClientSend );
+            ClientSocket.Send( WebSocketModel.SendingClient );
         }
 
         /// <summary>
@@ -416,7 +416,7 @@ namespace Sniffy
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void ClientAutoSendFunc( object sender, EventArgs e )
         {
-            ClientSocket.Send( WebSocketModel.ClientSendStr );
+            ClientSocket.Send( WebSocketModel.SendingClientText );
         }
 
         /// <summary>
@@ -425,9 +425,9 @@ namespace Sniffy
         /// <param name="parameter">The parameter.</param>
         public void ClientAutoSend( object parameter )
         {
-            if( WebSocketModel.ClientSendBtnName == "Auto Send Start" )
+            if( WebSocketModel.ClientSendButtonName == "Auto Send Start" )
             {
-                WebSocketModel.ClientSendBtnName = "Auto Send Stop";
+                WebSocketModel.ClientSendButtonName = "Auto Send Stop";
                 _clientAutoSendTimer = new DispatcherTimer( )
                 {
                     Interval = new TimeSpan( 0, 0, 0, 0,
@@ -439,7 +439,7 @@ namespace Sniffy
             }
             else
             {
-                WebSocketModel.ClientSendBtnName = "Auto Send Start";
+                WebSocketModel.ClientSendButtonName = "Auto Send Start";
                 _clientAutoSendTimer.Stop( );
             }
         }

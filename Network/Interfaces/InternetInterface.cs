@@ -59,7 +59,7 @@ namespace Sniffy
 	[ SuppressMessage( "ReSharper", "UnusedParameter.Global" ) ]
 	[ SuppressMessage( "ReSharper", "UnusedVariable" ) ]
 	[ SuppressMessage( "ReSharper", "ClassCanBeSealed.Global" ) ]
-	public class IpInterface
+	public class InternetInterface
 	{
 		/// <summary>
 		/// Pings the sweep.

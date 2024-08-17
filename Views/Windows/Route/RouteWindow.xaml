@@ -151,7 +151,6 @@
         </Grid.ColumnDefinitions>
         <Grid
             Grid.Column="0"
-            Grid.ColumnSpan="1"
             Background="#FF141414"
             UseLayoutRounding="True">
             <Grid.RowDefinitions>
@@ -188,7 +187,7 @@
                     Height="Auto"
                     HorizontalAlignment="Stretch"
                     Header="Network Interfaces"
-                    Style="{StaticResource AccentGroupBox}">
+                    Style="{DynamicResource AccentGroupBox}">
                     <Grid Background="#FF282828">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" />
@@ -216,7 +215,7 @@
                         <TextBlock
                             Grid.Row="1"
                             Margin="50,10,0,0"
-                            Text="{Binding ElementName=NetInfoCombox, Path=SelectedItem.name}" />
+                            Text="{Binding ElementName=NetInfoCombox, Path=SelectedItem.Name}" />
                         <TextBlock
                             Grid.Row="2"
                             Margin="5,10,0,0"
@@ -224,7 +223,7 @@
                         <TextBlock
                             Grid.Row="2"
                             Margin="50,10,0,0"
-                            Text="{Binding ElementName=NetInfoCombox, Path=SelectedItem.ip}" />
+                            Text="{Binding ElementName=NetInfoCombox, Path=SelectedItem.Ip}" />
                         <TextBlock
                             Grid.Row="3"
                             Margin="5,10,0,10"
@@ -232,7 +231,7 @@
                         <TextBlock
                             Grid.Row="3"
                             Margin="50,10,0,10"
-                            Text="{Binding ElementName=NetInfoCombox, Path=SelectedItem.mask}" />
+                            Text="{Binding ElementName=NetInfoCombox, Path=SelectedItem.Mask}" />
                     </Grid>
 
                 </GroupBox>
@@ -247,7 +246,7 @@
                     Height="Auto"
                     HorizontalAlignment="Stretch"
                     Header="Route Config"
-                    Style="{StaticResource AccentGroupBox}">
+                    Style="{DynamicResource AccentGroupBox}">
                     <Grid Background="#FF282828">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" />
@@ -280,7 +279,7 @@
                 <GroupBox
                     Grid.Row="0"
                     Header="IPv4 Route Table"
-                    Style="{StaticResource AccentGroupBox}">
+                    Style="{DynamicResource AccentGroupBox}">
                     <Grid
                         Margin="0,0,0,0"
                         ClipToBounds="True"
@@ -313,7 +312,7 @@
                 <GroupBox
                     Grid.Row="2"
                     Header="IPv6 Route Table"
-                    Style="{StaticResource AccentGroupBox}">
+                    Style="{DynamicResource AccentGroupBox}">
                     <Grid
                         Margin="0,0,0,0"
                         ClipToBounds="True"

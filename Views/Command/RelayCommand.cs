@@ -1,55 +1,156 @@
-﻿using System;
-using System.Windows.Input;
+﻿// ******************************************************************************************
+//     Assembly:                Sniffy
+//     Author:                  Terry D. Eppler
+//     Created:                 08-16-2021
+// 
+//     Last Modified By:        Terry D. Eppler
+//     Last Modified On:        08-16-2024
+// ******************************************************************************************
+// <copyright file="RelayCommand.cs" company="Terry D. Eppler">
+//     A tiny .NET WPF tool that can be used to establish TCP (raw) or WebSocket connections
+//     and exchange text messages for testing/debugging purposes.
+// 
+//     Copyright ©  2021 Terry D. Eppler
+// 
+//    Permission is hereby granted, free of charge, to any person obtaining a copy
+//    of this software and associated documentation files (the “Software”),
+//    to deal in the Software without restriction,
+//    including without limitation the rights to use,
+//    copy, modify, merge, publish, distribute, sublicense,
+//    and/or sell copies of the Software,
+//    and to permit persons to whom the Software is furnished to do so,
+//    subject to the following conditions:
+// 
+//    The above copyright notice and this permission notice shall be included in all
+//    copies or substantial portions of the Software.
+// 
+//    THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
+//    INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+//    FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT.
+//    IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+//    DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
+//    ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+//    DEALINGS IN THE SOFTWARE.
+// 
+//    You can contact me at:  terryeppler@gmail.com or eppler.terry@epa.gov
+// </copyright>
+// <summary>
+//   RelayCommand.cs
+// </summary>
+// ******************************************************************************************
 
 namespace Sniffy
 {
+    using System;
+    using System.Diagnostics.CodeAnalysis;
+    using System.Windows.Input;
+
+    /// <inheritdoc />
     /// <summary>
-    /// RelayCommand allows you to inject the command's logic via delegates passed into its contructor. This method
+    /// RelayCommand allows you to inject the command's logic
+    /// via delegates passed into its contructor. This method
     /// enables ViewModel classes to implement commands in a concise manner.
     /// </summary>
-
+    [ SuppressMessage( "ReSharper", "FieldCanBeMadeReadOnly.Local" ) ]
+    [ SuppressMessage( "ReSharper", "ClassCanBeSealed.Global" ) ]
     public class RelayCommand : ICommand
     {
-        private Action<object> execute;
-        private Func<object, bool> canExecute;
-        private Action commandTasks;
-        public RelayCommand(Action workTodo)
-        {
-            commandTasks = workTodo;
+        /// <summary>
+        /// The can execute
+        /// </summary>
+        private Func<object, bool> _canExecute;
 
-        }
-        public RelayCommand(Action<object> execute)
-        {
-            this.execute = execute;
-            canExecute = null;
-        }
+        /// <summary>
+        /// The command tasks
+        /// </summary>
+        private Action _commandTasks;
 
-        public RelayCommand(Action<object> execute, Func<object, bool> canExecute)
+        /// <summary>
+        /// The execute
+        /// </summary>
+        private Action<object> _execute;
+
+        /// <summary>
+        /// Initializes a new instance of the
+        /// <see cref="RelayCommand"/> class.
+        /// </summary>
+        /// <param name="workTodo">The work todo.</param>
+        public RelayCommand( Action workTodo )
         {
-            this.execute = execute;
-            this.canExecute = canExecute;
+            _commandTasks = workTodo;
         }
 
         /// <summary>
-        /// CanExecuteChanged delegates the event subscription to the CommandManager.RequerySuggested event.
-        /// This ensures that the WPF commanding infrastructure asks all RelayCommand objects if they can execute whenever
+        /// Initializes a new instance of the
+        /// <see cref="RelayCommand"/> class.
+        /// </summary>
+        /// <param name="execute">The execute.</param>
+        public RelayCommand( Action<object> execute )
+        {
+            _execute = execute;
+            _canExecute = null;
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the
+        /// <see cref="RelayCommand"/> class.
+        /// </summary>
+        /// <param name="execute">The execute.</param>
+        /// <param name="canExecute">The can execute.</param>
+        public RelayCommand( Action<object> execute, Func<object, bool> canExecute )
+        {
+            _execute = execute;
+            _canExecute = canExecute;
+        }
+
+        /// <inheritdoc />
+        /// <summary>
+        /// CanExecuteChanged delegates the event subscription to
+        /// the CommandManager.RequerySuggested event.
+        /// This ensures that the WPF commanding infrastructure asks
+        /// all RelayCommand objects if they can execute whenever
         /// it asks the built-in commands.
         /// </summary>
-        
         public event EventHandler CanExecuteChanged
         {
-            add { CommandManager.RequerySuggested += value; }
-            remove { CommandManager.RequerySuggested -= value; }
+            add
+            {
+                CommandManager.RequerySuggested += value;
+            }
+            remove
+            {
+                CommandManager.RequerySuggested -= value;
+            }
         }
 
-        public bool CanExecute(object parameter)
+        /// <inheritdoc />
+        /// <summary>
+        /// Defines the method that determines whether
+        /// the command can execute in its current state.
+        /// </summary>
+        /// <param name="parameter">Data used by the command.  If the command does not
+        /// require data to be passed, this object can be set to
+        /// <see langword="null" />.</param>
+        /// <returns>
+        ///   <see langword="true" /> if this command can be executed;
+        /// otherwise, <see langword="false" />.
+        /// </returns>
+        public bool CanExecute( object parameter )
         {
-            return canExecute == null || CanExecute(parameter);
+            return _canExecute == null || CanExecute( parameter );
         }
 
-        public void Execute(object parameter)
+        /// <inheritdoc />
+        /// <summary>
+        /// Defines the method to be called when the command is invoked.
+        /// </summary>
+        /// <param name="parameter">Data used by the command.
+        /// If the command does not require data to be passed,
+        /// this object can be set to
+        /// <see langword="null" />.</param>
+        public void Execute( object parameter )
         {
-            execute(parameter);
+            _execute( parameter );
         }
     }
 }

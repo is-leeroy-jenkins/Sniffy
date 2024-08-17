@@ -255,9 +255,9 @@ namespace Sniffy
 		/// <param name="parameter">The parameter.</param>
 		public void StartListen( object parameter )
 		{
-			if( UdpModel.ServerListenBtnName == "Start Listen" )
+			if( UdpModel.ServerListenButtonName == "Start Listen" )
 			{
-				UdpModel.ServerListenBtnName = "Stop Listen";
+				UdpModel.ServerListenButtonName = "Stop Listen";
 				_udpServerSocket =
 					new UdpServerSocket( IPAddress.Any.ToString( ), UdpModel.ListenPort );
 
@@ -267,7 +267,7 @@ namespace Sniffy
 			}
 			else
 			{
-				UdpModel.ServerListenBtnName = "Start Listen";
+				UdpModel.ServerListenButtonName = "Start Listen";
 				UdpClientInfos.Clear( );
 				UdpModel.ServerStatus += "Udp Server Stopped!\n";
 			}
@@ -283,9 +283,9 @@ namespace Sniffy
 		{
 			Application.Current.Dispatcher.BeginInvoke( new Action( ( ) =>
 			{
-				UdpModel.ServerRecv += "[" + point + "] :";
-				UdpModel.ServerRecv += message;
-				UdpModel.ServerRecv += "\n";
+				UdpModel.ReceivingServer += "[" + point + "] :";
+				UdpModel.ReceivingServer += message;
+				UdpModel.ReceivingServer += "\n";
 				var _time = DateTime.Now;
 				UdpClientInfos.Add( new UdpClientInfo
 				{
@@ -306,7 +306,7 @@ namespace Sniffy
 		/// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
 		private void ServerAutoSendTimerFunc( object sender, EventArgs e )
 		{
-			_udpServerSocket.SendMessageToAllClientsAsync( UdpModel.ServerSendStr );
+			_udpServerSocket.SendMessageToAllClientsAsync( UdpModel.SendingServerText );
 		}
 
 		/// <summary>
@@ -315,9 +315,9 @@ namespace Sniffy
 		/// <param name="parameter">The parameter.</param>
 		public void ServerAutoSend( object parameter )
 		{
-			if( UdpModel.ServerSendBtnName == "Auto Send Start" )
+			if( UdpModel.ServerSendButtonName == "Auto Send Start" )
 			{
-				UdpModel.ServerSendBtnName = "Auto Send Stop";
+				UdpModel.ServerSendButtonName = "Auto Send Stop";
 				_mServerAutoSendTimer = new DispatcherTimer( )
 				{
 					Interval = new TimeSpan( 0, 0, 0, 0,
@@ -329,7 +329,7 @@ namespace Sniffy
 			}
 			else
 			{
-				UdpModel.ServerSendBtnName = "Auto Send Start";
+				UdpModel.ServerSendButtonName = "Auto Send Start";
 				_mServerAutoSendTimer.Stop( );
 			}
 		}
@@ -340,7 +340,7 @@ namespace Sniffy
 		/// <param name="parameter">The parameter.</param>
 		public void ServerRecvClear( object parameter )
 		{
-			UdpModel.ServerRecv = "";
+			UdpModel.ReceivingServer = "";
 		}
 
 		/// <summary>
@@ -349,7 +349,7 @@ namespace Sniffy
 		/// <param name="parameter">The parameter.</param>
 		public void ServerSendClear( object parameter )
 		{
-			UdpModel.ServerSend = "";
+			UdpModel.SendingServer = "";
 		}
 
 		/// <summary>
@@ -358,7 +358,7 @@ namespace Sniffy
 		/// <param name="parameter">The parameter.</param>
 		public void ServerSend( object parameter )
 		{
-			_udpServerSocket.SendMessageToAllClientsAsync( UdpModel.ServerSend );
+			_udpServerSocket.SendMessageToAllClientsAsync( UdpModel.SendingServer );
 		}
 
 		/// <summary>
@@ -367,16 +367,16 @@ namespace Sniffy
 		/// <param name="parameter">The parameter.</param>
 		public void ClientConnect( object parameter )
 		{
-			if( UdpModel.ClientConnectBtnName == "Connect" )
+			if( UdpModel.ClientConnectButtonName == "Connect" )
 			{
-				UdpModel.ClientConnectBtnName = "Disconnect";
-				_udpClientSocket = new UdpClientSocket( UdpModel.ServerIp, UdpModel.ServerPort );
+				UdpModel.ClientConnectButtonName = "Disconnect";
+				_udpClientSocket = new UdpClientSocket( UdpModel.ServerIpAddress, UdpModel.ServerPort );
 				_udpClientSocket.recvEvent = ClientRecvCb;
 				_udpClientSocket.Start( );
 			}
 			else
 			{
-				UdpModel.ClientConnectBtnName = "Connect";
+				UdpModel.ClientConnectButtonName = "Connect";
 				_udpClientSocket.CloseClientSocket( );
 			}
 		}
@@ -390,7 +390,7 @@ namespace Sniffy
 			Application.Current.Dispatcher.BeginInvoke( new Action( ( ) =>
 			{
 				var _time = DateTime.Now;
-				UdpModel.ClientRecv +=
+				UdpModel.ReceivingClient +=
 					"++[" + socket.RemoteEndPoint + "] connected at " + _time + "\n";
 
 				UdpModel.LocalPort = socket.LocalEndPoint.ToString( ).Split( ':' )[ 1 ];
@@ -405,12 +405,12 @@ namespace Sniffy
 		{
 			Application.Current.Dispatcher.BeginInvoke( new Action( ( ) =>
 			{
-				UdpModel.ClientRecv += "--[" + socket.RemoteEndPoint + "] disconnected at "
+				UdpModel.ReceivingClient += "--[" + socket.RemoteEndPoint + "] disconnected at "
 					+ DateTime.Now + "\n";
 
-				if( UdpModel.ClientConnectBtnName == "Disconnect" )
+				if( UdpModel.ClientConnectButtonName == "Disconnect" )
 				{
-					UdpModel.ClientConnectBtnName = "Connect";
+					UdpModel.ClientConnectButtonName = "Connect";
 					_udpClientSocket.CloseClientSocket( );
 				}
 			} ) );
@@ -424,8 +424,8 @@ namespace Sniffy
 		{
 			Application.Current.Dispatcher.BeginInvoke( new Action( ( ) =>
 			{
-				UdpModel.ClientRecv += msg;
-				UdpModel.ClientRecv += "\n";
+				UdpModel.ReceivingClient += msg;
+				UdpModel.ReceivingClient += "\n";
 			} ) );
 		}
 
@@ -435,7 +435,7 @@ namespace Sniffy
 		/// <param name="parameter">The parameter.</param>
 		public void ClientSendClear( object parameter )
 		{
-			UdpModel.ClientSend = "";
+			UdpModel.SendingClient = "";
 		}
 
 		/// <summary>
@@ -444,7 +444,7 @@ namespace Sniffy
 		/// <param name="parameter">The parameter.</param>
 		public void ClientSend( object parameter )
 		{
-			_udpClientSocket.SendAsync( UdpModel.ClientSend );
+			_udpClientSocket.SendAsync( UdpModel.SendingClient );
 		}
 
 		/// <summary>
@@ -454,7 +454,7 @@ namespace Sniffy
 		/// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
 		private void ClientAutoSendFunc( object sender, EventArgs e )
 		{
-			_udpClientSocket.SendAsync( UdpModel.ClientSendStr );
+			_udpClientSocket.SendAsync( UdpModel.SendingClientText );
 		}
 
 		/// <summary>
@@ -463,9 +463,9 @@ namespace Sniffy
 		/// <param name="parameter">The parameter.</param>
 		public void ClientAutoSend( object parameter )
 		{
-			if( UdpModel.ClientSendBtnName == "Auto Send Start" )
+			if( UdpModel.ClientSendButtonName == "Auto Send Start" )
 			{
-				UdpModel.ClientSendBtnName = "Auto Send Stop";
+				UdpModel.ClientSendButtonName = "Auto Send Stop";
 				_mClientAutoSendTimer = new DispatcherTimer( )
 				{
 					Interval = new TimeSpan( 0, 0, 0, 0,
@@ -477,7 +477,7 @@ namespace Sniffy
 			}
 			else
 			{
-				UdpModel.ClientSendBtnName = "Auto Send Start";
+				UdpModel.ClientSendButtonName = "Auto Send Start";
 				_mClientAutoSendTimer.Stop( );
 			}
 		}
@@ -488,7 +488,7 @@ namespace Sniffy
 		/// <param name="parameter">The parameter.</param>
 		public void ClientRecvClear( object parameter )
 		{
-			UdpModel.ClientRecv = "";
+			UdpModel.ReceivingClient = "";
 		}
 	}
 }

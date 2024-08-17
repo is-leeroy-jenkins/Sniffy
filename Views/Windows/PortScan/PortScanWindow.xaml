@@ -186,7 +186,7 @@
                     Height="Auto"
                     HorizontalAlignment="Stretch"
                     Header="IP And Port Config"
-                    Style="{StaticResource AccentGroupBox}">
+                    Style="{DynamicResource AccentGroupBox}">
                     <Grid Background="#FF282828">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" />
@@ -268,7 +268,7 @@
                 Margin="10,10,10,0">
                 <GroupBox
                     Header="Status"
-                    Style="{StaticResource AccentGroupBox}">
+                    Style="{DynamicResource AccentGroupBox}">
                     <Grid Background="#FF282828">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" />

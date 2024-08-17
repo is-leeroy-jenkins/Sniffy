@@ -115,23 +115,23 @@ namespace Sniffy
 			try
 			{
 				var _pid = ( uint )Process.Id;
-				FreeConsole( );
+				ProcessInterface.FreeConsole( );
 
 				// This does not require the console window to be visible.
-				if( AttachConsole( _pid ) )
+				if( ProcessInterface.AttachConsole( _pid ) )
 				{
 					// Disable Ctrl-C handling for our program
-					SetConsoleCtrlHandler( null, true );
-					GenerateConsoleCtrlEvent( ControlTypes.ControlCopyEvent, _pid );
+					ProcessInterface.SetConsoleCtrlHandler( null, true );
+					ProcessInterface.GenerateConsoleCtrlEvent( ControlTypes.ControlCopyEvent, _pid );
 
 					// Must wait here. If we don't and re-enable Ctrl-C
 					// handling below too fast, we might terminate ourselves.
 					Thread.Sleep( 500 );
-					FreeConsole( );
+					ProcessInterface.FreeConsole( );
 
 					// Re-enable Ctrl-C handling or any subsequently started
 					// programs will inherit the disabled state.
-					SetConsoleCtrlHandler( null, false );
+					ProcessInterface.SetConsoleCtrlHandler( null, false );
 					Process.Kill( );
 				}
 			}

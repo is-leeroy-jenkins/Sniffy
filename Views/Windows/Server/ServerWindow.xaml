@@ -182,7 +182,7 @@
                 Margin="10,10,10,0">
                 <GroupBox
                     Header="Network Interfaces"
-                    Style="{StaticResource AccentGroupBox}">
+                    Style="{DynamicResource AccentGroupBox}">
                     <Grid Background="#FF282828">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" />
@@ -249,24 +249,24 @@
                     <TabItem
                         DataContext="{Binding ServerViews[0]}"
                         Header="TCP"
-                        Style="{StaticResource TabControlEx}">
+                        Style="{DynamicResource TabControlEx}">
                         <local:TcpView />
                     </TabItem>
                     <TabItem
                         DataContext="{Binding ServerViews[1]}"
                         Header="UDP"
-                        Style="{StaticResource TabControlEx}">
+                        Style="{DynamicResource TabControlEx}">
                         <local:UdpView />
                     </TabItem>
                     <TabItem
                         DataContext="{Binding ServerViews[2]}"
                         Header="WEBSOCKET"
-                        Style="{StaticResource TabControlEx}">
+                        Style="{DynamicResource TabControlEx}">
                         <local:WebSocketView />
                     </TabItem>
                     <TabItem
                         Header="MQTT"
-                        Style="{StaticResource TabControlEx}">
+                        Style="{DynamicResource TabControlEx}">
                         <local:TcpView />
                     </TabItem>
                 </TabControl>

@@ -14,13 +14,15 @@
         <ResourceDictionary Source="/Themes/TabControlEx.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
+<!--********************************               **************************************-->
+
     <Style
         x:Key="MenuItemText"
         TargetType="TextBlock">
         <Setter Property="Margin" Value="10,5,0,0" />
         <Setter Property="HorizontalAlignment" Value="Left" />
         <Setter Property="VerticalAlignment" Value="Center" />
-        <Setter Property="FontSize" Value="11" />
+        <Setter Property="FontSize" Value="12" />
     </Style>
 
     <Style
@@ -49,6 +51,8 @@
         <Setter Property="Foreground" Value="#FFA0BDFC" />
     </Style>
 
+<!--********************************               **************************************-->
+
 
     <Style
         x:Key="SearchBoxStyle"
@@ -56,11 +60,12 @@
         <Setter Property="Height" Value="35" />
         <Setter Property="Width" Value="180" />
         <Setter Property="FontFamily" Value="Segoe UI" />
-        <Setter Property="FontSize" Value="10" />
+        <Setter Property="FontSize" Value="12" />
         <Setter Property="VerticalAlignment" Value="Center" />
         <Setter Property="Background" Value="#FF050505" />
         <Setter Property="Foreground" Value="#FFA0BDFC" />
-        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="BorderBrush" Value="#FF0078D4" />
+        <Setter Property="BorderThickness" Value="1" />
         <Setter Property="Padding" Value="8,7,0,0" />
         <Setter Property="CaretBrush" Value="Lime" />
         <Setter Property="Template">
@@ -84,6 +89,7 @@
         </Setter>
     </Style>
 
+<!--********************************               **************************************-->
 
     <Style
         x:Key="SearchTextStyle"
@@ -91,8 +97,8 @@
         <Setter Property="IsHitTestVisible" Value="False" />
         <Setter Property="Visibility" Value="Collapsed" />
         <Setter Property="FontFamily" Value="Segoe UI" />
-        <Setter Property="FontSize" Value="10" />
-        <Setter Property="Foreground" Value="#FFA0BDFC" />
+        <Setter Property="FontSize" Value="12" />
+        <Setter Property="Foreground" Value="#FFF" />
         <Setter Property="HorizontalAlignment" Value="Left" />
         <Setter Property="VerticalAlignment" Value="Center" />
         <Setter Property="Margin" Value="10,0,0,0" />
@@ -104,6 +110,8 @@
             </DataTrigger>
         </Style.Triggers>
     </Style>
+
+<!--********************************     MenuButtonStyle           *************************-->
 
     <Style
         x:Key="MenuButtonStyle"
@@ -139,16 +147,14 @@
                             Source="{Binding Path=Tag, RelativeSource={RelativeSource TemplatedParent}}"
                             Stretch="None" />
 
-                        <!--  ReSharper disable once Xaml.IndexOutOfGridDefinition  -->
                         <TextBlock
                             x:Name="SidebarRadioButtonMenuText"
-                            Grid.Row="1"
                             Width="120"
                             Margin="55,0,0,0"
                             HorizontalAlignment="Left"
                             VerticalAlignment="Center"
-                            FontSize="10"
-                            Foreground="#FFA0BDFC"
+                            FontSize="12"
+                            Foreground="#FFF"
                             Text="{TemplateBinding Property=Content}" />
 
                         <Border

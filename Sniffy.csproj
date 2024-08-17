@@ -29,6 +29,9 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Libraries\iperf\cygwin1.dll" />
+    <None Remove="Libraries\iperf\iperf.exe" />
+    <None Remove="Libraries\iperf\iperf3.exe" />
     <None Remove="Resources\Assets\Calculator\Cancel.png" />
     <None Remove="Resources\Assets\Calculator\Main.png" />
     <None Remove="Resources\Assets\Dialog\SplashNotification.png" />
@@ -157,6 +160,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Libraries\iperf\cygwin1.dll" />
+    <Resource Include="Libraries\iperf\iperf.exe" />
+    <Resource Include="Libraries\iperf\iperf3.exe" />
     <Resource Include="Resources\Assets\Forms\Application.ico" />
   </ItemGroup>
 

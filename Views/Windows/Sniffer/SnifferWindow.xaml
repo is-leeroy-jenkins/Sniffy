@@ -174,7 +174,7 @@
                 <GroupBox
                     DataContext="{Binding SnifferViews[0]}"
                     Header="Capture Control"
-                    Style="{StaticResource AccentGroupBox}">
+                    Style="{DynamicResource AccentGroupBox}">
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" />
@@ -229,7 +229,7 @@
                 <GroupBox
                     DataContext="{Binding SnifferViews[0]}"
                     Header="Filter Config"
-                    Style="{StaticResource AccentGroupBox}">
+                    Style="{DynamicResource AccentGroupBox}">
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="30" />
@@ -286,7 +286,7 @@
                 Margin="10,10,10,0">
                 <GroupBox
                     Header="Capture Status"
-                    Style="{StaticResource AccentGroupBox}">
+                    Style="{DynamicResource AccentGroupBox}">
                     <TreeView>
                         <TreeViewItem
                             DataContext="{Binding SnifferViews[1]}"
@@ -331,13 +331,13 @@
                     <TabItem
                         DataContext="{Binding SnifferViews[0]}"
                         Header="Capture View"
-                        Style="{StaticResource TabControlEx}">
+                        Style="{DynamicResource TabControlEx}">
                         <local:SnifferCaptureView />
                     </TabItem>
                     <TabItem
                         DataContext="{Binding SnifferViews[1]}"
                         Header="Statistics View"
-                        Style="{StaticResource TabControlEx}">
+                        Style="{DynamicResource TabControlEx}">
                         <local:SnifferStatsView />
                     </TabItem>
 

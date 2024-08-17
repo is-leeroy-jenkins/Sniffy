@@ -46,6 +46,7 @@ namespace Sniffy
 
 	[ SuppressMessage( "ReSharper", "ClassCanBeSealed.Global" ) ]
 	[ SuppressMessage( "ReSharper", "FieldCanBeMadeReadOnly.Local" ) ]
+	[ SuppressMessage( "ReSharper", "ConvertToAutoProperty" ) ]
 	public class SnifferViewModel : MainWindowBase
 	{
 		/// <summary>
@@ -58,9 +59,11 @@ namespace Sniffy
 		/// </summary>
 		public SnifferViewModel( )
 		{
-			_snifferViews = new ObservableCollection<object>( );
-			_snifferViews.Add( new SnifferCaptureViewModel( ) );
-			_snifferViews.Add( new SnifferStatsViewModel( ) );
+			_snifferViews = new ObservableCollection<object>
+			{
+				new SnifferCaptureViewModel( ),
+				new SnifferStatsViewModel( )
+			};
 		}
 
 		/// <summary>

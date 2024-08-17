@@ -10,7 +10,7 @@
 
     <BorderGapMaskConverter x:Key="BorderGapMaskConverter" />
     <Style TargetType="{x:Type GroupBox}">
-        <Setter Property="BorderBrush" Value="{StaticResource FormControlBorderBrush}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource FormControlBorderBrush}" />
         <Setter Property="BorderThickness" Value="1" />
         <Setter Property="Template">
             <Setter.Value>
@@ -44,7 +44,7 @@
                             Grid.RowSpan="3"
                             Grid.Column="0"
                             Grid.ColumnSpan="4"
-                            BorderBrush="{StaticResource FormControlBorderBrush}"
+                            BorderBrush="{DynamicResource FormControlBorderBrush}"
                             BorderThickness="{TemplateBinding BorderThickness}"
                             CornerRadius="4">
                             <Border.OpacityMask>

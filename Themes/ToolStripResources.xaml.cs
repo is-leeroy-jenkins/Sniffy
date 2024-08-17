@@ -59,7 +59,7 @@ namespace Sniffy
         /// </summary>
         public ToolStripResources( )
         {
-            this.InitializeComponent( );
+            InitializeComponent( );
         }
     }
 }

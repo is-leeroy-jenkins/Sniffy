@@ -78,7 +78,7 @@
                     Height="Auto"
                     HorizontalAlignment="Stretch"
                     Header="Network Interfaces"
-                    Style="{StaticResource AccentGroupBox}">
+                    Style="{DynamicResource AccentGroupBox}">
                     <Grid Background="#FF282828">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" />
@@ -134,7 +134,7 @@
                 Margin="10,10,10,0">
                 <GroupBox
                     Header="Port Config"
-                    Style="{StaticResource AccentGroupBox}">
+                    Style="{DynamicResource AccentGroupBox}">
                     <Grid Background="#FF282828">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" />
@@ -142,7 +142,6 @@
                             <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
                         <local:ButtonEx
-                            Grid.Row="3"
                             Width="100"
                             Height="30"
                             Margin="0,15,0,10"
@@ -168,11 +167,12 @@
                     ClipToBounds="True"
                     SnapsToDevicePixels="True">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="6*" />
-                        <RowDefinition Height="59*" />
+                        <RowDefinition Height="7*" />
+                        <RowDefinition Height="28*" />
+                        <RowDefinition Height="40*" />
                     </Grid.RowDefinitions>
                     <DataGrid
-                        Grid.RowSpan="2"
+                        Grid.RowSpan="3"
                         Width="Auto"
                         Height="Auto"
                         Margin="4,6,4,6"

@@ -21,7 +21,7 @@
 
 
     <UserControl.Resources>
-        <local:PerformanceCommandConverter x:Key="IperfCommandConverter" />
+        <local:PerformanceCommandConverter x:Key="PerformanceCommandConverter" />
 
         <Style TargetType="ToolTip">
             <Setter Property="BorderThickness" Value="1,1,1,1" />
@@ -77,7 +77,7 @@
                 Margin="10,10,10,0">
                 <GroupBox
                     Header="Iperf Config"
-                    Style="{StaticResource AccentGroupBox}">
+                    Style="{DynamicResource AccentGroupBox}">
                     <Grid Background="#FF282828">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" />
@@ -106,8 +106,8 @@
                             Margin="0,15,10,0"
                             HorizontalAlignment="Right"
                             VerticalAlignment="Center"
-                            SelectedItem="{Binding IperfModel.Version}"
-                            Text="{Binding IperfModel.Version, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                            SelectedItem="{Binding PerformanceModel.Version}"
+                            Text="{Binding PerformanceModel.Version, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                             <ComboBoxItem>iperf.exe</ComboBoxItem>
                             <ComboBoxItem>iperf3.exe</ComboBoxItem>
                         </ComboBox>
@@ -121,8 +121,8 @@
                             Margin="0,5,10,0"
                             HorizontalAlignment="Right"
                             VerticalAlignment="Top"
-                            SelectedItem="{Binding IperfModel.Role}"
-                            Text="{Binding IperfModel.Role, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                            SelectedItem="{Binding PerformanceModel.Role}"
+                            Text="{Binding PerformanceModel.Role, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                             <ComboBoxItem>-s</ComboBoxItem>
                             <ComboBoxItem>-c</ComboBoxItem>
                         </ComboBox>
@@ -135,7 +135,7 @@
                             Width="130"
                             Margin="0,5,10,0"
                             HorizontalAlignment="Right"
-                            Text="{Binding IperfModel.ServerIp}" />
+                            Text="{Binding PerformanceModel.ServerIpAddress}" />
                         <TextBlock
                             Grid.Row="4"
                             Style="{StaticResource MenuItemText}"
@@ -143,7 +143,7 @@
                         <local:TextBoxEx
                             Grid.Row="4"
                             Cursor="Hand"
-                            Text="{Binding IperfModel.Port}" />
+                            Text="{Binding PerformanceModel.Port}" />
 
                         <TextBlock
                             Grid.Row="5"
@@ -152,7 +152,7 @@
                         <local:TextBoxEx
                             Grid.Row="5"
                             Minimum="1"
-                            Text="{Binding IperfModel.Parallel}" />
+                            Text="{Binding PerformanceModel.Parallel}" />
 
                         <TextBlock
                             Grid.Row="6"
@@ -161,7 +161,7 @@
                         <local:TextBoxEx
                             Grid.Row="6"
                             Minimum="1"
-                            Text="{Binding IperfModel.Time}" />
+                            Text="{Binding PerformanceModel.Time}" />
 
                         <TextBlock
                             Grid.Row="7"
@@ -170,29 +170,32 @@
                         <local:TextBoxEx
                             Grid.Row="7"
                             Minimum="1"
-                            Text="{Binding IperfModel.Interval}" />
+                            Text="{Binding PerformanceModel.Interval}" />
 
                         <RadioButton
                             Grid.Row="8"
+                            Width="97"
+                            Margin="0,13,0,0"
+                            VerticalAlignment="Top"
                             Content="TCP Window Size"
                             GroupName="TcpUdp"
-                            IsChecked="{Binding IperfModel.TcpFlag}"
+                            IsChecked="{Binding PerformanceModel.TcpFlag}"
                             Style="{StaticResource MenuItemRadioButton}" />
                         <local:TextBoxEx
                             Grid.Row="8"
                             Width="45"
-                            Margin="0,5,65,0"
-                            Text="{Binding IperfModel.TcpWindowSize}" />
+                            Margin="0,5,63,0"
+                            Text="{Binding PerformanceModel.TcpWindowSize}" />
                         <ComboBox
                             Grid.Row="8"
-                            Width="55"
-                            Margin="0,5,10,0"
-                            HorizontalAlignment="Right"
-                            VerticalAlignment="Center"
+                            Width="48"
+                            Margin="154,10,0,0"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Top"
                             HorizontalContentAlignment="Left"
                             FontSize="12"
-                            SelectedItem="{Binding IperfModel.TcpWindowUnit}"
-                            Text="{Binding IperfModel.TcpWindowUnit, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                            SelectedItem="{Binding PerformanceModel.TcpWindowUnit}"
+                            Text="{Binding PerformanceModel.TcpWindowUnit, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                             <ComboBoxItem>M</ComboBoxItem>
                             <ComboBoxItem>m</ComboBoxItem>
                             <ComboBoxItem>K</ComboBoxItem>
@@ -201,9 +204,12 @@
 
                         <RadioButton
                             Grid.Row="9"
+                            Width="98"
+                            Margin="0,13,0,0"
+                            VerticalAlignment="Top"
                             Content="UDP Bandwidth"
                             GroupName="TcpUdp"
-                            IsChecked="{Binding IperfModel.UdpFlag}"
+                            IsChecked="{Binding PerformanceModel.UdpFlag}"
                             Style="{StaticResource MenuItemRadioButton}" />
 
                         <local:TextBoxEx
@@ -211,17 +217,17 @@
                             Width="45"
                             Margin="0,5,65,0"
                             Cursor="Hand"
-                            Text="{Binding IperfModel.BandWidth}" />
+                            Text="{Binding PerformanceModel.BandWidth}" />
 
                         <ComboBox
                             Grid.Row="9"
-                            Width="55"
+                            Width="48"
                             Margin="0,5,10,0"
                             HorizontalAlignment="Right"
                             VerticalAlignment="Top"
                             FontSize="12"
-                            SelectedItem="{Binding IperfModel.BandWidthUnit}"
-                            Text="{Binding IperfModel.BandWidthUnit, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                            SelectedItem="{Binding PerformanceModel.BandWidthUnit}"
+                            Text="{Binding PerformanceModel.BandWidthUnit, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                             <ComboBoxItem>M</ComboBoxItem>
                             <ComboBoxItem>m</ComboBoxItem>
                             <ComboBoxItem>K</ComboBoxItem>
@@ -233,12 +239,12 @@
                             Text="Packet Length" />
                         <local:TextBoxEx
                             Grid.Row="10"
-                            Text="{Binding IperfModel.PacketLen}" />
+                            Text="{Binding PerformanceModel.PacketLen}" />
                         <CheckBox
                             Grid.Row="11"
                             Margin="10,10,0,10"
                             Content="Reverse Transmit"
-                            IsChecked="{Binding IperfModel.Reverse}"
+                            IsChecked="{Binding PerformanceModel.Reverse}"
                             Style="{StaticResource MenuItemCheckBox}" />
 
                     </Grid>
@@ -271,26 +277,26 @@
                     Margin="10,0,0,0"
                     HorizontalAlignment="Stretch"
                     Style="{DynamicResource Input-Group-Addon Left}"
-                    Tag="{Binding IperfModel.Version}">
+                    Tag="{Binding PerformanceModel.Version}">
                     <TextBox.Text>
                         <MultiBinding
-                            Converter="{StaticResource IperfCommandConverter}"
+                            Converter="{StaticResource PerformanceCommandConverter}"
                             Mode="TwoWay">
-                            <Binding Path="IperfModel.Role" />
-                            <Binding Path="IperfModel.ServerIp" />
-                            <Binding Path="IperfModel.Port" />
-                            <Binding Path="IperfModel.Parallel" />
-                            <Binding Path="IperfModel.Time" />
-                            <Binding Path="IperfModel.Interval" />
-                            <Binding Path="IperfModel.TcpFlag" />
-                            <Binding Path="IperfModel.TcpWindowSize" />
-                            <Binding Path="IperfModel.TcpWindowUnit" />
-                            <Binding Path="IperfModel.UdpFlag" />
-                            <Binding Path="IperfModel.BandWidth" />
-                            <Binding Path="IperfModel.BandWidthUnit" />
-                            <Binding Path="IperfModel.PacketLen" />
-                            <Binding Path="IperfModel.Reverse" />
-                            <Binding Path="IperfModel.Command" />
+                            <Binding Path="PerformanceModel.Role" />
+                            <Binding Path="PerformanceModel.ServerIpAddress" />
+                            <Binding Path="PerformanceModel.Port" />
+                            <Binding Path="PerformanceModel.Parallel" />
+                            <Binding Path="PerformanceModel.Time" />
+                            <Binding Path="PerformanceModel.Interval" />
+                            <Binding Path="PerformanceModel.TcpFlag" />
+                            <Binding Path="PerformanceModel.TcpWindowSize" />
+                            <Binding Path="PerformanceModel.TcpWindowUnit" />
+                            <Binding Path="PerformanceModel.UdpFlag" />
+                            <Binding Path="PerformanceModel.BandWidth" />
+                            <Binding Path="PerformanceModel.BandWidthUnit" />
+                            <Binding Path="PerformanceModel.PacketLen" />
+                            <Binding Path="PerformanceModel.Reverse" />
+                            <Binding Path="PerformanceModel.Command" />
                         </MultiBinding>
                     </TextBox.Text>
                 </TextBox>
@@ -320,10 +326,10 @@
             <GroupBox
                 Grid.Row="1"
                 Header="Bandwidth PlotView"
-                Style="{StaticResource AccentGroupBox}">
+                Style="{DynamicResource AccentGroupBox}">
                 <oxy:PlotView
                     Width="Auto"
-                    Model="{Binding PlotModelData}"
+                    Model="{Binding PlotModel}"
                     PanCursor="Hand"
                     ZoomHorizontalCursor="SizeWE"
                     ZoomRectangleCursor="SizeNWSE"
@@ -340,7 +346,7 @@
             <GroupBox
                 Grid.Row="3"
                 Header="Output"
-                Style="{StaticResource AccentGroupBox}">
+                Style="{DynamicResource AccentGroupBox}">
                 <Grid>
                     <TextBox
                         x:Name="IperfOutput"
@@ -349,7 +355,7 @@
                         VerticalAlignment="Stretch"
                         VerticalContentAlignment="Top"
                         local:TextBoxBehaviour.ScrollOnTextChanged="True"
-                        Text="{Binding IperfModel.Output}"
+                        Text="{Binding PerformanceModel.Output}"
                         VerticalScrollBarVisibility="Visible" />
 
                     <local:ButtonEx

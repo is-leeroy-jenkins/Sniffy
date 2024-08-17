@@ -29,7 +29,7 @@ namespace Sniffy
             if (port < 1 || port > 65535)
                 throw new ArgumentOutOfRangeException("port is out of range");
 
-            this.hostIp = ip;
+            hostIp = ip;
             this.port = port;
         }
 

@@ -37,7 +37,7 @@ namespace Sniffy
             if (numConnections <= 0 || numConnections > int.MaxValue)
                 throw new ArgumentOutOfRangeException("_numConnections is out of range");
 
-            this.hostIp = ip;
+            hostIp = ip;
             this.port = port;
 
             clientSockets = new List<EndPoint>();

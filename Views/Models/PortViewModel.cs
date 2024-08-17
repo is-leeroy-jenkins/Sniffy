@@ -66,7 +66,7 @@ namespace Sniffy
 		/// <summary>
 		/// The ip interface
 		/// </summary>
-		public IpInterface IpInterface;
+		public InternetInterface InternetInterface;
 
 		/// <summary>
 		/// The port process
@@ -79,7 +79,7 @@ namespace Sniffy
 		public PortViewModel( )
 		{
 			PortModel = new PortModel( );
-			IpInterface = new IpInterface( );
+			InternetInterface = new InternetInterface( );
 			PortProcess = new ProcessInterface( );
 			GetPortInfo( );
 			PortModel.NetInfoItemSource = GetLocalNetworkInterface( );
@@ -218,7 +218,7 @@ namespace Sniffy
 					_local = _match.Groups[ "b" ].Value;
 					_localPort = _match.Groups[ "c" ].Value;
 					_remote = _match.Groups[ "d" ].Value;
-					_program = LookupProcess( _pid );
+					_program = PortViewModel.LookupProcess( _pid );
 					Application.Current.Dispatcher.Invoke( ( ) =>
 					{
 						PortListenStats.Add( new PortListenStat
@@ -255,7 +255,7 @@ namespace Sniffy
 					_local = _match.Groups[ "b" ].Value;
 					_localPort = _match.Groups[ "c" ].Value;
 					_remote = _match.Groups[ "d" ].Value;
-					_program = LookupProcess( _pid );
+					_program = PortViewModel.LookupProcess( _pid );
 					Application.Current.Dispatcher.Invoke( ( ) =>
 					{
 						PortListenStats.Add( new PortListenStat

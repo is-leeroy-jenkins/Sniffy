@@ -154,8 +154,8 @@
         <GroupBox
             Grid.Row="0"
             Header="Packets Plot"
-            Style="{StaticResource AccentGroupBox}">
-            <oxy:PlotView Model="{Binding PlotModelData}" />
+            Style="{DynamicResource AccentGroupBox}">
+            <oxy:PlotView Model="{Binding PlotModel}" />
         </GroupBox>
         <GridSplitter
             Grid.Row="1"
@@ -169,7 +169,7 @@
         <GroupBox
             Grid.Row="2"
             Header="Protocol Stats"
-            Style="{StaticResource AccentGroupBox}">
+            Style="{DynamicResource AccentGroupBox}">
             <ListView
                 Height="Auto"
                 BorderThickness="0"
@@ -220,7 +220,7 @@
         <GroupBox
             Grid.Row="4"
             Header="Connection Stats"
-            Style="{StaticResource AccentGroupBox}">
+            Style="{DynamicResource AccentGroupBox}">
             <ListView
                 Height="Auto"
                 Margin="2"

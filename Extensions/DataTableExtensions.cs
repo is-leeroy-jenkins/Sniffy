@@ -142,7 +142,7 @@ namespace Sniffy
 			}
 			catch( Exception ex )
 			{
-				Fail( ex );
+				DataTableExtensions.Fail( ex );
 				return default( IEnumerable<int> );
 			}
 		}
@@ -168,7 +168,7 @@ namespace Sniffy
 			}
 			catch( Exception ex )
 			{
-				Fail( ex );
+				DataTableExtensions.Fail( ex );
 				return default( IEnumerable<DataRow> );
 			}
 		}
