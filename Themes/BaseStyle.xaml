@@ -3,11 +3,15 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="clr-namespace:Sniffy">
 
+    <!--********************************** Resources  ****************************************-->
+
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="/Themes/Colors.xaml" />
         <ResourceDictionary Source="/Themes/Fonts.xaml" />
         <ResourceDictionary Source="/Themes/Sizes.xaml" />
     </ResourceDictionary.MergedDictionaries>
+
+    <!--********************************* Base Style  ****************************************-->
 
     <Style
         x:Key="BaseStyle"

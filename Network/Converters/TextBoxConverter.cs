@@ -14,7 +14,7 @@
 	[ SuppressMessage( "ReSharper", "UnusedParameter.Global" ) ]
 	[ SuppressMessage( "ReSharper", "UnusedVariable" ) ]
 	[ SuppressMessage( "ReSharper", "ClassCanBeSealed.Global" ) ]
-	public class TextBoxExConverter : IValueConverter
+	public class TextBoxConverter : IValueConverter
 	{
 		/// <summary>
 		/// Converts a value.

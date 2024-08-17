@@ -2,14 +2,12 @@
     x:Class="Sniffy.PerformanceWindow"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:Sniffy"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:oxy="http://oxyplot.org/wpf"
     xmlns:skin="clr-namespace:Syncfusion.SfSkinManager;assembly=Syncfusion.SfSkinManager.WPF"
     xmlns:sync="http://schemas.syncfusion.com/wpf"
-    xmlns:ui="http://schemas.modernwpf.com/2019"
     d:DesignHeight="450"
     d:DesignWidth="800"
     sync:SfSkinManager.Theme="{skin:SkinManagerExtension ThemeName=FluentDark}"
@@ -21,6 +19,7 @@
 
 
     <UserControl.Resources>
+
         <local:PerformanceCommandConverter x:Key="PerformanceCommandConverter" />
 
         <Style TargetType="ToolTip">
@@ -98,7 +97,7 @@
 
                         <TextBlock
                             Grid.Row="1"
-                            Style="{StaticResource MenuItemText}"
+                            Style="{DynamicResource MenuItemText}"
                             Text="Version" />
                         <ComboBox
                             Grid.Row="1"
@@ -113,7 +112,7 @@
                         </ComboBox>
                         <TextBlock
                             Grid.Row="2"
-                            Style="{StaticResource MenuItemText}"
+                            Style="{DynamicResource MenuItemText}"
                             Text="Role" />
                         <ComboBox
                             Grid.Row="2"
@@ -128,7 +127,7 @@
                         </ComboBox>
                         <TextBlock
                             Grid.Row="3"
-                            Style="{StaticResource MenuItemText}"
+                            Style="{DynamicResource MenuItemText}"
                             Text="Server IP" />
                         <TextBox
                             Grid.Row="3"
@@ -138,7 +137,7 @@
                             Text="{Binding PerformanceModel.ServerIpAddress}" />
                         <TextBlock
                             Grid.Row="4"
-                            Style="{StaticResource MenuItemText}"
+                            Style="{DynamicResource MenuItemText}"
                             Text="Port" />
                         <local:TextBoxEx
                             Grid.Row="4"
@@ -147,7 +146,7 @@
 
                         <TextBlock
                             Grid.Row="5"
-                            Style="{StaticResource MenuItemText}"
+                            Style="{DynamicResource MenuItemText}"
                             Text="Parallel" />
                         <local:TextBoxEx
                             Grid.Row="5"
@@ -156,7 +155,7 @@
 
                         <TextBlock
                             Grid.Row="6"
-                            Style="{StaticResource MenuItemText}"
+                            Style="{DynamicResource MenuItemText}"
                             Text="Time(s)" />
                         <local:TextBoxEx
                             Grid.Row="6"
@@ -165,7 +164,7 @@
 
                         <TextBlock
                             Grid.Row="7"
-                            Style="{StaticResource MenuItemText}"
+                            Style="{DynamicResource MenuItemText}"
                             Text="Interval(s)" />
                         <local:TextBoxEx
                             Grid.Row="7"
@@ -180,7 +179,7 @@
                             Content="TCP Window Size"
                             GroupName="TcpUdp"
                             IsChecked="{Binding PerformanceModel.TcpFlag}"
-                            Style="{StaticResource MenuItemRadioButton}" />
+                            Style="{DynamicResource MenuItemRadioButton}" />
                         <local:TextBoxEx
                             Grid.Row="8"
                             Width="45"
@@ -210,7 +209,7 @@
                             Content="UDP Bandwidth"
                             GroupName="TcpUdp"
                             IsChecked="{Binding PerformanceModel.UdpFlag}"
-                            Style="{StaticResource MenuItemRadioButton}" />
+                            Style="{DynamicResource MenuItemRadioButton}" />
 
                         <local:TextBoxEx
                             Grid.Row="9"
@@ -235,11 +234,11 @@
                         </ComboBox>
                         <TextBlock
                             Grid.Row="10"
-                            Style="{StaticResource MenuItemText}"
+                            Style="{DynamicResource MenuItemText}"
                             Text="Packet Length" />
                         <local:TextBoxEx
                             Grid.Row="10"
-                            Text="{Binding PerformanceModel.PacketLen}" />
+                            Text="{Binding PerformanceModel.PacketLength}" />
                         <CheckBox
                             Grid.Row="11"
                             Margin="10,10,0,10"
@@ -269,8 +268,9 @@
                     <!--<ColumnDefinition Width="150"/>-->
                     <ColumnDefinition Width="1*" />
                 </Grid.ColumnDefinitions>
+
                 <TextBox
-                    x:Name="IperfCommand"
+                    x:Name="PerformanceCommand"
                     Grid.Column="0"
                     Width="Auto"
                     Height="30"
@@ -278,6 +278,7 @@
                     HorizontalAlignment="Stretch"
                     Style="{DynamicResource Input-Group-Addon Left}"
                     Tag="{Binding PerformanceModel.Version}">
+
                     <TextBox.Text>
                         <MultiBinding
                             Converter="{StaticResource PerformanceCommandConverter}"
@@ -294,7 +295,7 @@
                             <Binding Path="PerformanceModel.UdpFlag" />
                             <Binding Path="PerformanceModel.BandWidth" />
                             <Binding Path="PerformanceModel.BandWidthUnit" />
-                            <Binding Path="PerformanceModel.PacketLen" />
+                            <Binding Path="PerformanceModel.PacketLength" />
                             <Binding Path="PerformanceModel.Reverse" />
                             <Binding Path="PerformanceModel.Command" />
                         </MultiBinding>
@@ -306,7 +307,7 @@
                     Margin="10,0,0,0"
                     ButtonType="Normal"
                     Command="{Binding RunIperfCommand}"
-                    CommandParameter="{Binding ElementName=IperfCommand, Path=Text}"
+                    CommandParameter="{Binding ElementName=PerformanceCommand, Path=Text}"
                     Content="Run" />
                 <local:ButtonEx
                     Grid.Column="1"

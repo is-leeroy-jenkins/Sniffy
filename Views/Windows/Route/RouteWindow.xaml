@@ -33,7 +33,7 @@
     <!--  ******************************************** Context Menu ******************************************  -->
 
     <UserControl.ContextMenu>
-        <ContextMenu Name="MainWindowContextMenu">
+        <ContextMenu x:Name="RouteWindowContextMenu">
             <sync:MenuItemAdv
                 Background="#FF282828"
                 Foreground="#FFA0BDFC"

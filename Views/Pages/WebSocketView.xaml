@@ -13,6 +13,7 @@
     mc:Ignorable="d">
 
     <UserControl.Resources>
+
         <local:WebSocketConverter x:Key="WebSocketConverter" />
 
         <Style TargetType="ToolTip">
@@ -330,8 +331,7 @@
                         Command="{Binding ClientConnectCommand}"
                         Content="{Binding WebSocketModel.ClientConnectButtonName}" />
                 </Grid>
-                <Grid 
-                    Grid.Row="1">
+                <Grid Grid.Row="1">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="80" />
                         <ColumnDefinition Width="70" />

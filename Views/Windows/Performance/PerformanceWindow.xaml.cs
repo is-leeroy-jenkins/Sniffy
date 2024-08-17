@@ -43,12 +43,11 @@ namespace Sniffy
 {
 	using System.Windows.Controls;
 	using Syncfusion.SfSkinManager;
-	using System;
 	using System.Diagnostics.CodeAnalysis;
 
 	/// <inheritdoc />
 	/// <summary>
-	/// Interaction logic for IperfWindow.xaml
+	/// Interaction logic for PerformanceWindow.xaml
 	/// </summary>
 	[ SuppressMessage( "ReSharper", "MemberCanBeInternal" ) ]
 	[ SuppressMessage( "ReSharper", "InheritdocConsiderUsage" ) ]

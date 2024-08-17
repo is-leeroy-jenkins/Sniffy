@@ -1,13 +1,15 @@
 ﻿<ResourceDictionary
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="clr-namespace:Sniffy">
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!--  ******************************** Resources  **************************************  -->
 
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="/Themes/Button.xaml" />
         <ResourceDictionary Source="/Themes/Label.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
+    <!--  ******************************** Resources  **************************************  -->
     <Style
         x:Key="InputGroupButtonBaseStyle"
         BasedOn="{StaticResource ButtonBaseBaseStyle}"
@@ -23,6 +25,8 @@
         <Setter Property="BorderBrush" Value="{DynamicResource BorderBrush-Default1}" />
         <Setter Property="Foreground" Value="{DynamicResource Foreground-Default}" />
     </Style>
+
+    <!--  ******************************** Resources  **************************************  -->
 
     <Style
         x:Key="InputGroupButtonLeftStyle"
@@ -88,6 +92,8 @@
                             RadiusY="4"
                             Visibility="Collapsed" />
                     </Grid>
+
+                    <!--  ******************************** Resources  **************************************  -->
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
                             <Setter Property="Background" Value="#e6e6e6" />
@@ -137,6 +143,7 @@
         </Setter>
     </Style>
 
+    <!--  ******************************** Resources  **************************************  -->
     <Style
         x:Key="InputGroupButtonRightStyle"
         BasedOn="{StaticResource InputGroupButtonBaseStyle}"
@@ -201,6 +208,9 @@
                             RadiusY="4"
                             Visibility="Collapsed" />
                     </Grid>
+
+                    <!--  ******************************** Resources  **************************************  -->
+
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
                             <Setter Property="Background" Value="#e6e6e6" />
@@ -250,6 +260,7 @@
         </Setter>
     </Style>
 
+    <!--  ******************************** Resources  **************************************  -->
     <Style
         x:Key="InputGroupPathStyle"
         BasedOn="{x:Null}"
@@ -280,10 +291,11 @@
         </Style.Triggers>
     </Style>
 
+    <!--  ******************************** Resources  **************************************  -->
     <Style
         x:Key="Input-Group-Btn Left"
-        BasedOn="{StaticResource InputGroupBtnBaseStyle}"
-        TargetType="{x:Type Control}">
+        BasedOn="{StaticResource InputGroupButtonBaseStyle}"
+        TargetType="{x:Type Button}">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Control}">
@@ -371,6 +383,7 @@
         </Setter>
     </Style>
 
+    <!--  ******************************** Resources  **************************************  -->
     <Style
         x:Key="Input-Group-Btn Right"
         BasedOn="{StaticResource InputGroupBtnBaseStyle}"
@@ -462,6 +475,7 @@
         </Setter>
     </Style>
 
+    <!--  ******************************** Resources  **************************************  -->
     <Style
         x:Key="InputGroupLabelBaseStyle"
         BasedOn="{StaticResource LabelBaseStyle}"
@@ -498,6 +512,7 @@
         </Setter>
     </Style>
 
+    <!--  ******************************** Resources  **************************************  -->
     <Style
         x:Key="InputGroupLabelLeftStyle"
         BasedOn="{StaticResource InputGroupLabelBaseStyle}"
@@ -527,6 +542,8 @@
         </Setter>
     </Style>
 
+    <!--  ******************************** Resources  **************************************  -->
+
     <Style
         x:Key="InputGroupLabelRightStyle"
         BasedOn="{StaticResource InputGroupLabelBaseStyle}"
@@ -555,6 +572,8 @@
         </Setter>
     </Style>
 
+    <!--  ******************************** Resources  **************************************  -->
+
     <Style
         x:Key="InputGroupAddonBaseStyle"
         BasedOn="{StaticResource BaseStyle}"
@@ -574,6 +593,8 @@
             </Trigger>
         </Style.Triggers>
     </Style>
+
+    <!--  ******************************** Resources  **************************************  -->
 
     <Style
         x:Key="Input-Group-Addon Left"
@@ -665,6 +686,8 @@
             </Setter.Value>
         </Setter>
     </Style>
+
+    <!--  ******************************** Resources  **************************************  -->
 
     <Style
         x:Key="Input-Group-Addon Right"

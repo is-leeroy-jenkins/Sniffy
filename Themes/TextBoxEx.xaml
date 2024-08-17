@@ -3,7 +3,13 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="clr-namespace:Sniffy">
 
-    <local:TextBoxExConverter x:Key="TextBoxExConverter" />
+
+    <!--  ******************************************** Resources *********************************************  -->
+
+    <local:TextBoxConverter x:Key="TextBoxExConverter" />
+
+
+    <!--  ******************************************** TextBox Ex *********************************************  -->
 
     <Style TargetType="{x:Type local:TextBoxEx}">
         <!--  Default style  -->
@@ -17,8 +23,8 @@
         <Setter Property="Margin" Value="0,5,10,0" />
         <Setter Property="HorizontalAlignment" Value="Right" />
         <Setter Property="VerticalAlignment" Value="Center" />
-        <Setter Property="IsAddBtnVisible" Value="True" />
-        <Setter Property="IsRemoveBtnVisible" Value="True" />
+        <Setter Property="IsAddButtonVisible" Value="True" />
+        <Setter Property="IsRemoveButtonVisible" Value="True" />
         <Setter Property="Cursor" Value="Hand" />
 
         <Setter Property="Template">
@@ -52,13 +58,13 @@
                                 </Grid.RowDefinitions>
                                 <Grid Grid.Row="0">
                                     <RepeatButton
-                                        Name="PART_BtnAdd"
+                                        Name="PART_ButtonAdd"
                                         Width="25"
                                         HorizontalAlignment="Center"
                                         VerticalAlignment="Center"
                                         Background="#FF050505"
                                         BorderBrush="#FF0078D4"
-                                        Visibility="{Binding Path=(local:TextBoxEx.IsAddBtnVisible), RelativeSource={RelativeSource AncestorType=TextBox}, Converter={StaticResource TextBoxExConverter}}">
+                                        Visibility="{Binding Path=(local:TextBoxEx.IsAddButtonVisible), RelativeSource={RelativeSource AncestorType=TextBox}, Converter={StaticResource TextBoxExConverter}}">
                                         <RepeatButton.Content>
                                             <Image Source="/Themes/up_arrow.png" />
                                         </RepeatButton.Content>
@@ -66,13 +72,13 @@
                                 </Grid>
                                 <Grid Grid.Row="1">
                                     <RepeatButton
-                                        Name="PART_BtnRemove"
+                                        Name="PART_ButtonRemove"
                                         Width="25"
                                         HorizontalAlignment="Center"
                                         VerticalAlignment="Center"
                                         Background="#FF050505"
                                         BorderBrush="#FF0078D4"
-                                        Visibility="{Binding Path=(local:TextBoxEx.IsRemoveBtnVisible), RelativeSource={RelativeSource AncestorType=TextBox}, Converter={StaticResource TextBoxExConverter}}">
+                                        Visibility="{Binding Path=(local:TextBoxEx.IsRemoveButtonVisible), RelativeSource={RelativeSource AncestorType=TextBox}, Converter={StaticResource TextBoxExConverter}}">
                                         <RepeatButton.Content>
                                             <Image Source="/Themes/down_arrow.png" />
                                         </RepeatButton.Content>

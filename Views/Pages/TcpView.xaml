@@ -13,7 +13,7 @@
     mc:Ignorable="d">
 
 
-    <!--  ******************************************** Resources *********************************************  -->
+    <!--  ************************************  Resources  ***********************************  -->
 
     <UserControl.Resources>
 
@@ -26,11 +26,10 @@
 
     </UserControl.Resources>
 
-    <!--  ******************************************** Context Menu ******************************************  -->
+    <!--  ************************************               ***********************************  -->
 
     <UserControl.ContextMenu>
-        <ContextMenu 
-            x:Name="TcpViewContextMenu">
+        <ContextMenu x:Name="TcpViewContextMenu">
             <sync:MenuItemAdv
                 Background="#FF282828"
                 Foreground="#FFA0BDFC"
@@ -137,9 +136,7 @@
         </ContextMenu>
     </UserControl.ContextMenu>
 
-
-    <!--  ******************************************** Canvass ******************************************  -->
-
+    <!--  ************************************               ***********************************  -->
 
     <Grid>
         <Grid.RowDefinitions>
@@ -171,6 +168,7 @@
                         VerticalAlignment="Center"
                         Foreground="#FFDEDEDE"
                         Text="Listen Port" />
+
                     <local:TextBoxEx
                         Grid.Row="0"
                         Height="30"
@@ -178,6 +176,7 @@
                         HorizontalAlignment="Left"
                         VerticalAlignment="Center"
                         Text="{Binding TcpModel.ListenPort}" />
+
                     <local:ButtonEx
                         Grid.Row="0"
                         Width="100"
@@ -187,7 +186,16 @@
                         ButtonType="Normal"
                         Command="{Binding StartListenCommand}"
                         Content="{Binding TcpModel.ServerListenButtonName}" />
-                    <!--<btnex:ButtonEx Margin="0,15,0,10" Content="Disconnect" ButtonType="Normal" Grid.Row="1" HorizontalAlignment="Center" Width="100" Height="30" Command="{Binding DisconnectCommand}" />-->
+
+                    <local:ButtonEx
+                        Grid.Row="1"
+                        Width="100"
+                        Height="30"
+                        Margin="0,15,0,10"
+                        HorizontalAlignment="Center"
+                        ButtonType="Normal"
+                        Command="{Binding DisconnectCommand}"
+                        Content="Disconnect" />
 
                     <Grid
                         Grid.Row="1"
@@ -196,6 +204,7 @@
                             <RowDefinition Height="6*" />
                             <RowDefinition Height="59*" />
                         </Grid.RowDefinitions>
+
                         <DataGrid
                             Grid.RowSpan="2"
                             Width="Auto"
@@ -207,6 +216,7 @@
                             ItemsSource="{Binding TcpServerInfos}"
                             RowHeight="22" />
                     </Grid>
+
                     <TextBox
                         Grid.Row="2"
                         Height="Auto"
@@ -219,6 +229,7 @@
                         Text="{Binding TcpModel.ReceivingServer}"
                         TextWrapping="NoWrap"
                         VerticalScrollBarVisibility="Visible" />
+
                     <local:ButtonEx
                         Grid.Row="2"
                         Margin="0,0,25,20"
@@ -228,12 +239,14 @@
                         Command="{Binding ServerRecvClearCommand}"
                         Content="Clear" />
                 </Grid>
+
                 <Grid Grid.Column="1">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="1*" />
                     </Grid.RowDefinitions>
+
                     <TextBlock
                         Grid.Row="0"
                         HorizontalAlignment="Left"
@@ -246,18 +259,21 @@
                         Margin="75,5,0,0"
                         HorizontalAlignment="Stretch"
                         Text="{Binding TcpModel.SendingServerText}" />
+
                     <TextBlock
                         Grid.Row="1"
                         HorizontalAlignment="Left"
                         VerticalAlignment="Center"
                         Foreground="#FFDEDEDE"
                         Text="Interval(ms)" />
+
                     <TextBox
                         Grid.Row="1"
                         Width="100"
                         Margin="75,0,10,0"
                         HorizontalAlignment="Left"
                         Text="{Binding TcpModel.ServerSendInterval}" />
+
                     <local:ButtonEx
                         Grid.Row="1"
                         Width="100"
@@ -268,12 +284,14 @@
                         Command="{Binding ServerAutoSendCommand}"
                         Content="{Binding TcpModel.ServerSendButtonName}" />
 
+
                     <Grid Grid.Row="2">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="2*" />
                             <RowDefinition Height="1" />
                             <RowDefinition Height="3*" />
                         </Grid.RowDefinitions>
+
                         <TextBox
                             Grid.Row="0"
                             Height="Auto"
@@ -292,6 +310,7 @@
                             ClipToBounds="True"
                             RenderTransformOrigin="0.5,0.5"
                             SnapsToDevicePixels="True" />
+
                         <TextBox
                             Grid.Row="2"
                             Height="Auto"
@@ -301,6 +320,7 @@
                             Text="{Binding TcpModel.SendingServer}"
                             TextWrapping="Wrap"
                             VerticalScrollBarVisibility="Visible" />
+
                         <local:ButtonEx
                             Grid.Row="2"
                             Margin="0,0,60,5"
@@ -309,6 +329,7 @@
                             ButtonType="Normal"
                             Command="{Binding ServerSendCommand}"
                             Content="Send" />
+
                         <local:ButtonEx
                             Grid.Row="2"
                             Margin="0,0,25,5"
@@ -340,6 +361,7 @@
                     <ColumnDefinition Width="1*" />
                     <ColumnDefinition Width="1*" />
                 </Grid.ColumnDefinitions>
+
                 <Grid Grid.Column="0">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
@@ -354,12 +376,14 @@
                         VerticalAlignment="Center"
                         Foreground="#FFDEDEDE"
                         Text="Server IP" />
+
                     <TextBox
                         Grid.Row="0"
                         Width="130"
                         Margin="65,5,0,0"
                         HorizontalAlignment="Left"
                         Text="{Binding TcpModel.ServerIpAddress}" />
+
                     <local:ButtonEx
                         Grid.Row="0"
                         Width="100"
@@ -370,6 +394,7 @@
                         Command="{Binding ClientConnectCommand}"
                         Content="{Binding TcpModel.ClientConnectButtonName}" />
 
+
                     <TextBlock
                         Grid.Row="1"
                         Margin="2,5,0,0"
@@ -377,6 +402,7 @@
                         VerticalAlignment="Center"
                         Foreground="#FFDEDEDE"
                         Text="Server Port" />
+
                     <local:TextBoxEx
                         Grid.Row="1"
                         Margin="75,5,0,0"
@@ -391,6 +417,7 @@
                         VerticalAlignment="Center"
                         Foreground="#FFDEDEDE"
                         Text="Local Port:" />
+
                     <TextBlock
                         Grid.Row="1"
                         Margin="0,5,15,0"
@@ -409,6 +436,7 @@
                         Text="{Binding TcpModel.ReceivingClient}"
                         TextWrapping="Wrap"
                         VerticalScrollBarVisibility="Visible" />
+
                     <local:ButtonEx
                         Grid.Row="2"
                         Margin="0,0,25,5"
@@ -418,12 +446,14 @@
                         Command="{Binding ClientRecvClearCommand}"
                         Content="Clear" />
                 </Grid>
+
                 <Grid Grid.Column="1">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="1*" />
                     </Grid.RowDefinitions>
+
                     <TextBlock
                         Grid.Row="0"
                         Margin="5,5,0,0"
@@ -431,12 +461,14 @@
                         VerticalAlignment="Center"
                         Foreground="#FFDEDEDE"
                         Text="Send String" />
+
                     <TextBox
                         Grid.Row="0"
                         Width="Auto"
                         Margin="75,5,0,0"
                         HorizontalAlignment="Stretch"
                         Text="{Binding TcpModel.SendingClientText}" />
+
                     <TextBlock
                         Grid.Row="1"
                         Margin="5,0,0,0"
@@ -444,12 +476,14 @@
                         VerticalAlignment="Center"
                         Foreground="#FFDEDEDE"
                         Text="Interval(ms)" />
+
                     <TextBox
                         Grid.Row="1"
                         Width="100"
                         Margin="75,0,0,0"
                         HorizontalAlignment="Left"
                         Text="{Binding TcpModel.ClientSendInterval}" />
+
                     <local:ButtonEx
                         Grid.Row="1"
                         Width="100"
@@ -469,6 +503,7 @@
                         Text="{Binding TcpModel.SendingClient}"
                         TextWrapping="Wrap"
                         VerticalScrollBarVisibility="Visible" />
+
                     <local:ButtonEx
                         Grid.Row="2"
                         Margin="0,0,60,5"
@@ -477,6 +512,7 @@
                         ButtonType="Normal"
                         Command="{Binding ClientSendCommand}"
                         Content="Send" />
+
                     <local:ButtonEx
                         Grid.Row="2"
                         Margin="0,0,25,5"
@@ -485,6 +521,7 @@
                         ButtonType="Normal"
                         Command="{Binding ClientSendClearCommand}"
                         Content="Clear" />
+
                 </Grid>
             </Grid>
         </GroupBox>

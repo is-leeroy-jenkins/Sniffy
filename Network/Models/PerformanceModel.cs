@@ -85,7 +85,7 @@ namespace Sniffy
         /// <summary>
         /// The packet length
         /// </summary>
-        private int _packetLen;
+        private int _packetLength;
 
         /// <summary>
         /// The parallel
@@ -110,7 +110,7 @@ namespace Sniffy
         /// <summary>
         /// The server ip
         /// </summary>
-        private string _serverIp;
+        private string _serverAddress;
 
         /// <summary>
         /// The TCP flag
@@ -154,7 +154,7 @@ namespace Sniffy
         {
             Version = "iperf.exe";
             Role = "-c";
-            ServerIp = "10.21.68.29";
+            ServerAddress = "10.21.68.29";
             Port = 5001;
             Parallel = 4;
             Time = 60;
@@ -165,7 +165,7 @@ namespace Sniffy
             UdpFlag = false;
             BandWidth = 100;
             BandWidthUnit = "M";
-            PacketLen = 0;
+            PacketLength = 0;
             Reverse = false;
         }
 
@@ -213,15 +213,15 @@ namespace Sniffy
         /// <value>
         /// The server ip.
         /// </value>
-        public string ServerIp
+        public string ServerAddress
         {
-            get { return _serverIp; }
+            get { return _serverAddress; }
             set
             {
-                if( _serverIp != value )
+                if( _serverAddress != value )
                 {
-                    _serverIp = value;
-                    OnPropertyChanged( nameof( ServerIp ) );
+                    _serverAddress = value;
+                    OnPropertyChanged( nameof( ServerAddress ) );
                 }
             }
         }
@@ -310,7 +310,10 @@ namespace Sniffy
         /// </value>
         public int TcpWindowSize
         {
-            get { return _tcpWindowSize; }
+            get
+            {
+                return _tcpWindowSize;
+            }
             set
             {
                 if( _tcpWindowSize != value )
@@ -329,7 +332,10 @@ namespace Sniffy
         /// </value>
         public string TcpWindowUnit
         {
-            get { return _tcpWindowUnit; }
+            get
+            {
+                return _tcpWindowUnit;
+            }
             set
             {
                 if( _tcpWindowUnit != value )
@@ -348,7 +354,10 @@ namespace Sniffy
         /// </value>
         public int BandWidth
         {
-            get { return _bandWidth; }
+            get
+            {
+                return _bandWidth;
+            }
             set
             {
                 if( _bandWidth != value )
@@ -367,7 +376,10 @@ namespace Sniffy
         /// </value>
         public string BandWidthUnit
         {
-            get { return _bandWidthUnit; }
+            get
+            {
+                return _bandWidthUnit;
+            }
             set
             {
                 if( _bandWidthUnit != value )
@@ -384,15 +396,18 @@ namespace Sniffy
         /// <value>
         /// The length of the packet.
         /// </value>
-        public int PacketLen
+        public int PacketLength
         {
-            get { return _packetLen; }
+            get
+            {
+                return _packetLength;
+            }
             set
             {
-                if( _packetLen != value )
+                if( _packetLength != value )
                 {
-                    _packetLen = value;
-                    OnPropertyChanged( nameof( PacketLen ) );
+                    _packetLength = value;
+                    OnPropertyChanged( nameof( PacketLength ) );
                 }
             }
         }
@@ -405,7 +420,10 @@ namespace Sniffy
         /// </value>
         public bool TcpFlag
         {
-            get { return _tcpFlag; }
+            get
+            {
+                return _tcpFlag;
+            }
             set
             {
                 if( _tcpFlag != value )
@@ -424,7 +442,10 @@ namespace Sniffy
         /// </value>
         public bool UdpFlag
         {
-            get { return _udpFlag; }
+            get
+            {
+                return _udpFlag;
+            }
             set
             {
                 if( _udpFlag != value )
@@ -436,14 +457,18 @@ namespace Sniffy
         }
 
         /// <summary>
-        /// Gets or sets a value indicating whether this <see cref="PerformanceModel"/> is reverse.
+        /// Gets or sets a value indicating whether this
+        /// <see cref="PerformanceModel"/> is reverse.
         /// </summary>
         /// <value>
         ///   <c>true</c> if reverse; otherwise, <c>false</c>.
         /// </value>
         public bool Reverse
         {
-            get { return _reverse; }
+            get
+            {
+                return _reverse;
+            }
             set
             {
                 if( _reverse != value )
@@ -462,7 +487,10 @@ namespace Sniffy
         /// </value>
         public double Throughput
         {
-            get { return _throughput; }
+            get
+            {
+                return _throughput;
+            }
             set
             {
                 if( _throughput != value )

@@ -11,7 +11,7 @@
     <Color x:Key="ContentBackgroundAlt2.Color">#FF2828282</Color>
     <Color x:Key="BorderAlt1.Color">#FF656565</Color>
     <Color x:Key="ErrorBackground.Color">#FF6B0101</Color>
-    <Color x:Key="SuccessForeground.Color">#FF1ED700</Color>
+    <Color x:Key="SuccessForeground.Color">Lime</Color>
     <Color x:Key="WarningForeground.Color">#FFFF5B03</Color>
     <Color x:Key="LinkForeground.Color">#FF0078D4</Color>
     <Color x:Key="ContentForeground.Color">#FFA0BDFC</Color>
@@ -39,7 +39,7 @@
     <Color x:Key="BorderAlt5.Color">#FFA0BDFC</Color>
     <Color x:Key="IconColorDisabled.Color">#66FFFFFF</Color>
     <Color x:Key="IconColorHovered.Color">#FFA0BDFC</Color>
-    <Color x:Key="IconColorSelected.Color">#FF4682B4</Color>
+    <Color x:Key="IconColorSelected.Color">Lime</Color>
     <Color x:Key="ContentBackgroundSelected.Color">#FF4682B4</Color>
     <Color x:Key="Series1.Color">#FF4682B4</Color>
     <Color x:Key="Series2.Color">#FFA9A9A9</Color>

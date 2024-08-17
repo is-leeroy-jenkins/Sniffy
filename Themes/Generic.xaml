@@ -1,7 +1,6 @@
 <ResourceDictionary
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="clr-namespace:Sniffy"
     xmlns:skin="clr-namespace:Syncfusion.Themes.FluentDark.WPF;assembly=Syncfusion.Themes.FluentDark.WPF">
 
     <Style TargetType="{x:Type skin:RevealItem}">
@@ -17,11 +16,11 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type skin:RevealItem}">
-                    <Grid x:Name="rootGrid">
+                    <Grid x:Name="RootGrid">
                         <Grid.Resources>
                             <Storyboard x:Key="PressedRevealStoryboard">
                                 <DoubleAnimation
-                                    Storyboard.TargetName="backgroundBorder"
+                                    Storyboard.TargetName="BackgroundBorder"
                                     Storyboard.TargetProperty="(UIElement.Opacity)"
                                     To="0.8"
                                     Duration="0:0:0.600">
@@ -31,7 +30,7 @@
                                 </DoubleAnimation>
 
                                 <DoubleAnimation
-                                    Storyboard.TargetName="pressedRect"
+                                    Storyboard.TargetName="PressedRect"
                                     Storyboard.TargetProperty="(UIElement.Opacity)"
                                     To="1"
                                     Duration="0:0:0.200">
@@ -41,7 +40,7 @@
                                 </DoubleAnimation>
                                 <DoubleAnimation
                                     BeginTime="0:0:0.150"
-                                    Storyboard.TargetName="pressedRect"
+                                    Storyboard.TargetName="PressedRect"
                                     Storyboard.TargetProperty="(UIElement.Opacity)"
                                     To="0.1"
                                     Duration="0:0:1.000">
@@ -51,7 +50,7 @@
                                 </DoubleAnimation>
 
                                 <DoubleAnimation
-                                    Storyboard.TargetName="pressedRectBrush"
+                                    Storyboard.TargetName="PressedRectBrush"
                                     Storyboard.TargetProperty="(RadialGradientBrush.RadiusX)"
                                     From="100"
                                     To="50"
@@ -62,7 +61,7 @@
                                 </DoubleAnimation>
                                 <DoubleAnimation
                                     BeginTime="0:0:0.150"
-                                    Storyboard.TargetName="pressedRectBrush"
+                                    Storyboard.TargetName="PressedRectBrush"
                                     Storyboard.TargetProperty="(RadialGradientBrush.RadiusX)"
                                     To="200"
                                     Duration="0:0:1.000">
@@ -71,7 +70,7 @@
                                     </DoubleAnimation.EasingFunction>
                                 </DoubleAnimation>
                                 <DoubleAnimation
-                                    Storyboard.TargetName="pressedRectBrush"
+                                    Storyboard.TargetName="PressedRectBrush"
                                     Storyboard.TargetProperty="(RadialGradientBrush.RadiusY)"
                                     From="100"
                                     To="50"
@@ -82,7 +81,7 @@
                                 </DoubleAnimation>
                                 <DoubleAnimation
                                     BeginTime="0:0:0.150"
-                                    Storyboard.TargetName="pressedRectBrush"
+                                    Storyboard.TargetName="PressedRectBrush"
                                     Storyboard.TargetProperty="(RadialGradientBrush.RadiusY)"
                                     To="200"
                                     Duration="0:0:1.000">
@@ -91,7 +90,7 @@
                                     </DoubleAnimation.EasingFunction>
                                 </DoubleAnimation>
                                 <DoubleAnimation
-                                    Storyboard.TargetName="pressedRectOffset"
+                                    Storyboard.TargetName="PressedRectOffset"
                                     Storyboard.TargetProperty="Offset"
                                     To="0"
                                     Duration="0:0:0.000">
@@ -101,7 +100,7 @@
                                 </DoubleAnimation>
                                 <DoubleAnimation
                                     BeginTime="0:0:0.150"
-                                    Storyboard.TargetName="pressedRectOffset"
+                                    Storyboard.TargetName="PressedRectOffset"
                                     Storyboard.TargetProperty="Offset"
                                     From="0"
                                     To="0.8"
@@ -113,7 +112,7 @@
 
                                 <DoubleAnimation
                                     BeginTime="0:0:0.200"
-                                    Storyboard.TargetName="pressedRectBrush"
+                                    Storyboard.TargetName="PressedRectBrush"
                                     Storyboard.TargetProperty="Opacity"
                                     To="0"
                                     Duration="0:0:1.500">
@@ -125,7 +124,7 @@
 
                             <Storyboard x:Key="PressedGlowStoryboard">
                                 <DoubleAnimation
-                                    Storyboard.TargetName="pressedGlowBorder"
+                                    Storyboard.TargetName="PressedGlowBorder"
                                     Storyboard.TargetProperty="(UIElement.Opacity)"
                                     To="1"
                                     Duration="0:0:0.200">
@@ -135,33 +134,33 @@
                                 </DoubleAnimation>
                             </Storyboard>
                         </Grid.Resources>
-                        <Border x:Name="backgroundBorder">
+                        <Border x:Name="BackgroundBorder">
                             <Grid ClipToBounds="True">
                                 <Border
-                                    x:Name="backgroundMouseOver"
+                                    x:Name="BackgroundMouseOver"
                                     Visibility="Collapsed" />
                                 <Rectangle
-                                    x:Name="pressedRect"
+                                    x:Name="PressedRect"
                                     Opacity="0.1">
                                     <Rectangle.Fill>
-                                        <RadialGradientBrush x:Name="pressedRectBrush" MappingMode="Absolute" RadiusX="200" RadiusY="200">
+                                        <RadialGradientBrush x:Name="PressedRectBrush" MappingMode="Absolute" RadiusX="200" RadiusY="200">
                                             <GradientStop Offset="0" Color="Transparent" />
-                                            <GradientStop x:Name="pressedRectOffset" Offset="0.5" Color="#33000000" />
+                                            <GradientStop x:Name="PressedRectOffset" Offset="0.5" Color="#33000000" />
                                             <GradientStop Offset="1" Color="Transparent" />
                                         </RadialGradientBrush>
                                     </Rectangle.Fill>
                                 </Rectangle>
                             </Grid>
                         </Border>
-                        <Grid x:Name="border">
+                        <Grid x:Name="Border">
                             <Border
-                                x:Name="borderMouseOver"
+                                x:Name="BorderMouseOver"
                                 Background="Transparent"
                                 BorderBrush="{TemplateBinding BorderBrush}"
                                 BorderThickness="{Binding Path=BorderThickness, RelativeSource={RelativeSource TemplatedParent}}"
                                 CornerRadius="{Binding Path=CornerRadius, RelativeSource={RelativeSource TemplatedParent}}">
                                 <Border
-                                    x:Name="pressedGlowBorder"
+                                    x:Name="PressedGlowBorder"
                                     Margin="-3"
                                     Background="Transparent"
                                     BorderThickness="2"
@@ -175,7 +174,7 @@
                             </Border>
 
                             <Border
-                                x:Name="borderOpacityMask"
+                                x:Name="BorderOpacityMask"
                                 Background="Transparent"
                                 BorderBrush="{TemplateBinding BorderBrush}"
                                 BorderThickness="{Binding Path=BorderThickness, RelativeSource={RelativeSource TemplatedParent}}"
@@ -190,21 +189,21 @@
                                 <Condition Property="HoverEffectMode" Value="Border" />
                                 <Condition Property="IsMouseOver" Value="True" />
                             </MultiTrigger.Conditions>
-                            <Setter TargetName="borderMouseOver" Property="Opacity" Value="{Binding Path=HoverBorderOpacity, RelativeSource={RelativeSource Mode=TemplatedParent}}" />
-                            <Setter TargetName="borderMouseOver" Property="BorderBrush" Value="{Binding Path=HoverBorder, RelativeSource={RelativeSource Mode=TemplatedParent}}" />
-                            <Setter TargetName="borderOpacityMask" Property="Visibility" Value="Visible" />
-                            <Setter TargetName="backgroundMouseOver" Property="Visibility" Value="Collapsed" />
+                            <Setter TargetName="BorderMouseOver" Property="Opacity" Value="{Binding Path=HoverBorderOpacity, RelativeSource={RelativeSource Mode=TemplatedParent}}" />
+                            <Setter TargetName="BorderMouseOver" Property="BorderBrush" Value="{Binding Path=HoverBorder, RelativeSource={RelativeSource Mode=TemplatedParent}}" />
+                            <Setter TargetName="BorderOpacityMask" Property="Visibility" Value="Visible" />
+                            <Setter TargetName="BackgroundMouseOver" Property="Visibility" Value="Collapsed" />
                         </MultiTrigger>
                         <MultiTrigger>
                             <MultiTrigger.Conditions>
                                 <Condition Property="PressedEffectMode" Value="Glow" />
                                 <Condition Property="IsMouseOver" Value="True" />
                             </MultiTrigger.Conditions>
-                            <Setter TargetName="borderMouseOver" Property="Background" Value="{Binding Path=HoverBackground, RelativeSource={RelativeSource Mode=TemplatedParent}}" />
-                            <Setter TargetName="borderMouseOver" Property="Opacity" Value="{Binding Path=HoverBorderOpacity, RelativeSource={RelativeSource Mode=TemplatedParent}}" />
-                            <Setter TargetName="borderMouseOver" Property="BorderBrush" Value="{Binding Path=HoverBorder, RelativeSource={RelativeSource Mode=TemplatedParent}}" />
-                            <Setter TargetName="borderOpacityMask" Property="Visibility" Value="Visible" />
-                            <Setter TargetName="backgroundMouseOver" Property="Visibility" Value="Collapsed" />
+                            <Setter TargetName="BorderMouseOver" Property="Background" Value="{Binding Path=HoverBackground, RelativeSource={RelativeSource Mode=TemplatedParent}}" />
+                            <Setter TargetName="BorderMouseOver" Property="Opacity" Value="{Binding Path=HoverBorderOpacity, RelativeSource={RelativeSource Mode=TemplatedParent}}" />
+                            <Setter TargetName="BorderMouseOver" Property="BorderBrush" Value="{Binding Path=HoverBorder, RelativeSource={RelativeSource Mode=TemplatedParent}}" />
+                            <Setter TargetName="BorderOpacityMask" Property="Visibility" Value="Visible" />
+                            <Setter TargetName="BackgroundMouseOver" Property="Visibility" Value="Collapsed" />
                         </MultiTrigger>
                         <MultiTrigger>
                             <MultiTrigger.Conditions>
@@ -212,11 +211,11 @@
                                 <Condition Property="IsMouseOver" Value="True" />
                                 <Condition Property="PressedEffectMode" Value="Reveal" />
                             </MultiTrigger.Conditions>
-                            <Setter TargetName="backgroundMouseOver" Property="Visibility" Value="Visible" />
-                            <Setter TargetName="borderMouseOver" Property="Opacity" Value="{Binding Path=HoverBorderOpacity, RelativeSource={RelativeSource Mode=TemplatedParent}}" />
-                            <Setter TargetName="borderMouseOver" Property="Background" Value="{Binding Path=HoverBackground, RelativeSource={RelativeSource Mode=TemplatedParent}}" />
-                            <Setter TargetName="borderMouseOver" Property="BorderBrush" Value="Transparent" />
-                            <Setter TargetName="borderOpacityMask" Property="Visibility" Value="Collapsed" />
+                            <Setter TargetName="BackgroundMouseOver" Property="Visibility" Value="Visible" />
+                            <Setter TargetName="BorderMouseOver" Property="Opacity" Value="{Binding Path=HoverBorderOpacity, RelativeSource={RelativeSource Mode=TemplatedParent}}" />
+                            <Setter TargetName="BorderMouseOver" Property="Background" Value="{Binding Path=HoverBackground, RelativeSource={RelativeSource Mode=TemplatedParent}}" />
+                            <Setter TargetName="BorderMouseOver" Property="BorderBrush" Value="Transparent" />
+                            <Setter TargetName="BorderOpacityMask" Property="Visibility" Value="Collapsed" />
                         </MultiTrigger>
                         <MultiTrigger>
                             <MultiTrigger.Conditions>
@@ -224,27 +223,27 @@
                                 <Condition Property="IsMouseOver" Value="True" />
                                 <Condition Property="PressedEffectMode" Value="Reveal" />
                             </MultiTrigger.Conditions>
-                            <Setter TargetName="backgroundMouseOver" Property="Visibility" Value="Visible" />
-                            <Setter TargetName="borderMouseOver" Property="Opacity" Value="{Binding Path=HoverBorderOpacity, RelativeSource={RelativeSource Mode=TemplatedParent}}" />
-                            <Setter TargetName="borderMouseOver" Property="Background" Value="{Binding Path=HoverBackground, RelativeSource={RelativeSource Mode=TemplatedParent}}" />
-                            <Setter TargetName="borderMouseOver" Property="BorderBrush" Value="{Binding Path=HoverBorder, RelativeSource={RelativeSource Mode=TemplatedParent}}" />
-                            <Setter TargetName="borderOpacityMask" Property="Visibility" Value="Visible" />
+                            <Setter TargetName="BackgroundMouseOver" Property="Visibility" Value="Visible" />
+                            <Setter TargetName="BorderMouseOver" Property="Opacity" Value="{Binding Path=HoverBorderOpacity, RelativeSource={RelativeSource Mode=TemplatedParent}}" />
+                            <Setter TargetName="BorderMouseOver" Property="Background" Value="{Binding Path=HoverBackground, RelativeSource={RelativeSource Mode=TemplatedParent}}" />
+                            <Setter TargetName="BorderMouseOver" Property="BorderBrush" Value="{Binding Path=HoverBorder, RelativeSource={RelativeSource Mode=TemplatedParent}}" />
+                            <Setter TargetName="BorderOpacityMask" Property="Visibility" Value="Visible" />
                         </MultiTrigger>
                         <MultiTrigger>
                             <MultiTrigger.Conditions>
                                 <Condition Property="IsPressed" Value="True" />
                                 <Condition Property="PressedEffectMode" Value="Glow" />
                             </MultiTrigger.Conditions>
-                            <Setter TargetName="backgroundBorder" Property="Visibility" Value="Collapsed" />
-                            <Setter TargetName="borderOpacityMask" Property="Visibility" Value="Collapsed" />
-                            <Setter TargetName="pressedGlowBorder" Property="Background" Value="{Binding Path=HoverBorder, RelativeSource={RelativeSource Mode=TemplatedParent}}" />
+                            <Setter TargetName="BackgroundBorder" Property="Visibility" Value="Collapsed" />
+                            <Setter TargetName="BorderOpacityMask" Property="Visibility" Value="Collapsed" />
+                            <Setter TargetName="PressedGlowBorder" Property="Background" Value="{Binding Path=HoverBorder, RelativeSource={RelativeSource Mode=TemplatedParent}}" />
                         </MultiTrigger>
                         <MultiTrigger>
                             <MultiTrigger.Conditions>
                                 <Condition Property="IsPressed" Value="True" />
                                 <Condition Property="PressedEffectMode" Value="Reveal" />
                             </MultiTrigger.Conditions>
-                            <Setter TargetName="borderMouseOver" Property="Opacity" Value="{Binding Path=PressedBorderOpacity, RelativeSource={RelativeSource Mode=TemplatedParent}}" />
+                            <Setter TargetName="BorderMouseOver" Property="Opacity" Value="{Binding Path=PressedBorderOpacity, RelativeSource={RelativeSource Mode=TemplatedParent}}" />
                         </MultiTrigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -266,7 +265,7 @@
                                     <BitmapCache RenderAtScale="0.2" />
                                 </ContentControl.CacheMode>
                                 <Rectangle
-                                    x:Name="panelRect"
+                                    x:Name="PanelRect"
                                     Width="{Binding Target.ActualWidth, RelativeSource={RelativeSource AncestorType={x:Type skin:SfAcrylicPanel}}}"
                                     Height="{Binding Target.ActualHeight, RelativeSource={RelativeSource AncestorType={x:Type skin:SfAcrylicPanel}}}"
                                     ClipToBounds="False"
@@ -584,83 +583,83 @@
 
     <Image
         x:Key="ACCDB"
-        Source="/Resources/Assets/ExtensionsImages/ACCDB.png" />
+        Source="/Resources/Assets/ExtensionImages/ACCDB.png" />
 
     <Image
         x:Key="CSV"
-        Source="/Resources/Assets/ExtensionsImages/CSV.png" />
+        Source="/Resources/Assets/ExtensionImages/CSV.png" />
 
     <Image
         x:Key="DB"
-        Source="/Resources/Assets/ExtensionsImages/DB.png" />
+        Source="/Resources/Assets/ExtensionImages/DB.png" />
 
     <Image
         x:Key="DLL"
-        Source="/Resources/Assets/ExtensionsImages/DLL.png" />
+        Source="/Resources/Assets/ExtensionImages/DLL.png" />
 
     <Image
         x:Key="DOC"
-        Source="/Resources/Assets/ExtensionsImages/DOC.png" />
+        Source="/Resources/Assets/ExtensionImages/DOC.png" />
 
     <Image
         x:Key="DOCX"
-        Source="/Resources/Assets/ExtensionsImages/DOCX.png" />
+        Source="/Resources/Assets/ExtensionImages/DOCX.png" />
 
     <Image
         x:Key="EXE"
-        Source="/Resources/Assets/ExtensionsImages/EXE.png" />
+        Source="/Resources/Assets/ExtensionImages/EXE.png" />
 
     <Image
         x:Key="MDB"
-        Source="/Resources/Assets/ExtensionsImages/MDB.png" />
+        Source="/Resources/Assets/ExtensionImages/MDB.png" />
 
     <Image
         x:Key="MDF"
-        Source="/Resources/Assets/ExtensionsImages/MDF.png" />
+        Source="/Resources/Assets/ExtensionImages/MDF.png" />
 
     <Image
         x:Key="PDF"
-        Source="/Resources/Assets/ExtensionsImages/PDF.png" />
+        Source="/Resources/Assets/ExtensionImages/PDF.png" />
 
     <Image
         x:Key="PNG"
-        Source="/Resources/Assets/ExtensionsImages/PNG.png" />
+        Source="/Resources/Assets/ExtensionImages/PNG.png" />
 
     <Image
         x:Key="PPTX"
-        Source="/Resources/Assets/ExtensionsImages/PPTX.png" />
+        Source="/Resources/Assets/ExtensionImages/PPTX.png" />
 
     <Image
         x:Key="PY"
-        Source="/Resources/Assets/ExtensionsImages/PY.png" />
+        Source="/Resources/Assets/ExtensionImages/PY.png" />
 
     <Image
         x:Key="SDF"
-        Source="/Resources/Assets/ExtensionsImages/SDF.png" />
+        Source="/Resources/Assets/ExtensionImages/SDF.png" />
 
     <Image
         x:Key="SQL"
-        Source="/Resources/Assets/ExtensionsImages/SQL.png" />
+        Source="/Resources/Assets/ExtensionImages/SQL.png" />
 
     <Image
         x:Key="TXT"
-        Source="/Resources/Assets/ExtensionsImages/TXT.png" />
+        Source="/Resources/Assets/ExtensionImages/TXT.png" />
 
     <Image
         x:Key="XLS"
-        Source="/Resources/Assets/ExtensionsImages/XLS.png" />
+        Source="/Resources/Assets/ExtensionImages/XLS.png" />
 
     <Image
         x:Key="XLSX"
-        Source="/Resources/Assets/ExtensionsImages/XLSX.png" />
+        Source="/Resources/Assets/ExtensionImages/XLSX.png" />
 
     <Image
         x:Key="XML"
-        Source="/Resources/Assets/ExtensionsImages/XML.png" />
+        Source="/Resources/Assets/ExtensionImages/XML.png" />
 
     <Image
         x:Key="HTML"
-        Source="/Resources/Assets/ExtensionsImages/HTML.png" />
+        Source="/Resources/Assets/ExtensionImages/HTML.png" />
 
     <!--  Provider Resources  -->
 

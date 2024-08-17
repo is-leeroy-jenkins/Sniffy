@@ -1,6 +1,10 @@
 ﻿<ResourceDictionary
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:Sniffy">
+
+
+    <!--  ********************************************** Resources ***********************************************  -->
 
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="/Themes/Colors.xaml" />
@@ -11,7 +15,8 @@
     <Geometry x:Key="ArrowTop">M 3 0 L 6 3 0 3z</Geometry>
     <Geometry x:Key="ArrowBottom">M 0 0 L 3 3 6 0z</Geometry>
 
-    <!--  DataGridSelectAllButtonStyle  -->
+    <!--  **********************************************       ***********************************************  -->
+
     <Style
         x:Key="{ComponentResourceKey ResourceId=DataGridSelectAllButtonStyle,
                                      TypeInTargetAssembly={x:Type DataGrid}}"
@@ -51,6 +56,8 @@
         </Setter>
     </Style>
 
+    <!--  **********************************************       ***********************************************  -->
+
     <Style TargetType="{x:Type DataGridCell}">
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="BorderBrush" Value="Transparent" />
@@ -80,6 +87,8 @@
         </Style.Triggers>
     </Style>
 
+    <!--  **********************************************       ***********************************************  -->
+
     <Style
         x:Key="ColumnHeaderGripperStyle"
         TargetType="{x:Type Thumb}">
@@ -96,6 +105,8 @@
             </Setter.Value>
         </Setter>
     </Style>
+
+    <!--  **********************************************       ***********************************************  -->
 
     <Style TargetType="{x:Type DataGridColumnHeader}">
         <Setter Property="BorderThickness" Value="1" />
@@ -164,6 +175,8 @@
 
     <BooleanToVisibilityConverter x:Key="Bool2VisibilityConverter" />
 
+    <!--  **********************************************       ***********************************************  -->
+
     <Style
         x:Key="RowHeaderGripperStyle"
         TargetType="{x:Type Thumb}">
@@ -180,6 +193,8 @@
             </Setter.Value>
         </Setter>
     </Style>
+
+    <!--  **********************************************       ***********************************************  -->
 
     <Style TargetType="{x:Type DataGridRowHeader}">
         <Setter Property="BorderThickness" Value="1" />
@@ -228,6 +243,8 @@
             </Setter.Value>
         </Setter>
     </Style>
+
+    <!--**********************************************       ***********************************************-->
 
     <Style TargetType="{x:Type DataGridRow}">
         <Setter Property="Background" Value="{StaticResource DataGrid.Row.Background}" />
@@ -293,6 +310,8 @@
             </Trigger>
         </Style.Triggers>
     </Style>
+
+    <!--**********************************************       ***********************************************-->
 
     <Style TargetType="{x:Type DataGrid}">
         <Setter Property="HorizontalGridLinesBrush" Value="{StaticResource DataGrid.GridLines}" />

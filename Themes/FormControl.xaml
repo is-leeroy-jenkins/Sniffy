@@ -2,11 +2,14 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
+    <!--  ******************************** Resources  **************************************  -->
+
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="/Themes/BaseStyle.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
-    <!--  TextBox PasswordBox ComboBox CheckBox RadioButton  -->
+    <!--  ******************************** Resources  **************************************  -->
+
     <Style
         x:Key="FormControlBaseStyle"
         BasedOn="{StaticResource BaseStyle}"
@@ -100,7 +103,9 @@
             </Trigger>
         </Style.Triggers>
     </Style>
-    <!--  TextBox  -->
+
+    <!--  ******************************** TextBox  **************************************  -->
+
     <Style
         BasedOn="{StaticResource FormControlBaseStyle}"
         TargetType="{x:Type TextBox}">
@@ -113,7 +118,8 @@
             </Trigger>
         </Style.Triggers>
     </Style>
-    <!--  PasswordBox  -->
+    <!--  ******************************** Resources  **************************************  -->
+
     <Style
         BasedOn="{StaticResource FormControlBaseStyle}"
         TargetType="{x:Type PasswordBox}">
@@ -124,6 +130,8 @@
             </Trigger>
         </Style.Triggers>
     </Style>
+
+    <!--  ******************************** Resources  **************************************  -->
 
     <Style
         x:Key="Has-Success"
@@ -961,7 +969,9 @@
             </Trigger>
         </Style.Triggers>
     </Style>
-    <!--  CheckBox  -->
+
+    <!--  ********************************   **************************************  -->
+
     <Style
         x:Key="CheckBoxBaseStyle"
         BasedOn="{StaticResource FormControlBaseStyle}"
@@ -1028,6 +1038,7 @@
     <Style
         BasedOn="{StaticResource CheckBoxBaseStyle}"
         TargetType="{x:Type CheckBox}" />
+
     <Style
         x:Key="Checkbox Has-Success"
         BasedOn="{StaticResource CheckBoxBaseStyle}"
@@ -1035,6 +1046,7 @@
         <Setter Property="BorderBrush" Value="{DynamicResource Foreground-Success}" />
         <Setter Property="Foreground" Value="{DynamicResource Foreground-Success}" />
     </Style>
+
     <Style
         x:Key="Checkbox Has-Warning"
         BasedOn="{StaticResource CheckBoxBaseStyle}"
@@ -1042,6 +1054,7 @@
         <Setter Property="BorderBrush" Value="{DynamicResource Foreground-Warning}" />
         <Setter Property="Foreground" Value="{DynamicResource Foreground-Warning}" />
     </Style>
+
     <Style
         x:Key="Checkbox Has-Error"
         BasedOn="{StaticResource CheckBoxBaseStyle}"
@@ -1050,7 +1063,8 @@
         <Setter Property="Foreground" Value="{DynamicResource Foreground-Danger}" />
     </Style>
 
-    <!--  RadioButton  -->
+    <!--  ************************  RadioButtonBaseStyle  ****************************  -->
+
     <Style
         x:Key="RadioButtonBaseStyle"
         BasedOn="{StaticResource FormControlBaseStyle}"
@@ -1075,7 +1089,7 @@
                             BorderThickness="{TemplateBinding BorderThickness}"
                             CornerRadius="7">
                             <Ellipse
-                                x:Name="checkedEll"
+                                x:Name="CheckedEll"
                                 Width="8"
                                 Height="8"
                                 Fill="{TemplateBinding BorderBrush}"
@@ -1092,7 +1106,7 @@
                     </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsChecked" Value="true">
-                            <Setter TargetName="checkedEll" Property="Visibility" Value="Visible" />
+                            <Setter TargetName="CheckedEll" Property="Visibility" Value="Visible" />
                         </Trigger>
                         <Trigger Property="HasContent" Value="true">
                             <Setter Property="Padding" Value="4,0,0,0" />
@@ -1102,25 +1116,37 @@
             </Setter.Value>
         </Setter>
     </Style>
+
+    <!--  **************************  RadioButtonBaseStyle  **************************************  -->
+
     <Style
         BasedOn="{StaticResource RadioButtonBaseStyle}"
         TargetType="{x:Type RadioButton}" />
+
+    <!--  ******************************  Radio Has-Success **************************************  -->
+
     <Style
-        x:Key="radio has-success"
+        x:Key="Radio Has-Success"
         BasedOn="{StaticResource RadioButtonBaseStyle}"
         TargetType="{x:Type RadioButton}">
         <Setter Property="BorderBrush" Value="{DynamicResource Foreground-Success}" />
         <Setter Property="Foreground" Value="{DynamicResource Foreground-Success}" />
     </Style>
+
+    <!--  ******************************** Radio Has-Warning **************************************  -->
+
     <Style
-        x:Key="radio has-warning"
+        x:Key="Radio Has-Warning"
         BasedOn="{StaticResource RadioButtonBaseStyle}"
         TargetType="{x:Type RadioButton}">
         <Setter Property="BorderBrush" Value="{DynamicResource Foreground-Warning}" />
         <Setter Property="Foreground" Value="{DynamicResource Foreground-Warning}" />
     </Style>
+
+    <!--  ******************************** Radio Has-Error**************************************  -->
+
     <Style
-        x:Key="radio has-error"
+        x:Key="Radio Has-Error"
         BasedOn="{StaticResource RadioButtonBaseStyle}"
         TargetType="{x:Type RadioButton}">
         <Setter Property="BorderBrush" Value="{DynamicResource Foreground-Danger}" />

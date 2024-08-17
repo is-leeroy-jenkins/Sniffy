@@ -6,6 +6,9 @@
         <ResourceDictionary Source="/Themes/BaseStyle.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
+
+    <!--  ***************************  ButtonBaseBaseStyle  **************************  -->
+
     <Style
         x:Key="ButtonBaseBaseStyle"
         BasedOn="{StaticResource BaseStyle}"
@@ -20,6 +23,8 @@
         <Setter Property="HorizontalContentAlignment" Value="Center" />
         <Setter Property="VerticalContentAlignment" Value="Center" />
     </Style>
+
+    <!--  ************************ ButtonBaseStyle ***********************************  -->
 
     <Style
         x:Key="ButtonBaseStyle"
@@ -91,6 +96,8 @@
         </Setter>
     </Style>
 
+    <!--  ********************************   ToggleButtonBaseStyle  ***********************************  -->
+
     <Style
         x:Key="ToggleButtonBaseStyle"
         BasedOn="{StaticResource ButtonBaseBaseStyle}"
@@ -161,7 +168,9 @@
         </Setter>
     </Style>
 
-    <!--  Button  -->
+
+    <!--  ************************************      ButtonBaseStyle   *****************************  -->
+
     <Style
         BasedOn="{StaticResource ButtonBaseStyle}"
         TargetType="{x:Type Button}">
@@ -175,6 +184,8 @@
             </Trigger>
         </Style.Triggers>
     </Style>
+
+    <!--  ************************************  Button-Primary   ***********************************  -->
 
     <Style
         x:Key="Button-Primary"
@@ -190,6 +201,8 @@
         </Style.Triggers>
     </Style>
 
+    <!--  ************************************  Button-Success   ***********************************  -->
+
     <Style
         x:Key="Button-Success"
         BasedOn="{StaticResource ButtonBaseStyle}"
@@ -203,6 +216,8 @@
             </Trigger>
         </Style.Triggers>
     </Style>
+
+    <!--  ************************************  Button-Info   ***********************************  -->
 
     <Style
         x:Key="Button-Info"
@@ -218,8 +233,10 @@
         </Style.Triggers>
     </Style>
 
+    <!--  ************************************  Btn-Warning   ***********************************  -->
+
     <Style
-        x:Key="Btn-Warning"
+        x:Key="Button-Warning"
         BasedOn="{StaticResource ButtonBaseStyle}"
         TargetType="{x:Type Button}">
         <Setter Property="Background" Value="{DynamicResource Background-Warning1}" />
@@ -231,6 +248,8 @@
             </Trigger>
         </Style.Triggers>
     </Style>
+
+    <!--  ************************************  Button-Danger   ***********************************  -->
 
     <Style
         x:Key="Button-Danger"
@@ -246,7 +265,8 @@
         </Style.Triggers>
     </Style>
 
-    <!--  ToggleButton  -->
+    <!--  ************************************  ToggleButtonBaseStyle   ***********************************  -->
+
     <Style
         BasedOn="{StaticResource ToggleButtonBaseStyle}"
         TargetType="{x:Type ToggleButton}">
@@ -260,6 +280,8 @@
             </Trigger>
         </Style.Triggers>
     </Style>
+
+    <!--  ************************************  ToggleButton-Primary   ***********************************  -->
 
     <Style
         x:Key="ToggleButton-Primary"
@@ -275,6 +297,8 @@
         </Style.Triggers>
     </Style>
 
+    <!--  ************************************  ToggleButton-Success   ***********************************  -->
+
     <Style
         x:Key="ToggleButton-Success"
         BasedOn="{StaticResource ToggleButtonBaseStyle}"
@@ -288,6 +312,8 @@
             </Trigger>
         </Style.Triggers>
     </Style>
+
+    <!--  ************************************  ToggleButton-Info   ***********************************  -->
 
     <Style
         x:Key="ToggleButton-Info"
@@ -303,6 +329,8 @@
         </Style.Triggers>
     </Style>
 
+    <!--  ************************************  ToggleButton-Warning   ***********************************  -->
+
     <Style
         x:Key="ToggleButton-Warning"
         BasedOn="{StaticResource ToggleButtonBaseStyle}"
@@ -316,6 +344,8 @@
             </Trigger>
         </Style.Triggers>
     </Style>
+
+    <!--  ************************************  ToggleButton-Danger   ***********************************  -->
 
     <Style
         x:Key="ToggleButton-Danger"

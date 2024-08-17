@@ -6,7 +6,7 @@
         x:Key="TabControlEx"
         TargetType="{x:Type TabItem}">
 
-        <Setter Property="Foreground" Value="White" />
+        <Setter Property="Foreground" Value="#FFA0BDFC" />
         <Setter Property="HorizontalAlignment" Value="Stretch" />
         <Setter Property="Template">
             <Setter.Value>
@@ -14,8 +14,8 @@
                     <Border
                         Name="Border"
                         Margin="2,0"
-                        BorderBrush="Gainsboro"
-                        BorderThickness="1,1,1,0"
+                        BorderBrush="#FF0078D4"
+                        BorderThickness="1,1,1,1"
                         CornerRadius="2,2,0,0">
                         <ContentPresenter
                             x:Name="ContentSite"
@@ -26,16 +26,15 @@
                     </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsSelected" Value="True">
-                            <Setter TargetName="Border" Property="Background" Value="#0963c5" />
+                            <Setter TargetName="Border" Property="Background" Value="#FF0078D4" />
                             <Setter TargetName="Border" Property="Height" Value="28" />
                         </Trigger>
                         <Trigger Property="IsSelected" Value="False">
-                            <Setter TargetName="Border" Property="Background" Value="Gray" />
+                            <Setter TargetName="Border" Property="Background" Value="#FF012336" />
                             <Setter TargetName="Border" Property="Height" Value="25" />
                         </Trigger>
                         <Trigger Property="IsMouseOver" Value="True">
-                            <!--<Setter TargetName="Border" Property="Background" Value="#1e54b6" />-->
-                            <Setter TargetName="Border" Property="Background" Value="#2d6bdc" />
+                            <Setter TargetName="Border" Property="Background" Value="#FFA0BDFC" />
                             <Setter TargetName="Border" Property="Opacity" Value="1" />
                         </Trigger>
                     </ControlTemplate.Triggers>
