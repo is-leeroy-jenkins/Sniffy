@@ -33,7 +33,7 @@
 
 
 
-    <!--  ******************************************** Content *********************************************  -->
+    <!--  ******************************************** Content ***********************************************  -->
 
 
     <Grid>
@@ -97,7 +97,7 @@
 
                         <TextBlock
                             Grid.Row="1"
-                            Style="{DynamicResource MenuItemText}"
+                            Style="{DynamicResource MenuItemTextStyle}"
                             Text="Version" />
                         <ComboBox
                             Grid.Row="1"
@@ -112,7 +112,7 @@
                         </ComboBox>
                         <TextBlock
                             Grid.Row="2"
-                            Style="{DynamicResource MenuItemText}"
+                            Style="{DynamicResource MenuItemTextStyle}"
                             Text="Role" />
                         <ComboBox
                             Grid.Row="2"
@@ -127,7 +127,7 @@
                         </ComboBox>
                         <TextBlock
                             Grid.Row="3"
-                            Style="{DynamicResource MenuItemText}"
+                            Style="{DynamicResource MenuItemTextStyle}"
                             Text="Server IP" />
                         <TextBox
                             Grid.Row="3"
@@ -137,7 +137,7 @@
                             Text="{Binding PerformanceModel.ServerIpAddress}" />
                         <TextBlock
                             Grid.Row="4"
-                            Style="{DynamicResource MenuItemText}"
+                            Style="{DynamicResource MenuItemTextStyle}"
                             Text="Port" />
                         <local:TextBoxEx
                             Grid.Row="4"
@@ -146,7 +146,7 @@
 
                         <TextBlock
                             Grid.Row="5"
-                            Style="{DynamicResource MenuItemText}"
+                            Style="{DynamicResource MenuItemTextStyle}"
                             Text="Parallel" />
                         <local:TextBoxEx
                             Grid.Row="5"
@@ -155,7 +155,7 @@
 
                         <TextBlock
                             Grid.Row="6"
-                            Style="{DynamicResource MenuItemText}"
+                            Style="{DynamicResource MenuItemTextStyle}"
                             Text="Time(s)" />
                         <local:TextBoxEx
                             Grid.Row="6"
@@ -164,7 +164,7 @@
 
                         <TextBlock
                             Grid.Row="7"
-                            Style="{DynamicResource MenuItemText}"
+                            Style="{DynamicResource MenuItemTextStyle}"
                             Text="Interval(s)" />
                         <local:TextBoxEx
                             Grid.Row="7"
@@ -179,7 +179,7 @@
                             Content="TCP Window Size"
                             GroupName="TcpUdp"
                             IsChecked="{Binding PerformanceModel.TcpFlag}"
-                            Style="{DynamicResource MenuItemRadioButton}" />
+                            Style="{DynamicResource MenuItemRadioButtonStyle}" />
                         <local:TextBoxEx
                             Grid.Row="8"
                             Width="45"
@@ -209,7 +209,7 @@
                             Content="UDP Bandwidth"
                             GroupName="TcpUdp"
                             IsChecked="{Binding PerformanceModel.UdpFlag}"
-                            Style="{DynamicResource MenuItemRadioButton}" />
+                            Style="{DynamicResource MenuItemRadioButtonStyle}" />
 
                         <local:TextBoxEx
                             Grid.Row="9"
@@ -232,19 +232,21 @@
                             <ComboBoxItem>K</ComboBoxItem>
                             <ComboBoxItem>k</ComboBoxItem>
                         </ComboBox>
+
                         <TextBlock
                             Grid.Row="10"
-                            Style="{DynamicResource MenuItemText}"
+                            Style="{DynamicResource MenuItemTextStyle}"
                             Text="Packet Length" />
                         <local:TextBoxEx
                             Grid.Row="10"
                             Text="{Binding PerformanceModel.PacketLength}" />
+
                         <CheckBox
                             Grid.Row="11"
                             Margin="10,10,0,10"
                             Content="Reverse Transmit"
                             IsChecked="{Binding PerformanceModel.Reverse}"
-                            Style="{StaticResource MenuItemCheckBox}" />
+                            Style="{StaticResource MenuItemCheckBoxStyle}" />
 
                     </Grid>
                 </GroupBox>
@@ -313,13 +315,13 @@
                     Grid.Column="1"
                     Margin="45,0,0,0"
                     ButtonType="Normal"
-                    Command="{Binding StopIperfCommand}"
+                    Command="{Binding StopPerformanceCommand}"
                     Content="Stop" />
                 <local:ButtonEx
                     Grid.Column="1"
                     Margin="80,0,0,0"
                     ButtonType="Normal"
-                    Command="{Binding IperfHelpCommand}"
+                    Command="{Binding HelpCommand}"
                     Content="Help" />
 
             </Grid>

@@ -15,10 +15,10 @@
         <ResourceDictionary Source="/Themes/TabControlEx.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
-    <!--  ********************************  MenuItemText   **************************************  -->
+    <!--********************************  MenuItemTextStyle   **************************************-->
 
     <Style
-        x:Key="MenuItemText"
+        x:Key="MenuItemTextStyle"
         TargetType="TextBlock">
         <Setter Property="Margin" Value="10,5,0,0" />
         <Setter Property="HorizontalAlignment" Value="Left" />
@@ -26,20 +26,20 @@
         <Setter Property="FontSize" Value="12" />
     </Style>
 
-    <!--  ********************************  MenuItemComboBox **************************************  -->
+    <!--********************************  MenuItemComboBoxStyle **************************************-->
 
     <Style
-        x:Key="MenuItemComboBox"
+        x:Key="MenuItemComboBoxStyle"
         TargetType="ComboBox">
         <Setter Property="Margin" Value="0,5,10,0" />
         <Setter Property="HorizontalAlignment" Value="Right" />
         <Setter Property="VerticalAlignment" Value="Center" />
     </Style>
 
-    <!--  ******************************** MenuItemCheckBox  **************************************  -->
+    <!--******************************** MenuItemCheckBoxStyle  **************************************-->
 
     <Style
-        x:Key="MenuItemCheckBox"
+        x:Key="MenuItemCheckBoxStyle"
         TargetType="CheckBox">
         <Setter Property="Margin" Value="10,5,0,0" />
         <Setter Property="HorizontalAlignment" Value="Left" />
@@ -47,10 +47,10 @@
         <Setter Property="Foreground" Value="#FFA0BDFC" />
     </Style>
 
-    <!--  ********************************  MenuItemRadioButton  **************************************  -->
+    <!--********************************  MenuItemRadioButtonStyle  **************************************-->
 
     <Style
-        x:Key="MenuItemRadioButton"
+        x:Key="MenuItemRadioButtonStyle"
         TargetType="RadioButton">
         <Setter Property="Margin" Value="10,5,0,0" />
         <Setter Property="HorizontalAlignment" Value="Left" />
@@ -58,7 +58,7 @@
         <Setter Property="Foreground" Value="#FFA0BDFC" />
     </Style>
 
-    <!--  ******************************** SearchBoxStyle  **************************************  -->
+    <!--*************************************** SearchBoxStyle  **************************************-->
 
 
     <Style
@@ -96,7 +96,7 @@
         </Setter>
     </Style>
 
-    <!--  ********************************   SearchTextStyle  **************************************  -->
+    <!--**********************************   SearchTextStyle  *****************************************-->
 
     <Style
         x:Key="SearchTextStyle"
@@ -118,7 +118,7 @@
         </Style.Triggers>
     </Style>
 
-    <!--  ********************************     MenuButtonStyle           *************************  -->
+    <!--  ***********************************     MenuButtonStyle           ****************************  -->
 
     <Style
         x:Key="MenuButtonStyle"
@@ -170,25 +170,25 @@
                             Height="20"
                             Margin="0,0,5,0"
                             HorizontalAlignment="Left"
-                            Background="#FF0078D4"
+                            Background="{DynamicResource BlueBorderColor}"
                             CornerRadius="2"
                             Visibility="Collapsed" />
 
                     </Grid>
 
-                    <!--  ********************************      Triggers         **************************************  -->
+  <!--*****************************************      Triggers         ****************************************-->
 
                     <ControlTemplate.Triggers>
 
                         <Trigger Property="IsMouseOver" Value="True">
 
-                            <Setter TargetName="Border" Property="Background" Value="#FFA0BDFC" />
+                            <Setter TargetName="Border" Property="Background" Value="{DynamicResource LightBlueColor}" />
 
                         </Trigger>
 
                         <Trigger Property="IsChecked" Value="True">
 
-                            <Setter TargetName="Border" Property="Background" Value="#FFA0BDFC" />
+                            <Setter TargetName="Border" Property="Background" Value="{DynamicResource BlueBorderColor}" />
 
 
                             <Setter TargetName="Highlighter" Property="Visibility" Value="Visible" />

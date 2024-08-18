@@ -70,7 +70,7 @@ namespace Sniffy
 				new ProtocolStats( IpV4Protocol.InternetGroupManagementProtocol )
 			};
 
-			ConnectionStats = new ObservableCollection<Ipv4ConnectionStats>( );
+			ConnectionStats = new ObservableCollection<ConnectionStats>( );
 			PacketCount = 0;
 			ByteCount = 0;
 		}
@@ -113,7 +113,7 @@ namespace Sniffy
 		/// <value>
 		/// The connection stats.
 		/// </value>
-		public static ObservableCollection<Ipv4ConnectionStats> ConnectionStats
+		public static ObservableCollection<ConnectionStats> ConnectionStats
 		{
 			get;
 			private set;
@@ -185,31 +185,31 @@ namespace Sniffy
 			}
 
 			var _connStats = ConnectionStats.Where( c =>
-				( c.AddressA == newPacket.Ethernet.IpV4.Source
-					|| c.AddressA == newPacket.Ethernet.IpV4.Destination )
-				&& ( c.AddressB == newPacket.Ethernet.IpV4.Source
-					|| c.AddressB == newPacket.Ethernet.IpV4.Destination ) ).FirstOrDefault( );
+				( c.ClientAddress == newPacket.Ethernet.IpV4.Source
+					|| c.ClientAddress == newPacket.Ethernet.IpV4.Destination )
+				&& ( c.ServerAddress == newPacket.Ethernet.IpV4.Source
+					|| c.ServerAddress == newPacket.Ethernet.IpV4.Destination ) ).FirstOrDefault( );
 
 			if( _connStats == null )
 			{
-				_connStats = new Ipv4ConnectionStats( newPacket.Ethernet.IpV4.Source,
+				_connStats = new ConnectionStats( newPacket.Ethernet.IpV4.Source,
 					newPacket.Ethernet.IpV4.Destination );
 
-				_connStats.ByteCountAToB = newPacket.Length;
-				_connStats.PacketCountAToB++;
+				_connStats.ClientServerByteCount = newPacket.Length;
+				_connStats.ClientServerPacketCount++;
 				ConnectionStats.Add( _connStats );
 			}
 			else
 			{
-				if( _connStats.AddressA == newPacket.Ethernet.IpV4.Source )
+				if( _connStats.ClientAddress == newPacket.Ethernet.IpV4.Source )
 				{
-					_connStats.PacketCountAToB++;
-					_connStats.ByteCountAToB += newPacket.Length;
+					_connStats.ClientServerPacketCount++;
+					_connStats.ClientServerByteCount += newPacket.Length;
 				}
 				else
 				{
-					_connStats.PacketCountBToA++;
-					_connStats.ByteCountBToA += newPacket.Length;
+					_connStats.ServerClientPacketCount++;
+					_connStats.ServerClientByteCount += newPacket.Length;
 				}
 			}
 		}

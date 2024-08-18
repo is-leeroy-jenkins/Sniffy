@@ -45,7 +45,6 @@ namespace Sniffy
     using Syncfusion.Windows.Controls.Input;
     using System;
     using System.Diagnostics.CodeAnalysis;
-    using System.Windows.Media;
 
     /// <inheritdoc />
     /// <summary>
@@ -73,8 +72,8 @@ namespace Sniffy
         {
             // Control Properties
             SetResourceReference( StyleProperty, typeof( SfCalculator ) );
-            FontFamily = new FontFamily( "Segoe UI" );
-            FontSize = 12;
+            FontFamily = _theme.FontFamily;
+            FontSize = _theme.FontSize;
             Background = _theme.BackColor;
             BorderBrush = _theme.BackColor;
             Foreground = _theme.ForeColor;

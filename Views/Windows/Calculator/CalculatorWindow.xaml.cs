@@ -65,39 +65,6 @@ namespace Sniffy
         /// </summary>
         private protected DarkTheme _theme = new DarkTheme( );
 
-        /// <summary>
-        /// The back color
-        /// </summary>
-        private protected Color _backColor = new Color( )
-        {
-            A = 255,
-            R = 0,
-            G = 0,
-            B = 0
-        };
-
-        /// <summary>
-        /// The fore color
-        /// </summary>
-        private protected Color _foreColor = new Color( )
-        {
-            A = 255,
-            R = 106,
-            G = 189,
-            B = 252
-        };
-
-        /// <summary>
-        /// The border color
-        /// </summary>
-        private protected Color _borderColor = new Color( )
-        {
-            A = 255,
-            R = 0,
-            G = 120,
-            B = 212
-        };
-
         /// <inheritdoc />
         /// <summary>
         /// Initializes a new instance of the
@@ -107,16 +74,13 @@ namespace Sniffy
             : base( )
         {
             // Theme Properties
-            SfSkinManager.ApplyStylesOnApplication = true;
-            SfSkinManager.SetTheme( this, new Theme( "FluentDark" ) );
+            SfSkinManager.SetTheme( this, new Theme( "FluentDark", App.Controls ) );
 
             // Window Plumbing
             InitializeComponent( );
             RegisterCallbacks( );
 
             // Window Properties
-            FontFamily = new FontFamily( "Segoe UI" );
-            FontSize = 12d;
             Height = 480;
             Width = 430;
             Padding = new Thickness( 1 );
@@ -125,9 +89,8 @@ namespace Sniffy
             WindowStyle = WindowStyle.None;
             Title = "Calculator";
             WindowStartupLocation = WindowStartupLocation.CenterScreen;
-            Background = new SolidColorBrush( _backColor );
-            Foreground = new SolidColorBrush( _foreColor );
-            BorderBrush = new SolidColorBrush( _borderColor );
+            FontFamily = _theme.FontFamily;
+            FontSize = _theme.FontSize;
 
             // Window Event Wiring
             Loaded += OnLoaded;
@@ -143,7 +106,7 @@ namespace Sniffy
             try
             {
                 CloseButton.MouseLeftButtonDown += OnCloseButtonClick;
-                PictureBox.MouseLeftButtonDown += OnLeftClick;
+                CalcExeButton.MouseLeftButtonDown += OnLeftClick;
             }
             catch( Exception _ex )
             {

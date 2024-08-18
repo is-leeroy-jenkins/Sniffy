@@ -41,13 +41,11 @@
 namespace Sniffy
 {
 	using System;
-	using System.Collections.Generic;
-	using System.Linq;
-	using System.Text;
-	using System.Threading.Tasks;
+	using System.Diagnostics.CodeAnalysis;
 	using PcapDotNet.Packets.IpV4;
 
-	public class Ipv4ConnectionStats
+	[ SuppressMessage( "ReSharper", "ClassCanBeSealed.Global" ) ]
+	public class ConnectionStats
 	{
 		/// <summary>
 		/// Gets or sets the address a.
@@ -55,7 +53,7 @@ namespace Sniffy
 		/// <value>
 		/// The address a.
 		/// </value>
-		public IpV4Address AddressA { get; set; }
+		public IpV4Address ClientAddress { get; set; }
 
 		/// <summary>
 		/// Gets or sets the address b.
@@ -63,7 +61,7 @@ namespace Sniffy
 		/// <value>
 		/// The address b.
 		/// </value>
-		public IpV4Address AddressB { get; set; }
+		public IpV4Address ServerAddress { get; set; }
 
 		/// <summary>
 		/// Gets or sets the packet count a to b.
@@ -71,7 +69,7 @@ namespace Sniffy
 		/// <value>
 		/// The packet count a to b.
 		/// </value>
-		public long PacketCountAToB { get; set; }
+		public long ClientServerPacketCount { get; set; }
 
 		/// <summary>
 		/// Gets or sets the packet count b to a.
@@ -79,7 +77,7 @@ namespace Sniffy
 		/// <value>
 		/// The packet count b to a.
 		/// </value>
-		public long PacketCountBToA { get; set; }
+		public long ServerClientPacketCount { get; set; }
 
 		/// <summary>
 		/// Gets or sets the byte count a to b.
@@ -87,7 +85,7 @@ namespace Sniffy
 		/// <value>
 		/// The byte count a to b.
 		/// </value>
-		public long ByteCountAToB { get; set; }
+		public long ClientServerByteCount { get; set; }
 
 		/// <summary>
 		/// Gets or sets the byte count b to a.
@@ -95,21 +93,22 @@ namespace Sniffy
 		/// <value>
 		/// The byte count b to a.
 		/// </value>
-		public long ByteCountBToA { get; set; }
+		public long ServerClientByteCount { get; set; }
 
 		/// <summary>
-		/// Initializes a new instance of the <see cref="Ipv4ConnectionStats"/> class.
+		/// Initializes a new instance of the
+		/// <see cref="ConnectionStats"/> class.
 		/// </summary>
-		/// <param name="addressA">The address a.</param>
-		/// <param name="addressB">The address b.</param>
-		public Ipv4ConnectionStats( IpV4Address addressA, IpV4Address addressB )
+		/// <param name = "clientAddress" > </param>
+		/// <param name = "serverAddress" > </param>
+		public ConnectionStats( IpV4Address clientAddress, IpV4Address serverAddress )
 		{
-			AddressA = addressA;
-			AddressB = addressB;
-			PacketCountAToB = 0;
-			PacketCountBToA = 0;
-			ByteCountAToB = 0;
-			ByteCountBToA = 0;
+			ClientAddress = clientAddress;
+			ServerAddress = serverAddress;
+			ClientServerPacketCount = 0;
+			ServerClientPacketCount = 0;
+			ClientServerByteCount = 0;
+			ServerClientByteCount = 0;
 		}
 	}
 }

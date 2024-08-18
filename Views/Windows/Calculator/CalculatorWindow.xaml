@@ -6,19 +6,18 @@
     xmlns:gif="http://wpfanimatedgif.codeplex.com"
     xmlns:local="clr-namespace:Sniffy"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:sync="http://schemas.syncfusion.com/wpf"
     xmlns:skin="clr-namespace:Syncfusion.SfSkinManager;assembly=Syncfusion.SfSkinManager.WPF"
+    xmlns:sync="http://schemas.syncfusion.com/wpf"
     xmlns:sys="clr-namespace:System;assembly=mscorlib"
     x:Name="CalculationView"
-    Title="Calculator"
-    Width="410"
-    Height="460"
+    d:DesignHeight="460"
+    d:DesignWidth="410"
     skin:SfSkinManager.Theme="{sync:SkinManagerExtension ThemeName=FluentDark}"
-    Background="Black"
-    BorderBrush="#FF0078D4"
+    Background="{DynamicResource BlackColor}"
+    BorderBrush="{DynamicResource BlueBorderColor}"
     BorderThickness="1,1,1,1"
     FontSize="9"
-    Foreground="#FFC5D1DA"
+    Foreground="{DynamicResource LightBlueColor}"
     Topmost="True"
     WindowStartupLocation="CenterScreen"
     WindowStyle="None"
@@ -28,37 +27,26 @@
     <!--  ******************************************** Resources *********************************************  -->
 
     <Window.Resources>
-        <Style
-            x:Key="ToolTipStyle"
-            TargetType="ToolTip">
+        <Style TargetType="ToolTip">
             <Setter Property="BorderThickness" Value="1,1,1,1" />
-            <Setter Property="BorderBrush" Value="#0078D4" />
-            <Setter Property="Background" Value="#FF000000" />
-            <Setter Property="Foreground" Value="#FF9CD3FD" />
+            <Setter Property="BorderBrush" Value="{DynamicResource BlueBorderColor}" />
+            <Setter Property="Background" Value="{DynamicResource BlackColor}" />
+            <Setter Property="Foreground" Value="{DynamicResource LightBlueColor}" />
         </Style>
     </Window.Resources>
+
 
 
     <!--  ******************************************** Canvas *********************************************  -->
 
     <Canvas>
         <Image
-            x:Name="PictureBox"
-            Canvas.Left="10"
-            Canvas.Top="7"
-            Width="82"
-            Height="18"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            Source="/Resources/Assets/Windows/Calculator/Main.png"
-            ToolTip="Click for more" />
-        <Image
             x:Name="CloseButton"
-            Canvas.Left="385"
-            Canvas.Top="10"
-            Width="12"
-            Height="12"
-            Source="/Resources/Assets/Windows/Calculator/Cancel.png"
+            Canvas.Left="370"
+            Canvas.Top="3"
+            Width="32"
+            Height="22"
+            Source="/Resources/Assets/Calculator/Cancel.png"
             ToolTip="Click to close" />
         <local:MetroCalculator
             x:Name="Calculator"
@@ -68,7 +56,19 @@
             Height="380"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
-            Background="#FF282828"
-            BorderBrush="#FF282828" />
+            Background="#FF1E1E1E"
+            BorderBrush="{DynamicResource DarkBlueColor}" />
+        <sync:SfHubTile
+            x:Name="CalcExeButton"
+            Title=""
+            Canvas.Left="3"
+            Canvas.Top="3"
+            Width="80"
+            Height="22"
+            Background="{DynamicResource Transparent}"
+            BorderBrush="{DynamicResource Transparent}"
+            Header=""
+            ImageSource="/Resources/Assets/Calculator/Main.png"
+            ToolTip="Windows 10 Calculator" />
     </Canvas>
 </Window>

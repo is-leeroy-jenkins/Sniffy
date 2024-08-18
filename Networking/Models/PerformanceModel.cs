@@ -148,7 +148,8 @@ namespace Sniffy
         private string _version;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="PerformanceModel"/> class.
+        /// Initializes a new instance of the
+        /// <see cref="PerformanceModel"/> class.
         /// </summary>
         public PerformanceModel( )
         {
@@ -177,7 +178,10 @@ namespace Sniffy
         /// </value>
         public string Version
         {
-            get { return _version; }
+            get
+            {
+                return _version;
+            }
             set
             {
                 if( _version != value )
@@ -196,7 +200,10 @@ namespace Sniffy
         /// </value>
         public string Role
         {
-            get { return _role; }
+            get
+            {
+                return _role;
+            }
             set
             {
                 if( _role != value )
@@ -215,7 +222,10 @@ namespace Sniffy
         /// </value>
         public string ServerAddress
         {
-            get { return _serverAddress; }
+            get
+            {
+                return _serverAddress;
+            }
             set
             {
                 if( _serverAddress != value )
@@ -234,7 +244,10 @@ namespace Sniffy
         /// </value>
         public int Port
         {
-            get { return _port; }
+            get
+            {
+                return _port;
+            }
             set
             {
                 if( _port != value )
@@ -253,7 +266,10 @@ namespace Sniffy
         /// </value>
         public int Time
         {
-            get { return _time; }
+            get
+            {
+                return _time;
+            }
             set
             {
                 if( _time != value )
@@ -272,7 +288,10 @@ namespace Sniffy
         /// </value>
         public int Parallel
         {
-            get { return _parallel; }
+            get
+            {
+                return _parallel;
+            }
             set
             {
                 if( _parallel != value )
@@ -291,7 +310,10 @@ namespace Sniffy
         /// </value>
         public int Interval
         {
-            get { return _interval; }
+            get
+            {
+                return _interval;
+            }
             set
             {
                 if( _interval != value )
@@ -509,7 +531,10 @@ namespace Sniffy
         /// </value>
         public string Command
         {
-            get { return _command; }
+            get
+            {
+                return _command;
+            }
             set
             {
                 if( _command != value )
@@ -528,7 +553,10 @@ namespace Sniffy
         /// </value>
         public string Output
         {
-            get { return _output; }
+            get
+            {
+                return _output;
+            }
             set
             {
                 if( _output != value )

@@ -95,7 +95,10 @@ namespace Sniffy
         /// </value>
         public long PacketCount
         {
-            get { return _packetCount; }
+            get
+            {
+                return _packetCount;
+            }
             set
             {
                 if( _packetCount != value )

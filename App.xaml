@@ -7,6 +7,9 @@
     xmlns:sync="http://schemas.syncfusion.com/wpf"
     xmlns:ui="http://schemas.modernwpf.com/2019"
     StartupUri="/MainWindow.xaml">
+
+    <!--  ************************************   Series Colors  ***********************************  -->
+
     <Application.Resources>
 
         <ResourceDictionary>
@@ -14,16 +17,20 @@
                 <ui:ThemeResources />
                 <ui:XamlControlsResources />
 
-                <!--  ************** Dark Mode  ****************  -->
+                <!--  ************************************   Dark Theme   ***********************************  -->
+
                 <ResourceDictionary Source="/Themes/Styles.xaml" />
                 <ResourceDictionary Source="/Themes/Generic.xaml" />
+                <ResourceDictionary Source="/Themes/WindowResources.xaml" />
 
+                <!--  ************************************   ETC   ***********************************  -->
 
-                <!--  ************** Notifications  ****************  -->
                 <ResourceDictionary Source="pack://application:,,,/ToastNotifications.Messages;component/Themes/Default.xaml" />
+                <ResourceDictionary Source="/Themes/Generic.xaml" />
             </ResourceDictionary.MergedDictionaries>
-            <!--  Other app resources here  -->
-        </ResourceDictionary>
 
+            <!--  ******************************************** Resources *********************************************  -->
+
+        </ResourceDictionary>
     </Application.Resources>
 </Application>

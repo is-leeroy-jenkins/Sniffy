@@ -15,7 +15,7 @@
     sync:SfSkinManager.Theme="{skin:SkinManagerExtension ThemeName=FluentDark}"
     mc:Ignorable="d">
 
-    <!--  ******************************************** Resources *********************************************  -->
+    <!--  ******************************************* Resources *********************************************  -->
 
     <UserControl.Resources>
         <local:BytesSuffixConverter x:Key="BytesSuffixConverter" />
@@ -28,117 +28,6 @@
         </Style>
 
     </UserControl.Resources>
-
-
-    <!--  ******************************************** Context Menu ******************************************  -->
-
-    <UserControl.ContextMenu>
-        <ContextMenu Name="MainWindowContextMenu">
-            <sync:MenuItemAdv
-                Background="#FF282828"
-                Foreground="#FFA0BDFC"
-                Header="File"
-                ToolTip="Browse File System">
-                <sync:MenuItemAdv.Icon>
-                    <Image Source="/Resources/Assets/Menu/FileItem.png" />
-                </sync:MenuItemAdv.Icon>
-            </sync:MenuItemAdv>
-
-            <sync:MenuItemAdv
-                Background="#FF282828"
-                Click="OnFolderMenuOptionClick"
-                Foreground="#FFA0BDFC"
-                Header="Folder"
-                ToolTip="Browse Directories">
-                <sync:MenuItemAdv.Icon>
-                    <Image Source="/Resources/Assets/Menu/FolderItem.png" />
-                </sync:MenuItemAdv.Icon>
-            </sync:MenuItemAdv>
-
-            <Separator />
-
-            <sync:MenuItemAdv
-                Background="#FF282828"
-                Click="OnChromeOptionClick"
-                Foreground="#FFA0BDFC"
-                Header="Chrome"
-                ToolTip="Launch Chrome Browser">
-                <sync:MenuItemAdv.Icon>
-                    <Image Source="/Resources/Assets/Menu/ChromeItem.png" />
-                </sync:MenuItemAdv.Icon>
-            </sync:MenuItemAdv>
-
-            <sync:MenuItemAdv
-                Background="#FF282828"
-                Click="OnEdgeOptionClick"
-                Foreground="#FFA0BDFC"
-                Header="Edge"
-                ToolTip="Launch Edge Browser">
-                <sync:MenuItemAdv.Icon>
-                    <Image Source="/Resources/Assets/Menu/EdgeItem.png" />
-                </sync:MenuItemAdv.Icon>
-            </sync:MenuItemAdv>
-
-            <sync:MenuItemAdv
-                Background="#FF282828"
-                Click="OnFirefoxOptionClick"
-                Foreground="#FFA0BDFC"
-                Header="FireFox"
-                ToolTip="Launch Firefox Browser">
-                <sync:MenuItemAdv.Icon>
-                    <Image Source="/Resources/Assets/Menu/FirefoxItem.png" />
-                </sync:MenuItemAdv.Icon>
-            </sync:MenuItemAdv>
-
-            <Separator />
-
-            <sync:MenuItemAdv
-                Background="#FF282828"
-                Click="OnCalculatorMenuOptionClick"
-                Foreground="#FFA0BDFC"
-                Header="Calculator"
-                ToolTip="Open Calculator">
-                <sync:MenuItemAdv.Icon>
-                    <Image Source="/Resources/Assets/Menu/CalculatorItem.png" />
-                </sync:MenuItemAdv.Icon>
-            </sync:MenuItemAdv>
-
-            <sync:MenuItemAdv
-                Background="#FF282828"
-                Click="OnControlPanelOptionClick"
-                Foreground="#FFA0BDFC"
-                Header="Control Panel"
-                ToolTip="Windows Control Panel">
-                <sync:MenuItemAdv.Icon>
-                    <Image Source="/Resources/Assets/Menu/ControlPanelItem.png" />
-                </sync:MenuItemAdv.Icon>
-            </sync:MenuItemAdv>
-
-            <sync:MenuItemAdv
-                Background="#FF282828"
-                Click="OnTaskManagerOptionClick"
-                Foreground="#FFA0BDFC"
-                Header="Task Manager"
-                ToolTip="Windows Task Manager">
-                <sync:MenuItemAdv.Icon>
-                    <Image Source="/Resources/Assets/Menu/TaskManagerItem.png" />
-                </sync:MenuItemAdv.Icon>
-            </sync:MenuItemAdv>
-
-            <Separator />
-
-            <sync:MenuItemAdv
-                Background="#FF282828"
-                Click="OnCloseOptionClick"
-                Foreground="#FFA0BDFC"
-                Header="Exit"
-                ToolTip="Exit Application">
-                <sync:MenuItemAdv.Icon>
-                    <Image Source="/Resources/Assets/Menu/CloseItem.png" />
-                </sync:MenuItemAdv.Icon>
-            </sync:MenuItemAdv>
-        </ContextMenu>
-    </UserControl.ContextMenu>
 
     <!--  ******************************************** Canvass ******************************************  -->
 
@@ -161,7 +50,7 @@
             Grid.Row="1"
             Height="1"
             HorizontalAlignment="Stretch"
-            Background="LightGray"
+            Background="{DynamicResource BlueBorderColor}"
             ClipToBounds="True"
             RenderTransformOrigin="0.5,0.5"
             SnapsToDevicePixels="True" />
@@ -229,55 +118,55 @@
                     <GridView>
                         <GridViewColumn
                             Width="100"
-                            Header="Address A">
+                            Header="Client Address">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <TextBlock Text="{Binding Path=AddressA}" />
+                                    <TextBlock Text="{Binding Path=ClientAddress}" />
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
                         <GridViewColumn
                             Width="100"
-                            Header="Address B">
+                            Header="Server Address">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <TextBlock Text="{Binding Path=AddressB}" />
+                                    <TextBlock Text="{Binding Path=ServerAddress}" />
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
                         <GridViewColumn
                             Width="100"
-                            Header="Packets A -&gt; B">
+                            Header="Client Server Packet Count">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <TextBlock Text="{Binding Path=PacketCountAToB}" />
+                                    <TextBlock Text="{Binding Path=ClientServerPacketCount}" />
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
                         <GridViewColumn
                             Width="100"
-                            Header="Bytes A -&gt; B">
+                            Header="Client Server Byte Count">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <TextBlock Text="{Binding Path=ByteCountAToB, Converter={StaticResource BytesSuffixConverter}}" />
+                                    <TextBlock Text="{Binding Path=ClientServerByteCount, Converter={StaticResource BytesSuffixConverter}}" />
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
                         <GridViewColumn
                             Width="100"
-                            Header="Packets B -&gt; A">
+                            Header="Server Client Packet Count">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <TextBlock Text="{Binding Path=PacketCountBToA}" />
+                                    <TextBlock Text="{Binding Path=ServerClientPacketCount}" />
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
                         <GridViewColumn
                             Width="100"
-                            Header="Bytes B -&gt; A">
+                            Header="Server Client Byte Count">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <TextBlock Text="{Binding Path=ByteCountBToA, Converter={StaticResource BytesSuffixConverter}}" />
+                                    <TextBlock Text="{Binding Path=ServerClientByteCount, Converter={StaticResource BytesSuffixConverter}}" />
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>

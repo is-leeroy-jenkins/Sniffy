@@ -5,17 +5,17 @@
 
     <!--  ************************************   Main Colors  ***********************************  -->
 
-    <Color x:Key="DefaultForegroundColor">#FFDEDEDE</Color>
-    <Color x:Key="MutedForegroundColor">#FFA0BDFC</Color>
-    <Color x:Key="WhiteColor">#fff</Color>
+    <Color x:Key="DefaultForeColor">#FFDEDEDE</Color>
+    <Color x:Key="MutedForeColor">#FFA0BDFC</Color>
+    <Color x:Key="WhiteColor">#FFF</Color>
 
     <!--  ************************************  Default Colors   ***********************************  -->
-
+    <!--  #FF46B8DA  -->
     <Color x:Key="DefaultColor1">#FF141414</Color>
     <Color x:Key="DefaultColor2">#FF282828</Color>
     <Color x:Key="DefaultColor3">#FF4682B4</Color>
-    <Color x:Key="DefaultColor4">#FF656565</Color>
-    <Color x:Key="DefaultColor5">#FF0E3C5E</Color>
+    <Color x:Key="DefaultColor4">#FF0E3C5E</Color>
+    <Color x:Key="DefaultColor5">#FF012336</Color>
 
     <!--  ************************************ Primary Colors  ***********************************  -->
 
@@ -24,27 +24,27 @@
 
     <!--  ************************************ Success Colors ***********************************  -->
 
-    <Color x:Key="SuccessColor1">#5cb85c</Color>
-    <Color x:Key="SuccessColor2">#4cae4c</Color>
-    <Color x:Key="SuccessColor3">#dff0d8</Color>
-    <Color x:Key="SuccessColor4">#d6e9c6</Color>
-    <Color x:Key="SuccessColor5">#3c763d</Color>
+    <Color x:Key="SuccessColor1">#FFDFF0D8</Color>
+    <Color x:Key="SuccessColor2">#FF4CAE4C</Color>
+    <Color x:Key="SuccessColor3">#FF00FF00</Color>
+    <Color x:Key="SuccessColor4">#FF3C763D</Color>
+    <Color x:Key="SuccessColor5">#FF013D11</Color>
 
     <!--  ************************************ Informational Colors  *****************************  -->
 
-    <Color x:Key="InfoColor1">#FFA0BDFC</Color>
-    <Color x:Key="InfoColor2">#46b8da</Color>
-    <Color x:Key="InfoColor3">#d9edf7</Color>
-    <Color x:Key="InfoColor4">#bce8f1</Color>
-    <Color x:Key="InfoColor5">#31708f</Color>
+    <Color x:Key="InfoColor1">#FFD9EDF7</Color>
+    <Color x:Key="InfoColor2">#FFA0BDFC</Color>
+    <Color x:Key="InfoColor3">#FF46B8DA</Color>
+    <Color x:Key="InfoColor4">#FF4682B4</Color>
+    <Color x:Key="InfoColor5">#FF31708F</Color>
 
     <!--  ************************************ Warning Colors  ***********************************  -->
 
     <Color x:Key="WarningColor1">#FFE1E100</Color>
     <Color x:Key="WarningColor2">#FFA0A000</Color>
-    <Color x:Key="WarningColor3">#FF707000</Color>
-    <Color x:Key="WarningColor4">#FFE84B02</Color>
-    <Color x:Key="WarningColor5">#FFA83702</Color>
+    <Color x:Key="WarningColor3">#FF83A100</Color>
+    <Color x:Key="WarningColor4">#FF688001</Color>
+    <Color x:Key="WarningColor5">#FF303B01</Color>
 
     <!--  ************************************ Danger Colors ***********************************  -->
 
@@ -72,8 +72,8 @@
 
 
     <Color x:Key="AccentColor1">#FF0078D4</Color>
-    <Color x:Key="AccentColor2">#FF0E3C5E</Color>
-    <Color x:Key="AccentColor3">#FF4682B4</Color>
+    <Color x:Key="AccentColor2">#FF4682B4</Color>
+    <Color x:Key="AccentColor3">#FF0E3C5E</Color>
 
     <!--  ********************************* General Palette ***********************************  -->
 

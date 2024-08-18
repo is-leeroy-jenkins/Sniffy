@@ -348,7 +348,7 @@
                         DataContext="{Binding SnifferViews[0]}"
                         Header="Capture View"
                         Style="{DynamicResource TabControlEx}">
-                        <local:SnifferCaptureView />
+                        <local:CaptureView />
                     </TabItem>
 
                     <TabItem

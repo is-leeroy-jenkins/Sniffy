@@ -119,7 +119,7 @@ namespace Sniffy
         /// <value>
         /// The connection stats.
         /// </value>
-        public ObservableCollection<Ipv4ConnectionStats> ConnectionStats { get; private set; }
+        public ObservableCollection<ConnectionStats> ConnectionStats { get; private set; }
 
         /// <summary>
         /// Gets or sets the capture time.

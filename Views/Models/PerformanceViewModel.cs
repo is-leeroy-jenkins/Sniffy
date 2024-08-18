@@ -52,7 +52,6 @@ namespace Sniffy
     using System.Text.RegularExpressions;
     using Microsoft.Win32;
     using System.IO;
-    using System.Threading.Tasks;
 
     /// <inheritdoc />
     /// <summary>
@@ -77,7 +76,7 @@ namespace Sniffy
         /// <summary>
         /// The line series current value
         /// </summary>
-        public LineSeries LineSeriesCurrentVal;
+        public LineSeries LineSeriesCurrentValue;
 
         /// <summary>
         /// The iperf process
@@ -92,17 +91,17 @@ namespace Sniffy
         /// <summary>
         /// The x time axis
         /// </summary>
-        public LinearAxis XTimeAxis;
+        public LinearAxis TimeAxis;
 
         /// <summary>
         /// The y throughput value
         /// </summary>
-        public LinearAxis YThroughputVal;
+        public LinearAxis ThroughputValue;
 
         /// <summary>
         /// The y zoom factor
         /// </summary>
-        public int YZoomFactor = 1;
+        public int ZoomFactor = 1;
 
         /// <summary>
         /// Initializes a new instance of the
@@ -148,11 +147,11 @@ namespace Sniffy
         /// <value>
         /// The run iperf command.
         /// </value>
-        public ICommand RunIperfCommand
+        public ICommand RunPerformanceCommand
         {
             get
             {
-                return new RelayCommand( param => RunIperf( param ) );
+                return new RelayCommand( param => StartPeformanceProcess( param ) );
             }
         }
 
@@ -162,11 +161,11 @@ namespace Sniffy
         /// <value>
         /// The stop iperf command.
         /// </value>
-        public ICommand StopIperfCommand
+        public ICommand StopPerformanceCommand
         {
             get
             {
-                return new RelayCommand( param => StopIperf( param ) );
+                return new RelayCommand( param => KillProcess( param ) );
             }
         }
 
@@ -204,11 +203,11 @@ namespace Sniffy
         /// <value>
         /// The iperf help command.
         /// </value>
-        public ICommand IperfHelpCommand
+        public ICommand HelpCommand
         {
             get
             {
-                return new RelayCommand( param => IperfHelp( param ) );
+                return new RelayCommand( param => Help( param ) );
             }
         }
 
@@ -218,7 +217,7 @@ namespace Sniffy
         public void InitPlot( )
         {
             _plotModel = new PlotModel( );
-            XTimeAxis = new LinearAxis( )
+            TimeAxis = new LinearAxis( )
             {
                 Title = "Time(s)",
                 Position = AxisPosition.Bottom,
@@ -237,7 +236,7 @@ namespace Sniffy
                 IsZoomEnabled = true
             };
 
-            YThroughputVal = new LinearAxis( )
+            ThroughputValue = new LinearAxis( )
             {
                 Title = "Throughput(Mbps)",
                 Position = AxisPosition.Left,
@@ -254,9 +253,9 @@ namespace Sniffy
                 IsZoomEnabled = true
             };
 
-            _plotModel.Axes.Add( XTimeAxis );
-            _plotModel.Axes.Add( YThroughputVal );
-            LineSeriesCurrentVal = new LineSeries( )
+            _plotModel.Axes.Add( TimeAxis );
+            _plotModel.Axes.Add( ThroughputValue );
+            LineSeriesCurrentValue = new LineSeries( )
             {
                 MarkerType = MarkerType.Circle,
                 StrokeThickness = 1,
@@ -265,27 +264,27 @@ namespace Sniffy
                 Color = OxyColors.Red
             };
 
-            _plotModel.Series.Add( LineSeriesCurrentVal );
+            _plotModel.Series.Add( LineSeriesCurrentValue );
         }
 
         /// <summary>
         /// ies the zoom out.
         /// </summary>
-        public void YZoomOut( )
+        public void ZoomOut( )
         {
-            YThroughputVal.Maximum *= 2;
-            YThroughputVal.MajorStep =
-                ( YThroughputVal.ActualMaximum - YThroughputVal.ActualMinimum ) / 10;
+            ThroughputValue.Maximum *= 2;
+            ThroughputValue.MajorStep =
+                ( ThroughputValue.ActualMaximum - ThroughputValue.ActualMinimum ) / 10;
         }
 
         /// <summary>
         /// ies the zoom in.
         /// </summary>
-        public void YZoomIn( )
+        public void ZoomIn( )
         {
-            YThroughputVal.Maximum /= 2;
-            YThroughputVal.MajorStep =
-                ( YThroughputVal.ActualMaximum - YThroughputVal.ActualMinimum ) / 10;
+            ThroughputValue.Maximum /= 2;
+            ThroughputValue.MajorStep =
+                ( ThroughputValue.ActualMaximum - ThroughputValue.ActualMinimum ) / 10;
         }
 
         /// <summary>
@@ -293,7 +292,7 @@ namespace Sniffy
         /// </summary>
         public void ClearPlot( )
         {
-            LineSeriesCurrentVal.Points.Clear( );
+            LineSeriesCurrentValue.Points.Clear( );
             _plotModel.InvalidatePlot( true );
         }
 
@@ -309,13 +308,13 @@ namespace Sniffy
         /// Runs the iperf.
         /// </summary>
         /// <param name="parameter">The parameter.</param>
-        public void RunIperf( object parameter )
+        public void StartPeformanceProcess( object parameter )
         {
             var _iperfPath = @"Libraries\iperf\" + PerformanceModel.Version;
             PerformanceProcess.StartProcess( _iperfPath, ( string )parameter,
-                ProcessOutputDataReceived );
+                OnOutputDataReceived );
 
-            LineSeriesCurrentVal.Points.Clear( );
+            LineSeriesCurrentValue.Points.Clear( );
             _plotModel.InvalidatePlot( true );
         }
 
@@ -351,17 +350,17 @@ namespace Sniffy
                 PerformanceModel.Throughput = Convert.ToDouble( _bandwidth );
                 var _val = Convert.ToDouble( PerformanceModel.Throughput );
                 var _time = Convert.ToDouble( _timeB );
-                YThroughputVal.MajorStep =
-                    ( YThroughputVal.ActualMaximum - YThroughputVal.ActualMinimum ) / 10;
+                ThroughputValue.MajorStep =
+                    ( ThroughputValue.ActualMaximum - ThroughputValue.ActualMinimum ) / 10;
 
-                LineSeriesCurrentVal.Points.Add( new DataPoint( _time, _val ) );
+                LineSeriesCurrentValue.Points.Add( new DataPoint( _time, _val ) );
                 _plotModel.InvalidatePlot( true );
-                if( _val > YThroughputVal.ActualMaximum )
+                if( _val > ThroughputValue.ActualMaximum )
                 {
-                    var _xPan = ( YThroughputVal.ActualMaximum - YThroughputVal.DataMaximum - 50 )
-                        * YThroughputVal.Scale;
+                    var _xPan = ( ThroughputValue.ActualMaximum - ThroughputValue.DataMaximum - 50 )
+                        * ThroughputValue.Scale;
 
-                    YThroughputVal.Pan( _xPan );
+                    ThroughputValue.Pan( _xPan );
                 }
             }
             else
@@ -370,26 +369,10 @@ namespace Sniffy
         }
 
         /// <summary>
-        /// Processes the output data received.
-        /// </summary>
-        /// <param name="sender">The sender.</param>
-        /// <param name="e">The <see cref="DataReceivedEventArgs"/>
-        /// instance containing the event data.</param>
-        private void ProcessOutputDataReceived( object sender, DataReceivedEventArgs e )
-        {
-            PerformanceModel.Output += e.Data;
-            PerformanceModel.Output += "\n";
-            if( e.Data != null )
-            {
-                PlotData( e.Data );
-            }
-        }
-
-        /// <summary>
         /// Stops the iperf.
         /// </summary>
         /// <param name="parameter">The parameter.</param>
-        public void StopIperf( object parameter )
+        public void KillProcess( object parameter )
         {
             //iperfProcess.Kill();
             PerformanceProcess.StopProcess( );
@@ -437,10 +420,26 @@ namespace Sniffy
         /// Iperfs the help.
         /// </summary>
         /// <param name="parameter">The parameter.</param>
-        public void IperfHelp( object parameter )
+        public void Help( object parameter )
         {
             var _iperfPath = @"Libraries\iperf\" + PerformanceModel.Version;
-            PerformanceProcess.StartProcess( _iperfPath, "--help", ProcessOutputDataReceived );
+            PerformanceProcess.StartProcess( _iperfPath, "--help", OnOutputDataReceived );
+        }
+
+        /// <summary>
+        /// Processes the output data received.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="DataReceivedEventArgs"/>
+        /// instance containing the event data.</param>
+        private void OnOutputDataReceived(object sender, DataReceivedEventArgs e)
+        {
+            PerformanceModel.Output += e.Data;
+            PerformanceModel.Output += "\n";
+            if(e.Data != null)
+            {
+                PlotData(e.Data);
+            }
         }
     }
 }

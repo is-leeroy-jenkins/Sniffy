@@ -97,8 +97,8 @@ namespace Sniffy
 
             // Window Properties
             InitializeComponent( );
-            DataContext = _mainViewModel;
             WindowStartupLocation = WindowStartupLocation.CenterScreen;
+            DataContext = _mainViewModel;
         }
 
         /// <summary>
@@ -336,8 +336,13 @@ namespace Sniffy
         {
             try
             {
-                var _calculator = new CalculatorWindow( );
-                _calculator.ShowDialog( );
+                var _calculator = new CalculatorWindow
+                {
+                    Owner = this
+                };
+
+                _calculator.Show( );
+                _calculator.Focus( );
             }
             catch( Exception ex )
             {
