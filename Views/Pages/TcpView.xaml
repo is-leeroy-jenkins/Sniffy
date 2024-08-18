@@ -424,7 +424,7 @@
                         HorizontalAlignment="Right"
                         VerticalAlignment="Center"
                         Foreground="Black"
-                        Text="{Binding TcpModel.LocalPort}" />
+                        Text="{Binding TcpModel.ClientPort}" />
 
                     <TextBox
                         Grid.Row="2"

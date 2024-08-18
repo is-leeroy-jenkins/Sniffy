@@ -401,7 +401,7 @@
                         HorizontalAlignment="Right"
                         VerticalAlignment="Center"
                         Foreground="Black"
-                        Text="{Binding UdpModel.LocalPort}" />
+                        Text="{Binding UdpModel.ClientPort}" />
 
                     <TextBox
                         Grid.Row="2"

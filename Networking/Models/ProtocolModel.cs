@@ -50,13 +50,13 @@ namespace Sniffy
 	[ SuppressMessage( "ReSharper", "ClassCanBeSealed.Global" ) ]
 	[ SuppressMessage( "ReSharper", "MemberCanBeInternal" ) ]
 	[ SuppressMessage( "ReSharper", "UnusedType.Global" ) ]
-	public class PortListenStat
+	public class ProtocolModel
 	{
 		/// <summary>
 		/// Initializes a new instance of the
-		/// <see cref="PortListenStat"/> class.
+		/// <see cref="ProtocolModel"/> class.
 		/// </summary>
-		public PortListenStat( )
+		public ProtocolModel( )
 		{
 		}
 
@@ -74,7 +74,7 @@ namespace Sniffy
 		/// <value>
 		/// The local address.
 		/// </value>
-		public string LocalAddress { get; set; }
+		public string ClientAddress { get; set; }
 
 		/// <summary>
 		/// Gets or sets the local port.
@@ -82,7 +82,7 @@ namespace Sniffy
 		/// <value>
 		/// The local port.
 		/// </value>
-		public string LocalPort { get; set; }
+		public string ClientPort { get; set; }
 
 		/// <summary>
 		/// Gets or sets the remote address.
@@ -90,7 +90,7 @@ namespace Sniffy
 		/// <value>
 		/// The remote address.
 		/// </value>
-		public string RemoteAddress { get; set; }
+		public string ServerAddress { get; set; }
 
 		/// <summary>
 		/// Gets or sets the remote port.
@@ -98,7 +98,7 @@ namespace Sniffy
 		/// <value>
 		/// The remote port.
 		/// </value>
-		public string RemotePort { get; set; }
+		public string ServerPort { get; set; }
 
 		/// <summary>
 		/// Gets or sets the status.
@@ -114,7 +114,7 @@ namespace Sniffy
 		/// <value>
 		/// The pid.
 		/// </value>
-		public int Pid { get; set; }
+		public int ID { get; set; }
 
 		/// <summary>
 		/// Gets or sets the program.
@@ -122,6 +122,6 @@ namespace Sniffy
 		/// <value>
 		/// The program.
 		/// </value>
-		public string Program { get; set; }
+		public string ProgramName { get; set; }
 	}
 }

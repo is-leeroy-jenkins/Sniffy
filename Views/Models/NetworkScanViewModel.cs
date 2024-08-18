@@ -191,10 +191,10 @@ namespace Sniffy
 		{
 			_scanTokenSource = new CancellationTokenSource( );
 			_cancelScanToken = _scanTokenSource.Token;
-			var _startIpVal = InternetInterface.IpAddressToLongBackwards( NetworkScanModel.StartIp );
-			var _startIpStr = InternetInterface.LongToIpAddress( _startIpVal );
-			var _endIpVal = InternetInterface.IpAddressToLongBackwards( NetworkScanModel.StopIp );
-			var _endIpStr = InternetInterface.LongToIpAddress( _endIpVal );
+			var _startIpVal = InternetInterface.RevertConversion( NetworkScanModel.StartIp );
+			var _startIpStr = InternetInterface.ConvertToAddress( _startIpVal );
+			var _endIpVal = InternetInterface.RevertConversion( NetworkScanModel.StopIp );
+			var _endIpStr = InternetInterface.ConvertToAddress( _endIpVal );
 			IpCount = ( int )( _endIpVal - _startIpVal );
 			if( IpCount <= 0 )
 			{
@@ -210,7 +210,7 @@ namespace Sniffy
 					{
 						Console.WriteLine( _i.ToString( ) );
 						var _j = _i;
-						var _ipStr = InternetInterface.LongToIpAddress( _j );
+						var _ipStr = InternetInterface.ConvertToAddress( _j );
 						var _task = Task.Run( ( ) =>
 						{
 							_doScan( _ipStr );

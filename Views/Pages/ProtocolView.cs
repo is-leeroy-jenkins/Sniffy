@@ -51,8 +51,13 @@ namespace Sniffy
     /// <seealso cref="T:Sniffy.MainWindowBase" />
     [ SuppressMessage( "ReSharper", "ClassCanBeSealed.Global" ) ]
     [ SuppressMessage( "ReSharper", "MemberCanBeInternal" ) ]
-    public class ProtocolStats : MainWindowBase
+    public class ProtocolView : MainWindowBase
     {
+        /// <summary>
+        /// The protocol
+        /// </summary>
+        private protected IpV4Protocol _protocol;
+
         /// <summary>
         /// The byte count
         /// </summary>
@@ -63,20 +68,24 @@ namespace Sniffy
         /// </summary>
         private long _packetCount;
 
-        public ProtocolStats( )
+        /// <summary>
+        /// Initializes a new instance of the
+        /// <see cref="ProtocolView"/> class.
+        /// </summary>
+        public ProtocolView( )
         {
         }
 
         /// <summary>
         /// Initializes a new instance of the
-        /// <see cref="ProtocolStats"/> class.
+        /// <see cref="ProtocolView"/> class.
         /// </summary>
         /// <param name="protocol">The protocol.</param>
-        public ProtocolStats( IpV4Protocol protocol )
+        public ProtocolView( IpV4Protocol protocol )
         {
-            Protocol = protocol;
-            PacketCount = 0;
-            ByteCount = 0;
+            _protocol = protocol;
+            _packetCount = 0;
+            _byteCount = 0;
         }
 
         /// <summary>
@@ -85,7 +94,21 @@ namespace Sniffy
         /// <value>
         /// The protocol.
         /// </value>
-        public IpV4Protocol Protocol { get; set; }
+        public IpV4Protocol Protocol
+        {
+            get
+            {
+                return _protocol;
+            }
+            set
+            {
+                if( _protocol != value )
+                {
+                    _protocol = value;
+                    OnPropertyChanged( nameof( Protocol ) );
+                }
+            }
+        }
 
         /// <summary>
         /// Gets or sets the packet count.

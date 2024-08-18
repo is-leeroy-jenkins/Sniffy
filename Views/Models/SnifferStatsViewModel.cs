@@ -111,7 +111,7 @@ namespace Sniffy
         /// <value>
         /// The protocol stats.
         /// </value>
-        public ObservableCollection<ProtocolStats> ProtocolStats { get; private set; }
+        public ObservableCollection<ProtocolView> ProtocolStats { get; private set; }
 
         /// <summary>
         /// Gets the connection stats.
@@ -119,7 +119,7 @@ namespace Sniffy
         /// <value>
         /// The connection stats.
         /// </value>
-        public ObservableCollection<ConnectionStats> ConnectionStats { get; private set; }
+        public ObservableCollection<ConnectionModel> ConnectionStats { get; private set; }
 
         /// <summary>
         /// Gets or sets the capture time.

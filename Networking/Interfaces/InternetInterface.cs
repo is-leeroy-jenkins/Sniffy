@@ -64,9 +64,9 @@ namespace Sniffy
 		/// <summary>
 		/// Pings the sweep.
 		/// </summary>
-		/// <param name="ip">The ip.</param>
+		/// <param name="ipAddress">The ip.</param>
 		/// <returns></returns>
-		public PingReply PingSweep( string ip )
+		public PingReply PingSweep( string ipAddress )
 		{
 			PingReply _reply;
 			Ping _pingSender = null;
@@ -81,7 +81,7 @@ namespace Sniffy
 				var _data = "hello";
 				var _buffer = Encoding.ASCII.GetBytes( _data );
 				var _timeout = 1000;
-				var _ipa = IPAddress.Parse( ip );
+				var _ipa = IPAddress.Parse( ipAddress );
 				var _replyPing = _pingSender.Send( _ipa, _timeout, _buffer, _options );
 				_reply = _replyPing;
 			}
@@ -120,7 +120,7 @@ namespace Sniffy
 		/// <summary>
 		/// Gets the ip.
 		/// </summary>
-		public void GetIp( )
+		public void GetIpAddress( )
 		{
 			var _interfaces = NetworkInterface.GetAllNetworkInterfaces( );
 			var _len = _interfaces.Length;
@@ -147,18 +147,18 @@ namespace Sniffy
 		/// Converts a uint representation of an Ip address to a
 		/// string.
 		/// </summary>
-		/// <param name="ipAddr">The IP address to convert</param>
+		/// <param name="ipAddress">The IP address to convert</param>
 		/// <returns>
 		/// A string representation of the IP address.
 		/// </returns>
-		public string LongToIpAddress( uint ipAddr )
+		public string ConvertToAddress( uint ipAddress )
 		{
 			//return new System.Net.IPAddress(IPAddr).ToString();
-			var _a = ( byte )( ( ipAddr & 0xFF000000 ) >> 24 );
-			var _b = ( byte )( ( ipAddr & 0x00FF0000 ) >> 16 );
-			var _c = ( byte )( ( ipAddr & 0x0000FF00 ) >> 8 );
-			var _d = ( byte )( ipAddr & 0x000000FF );
-			var _ipStr = String.Format( "{0}.{1}.{2}.{3}", _a, _b, _c,
+			var _a = ( byte )( ( ipAddress & 0xFF000000 ) >> 24 );
+			var _b = ( byte )( ( ipAddress & 0x00FF0000 ) >> 16 );
+			var _c = ( byte )( ( ipAddress & 0x0000FF00 ) >> 8 );
+			var _d = ( byte )( ipAddress & 0x000000FF );
+			var _ipStr = string.Format( "{0}.{1}.{2}.{3}", _a, _b, _c,
 				_d );
 
 			return _ipStr;
@@ -173,6 +173,7 @@ namespace Sniffy
 		//    string ipStr = String.Format(" {0}.{1}.{2}.{3} ", a, b, c, d);
 		//    return ipStr;
 		//}
+
 		/// <summary>
 		/// Converts a string representation of an IP address to a
 		/// uint. This encoding is proper and can be used with other
@@ -184,7 +185,7 @@ namespace Sniffy
 		/// Returns a uint representation of the IP
 		/// address.
 		/// </returns>
-		public uint IpAddressToLong( string ipAddr )
+		public uint ConvertFromAddress( string ipAddr )
 		{
 			var _oIp = IPAddress.Parse( ipAddr );
 			var _byteIp = _oIp.GetAddressBytes( );
@@ -208,7 +209,7 @@ namespace Sniffy
 		/// Returns a backwards uint representation of the
 		/// string.
 		/// </returns>
-		public uint IpAddressToLongBackwards( string ipAddr )
+		public uint RevertConversion( string ipAddr )
 		{
 			var _oIp = IPAddress.Parse( ipAddr );
 			var _byteIp = _oIp.GetAddressBytes( );

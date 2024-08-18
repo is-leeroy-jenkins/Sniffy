@@ -167,7 +167,7 @@ namespace Sniffy
 			cancelScanToken = _scanTokenSource.Token;
 			var _startPortVal = PortScanModel.StartPort;
 			var _stopPortVal = PortScanModel.StopPort;
-			var _ipStr = PortScanModel.IP;
+			var _ipStr = PortScanModel.Ip;
 			PortCnt = _stopPortVal - _startPortVal;
 			if( PortCnt <= 0 )
 			{

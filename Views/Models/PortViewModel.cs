@@ -99,8 +99,8 @@ namespace Sniffy
 		/// <value>
 		/// The port listen stats.
 		/// </value>
-		public ObservableCollection<PortListenStat> PortListenStats { get; } =
-			new ObservableCollection<PortListenStat>( );
+		public ObservableCollection<ProtocolModel> PortListenStats { get; } =
+			new ObservableCollection<ProtocolModel>( );
 
 		/// <summary>
 		/// Gets the refresh command.
@@ -221,16 +221,16 @@ namespace Sniffy
 					_program = PortViewModel.LookupProcess( _pid );
 					Application.Current.Dispatcher.Invoke( ( ) =>
 					{
-						PortListenStats.Add( new PortListenStat
+						PortListenStats.Add( new ProtocolModel
 						{
 							Protocol = _protocol,
-							LocalAddress = _local,
-							LocalPort = _localPort,
-							RemoteAddress = _remote,
-							RemotePort = _remotePort,
+							ClientAddress = _local,
+							ClientPort = _localPort,
+							ServerAddress = _remote,
+							ServerPort = _remotePort,
 							Status = _status,
-							Pid = _pid,
-							Program = _program
+							ID = _pid,
+							ProgramName = _program
 						} );
 					} );
 				}
@@ -258,16 +258,16 @@ namespace Sniffy
 					_program = PortViewModel.LookupProcess( _pid );
 					Application.Current.Dispatcher.Invoke( ( ) =>
 					{
-						PortListenStats.Add( new PortListenStat
+						PortListenStats.Add( new ProtocolModel
 						{
 							Protocol = _protocol,
-							LocalAddress = _local,
-							LocalPort = _localPort,
-							RemoteAddress = _remote,
-							RemotePort = _remotePort,
+							ClientAddress = _local,
+							ClientPort = _localPort,
+							ServerAddress = _remote,
+							ServerPort = _remotePort,
 							Status = _status,
-							Pid = _pid,
-							Program = _program
+							ID = _pid,
+							ProgramName = _program
 						} );
 					} );
 				}

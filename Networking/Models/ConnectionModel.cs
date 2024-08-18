@@ -45,7 +45,8 @@ namespace Sniffy
 	using PcapDotNet.Packets.IpV4;
 
 	[ SuppressMessage( "ReSharper", "ClassCanBeSealed.Global" ) ]
-	public class ConnectionStats
+	[ SuppressMessage( "ReSharper", "AutoPropertyCanBeMadeGetOnly.Global" ) ]
+	public class ConnectionModel
 	{
 		/// <summary>
 		/// Gets or sets the address a.
@@ -97,11 +98,11 @@ namespace Sniffy
 
 		/// <summary>
 		/// Initializes a new instance of the
-		/// <see cref="ConnectionStats"/> class.
+		/// <see cref="ConnectionModel"/> class.
 		/// </summary>
 		/// <param name = "clientAddress" > </param>
 		/// <param name = "serverAddress" > </param>
-		public ConnectionStats( IpV4Address clientAddress, IpV4Address serverAddress )
+		public ConnectionModel( IpV4Address clientAddress, IpV4Address serverAddress )
 		{
 			ClientAddress = clientAddress;
 			ServerAddress = serverAddress;

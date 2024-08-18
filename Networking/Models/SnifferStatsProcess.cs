@@ -60,17 +60,17 @@ namespace Sniffy
 		static SnifferStatsProcess( )
 		{
 			StopWatch = new Stopwatch( );
-			ProtocolStats = new ObservableCollection<ProtocolStats>( )
+			ProtocolStats = new ObservableCollection<ProtocolView>( )
 			{
-				new ProtocolStats( IpV4Protocol.Tcp ),
-				new ProtocolStats( IpV4Protocol.Udp ),
-				new ProtocolStats( IpV4Protocol.Ip ),
-				new ProtocolStats( IpV4Protocol.Stream ),
-				new ProtocolStats( IpV4Protocol.InternetControlMessageProtocol ),
-				new ProtocolStats( IpV4Protocol.InternetGroupManagementProtocol )
+				new ProtocolView( IpV4Protocol.Tcp ),
+				new ProtocolView( IpV4Protocol.Udp ),
+				new ProtocolView( IpV4Protocol.Ip ),
+				new ProtocolView( IpV4Protocol.Stream ),
+				new ProtocolView( IpV4Protocol.InternetControlMessageProtocol ),
+				new ProtocolView( IpV4Protocol.InternetGroupManagementProtocol )
 			};
 
-			ConnectionStats = new ObservableCollection<ConnectionStats>( );
+			ConnectionStats = new ObservableCollection<ConnectionModel>( );
 			PacketCount = 0;
 			ByteCount = 0;
 		}
@@ -105,7 +105,7 @@ namespace Sniffy
 		/// <value>
 		/// The protocol stats.
 		/// </value>
-		public static ObservableCollection<ProtocolStats> ProtocolStats { get; private set; }
+		public static ObservableCollection<ProtocolView> ProtocolStats { get; private set; }
 
 		/// <summary>
 		/// Gets the connection stats.
@@ -113,7 +113,7 @@ namespace Sniffy
 		/// <value>
 		/// The connection stats.
 		/// </value>
-		public static ObservableCollection<ConnectionStats> ConnectionStats
+		public static ObservableCollection<ConnectionModel> ConnectionStats
 		{
 			get;
 			private set;
@@ -192,7 +192,7 @@ namespace Sniffy
 
 			if( _connStats == null )
 			{
-				_connStats = new ConnectionStats( newPacket.Ethernet.IpV4.Source,
+				_connStats = new ConnectionModel( newPacket.Ethernet.IpV4.Source,
 					newPacket.Ethernet.IpV4.Destination );
 
 				_connStats.ClientServerByteCount = newPacket.Length;

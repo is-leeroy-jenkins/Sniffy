@@ -212,7 +212,7 @@
                             Grid.Row="0"
                             Margin="0,10,0,10"
                             HorizontalAlignment="Center"
-                            Text="{Binding NetworkScanModel.IP}" />
+                            Text="{Binding NetworkScanModel.Ip}" />
                         <TextBlock
                             Grid.Row="1"
                             Margin="5,10,0,10"
