@@ -12,7 +12,8 @@
     </ResourceDictionary.MergedDictionaries>
 
     <BorderGapMaskConverter x:Key="BorderGapMaskConverter" />
-    <!--  ******************************** Resources  **************************************  -->
+
+    <!--  ******************************** Styles **************************************  -->
 
     <Style TargetType="{x:Type GroupBox}">
         <Setter Property="BorderBrush" Value="{DynamicResource FormControlBorderBrush}" />
@@ -41,7 +42,7 @@
                             Grid.Column="0"
                             Grid.ColumnSpan="4"
                             Background="{TemplateBinding Background}"
-                            BorderBrush="{DynamicResource FormControlBackground}"
+                            BorderBrush="{DynamicResource Background-Default2}"
                             BorderThickness="{TemplateBinding BorderThickness}"
                             CornerRadius="4" />
                         <Border
@@ -49,7 +50,7 @@
                             Grid.RowSpan="3"
                             Grid.Column="0"
                             Grid.ColumnSpan="4"
-                            BorderBrush="{DynamicResource FormControlBackground}"
+                            BorderBrush="{DynamicResource Background-Default2}"
                             BorderThickness="{TemplateBinding BorderThickness}"
                             CornerRadius="4">
                             <Border.OpacityMask>
@@ -101,6 +102,7 @@
     </Style>
 
     <!--  ******************************** Resources  **************************************  -->
+
     <Style
         x:Key="AccentGroupBox"
         TargetType="{x:Type GroupBox}">
@@ -123,7 +125,7 @@
                             Background="{DynamicResource FormControlBackground.Dark}">
                             <ContentPresenter
                                 ContentSource="Header"
-                                RecognizesAccessKey="True"
+                                RecognizesAccessKey="true"
                                 SnapsToDevicePixels="true"
                                 TextElement.FontWeight="Medium"
                                 TextElement.Foreground="{DynamicResource FormControlForeground}" />

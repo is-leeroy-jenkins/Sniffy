@@ -41,26 +41,29 @@
 
 namespace Sniffy
 {
+    using System.Diagnostics.CodeAnalysis;
+
+    /// <inheritdoc />
     /// <summary>
-    /// 
     /// </summary>
-    /// <seealso cref="Sniffy.MainWindowBase" />
+    /// <seealso cref="T:Sniffy.MainWindowBase" />
+    [ SuppressMessage( "ReSharper", "ClassCanBeSealed.Global" ) ]
     public class PortScanModel : MainWindowBase
     {
         /// <summary>
         /// The close count
         /// </summary>
-        private int _closeCnt;
+        private int _closeCount;
 
         /// <summary>
         /// The ip
         /// </summary>
-        private string _ip;
+        private string _ipAddress;
 
         /// <summary>
         /// The open count
         /// </summary>
-        private int _openCnt;
+        private int _openCount;
 
         /// <summary>
         /// The port
@@ -88,17 +91,18 @@ namespace Sniffy
         private int _stopPort;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="PortScanModel"/> class.
+        /// Initializes a new instance of the
+        /// <see cref="PortScanModel"/> class.
         /// </summary>
         public PortScanModel( )
         {
-            Ip = "192.168.1.1";
-            StartPort = 1;
-            StopPort = 65535;
-            SocketTimeout = 1000;
-            ScanButtonName = "Start";
-            CloseCnt = 0;
-            OpenCnt = 0;
+            _ipAddress = "192.168.1.1";
+            _startPort = 1;
+            _stopPort = 65535;
+            _socketTimeout = 1000;
+            _scanButtonName = "Start";
+            _closeCount = 0;
+            _openCount = 0;
         }
 
         /// <summary>
@@ -109,7 +113,10 @@ namespace Sniffy
         /// </value>
         public int StartPort
         {
-            get { return _startPort; }
+            get
+            {
+                return _startPort;
+            }
             set
             {
                 if( _startPort != value )
@@ -128,7 +135,10 @@ namespace Sniffy
         /// </value>
         public int StopPort
         {
-            get { return _stopPort; }
+            get
+            {
+                return _stopPort;
+            }
             set
             {
                 if( _stopPort != value )
@@ -145,15 +155,18 @@ namespace Sniffy
         /// <value>
         /// The ip.
         /// </value>
-        public string Ip
+        public string IpAddress
         {
-            get { return _ip; }
+            get
+            {
+                return _ipAddress;
+            }
             set
             {
-                if( _ip != value )
+                if( _ipAddress != value )
                 {
-                    _ip = value;
-                    OnPropertyChanged( nameof( Ip ) );
+                    _ipAddress = value;
+                    OnPropertyChanged( nameof( IpAddress ) );
                 }
             }
         }
@@ -166,7 +179,10 @@ namespace Sniffy
         /// </value>
         public string Port
         {
-            get { return _port; }
+            get
+            {
+                return _port;
+            }
             set
             {
                 if( _port != value )
@@ -183,15 +199,18 @@ namespace Sniffy
         /// <value>
         /// The open count.
         /// </value>
-        public int OpenCnt
+        public int OpenCount
         {
-            get { return _openCnt; }
+            get
+            {
+                return _openCount;
+            }
             set
             {
-                if( _openCnt != value )
+                if( _openCount != value )
                 {
-                    _openCnt = value;
-                    OnPropertyChanged( nameof( OpenCnt ) );
+                    _openCount = value;
+                    OnPropertyChanged( nameof( OpenCount ) );
                 }
             }
         }
@@ -202,15 +221,18 @@ namespace Sniffy
         /// <value>
         /// The close count.
         /// </value>
-        public int CloseCnt
+        public int CloseCount
         {
-            get { return _closeCnt; }
+            get
+            {
+                return _closeCount;
+            }
             set
             {
-                if( _closeCnt != value )
+                if( _closeCount != value )
                 {
-                    _closeCnt = value;
-                    OnPropertyChanged( nameof( CloseCnt ) );
+                    _closeCount = value;
+                    OnPropertyChanged( nameof( CloseCount ) );
                 }
             }
         }
@@ -223,7 +245,10 @@ namespace Sniffy
         /// </value>
         public string ScanButtonName
         {
-            get { return _scanButtonName; }
+            get
+            {
+                return _scanButtonName;
+            }
             set
             {
                 if( _scanButtonName != value )
@@ -242,7 +267,10 @@ namespace Sniffy
         /// </value>
         public int SocketTimeout
         {
-            get { return _socketTimeout; }
+            get
+            {
+                return _socketTimeout;
+            }
             set
             {
                 if( _socketTimeout != value )

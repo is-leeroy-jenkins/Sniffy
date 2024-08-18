@@ -24,7 +24,8 @@
 		/// <param name="parameter">The converter parameter to use.</param>
 		/// <param name="culture">The culture to use in the converter.</param>
 		/// <returns>
-		/// A converted value. If the method returns <see langword="null" />, the valid null value is used.
+		/// A converted value. If the method returns <see langword="null" />,
+		/// the valid null value is used.
 		/// </returns>
 		public object Convert( object value, Type targetType, object parameter,
 			CultureInfo culture )
@@ -42,7 +43,8 @@
 		/// <param name="parameter">The converter parameter to use.</param>
 		/// <param name="culture">The culture to use in the converter.</param>
 		/// <returns>
-		/// A converted value. If the method returns <see langword="null" />, the valid null value is used.
+		/// A converted value. If the method returns <see langword="null" />,
+		/// the valid null value is used.
 		/// </returns>
 		public object ConvertBack( object value, Type targetType, object parameter,
 			CultureInfo culture )

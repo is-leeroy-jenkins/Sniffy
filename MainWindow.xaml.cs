@@ -97,8 +97,10 @@ namespace Sniffy
 
             // Window Properties
             InitializeComponent( );
-            WindowStartupLocation = WindowStartupLocation.CenterScreen;
+            Height = 800;
+            Width = Height / 0.7;
             DataContext = _mainViewModel;
+            WindowStartupLocation = WindowStartupLocation.CenterScreen;
         }
 
         /// <summary>

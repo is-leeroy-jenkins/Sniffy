@@ -174,16 +174,16 @@
         Color="#B20078D4" />
     <SolidColorBrush
         x:Key="PrimaryBackground"
-        Color="#FF0078D4" />
+        Color="#FF141414" />
     <SolidColorBrush
         x:Key="PrimaryColorForeground"
         Color="#FF0078D4" />
     <SolidColorBrush
         x:Key="ContentBackground"
-        Color="#FF161616" />
+        Color="#FF282828" />
     <SolidColorBrush
         x:Key="PopupBackground"
-        Color="#FF333333" />
+        Color="#FF000000" />
     <SolidColorBrush
         x:Key="PrimaryForeground"
         Color="#FFDEDEDE" />
@@ -285,10 +285,10 @@
         Color="#33FFFFFF" />
     <SolidColorBrush
         x:Key="SecondaryBackground"
-        Color="#33FFFFFF" />
+        Color="#FF282828" />
     <SolidColorBrush
         x:Key="SecondaryForeground"
-        Color="#FFFFFFFF" />
+        Color="#FFDEDEDE" />
     <SolidColorBrush
         x:Key="SecondaryBorder"
         Color="#33FFFFFF" />
@@ -408,7 +408,7 @@
         Color="#FF0078D4" />
     <SolidColorBrush
         x:Key="DefaultPrimaryForeground"
-        Color="#FFFFFFFF" />
+        Color="#FFDEDEDE" />
     <SolidColorBrush
         x:Key="PinkRedPrimaryBackground"
         Color="#FF6B181F" />

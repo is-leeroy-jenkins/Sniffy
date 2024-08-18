@@ -66,7 +66,7 @@ namespace Sniffy
 		/// <summary>
 		/// The ip interface
 		/// </summary>
-		public InternetInterface InternetInterface;
+		public WebInterface WebInterface;
 
 		/// <summary>
 		/// The port process
@@ -79,7 +79,7 @@ namespace Sniffy
 		public PortViewModel( )
 		{
 			PortModel = new PortModel( );
-			InternetInterface = new InternetInterface( );
+			WebInterface = new WebInterface( );
 			PortProcess = new ProcessInterface( );
 			GetPortInfo( );
 			PortModel.NetInfoItemSource = GetLocalNetworkInterface( );

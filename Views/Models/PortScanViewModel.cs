@@ -132,7 +132,7 @@ namespace Sniffy
 				if( _client.ConnectAsync( ip, port ).Wait( PortScanModel.SocketTimeout ) )
 				{
 					Console.WriteLine( "port {0,5}tOpen.", port );
-					PortScanModel.OpenCnt++;
+					PortScanModel.OpenCount++;
 					Application.Current.Dispatcher.Invoke( ( ) =>
 					{
 						PortScanResults.Add( new PortScanResult
@@ -145,7 +145,7 @@ namespace Sniffy
 				else
 				{
 					Console.WriteLine( "port {0,5}tClosed.", port );
-					PortScanModel.CloseCnt++;
+					PortScanModel.CloseCount++;
 				}
 			}
 
@@ -167,7 +167,7 @@ namespace Sniffy
 			cancelScanToken = _scanTokenSource.Token;
 			var _startPortVal = PortScanModel.StartPort;
 			var _stopPortVal = PortScanModel.StopPort;
-			var _ipStr = PortScanModel.Ip;
+			var _ipStr = PortScanModel.IpAddress;
 			PortCnt = _stopPortVal - _startPortVal;
 			if( PortCnt <= 0 )
 			{
@@ -221,8 +221,8 @@ namespace Sniffy
 			if( PortScanModel.ScanButtonName == "Start" )
 			{
 				PortScanModel.ScanButtonName = "Stop";
-				PortScanModel.OpenCnt = 0;
-				PortScanModel.CloseCnt = 0;
+				PortScanModel.OpenCount = 0;
+				PortScanModel.CloseCount = 0;
 				PortScanResults.Clear( );
 				StartScanAsync( );
 			}

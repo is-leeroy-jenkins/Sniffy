@@ -86,15 +86,16 @@ namespace Sniffy
 		private string _stopIp;
 
 		/// <summary>
-		/// Initializes a new instance of the <see cref="PortModel"/> class.
+		/// Initializes a new instance of the
+		/// <see cref="PortModel"/> class.
 		/// </summary>
 		public PortModel( )
 		{
-			StartIp = "192.168.1.1";
-			StopIp = "192.168.1.255";
-			ScanButtonName = "Start";
-			OfflineCount = 0;
-			OnlineCount = 0;
+			_startIp = "192.168.1.1";
+			_stopIp = "192.168.1.255";
+			_scanButtonName = "Start";
+			_offlineCount = 0;
+			_onlineCount = 0;
 		}
 
 		/// <summary>

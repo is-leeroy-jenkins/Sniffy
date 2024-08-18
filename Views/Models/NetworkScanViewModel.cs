@@ -84,7 +84,7 @@ namespace Sniffy
 		/// <summary>
 		/// The ip interface
 		/// </summary>
-		public InternetInterface InternetInterface;
+		public WebInterface WebInterface;
 
 		/// <summary>
 		/// Initializes a new instance of the
@@ -93,7 +93,7 @@ namespace Sniffy
 		public NetworkScanViewModel( )
 		{
 			NetworkScanModel = new NetworkScanModel( );
-			InternetInterface = new InternetInterface( );
+			WebInterface = new WebInterface( );
 			NetworkScanModel.NetInfoItemSource = GetLocalNetworkInterface( );
 		}
 
@@ -140,14 +140,14 @@ namespace Sniffy
 			string _time;
 			string _ttl;
 			Console.WriteLine( ip );
-			_reply = InternetInterface.PingSweep( ip );
+			_reply = WebInterface.PingSweep( ip );
 			NetworkScanModel.Ip = ip;
 			if( _reply != null )
 			{
 				if( _reply.Status == IPStatus.Success )
 				{
 					_status = "Online";
-					_hostname = InternetInterface.GetHostName( ip );
+					_hostname = WebInterface.GetHostName( ip );
 					_time = _reply.RoundtripTime.ToString( );
 					_ttl = _reply.Options.Ttl.ToString( );
 					Application.Current.Dispatcher.Invoke( ( ) =>
@@ -191,10 +191,10 @@ namespace Sniffy
 		{
 			_scanTokenSource = new CancellationTokenSource( );
 			_cancelScanToken = _scanTokenSource.Token;
-			var _startIpVal = InternetInterface.RevertConversion( NetworkScanModel.StartIp );
-			var _startIpStr = InternetInterface.ConvertToAddress( _startIpVal );
-			var _endIpVal = InternetInterface.RevertConversion( NetworkScanModel.StopIp );
-			var _endIpStr = InternetInterface.ConvertToAddress( _endIpVal );
+			var _startIpVal = WebInterface.RevertConversion( NetworkScanModel.StartIp );
+			var _startIpStr = WebInterface.ConvertToAddress( _startIpVal );
+			var _endIpVal = WebInterface.RevertConversion( NetworkScanModel.StopIp );
+			var _endIpStr = WebInterface.ConvertToAddress( _endIpVal );
 			IpCount = ( int )( _endIpVal - _startIpVal );
 			if( IpCount <= 0 )
 			{
@@ -210,7 +210,7 @@ namespace Sniffy
 					{
 						Console.WriteLine( _i.ToString( ) );
 						var _j = _i;
-						var _ipStr = InternetInterface.ConvertToAddress( _j );
+						var _ipStr = WebInterface.ConvertToAddress( _j );
 						var _task = Task.Run( ( ) =>
 						{
 							_doScan( _ipStr );

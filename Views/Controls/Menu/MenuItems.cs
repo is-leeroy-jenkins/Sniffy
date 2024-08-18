@@ -1,16 +1,16 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Sniffy
 //     Author:                  Terry D. Eppler
-//     Created:                 08-13-2024
+//     Created:                 08-18-2021
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        08-13-2024
+//     Last Modified On:        08-18-2024
 // ******************************************************************************************
 // <copyright file="MenuItems.cs" company="Terry D. Eppler">
 //     A tiny .NET WPF tool that can be used to establish TCP (raw) or WebSocket connections
 //     and exchange text messages for testing/debugging purposes.
 // 
-//     Copyright ©  2020 Terry D. Eppler
+//     Copyright ©  2021 Terry D. Eppler
 // 
 //    Permission is hereby granted, free of charge, to any person obtaining a copy
 //    of this software and associated documentation files (the “Software”),
@@ -41,41 +41,152 @@
 
 namespace Sniffy
 {
-	using System;
-	using System.Diagnostics.CodeAnalysis;
+    using System;
+    using System.ComponentModel;
+    using System.Diagnostics.CodeAnalysis;
+    using System.Runtime.CompilerServices;
 
-	/// <summary>
-	/// 
-	/// </summary>
-	[ SuppressMessage( "ReSharper", "FieldCanBeMadeReadOnly.Global" ) ]
-	[ SuppressMessage( "ReSharper", "ClassCanBeSealed.Global" ) ]
-	[ SuppressMessage( "ReSharper", "MemberCanBeInternal" ) ]
-	[ SuppressMessage( "ReSharper", "InheritdocConsiderUsage" ) ]
-	[ SuppressMessage( "ReSharper", "RedundantExtendsListEntry" ) ]
-	public class MenuItems
-	{
-		/// <summary>
-		/// Initializes a new instance of the
-		/// <see cref="MenuItems"/> class.
-		/// </summary>
-		public MenuItems( )
-		{
-		}
+    /// <summary>
+    /// 
+    /// </summary>
+    [ SuppressMessage( "ReSharper", "FieldCanBeMadeReadOnly.Global" ) ]
+    [ SuppressMessage( "ReSharper", "ClassCanBeSealed.Global" ) ]
+    [ SuppressMessage( "ReSharper", "MemberCanBeInternal" ) ]
+    [ SuppressMessage( "ReSharper", "InheritdocConsiderUsage" ) ]
+    [ SuppressMessage( "ReSharper", "RedundantExtendsListEntry" ) ]
+    public class MenuItems : INotifyPropertyChanged
+    {
+        /// <summary>
+        /// The menu image
+        /// </summary>
+        private string _menuImage;
 
-		/// <summary>
-		/// Gets or sets the name of the menu.
-		/// </summary>
-		/// <value>
-		/// The name of the menu.
-		/// </value>
-		public string MenuName { get; set; }
+        /// <summary>
+        /// The menu name
+        /// </summary>
+        private string _menuName;
 
-		/// <summary>
-		/// Gets or sets the menu image.
-		/// </summary>
-		/// <value>
-		/// The menu image.
-		/// </value>
-		public string MenuImage { get; set; }
-	}
+        /// <summary>
+        /// The tag
+        /// </summary>
+        private object _tag;
+
+        /// <summary>
+        /// The tool tip
+        /// </summary>
+        private string _toolTip;
+
+        /// <summary>
+        /// Occurs when a property value changes.
+        /// </summary>
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        /// <summary>
+        /// Initializes a new instance of the
+        /// <see cref="MenuItems"/> class.
+        /// </summary>
+        public MenuItems( )
+        {
+        }
+
+        /// <summary>
+        /// Gets or sets the name of the menu.
+        /// </summary>
+        /// <value>
+        /// The name of the menu.
+        /// </value>
+        public string MenuName
+        {
+            get
+            {
+                return _menuName;
+            }
+            set
+            {
+                if( _menuName != value )
+                {
+                    _menuName = value;
+                    OnPropertyChanged( nameof( MenuName ) );
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the menu image.
+        /// </summary>
+        /// <value>
+        /// The menu image.
+        /// </value>
+        public string MenuImage
+        {
+            get
+            {
+                return _menuImage;
+            }
+            set
+            {
+                if( _menuImage != value )
+                {
+                    _menuImage = value;
+                    OnPropertyChanged( nameof( MenuName ) );
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the tag.
+        /// </summary>
+        /// <value>
+        /// The tag.
+        /// </value>
+        public object Tag
+        {
+            get
+            {
+                return _tag;
+            }
+            set
+            {
+                if( _tag != value )
+                {
+                    _tag = value;
+                    OnPropertyChanged( nameof( Tag ) );
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the tool tip.
+        /// </summary>
+        /// <value>
+        /// The tool tip.
+        /// </value>
+        public string ToolTip
+        {
+            get
+            {
+                return _toolTip;
+            }
+            set
+            {
+                if( _toolTip != value )
+                {
+                    _toolTip = value;
+                    OnPropertyChanged( nameof( ToolTip ) );
+                }
+            }
+        }
+
+        /// <summary>
+        /// Called when [property changed].
+        /// </summary>
+        /// <param name="propertyName">
+        /// Name of the property.
+        /// </param>
+        public void OnPropertyChanged( [ CallerMemberName ] string propertyName = null )
+        {
+            var _handler = PropertyChanged;
+            _handler?.Invoke( this, new PropertyChangedEventArgs( propertyName ) );
+        }
+    }
 }

@@ -59,7 +59,7 @@ namespace Sniffy
 	[ SuppressMessage( "ReSharper", "UnusedParameter.Global" ) ]
 	[ SuppressMessage( "ReSharper", "UnusedVariable" ) ]
 	[ SuppressMessage( "ReSharper", "ClassCanBeSealed.Global" ) ]
-	public class InternetInterface
+	public class WebInterface
 	{
 		/// <summary>
 		/// Pings the sweep.
@@ -69,20 +69,20 @@ namespace Sniffy
 		public PingReply PingSweep( string ipAddress )
 		{
 			PingReply _reply;
-			Ping _pingSender = null;
+			Ping _pinger = null;
 			try
 			{
-				_pingSender = new Ping( );
+				_pinger = new Ping( );
 				var _options = new PingOptions
 				{
 					DontFragment = true
 				};
 
-				var _data = "hello";
+				var _data = "kamusta ka";
 				var _buffer = Encoding.ASCII.GetBytes( _data );
 				var _timeout = 1000;
 				var _ipa = IPAddress.Parse( ipAddress );
-				var _replyPing = _pingSender.Send( _ipa, _timeout, _buffer, _options );
+				var _replyPing = _pinger.Send( _ipa, _timeout, _buffer, _options );
 				_reply = _replyPing;
 			}
 			catch( Exception )
@@ -91,7 +91,7 @@ namespace Sniffy
 			}
 			finally
 			{
-				_pingSender?.Dispose( );
+				_pinger?.Dispose( );
 			}
 
 			return _reply;

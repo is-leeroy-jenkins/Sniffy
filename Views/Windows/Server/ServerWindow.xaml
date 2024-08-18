@@ -221,7 +221,7 @@
                             Grid.Row="2"
                             Margin="50,10,0,0"
                             Foreground="#FFA0BDFC"
-                            Text="{Binding SelectedItem.Ip, ElementName=NetInfoCombox}" />
+                            Text="{Binding SelectedItem.IpAddress, ElementName=NetInfoCombox}" />
                         <TextBlock
                             Grid.Row="3"
                             Margin="5,10,0,10"

@@ -10,12 +10,13 @@
     <Color x:Key="WhiteColor">#FFF</Color>
 
     <!--  ************************************  Default Colors   ***********************************  -->
-    <!--  #FF46B8DA  -->
+
     <Color x:Key="DefaultColor1">#FF141414</Color>
     <Color x:Key="DefaultColor2">#FF282828</Color>
     <Color x:Key="DefaultColor3">#FF4682B4</Color>
     <Color x:Key="DefaultColor4">#FF0E3C5E</Color>
     <Color x:Key="DefaultColor5">#FF012336</Color>
+
 
     <!--  ************************************ Primary Colors  ***********************************  -->
 
@@ -32,9 +33,9 @@
 
     <!--  ************************************ Informational Colors  *****************************  -->
 
-    <Color x:Key="InfoColor1">#FFD9EDF7</Color>
-    <Color x:Key="InfoColor2">#FFA0BDFC</Color>
-    <Color x:Key="InfoColor3">#FF46B8DA</Color>
+    <Color x:Key="InfoColor1">#FFFFFFFF</Color>
+    <Color x:Key="InfoColor2">#FFDEDEDE</Color>
+    <Color x:Key="InfoColor3">#FFA0BDFC</Color>
     <Color x:Key="InfoColor4">#FF4682B4</Color>
     <Color x:Key="InfoColor5">#FF31708F</Color>
 
@@ -68,7 +69,7 @@
     <Color x:Key="SeriesColor8">#FFA0BDFC</Color>
 
 
-    <!--  ************************************  Series Colors ***********************************  -->
+    <!--  ************************************  Accent Colors ***********************************  -->
 
 
     <Color x:Key="AccentColor1">#FF0078D4</Color>
@@ -89,7 +90,7 @@
 
     <SolidColorBrush
         x:Key="FormControlForeground"
-        Color="{StaticResource DefaultForegroundColor}" />
+        Color="{StaticResource InfoColor2}" />
 
 
     <SolidColorBrush
@@ -99,7 +100,7 @@
 
     <SolidColorBrush
         x:Key="Foreground-Muted"
-        Color="{StaticResource MutedForegroundColor}" />
+        Color="{StaticResource PrimaryColor2}" />
 
     <SolidColorBrush
         x:Key="Background-Default1"
@@ -107,19 +108,31 @@
 
     <SolidColorBrush
         x:Key="BorderBrush-Default1"
-        Color="{StaticResource PrimaryColor1}" />
+        Color="{StaticResource DefaultColor1}" />
 
     <SolidColorBrush
         x:Key="Background-Default2"
         Color="{StaticResource DefaultColor2}" />
+    
+    <SolidColorBrush
+        x:Key="Background-Default3"
+        Color="{StaticResource DefaultColor3}" />
+
+    <SolidColorBrush
+        x:Key="Background-Default4"
+        Color="{StaticResource DefaultColor4}" />
+
+    <SolidColorBrush
+        x:Key="Background-Default5"
+        Color="{StaticResource DefaultColor5}" />
 
     <SolidColorBrush
         x:Key="BorderBrush-Default2"
-        Color="{StaticResource PrimaryColor2}" />
+        Color="{StaticResource DefaultColor2}" />
 
     <SolidColorBrush
         x:Key="Foreground-Default"
-        Color="{StaticResource DefaultForegroundColor}" />
+        Color="{StaticResource InfoColor2}" />
 
     <SolidColorBrush
         x:Key="Background-Primary1"
@@ -131,11 +144,11 @@
 
     <SolidColorBrush
         x:Key="Foreground-Primary1"
-        Color="{StaticResource DefaultForegroundColor}" />
+        Color="{StaticResource PrimaryColor1}" />
 
     <SolidColorBrush
         x:Key="Background-Primary2"
-        Color="{StaticResource DefaultColor2}" />
+        Color="{StaticResource PrimaryColor2}" />
 
     <SolidColorBrush
         x:Key="BorderBrush-Primary2"
@@ -150,25 +163,39 @@
         x:Key="Background-Success1"
         Color="{StaticResource SuccessColor1}" />
 
-    <SolidColorBrush
-        x:Key="BorderBrush-Success1"
-        Color="{StaticResource SuccessColor2}" />
 
     <SolidColorBrush
-        x:Key="Background-Success2"
+        x:Key="Background-Success3"
         Color="{StaticResource SuccessColor3}" />
 
     <SolidColorBrush
-        x:Key="BorderBrush-Success2"
+        x:Key="Background-Success4"
         Color="{StaticResource SuccessColor4}" />
+
+
+    <SolidColorBrush
+        x:Key="Background-Success5"
+        Color="{StaticResource SuccessColor5}" />
+
+    <SolidColorBrush
+        x:Key="BorderBrush-Success1"
+        Color="{StaticResource SuccessColor1}" />
+
+    <SolidColorBrush
+        x:Key="Background-Success2"
+        Color="{StaticResource SuccessColor2}" />
+
+    <SolidColorBrush
+        x:Key="BorderBrush-Success2"
+        Color="{StaticResource SuccessColor2}" />
 
     <SolidColorBrush
         x:Key="Foreground-Success"
-        Color="{StaticResource SuccessColor5}" />
+        Color="{StaticResource SuccessColor3}" />
 
     <SolidColorBrush
         x:Key="BorderBrush-Success3"
-        Color="{StaticResource SuccessColor5}" />
+        Color="{StaticResource SuccessColor3}" />
 
     <SolidColorBrush
         x:Key="Background-Info1"
@@ -176,19 +203,19 @@
 
     <SolidColorBrush
         x:Key="BorderBrush-Info1"
-        Color="{StaticResource InfoColor2}" />
+        Color="{StaticResource InfoColor1}" />
 
     <SolidColorBrush
         x:Key="Background-Info2"
-        Color="{StaticResource InfoColor3}" />
+        Color="{StaticResource InfoColor2}" />
 
     <SolidColorBrush
         x:Key="BorderBrush-Info2"
-        Color="{StaticResource InfoColor4}" />
+        Color="{StaticResource InfoColor2}" />
 
     <SolidColorBrush
         x:Key="Foreground-Info"
-        Color="{StaticResource InfoColor5}" />
+        Color="{StaticResource InfoColor1}" />
 
     <SolidColorBrush
         x:Key="Background-Warning1"
@@ -248,21 +275,23 @@
 
     <SolidColorBrush
         x:Key="HForeground"
-        Color="{StaticResource DefaultForegroundColor}" />
+        Color="{StaticResource PrimaryColor1}" />
 
     <SolidColorBrush
         x:Key="SmallForeground"
-        Color="{StaticResource MutedForegroundColor}" />
+        Color="{StaticResource PrimaryColor2}" />
+
 
     <!--  *********************************************************   Common colors  *********************************************************  -->
 
+
     <Color x:Key="GlyphColor">Lime</Color>
-    <Color x:Key="ForegroundColor">#FFA0BDFC</Color>
-    <Color x:Key="ForegroundColor.Light">#FFDEDEDE</Color>
+    <Color x:Key="ForegroundColor">#FFDEDEDE</Color>
+    <Color x:Key="LightBlueColor">#FFA0BDFC</Color>
     <Color x:Key="BackgroundColor">#FF141414</Color>
-    <Color x:Key="BackgroundColor.Dark">#FF141414</Color>
+    <Color x:Key="ControlBackColor">#FF141414</Color>
     <Color x:Key="BorderColor">#FF0078D4</Color>
-    <Color x:Key="BorderColor.Light">#FFA0BDFC</Color>
+    <Color x:Key="BorderHoverColor">#FFA0BDFC</Color>
     <Color x:Key="Disabled.BackgroundColor">#FF141414</Color>
     <Color x:Key="Disabled.BackgroundColorLight">#FFF</Color>
     <Color x:Key="Disabled.BorderColor">#4B4B4B</Color>
@@ -274,8 +303,8 @@
         Color="{StaticResource ForegroundColor}" />
 
     <SolidColorBrush
-        x:Key="ForegroundBrush.Light"
-        Color="{StaticResource ForegroundColor.Light}" />
+        x:Key="LightBlueBrush"
+        Color="{StaticResource PrimaryColor2}" />
 
     <SolidColorBrush
         x:Key="BorderBrush"
@@ -287,7 +316,7 @@
 
     <SolidColorBrush
         x:Key="BackgroundBrush.Dark"
-        Color="{StaticResource BackgroundColor.Dark}" />
+        Color="{StaticResource BackgroundColor}" />
 
     <SolidColorBrush
         x:Key="MouseOver.BackgroundBrush"
@@ -313,11 +342,15 @@
         x:Key="Accent.LightBrush"
         Color="{DynamicResource AccentColor3}" />
 
+
     <!--  *********************************************************  Separator  *********************************************************  -->
+
 
     <SolidColorBrush x:Key="SeparatorBrush">#FF012336</SolidColorBrush>
 
+
     <!--  *********************************************************   FontStyle  *********************************************************  -->
+
 
     <Style TargetType="{x:Type Control}">
         <Setter Property="Foreground" Value="{StaticResource ForegroundBrush}" />
@@ -646,7 +679,7 @@
 
     <SolidColorBrush
         x:Key="Menu.Static.Foreground"
-        Color="{StaticResource ForegroundColor}" />
+        Color="{StaticResource PrimaryColor2}" />
 
     <SolidColorBrush
         x:Key="Menu.Static.Border"
@@ -683,23 +716,24 @@
         x:Key="Menu.Static.Separator"
         Color="{StaticResource DefaultColor4}" />
 
+
     <!--  *********************************************************   TabItem  *********************************************************  -->
 
     <SolidColorBrush
         x:Key="TabItem.Static.Background"
-        Color="{StaticResource BackgroundColor.Dark}" />
+        Color="{StaticResource BackgroundColor}" />
 
     <SolidColorBrush
         x:Key="TabItem.Static.Border"
-        Color="{StaticResource BackgroundColor.Dark}" />
+        Color="{StaticResource BackgroundColor}" />
 
     <SolidColorBrush
         x:Key="TabItem.MouseOver.Background"
-        Color="{StaticResource DefaultColor5}" />
+        Color="{StaticResource DefaultColor3}" />
 
     <SolidColorBrush
         x:Key="TabItem.MouseOver.Border"
-        Color="{StaticResource DefaultColor5}" />
+        Color="{StaticResource PrimaryColor2}" />
 
     <SolidColorBrush
         x:Key="TabItem.Disabled.Background"
@@ -707,11 +741,11 @@
 
     <SolidColorBrush
         x:Key="TabItem.Disabled.Border"
-        Color="{StaticResource Disabled.BorderColor}" />
+        Color="{StaticResource BackgroundColor}" />
 
     <SolidColorBrush
         x:Key="TabItem.Selected.Background"
-        Color="{StaticResource BackgroundColor}" />
+        Color="{StaticResource DefaultColor4}" />
 
     <SolidColorBrush
         x:Key="TabItem.Selected.Border"

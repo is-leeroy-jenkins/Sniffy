@@ -81,7 +81,9 @@ namespace Sniffy
 		/// <summary>
 		/// Called when [property changed].
 		/// </summary>
-		/// <param name="propertyName">Name of the property.</param>
+		/// <param name="propertyName">
+		/// Name of the property.
+		/// </param>
 		public void OnPropertyChanged( [ CallerMemberName ] string propertyName = null )
 		{
 			var _handler = PropertyChanged;
