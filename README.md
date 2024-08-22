@@ -24,9 +24,6 @@ Sniffy suppoorts iperf, tcp, udp, websocket, mqtt, sniffer, pcap, port scan, lis
 
 ## Code 
 
-Sniffy is built on NET 6 and supports AnyCPU as well as x86/x64 specific builds
-
-
 
  - [Callbacks](https://github.com/is-leeroy-jenkins/Sniffy/tree/master/Callbacks) - Delegates, Events, etc.
  - [Enumerations](https://github.com/is-leeroy-jenkins/Sniffy/tree/master/Enumerations) - various enumerations used in Sniffy.
@@ -38,14 +35,4 @@ Sniffy is built on NET 6 and supports AnyCPU as well as x86/x64 specific builds
  - [Windows](https://github.com/is-leeroy-jenkins/Sniffy/tree/master/Views/Windows) - classes associated with the application windows.
 
 
-## Example (General)
-![](https://github.com/is-leeroy-jenkins/Sniffy/blob/master/Resources/Assets/Github/Sniffy-Intro.gif)
 
-
-## Example (TCP):
-
-![](https://github.com/is-leeroy-jenkins/Sniffy/blob/master/Resources/Assets/Github/example-tcp.gif)
-
-## Example (WebSocket):
-
-![](https://github.com/is-leeroy-jenkins/Sniffy/blob/master/Resources/Assets/Github/example-websocket.gif)
