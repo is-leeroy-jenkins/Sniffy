@@ -26,10 +26,12 @@
     <!--  ******************************************** Context Menu ******************************************  -->
 
     <UserControl.ContextMenu>
-        <ContextMenu x:Name="MainWindowContextMenu">
+        <ContextMenu 
+            x:Name="SnifferContextMenu">
             <MenuItem
-                Background="#FF101010"
-                Foreground="#FFA0BDFC"
+                Background="{StaticResource MenuBackground}"
+                Foreground="{StaticResource MenuForeground}"
+                Height="40"
                 Header="File"
                 ToolTip="Browse File System">
                 <MenuItem.Icon>
@@ -38,9 +40,10 @@
             </MenuItem>
 
             <MenuItem
-                Background="#FF101010"
+                Background="{StaticResource MenuBackground}"
+                Foreground="{StaticResource MenuForeground}"
+                Height="40"
                 Click="OnFolderMenuOptionClick"
-                Foreground="#FFA0BDFC"
                 Header="Folder"
                 ToolTip="Browse Directories">
                 <MenuItem.Icon>
@@ -51,9 +54,10 @@
             <Separator />
 
             <MenuItem
-                Background="#FF101010"
+                Background="{StaticResource MenuBackground}"
+                Foreground="{StaticResource MenuForeground}"
+                Height="40"
                 Click="OnChromeOptionClick"
-                Foreground="#FFA0BDFC"
                 Header="Chrome"
                 ToolTip="Launch Chrome Browser">
                 <MenuItem.Icon>
@@ -62,9 +66,10 @@
             </MenuItem>
 
             <MenuItem
-                Background="#FF101010"
+                Background="{StaticResource MenuBackground}"
+                Foreground="{StaticResource MenuForeground}"
+                Height="40"
                 Click="OnEdgeOptionClick"
-                Foreground="#FFA0BDFC"
                 Header="Edge"
                 ToolTip="Launch Edge Browser">
                 <MenuItem.Icon>
@@ -73,9 +78,10 @@
             </MenuItem>
 
             <MenuItem
-                Background="#FF101010"
+                Background="{StaticResource MenuBackground}"
+                Foreground="{StaticResource MenuForeground}"
+                Height="40"
                 Click="OnFirefoxOptionClick"
-                Foreground="#FFA0BDFC"
                 Header="FireFox"
                 ToolTip="Launch Firefox Browser">
                 <MenuItem.Icon>
@@ -86,9 +92,10 @@
             <Separator />
 
             <MenuItem
-                Background="#FF101010"
+                Background="{StaticResource MenuBackground}"
+                Foreground="{StaticResource MenuForeground}"
+                Height="40"
                 Click="OnCalculatorMenuOptionClick"
-                Foreground="#FFA0BDFC"
                 Header="Calculator"
                 ToolTip="Open Calculator">
                 <MenuItem.Icon>
@@ -97,9 +104,10 @@
             </MenuItem>
 
             <MenuItem
-                Background="#FF101010"
+                Background="{StaticResource MenuBackground}"
+                Foreground="{StaticResource MenuForeground}"
+                Height="40"
                 Click="OnControlPanelOptionClick"
-                Foreground="#FFA0BDFC"
                 Header="Control Panel"
                 ToolTip="Windows Control Panel">
                 <MenuItem.Icon>
@@ -108,9 +116,10 @@
             </MenuItem>
 
             <MenuItem
-                Background="#FF101010"
+                Background="{StaticResource MenuBackground}"
+                Foreground="{StaticResource MenuForeground}"
+                Height="40"
                 Click="OnTaskManagerOptionClick"
-                Foreground="#FFA0BDFC"
                 Header="Task Manager"
                 ToolTip="Windows Task Manager">
                 <MenuItem.Icon>
@@ -121,9 +130,10 @@
             <Separator />
 
             <MenuItem
-                Background="#FF101010"
+                Background="{StaticResource MenuBackground}"
+                Foreground="{StaticResource MenuForeground}"
+                Height="40"
                 Click="OnCloseOptionClick"
-                Foreground="#FFA0BDFC"
                 Header="Exit"
                 ToolTip="Exit Application">
                 <MenuItem.Icon>
@@ -144,7 +154,7 @@
         </Grid.ColumnDefinitions>
         <Grid
             Grid.Column="0"
-            Background="{StaticResource ControlInterior}"
+            Background="{StaticResource Background-Default1}"
             UseLayoutRounding="True">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
@@ -192,6 +202,7 @@
                         <ComboBox
                             Grid.Row="0"
                             Width="Auto"
+                            Foreground="{StaticResource DefaultForeground}"
                             HorizontalAlignment="Stretch"
                             VerticalContentAlignment="Center"
                             DisplayMemberPath="Description"
@@ -239,7 +250,7 @@
                             VerticalAlignment="Center"
                             Background="{StaticResource ControlInterior}"
                             Content="Packet filter syntax man page-&gt;"
-                            Foreground="{StaticResource FormControlForeground}" />
+                            Foreground="{StaticResource LightBlueBrush}" />
                         <local:ButtonEx
                             Grid.Row="0"
                             Width="25"
@@ -259,6 +270,7 @@
                             VerticalAlignment="Center"
                             Background="{StaticResource Background-Black}"
                             Foreground="{StaticResource Foreground-Primary2}"
+                            BorderBrush="{StaticResource BorderBrush}"
                             Text="{Binding PacketFilter, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                             ToolTip="Packet filter expression">
                             <TextBox.Style>

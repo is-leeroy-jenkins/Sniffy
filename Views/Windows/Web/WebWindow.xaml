@@ -29,6 +29,7 @@
     <UserControl.ContextMenu>
         <ContextMenu x:Name="WebWindowContextMenu">
             <MenuItem
+                Height="40"
                 Background="#FF101010"
                 Foreground="#FFA0BDFC"
                 Header="File"
@@ -39,6 +40,7 @@
             </MenuItem>
 
             <MenuItem
+                Height="40"
                 Background="#FF101010"
                 Click="OnFolderMenuOptionClick"
                 Foreground="#FFA0BDFC"
@@ -52,6 +54,7 @@
             <Separator />
 
             <MenuItem
+                Height="40"
                 Background="#FF101010"
                 Click="OnChromeOptionClick"
                 Foreground="#FFA0BDFC"
@@ -63,6 +66,7 @@
             </MenuItem>
 
             <MenuItem
+                Height="40"
                 Background="#FF101010"
                 Click="OnEdgeOptionClick"
                 Foreground="#FFA0BDFC"
@@ -74,6 +78,7 @@
             </MenuItem>
 
             <MenuItem
+                Height="40"
                 Background="#FF101010"
                 Click="OnFirefoxOptionClick"
                 Foreground="#FFA0BDFC"
@@ -87,6 +92,7 @@
             <Separator />
 
             <MenuItem
+                Height="40"
                 Background="#FF101010"
                 Click="OnCalculatorMenuOptionClick"
                 Foreground="#FFA0BDFC"
@@ -98,6 +104,7 @@
             </MenuItem>
 
             <MenuItem
+                Height="40"
                 Background="#FF101010"
                 Click="OnControlPanelOptionClick"
                 Foreground="#FFA0BDFC"
@@ -109,6 +116,7 @@
             </MenuItem>
 
             <MenuItem
+                Height="40"
                 Background="#FF101010"
                 Click="OnTaskManagerOptionClick"
                 Foreground="#FFA0BDFC"
@@ -122,6 +130,7 @@
             <Separator />
 
             <MenuItem
+                Height="40"
                 Background="#FF101010"
                 Click="OnCloseOptionClick"
                 Foreground="#FFA0BDFC"
@@ -226,6 +235,9 @@
                             Margin="0,5,10,0"
                             HorizontalAlignment="Right"
                             VerticalAlignment="Top"
+                            Background="{StaticResource Background-Black}"
+                            BorderBrush="{StaticResource BorderBrush}"
+                            Foreground="{StaticResource Foreground-Primary1}"
                             SelectedItem="{Binding WebModel.Role}"
                             Text="{Binding WebModel.Role, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                             <ComboBoxItem>-s</ComboBoxItem>
@@ -240,6 +252,9 @@
                             Width="130"
                             Margin="0,5,10,0"
                             HorizontalAlignment="Right"
+                            Background="{StaticResource Background-Black}"
+                            BorderBrush="{StaticResource BorderBrush}"
+                            Foreground="{StaticResource Foreground-Primary1}"
                             Text="{Binding WebModel.ServerIpAddress}" />
                         <TextBlock
                             Grid.Row="4"
@@ -280,6 +295,7 @@
                         <RadioButton
                             Grid.Row="8"
                             Content="TCP Window Size"
+                            Foreground="{StaticResource LightBlueBrush}"
                             GroupName="TcpUdp"
                             IsChecked="{Binding WebModel.TcpFlag}"
                             Style="{StaticResource MenuItemRadioButton}" />
@@ -290,12 +306,15 @@
                             Text="{Binding WebModel.TcpWindowSize}" />
                         <ComboBox
                             Grid.Row="8"
-                            Width="55"
-                            Margin="0,5,10,0"
+                            Width="45"
+                            Margin="0,5,5,0"
                             HorizontalAlignment="Right"
                             VerticalAlignment="Center"
                             HorizontalContentAlignment="Left"
+                            Background="{StaticResource Background-Black}"
+                            BorderBrush="{StaticResource BorderBrush}"
                             FontSize="12"
+                            Foreground="{StaticResource Foreground-Primary1}"
                             SelectedItem="{Binding WebModel.TcpWindowUnit}"
                             Text="{Binding WebModel.TcpWindowUnit, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                             <ComboBoxItem>M</ComboBoxItem>
@@ -307,6 +326,7 @@
                         <RadioButton
                             Grid.Row="9"
                             Content="UDP Bandwidth"
+                            Foreground="{StaticResource LightBlueBrush}"
                             GroupName="TcpUdp"
                             IsChecked="{Binding WebModel.UdpFlag}"
                             Style="{StaticResource MenuItemRadioButton}" />
@@ -320,11 +340,14 @@
 
                         <ComboBox
                             Grid.Row="9"
-                            Width="55"
-                            Margin="0,5,10,0"
+                            Width="45"
+                            Margin="0,5,5,0"
                             HorizontalAlignment="Right"
                             VerticalAlignment="Top"
+                            Background="{StaticResource Background-Black}"
+                            BorderBrush="{StaticResource BorderBrush}"
                             FontSize="12"
+                            Foreground="{StaticResource Foreground-Primary1}"
                             SelectedItem="{Binding WebModel.BandWidthUnit}"
                             Text="{Binding WebModel.BandWidthUnit, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                             <ComboBoxItem>M</ComboBoxItem>
@@ -352,7 +375,7 @@
         </Grid>
         <Grid
             Grid.Column="1"
-            Background="{StaticResource ControlInterior}"
+            Background="{StaticResource Background-Default1}"
             ClipToBounds="True"
             SnapsToDevicePixels="True">
             <Grid.RowDefinitions>

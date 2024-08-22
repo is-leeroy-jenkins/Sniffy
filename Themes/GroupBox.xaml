@@ -136,7 +136,7 @@
         x:Key="GrayGroupBox"
         BasedOn="{StaticResource AccentGroupBox}"
         TargetType="{x:Type GroupBox}">
-        <Setter Property="Background" Value="{StaticResource BackgroundColor.Control}" />
+        <Setter Property="Background" Value="{StaticResource FormControlBackground}" />
         <Setter Property="Foreground" Value="{StaticResource ForegroundBrush.LightBlue}" />
     </Style>
 </ResourceDictionary>

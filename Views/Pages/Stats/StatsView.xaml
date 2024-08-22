@@ -2,17 +2,151 @@
     x:Class="Sniffy.SnifferStatsView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:converters="clr-namespace:Sniffy"
+    xmlns:local="clr-namespace:Sniffy"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:i="clr-namespace:Sniffy"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:oxy="http://oxyplot.org/wpf"
     d:DesignHeight="450"
     d:DesignWidth="800"
     mc:Ignorable="d">
+
+
+    <!--  ******************************************** Resources *********************************************  -->
+
+
     <UserControl.Resources>
-        <converters:BytesSuffixConverter x:Key="BytesSuffixConverter" />
+        <local:BytesSuffixConverter x:Key="BytesSuffixConverter" />
+
+        
+        <Style TargetType="{x:Type ToolTip}">
+            <Setter Property="BorderThickness" Value="1,1,1,1" />
+            <Setter Property="BorderBrush" Value="#0078D4" />
+            <Setter Property="Background" Value="#FF000000" />
+            <Setter Property="Foreground" Value="#FFA0BDFC" />
+        </Style>
+
     </UserControl.Resources>
+    <!--  ******************************************** Context Menu ******************************************  -->
+
+    <UserControl.ContextMenu>
+        <ContextMenu x:Name="MainWindowContextMenu">
+            <MenuItem
+                Background="#FF101010"
+                Foreground="#FFA0BDFC"
+                Height="40"
+                Header="File"
+                ToolTip="Browse File System">
+                <MenuItem.Icon>
+                    <Image Source="/Resources/Assets/MenuImages/FileItem.png" />
+                </MenuItem.Icon>
+            </MenuItem>
+
+            <MenuItem
+                Background="#FF101010"
+                Click="OnFolderMenuOptionClick"
+                Foreground="#FFA0BDFC"
+                Height="40"
+                Header="Folder"
+                ToolTip="Browse Directories">
+                <MenuItem.Icon>
+                    <Image Source="/Resources/Assets/MenuImages/FolderItem.png" />
+                </MenuItem.Icon>
+            </MenuItem>
+
+            <Separator />
+
+            <MenuItem
+                Background="#FF101010"
+                Click="OnChromeOptionClick"
+                Foreground="#FFA0BDFC"
+                Height="40"
+                Header="Chrome"
+                ToolTip="Launch Chrome Browser">
+                <MenuItem.Icon>
+                    <Image Source="/Resources/Assets/MenuImages/ChromeItem.png" />
+                </MenuItem.Icon>
+            </MenuItem>
+
+            <MenuItem
+                Background="#FF101010"
+                Click="OnEdgeOptionClick"
+                Foreground="#FFA0BDFC"
+                Height="40"
+                Header="Edge"
+                ToolTip="Launch Edge Browser">
+                <MenuItem.Icon>
+                    <Image Source="/Resources/Assets/MenuImages/EdgeItem.png" />
+                </MenuItem.Icon>
+            </MenuItem>
+
+            <MenuItem
+                Background="#FF101010"
+                Click="OnFirefoxOptionClick"
+                Foreground="#FFA0BDFC"
+                Height="40"
+                Header="FireFox"
+                ToolTip="Launch Firefox Browser">
+                <MenuItem.Icon>
+                    <Image Source="/Resources/Assets/MenuImages/FirefoxItem.png" />
+                </MenuItem.Icon>
+            </MenuItem>
+
+            <Separator />
+
+            <MenuItem
+                Background="#FF101010"
+                Click="OnCalculatorMenuOptionClick"
+                Foreground="#FFA0BDFC"
+                Height="40"
+                Header="Calculator"
+                ToolTip="Open Calculator">
+                <MenuItem.Icon>
+                    <Image Source="/Resources/Assets/MenuImages/CalculatorItem.png" />
+                </MenuItem.Icon>
+            </MenuItem>
+
+            <MenuItem
+                Background="#FF101010"
+                Click="OnControlPanelOptionClick"
+                Foreground="#FFA0BDFC"
+                Height="40"
+                Header="Control Panel"
+                ToolTip="Windows Control Panel">
+                <MenuItem.Icon>
+                    <Image Source="/Resources/Assets/MenuImages/ControlPanelItem.png" />
+                </MenuItem.Icon>
+            </MenuItem>
+
+            <MenuItem
+                Background="#FF101010"
+                Click="OnTaskManagerOptionClick"
+                Foreground="#FFA0BDFC"
+                Height="40"
+                Header="Task Manager"
+                ToolTip="Windows Task Manager">
+                <MenuItem.Icon>
+                    <Image Source="/Resources/Assets/MenuImages/TaskManagerItem.png" />
+                </MenuItem.Icon>
+            </MenuItem>
+
+            <Separator />
+
+            <MenuItem
+                Background="#FF101010"
+                Click="OnCloseOptionClick"
+                Foreground="#FFA0BDFC"
+                Height="40"
+                Header="Exit"
+                ToolTip="Exit Application">
+                <MenuItem.Icon>
+                    <Image Source="/Resources/Assets/MenuImages/CloseItem.png" />
+                </MenuItem.Icon>
+            </MenuItem>
+        </ContextMenu>
+    </UserControl.ContextMenu>
+
+    <!--  ******************************************** Main Layout *********************************************  -->
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="1*" />
@@ -32,7 +166,7 @@
             Grid.Row="1"
             Height="1"
             HorizontalAlignment="Stretch"
-            Background="LightGray"
+            Background="{StaticResource BorderBrush}"
             ClipToBounds="True"
             RenderTransformOrigin="0.5,0.5"
             SnapsToDevicePixels="True" />
@@ -44,6 +178,7 @@
             <ListView
                 Height="Auto"
                 BorderThickness="0"
+                Background="{StaticResource ControlInterior}"
                 ItemsSource="{Binding Path=ProtocolStats}">
                 <ListView.View>
                     <GridView>
@@ -83,7 +218,7 @@
             Grid.Row="3"
             Height="1"
             HorizontalAlignment="Stretch"
-            Background="LightGray"
+            Background="{StaticResource BorderBrush}"
             ClipToBounds="True"
             RenderTransformOrigin="0.5,0.5"
             SnapsToDevicePixels="True" />
@@ -94,6 +229,7 @@
             Style="{StaticResource AccentGroupBox}">
             <ListView
                 Height="Auto"
+                Background="{StaticResource ControlInterior}"
                 Margin="2"
                 ItemsSource="{Binding Path=ConnectionStats}">
                 <ListView.View>

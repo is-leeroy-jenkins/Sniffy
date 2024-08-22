@@ -82,6 +82,14 @@
     <Color x:Key="HoverColor5">#FF0E3C5E</Color>
 
 
+    <!--  ************************************  Menu Colors  *****************************  -->
+
+    <Color x:Key="MenuBackColor">#FF101010</Color>
+    <Color x:Key="MenuForeColor">#FFA0BDFC</Color>
+    <Color x:Key="MenuBorderColor">#FF4682B4</Color>
+    <Color x:Key="MenuHoverColor">#FF0E3C5E</Color>
+
+
 
     <!--  ************************************  Series Colors ***********************************  -->
 
@@ -124,6 +132,22 @@
     <Color x:Key="Disabled.ForegroundColor">#FF505050</Color>
 
     <Color x:Key="Disabled.GlyphColor">#FF0E3C5E</Color>
+
+
+
+    <SolidColorBrush
+        x:Key="MenuBackground"
+        Color="{StaticResource MenuBackColor}" />
+
+
+    <SolidColorBrush
+        x:Key="MenuForeground"
+        Color="{StaticResource MenuForeColor}" />
+
+
+    <SolidColorBrush
+        x:Key="MenuBorderBrush"
+        Color="{StaticResource MenuBorderColor}" />
 
 
     <SolidColorBrush

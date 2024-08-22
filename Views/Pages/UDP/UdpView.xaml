@@ -9,6 +9,145 @@
     d:DesignWidth="800"
     mc:Ignorable="d">
 
+
+    <!--  ******************************************** Resources *********************************************  -->
+
+
+    <UserControl.Resources>
+
+        
+        <Style TargetType="{x:Type ToolTip}">
+            <Setter Property="BorderThickness" Value="1,1,1,1" />
+            <Setter Property="BorderBrush" Value="#0078D4" />
+            <Setter Property="Background" Value="#FF000000" />
+            <Setter Property="Foreground" Value="#FFA0BDFC" />
+        </Style>
+
+    </UserControl.Resources>
+
+    <!--  ******************************************** Context Menu ******************************************  -->
+
+    <UserControl.ContextMenu>
+        <ContextMenu 
+            x:Name="SnifferContextMenu">
+            <MenuItem
+                Background="{StaticResource MenuBackground}"
+                Foreground="{StaticResource MenuForeground}"
+                Height="40"
+                Header="File"
+                ToolTip="Browse File System">
+                <MenuItem.Icon>
+                    <Image Source="/Resources/Assets/MenuImages/FileItem.png" />
+                </MenuItem.Icon>
+            </MenuItem>
+
+            <MenuItem
+                Background="{StaticResource MenuBackground}"
+                Foreground="{StaticResource MenuForeground}"
+                Height="40"
+                Click="OnFolderMenuOptionClick"
+                Header="Folder"
+                ToolTip="Browse Directories">
+                <MenuItem.Icon>
+                    <Image Source="/Resources/Assets/MenuImages/FolderItem.png" />
+                </MenuItem.Icon>
+            </MenuItem>
+
+            <Separator />
+
+            <MenuItem
+                Background="{StaticResource MenuBackground}"
+                Foreground="{StaticResource MenuForeground}"
+                Height="40"
+                Click="OnChromeOptionClick"
+                Header="Chrome"
+                ToolTip="Launch Chrome Browser">
+                <MenuItem.Icon>
+                    <Image Source="/Resources/Assets/MenuImages/ChromeItem.png" />
+                </MenuItem.Icon>
+            </MenuItem>
+
+            <MenuItem
+                Background="{StaticResource MenuBackground}"
+                Foreground="{StaticResource MenuForeground}"
+                Height="40"
+                Click="OnEdgeOptionClick"
+                Header="Edge"
+                ToolTip="Launch Edge Browser">
+                <MenuItem.Icon>
+                    <Image Source="/Resources/Assets/MenuImages/EdgeItem.png" />
+                </MenuItem.Icon>
+            </MenuItem>
+
+            <MenuItem
+                Background="{StaticResource MenuBackground}"
+                Foreground="{StaticResource MenuForeground}"
+                Height="40"
+                Click="OnFirefoxOptionClick"
+                Header="FireFox"
+                ToolTip="Launch Firefox Browser">
+                <MenuItem.Icon>
+                    <Image Source="/Resources/Assets/MenuImages/FirefoxItem.png" />
+                </MenuItem.Icon>
+            </MenuItem>
+
+            <Separator />
+
+            <MenuItem
+                Background="{StaticResource MenuBackground}"
+                Foreground="{StaticResource MenuForeground}"
+                Height="40"
+                Click="OnCalculatorMenuOptionClick"
+                Header="Calculator"
+                ToolTip="Open Calculator">
+                <MenuItem.Icon>
+                    <Image Source="/Resources/Assets/MenuImages/CalculatorItem.png" />
+                </MenuItem.Icon>
+            </MenuItem>
+
+            <MenuItem
+                Background="{StaticResource MenuBackground}"
+                Foreground="{StaticResource MenuForeground}"
+                Height="40"
+                Click="OnControlPanelOptionClick"
+                Header="Control Panel"
+                ToolTip="Windows Control Panel">
+                <MenuItem.Icon>
+                    <Image Source="/Resources/Assets/MenuImages/ControlPanelItem.png" />
+                </MenuItem.Icon>
+            </MenuItem>
+
+            <MenuItem
+                Background="{StaticResource MenuBackground}"
+                Foreground="{StaticResource MenuForeground}"
+                Height="40"
+                Click="OnTaskManagerOptionClick"
+                Header="Task Manager"
+                ToolTip="Windows Task Manager">
+                <MenuItem.Icon>
+                    <Image Source="/Resources/Assets/MenuImages/TaskManagerItem.png" />
+                </MenuItem.Icon>
+            </MenuItem>
+
+            <Separator />
+
+            <MenuItem
+                Background="{StaticResource MenuBackground}"
+                Foreground="{StaticResource MenuForeground}"
+                Height="40"
+                Click="OnCloseOptionClick"
+                Header="Exit"
+                ToolTip="Exit Application">
+                <MenuItem.Icon>
+                    <Image Source="/Resources/Assets/MenuImages/CloseItem.png" />
+                </MenuItem.Icon>
+            </MenuItem>
+        </ContextMenu>
+    </UserControl.ContextMenu>
+
+
+    <!--  ******************************************** Main Layout *********************************************  -->
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="3*" />
