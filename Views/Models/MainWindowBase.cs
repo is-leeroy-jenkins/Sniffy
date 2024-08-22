@@ -1,16 +1,16 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Sniffy
 //     Author:                  Terry D. Eppler
-//     Created:                 08-12-2024
+//     Created:                 08-19-2021
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        08-12-2024
+//     Last Modified On:        08-19-2024
 // ******************************************************************************************
 // <copyright file="MainWindowBase.cs" company="Terry D. Eppler">
 //     A tiny .NET WPF tool that can be used to establish TCP (raw) or WebSocket connections
 //     and exchange text messages for testing/debugging purposes.
 // 
-//     Copyright ©  2020 Terry D. Eppler
+//     Copyright ©  2021 Terry D. Eppler
 // 
 //    Permission is hereby granted, free of charge, to any person obtaining a copy
 //    of this software and associated documentation files (the “Software”),
@@ -41,53 +41,52 @@
 
 namespace Sniffy
 {
-	using System.Collections.Generic;
-	using System.ComponentModel;
-	using System.Diagnostics.CodeAnalysis;
-	using System.Runtime.CompilerServices;
+    using System.Collections.Generic;
+    using System.ComponentModel;
+    using System.Diagnostics.CodeAnalysis;
+    using System.Runtime.CompilerServices;
 
-	/// <inheritdoc />
-	/// <summary>
-	/// </summary>
-	/// <seealso cref="T:System.ComponentModel.INotifyPropertyChanged" />
-	[ SuppressMessage( "ReSharper", "MemberCanBeProtected.Global" ) ]
-	[ SuppressMessage( "ReSharper", "InconsistentNaming" ) ]
-	public class MainWindowBase : INotifyPropertyChanged
-	{
-		/// <inheritdoc />
-		/// <summary>
-		/// Occurs when a property value changes.
-		/// </summary>
-		public event PropertyChangedEventHandler PropertyChanged;
+    /// <inheritdoc />
+    /// <summary>
+    /// </summary>
+    /// <seealso cref="T:System.ComponentModel.INotifyPropertyChanged" />
+    [ SuppressMessage( "ReSharper", "InconsistentNaming" ) ]
+    [ SuppressMessage( "ReSharper", "MemberCanBeProtected.Global" ) ]
+    public class MainWindowBase : INotifyPropertyChanged
+    {
+        /// <inheritdoc />
+        /// <summary>
+        /// Occurs when a property value changes.
+        /// </summary>
+        public event PropertyChangedEventHandler PropertyChanged;
 
-		/// <summary>
-		/// Updates the specified field.
-		/// </summary>
-		/// <typeparam name="T"></typeparam>
-		/// <param name="field">The field.</param>
-		/// <param name="value">The value.</param>
-		/// <param name="propertyName">Name of the property.</param>
-		public void Update<T>( ref T field, T value, [ CallerMemberName ] string propertyName = null )
-		{
-			if( EqualityComparer<T>.Default.Equals( field, value ) )
-			{
-				return;
-			}
+        /// <summary>
+        /// Updates the specified field.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="field">The field.</param>
+        /// <param name="value">The value.</param>
+        /// <param name="propertyName">Name of the property.</param>
+        public void Update<T>( ref T field, T value,
+            [ CallerMemberName ] string propertyName = null )
+        {
+            if( EqualityComparer<T>.Default.Equals( field, value ) )
+            {
+                return;
+            }
 
-			field = value;
-			OnPropertyChanged( propertyName );
-		}
+            field = value;
+            OnPropertyChanged( propertyName );
+        }
 
-		/// <summary>
-		/// Called when [property changed].
-		/// </summary>
-		/// <param name="propertyName">
-		/// Name of the property.
-		/// </param>
-		public void OnPropertyChanged( [ CallerMemberName ] string propertyName = null )
-		{
-			var _handler = PropertyChanged;
-			_handler?.Invoke( this, new PropertyChangedEventArgs( propertyName ) );
-		}
-	}
+        /// <summary>
+        /// Called when [property changed].
+        /// </summary>
+        /// <param name="propertyName">Name of the property.</param>
+        public void OnPropertyChanged( [ CallerMemberName ] string propertyName = null )
+        {
+            var _handler = PropertyChanged;
+            _handler?.Invoke( this, new PropertyChangedEventArgs( propertyName ) );
+        }
+    }
 }

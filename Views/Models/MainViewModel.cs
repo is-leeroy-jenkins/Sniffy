@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Sniffy
 //     Author:                  Terry D. Eppler
-//     Created:                 08-18-2021
+//     Created:                 08-19-2021
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        08-18-2024
+//     Last Modified On:        08-19-2024
 // ******************************************************************************************
 // <copyright file="MainViewModel.cs" company="Terry D. Eppler">
 //     A tiny .NET WPF tool that can be used to establish TCP (raw) or WebSocket connections
@@ -49,19 +49,14 @@ namespace Sniffy
     using System.Windows.Input;
     using System.Windows.Threading;
 
+    /// <inheritdoc />
     /// <summary>
-    /// 
     /// </summary>
-    /// <seealso cref="Sniffy.MainWindowBase" />
+    /// <seealso cref="T:Sniffy.MainWindowBase" />
     [ SuppressMessage( "ReSharper", "ClassCanBeSealed.Global" ) ]
-    [ SuppressMessage( "ReSharper", "MemberCanBeInternal" ) ]
-    [ SuppressMessage( "ReSharper", "InheritdocConsiderUsage" ) ]
-    [ SuppressMessage( "ReSharper", "RedundantExtendsListEntry" ) ]
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
-    [ SuppressMessage( "ReSharper", "FieldCanBeMadeReadOnly.Global" ) ]
-    [ SuppressMessage( "ReSharper", "UnusedParameter.Global" ) ]
-    [ SuppressMessage( "ReSharper", "ConvertIfStatementToNullCoalescingExpression" ) ]
-    [ SuppressMessage( "ReSharper", "RedundantEmptySwitchSection" ) ]
+    [ SuppressMessage( "ReSharper", "ConvertIfStatementToConditionalTernaryExpression" ) ]
+    [ SuppressMessage( "ReSharper", "FieldCanBeMadeReadOnly.Local" ) ]
     public class MainViewModel : MainWindowBase
     {
         /// <summary>
@@ -75,50 +70,35 @@ namespace Sniffy
         /// <summary>
         /// The menucommand
         /// </summary>
-        private ICommand _menuCommand;
+        private ICommand _menucommand;
 
-        // CollectionViewSource enables XAML code to set
-        // the commonly used CollectionView properties,
+        // CollectionViewSource enables XAML code to set the
+        // commonly used CollectionView properties,
         // passing these settings to the underlying view.
         /// <summary>
         /// The menu items collection
         /// </summary>
-        private protected CollectionViewSource _menuItemsCollection;
+        private CollectionViewSource _menuItemsCollection;
 
         /// <summary>
         /// The network scan view model
         /// </summary>
-        private NetworkScanViewModel _networkScanViewModel;
-
-        /// <summary>
-        /// The performance view model
-        /// </summary>
-        private PerformanceViewModel _performanceViewModel;
+        private protected NetworkScanViewModel _networkScanViewModel;
 
         /// <summary>
         /// The port scan view model
         /// </summary>
-        private PortScanViewModel _portScanViewModel;
+        private protected PortScanViewModel _portScanViewModel;
 
         /// <summary>
         /// The port view model
         /// </summary>
-        private PortViewModel _portViewModel;
+        private protected PortViewModel _portViewModel;
 
         /// <summary>
         /// The route view model
         /// </summary>
-        private RouteViewModel _routeViewModel;
-
-        /// <summary>
-        /// The server view model
-        /// </summary>
-        private ServerViewModel _serverViewModel;
-
-        /// <summary>
-        /// The sniffer view model
-        /// </summary>
-        private SnifferViewModel _snifferViewModel;
+        private protected RouteViewModel _routeViewModel;
 
         /// <summary>
         /// The selected view model
@@ -126,8 +106,22 @@ namespace Sniffy
         private object _selectedViewModel;
 
         /// <summary>
-        /// Initializes a new instance of the
-        /// <see cref="MainViewModel"/> class.
+        /// The server view model
+        /// </summary>
+        private protected ServerViewModel _serverViewModel;
+
+        /// <summary>
+        /// The sniffer view model
+        /// </summary>
+        private protected SnifferViewModel _snifferViewModel;
+
+        /// <summary>
+        /// The web view model
+        /// </summary>
+        private protected WebViewModel _webViewModel;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MainViewModel"/> class.
         /// </summary>
         public MainViewModel( )
         {
@@ -136,44 +130,37 @@ namespace Sniffy
                 new MenuItems
                 {
                     MenuName = "Iperf",
-                    MenuImage = "/Resources/Speed.png",
-                    ToolTip = "Monitor Performance"
+                    MenuImage = @"Resources/Speed.png"
                 },
                 new MenuItems
                 {
                     MenuName = "NetworkScan",
-                    MenuImage = "/Resources/IP.png",
-                    ToolTip = "Scan Network"
+                    MenuImage = @"Resources/IP.png"
                 },
                 new MenuItems
                 {
                     MenuName = "PortScan",
-                    MenuImage = "/Resources/port.png",
-                    ToolTip = "Scan Ports"
+                    MenuImage = @"Resources/port.png"
                 },
                 new MenuItems
                 {
                     MenuName = "RouteTable",
-                    MenuImage = "/Resources/route.png",
-                    ToolTip = "Routing Table"
+                    MenuImage = @"Resources/route.png"
                 },
                 new MenuItems
                 {
                     MenuName = "PortListen",
-                    MenuImage = "/Resources/portlisten.png",
-                    ToolTip = "Listen To Ports"
+                    MenuImage = @"Resources/portlisten.png"
                 },
                 new MenuItems
                 {
                     MenuName = "Server",
-                    MenuImage = "/Resources/servers.png",
-                    ToolTip = "Start Server"
+                    MenuImage = @"Resources/servers.png"
                 },
                 new MenuItems
                 {
                     MenuName = "Sniffer",
-                    MenuImage = "/Resources/sniffer.png",
-                    ToolTip = "Sniff Packets"
+                    MenuImage = @"Resources/sniffer.png"
                 }
             };
 
@@ -183,8 +170,8 @@ namespace Sniffy
             };
 
             _menuItemsCollection.Filter += OnMenuItemsFilter;
-            _performanceViewModel = new PerformanceViewModel( );
-            _selectedViewModel = _performanceViewModel;
+            _webViewModel = new WebViewModel( );
+            SelectedViewModel = _webViewModel;
         }
 
         // ICollectionView enables collections to have the
@@ -220,7 +207,7 @@ namespace Sniffy
             {
                 _filterText = value;
                 _menuItemsCollection.View.Refresh( );
-                OnPropertyChanged( "FilterText" );
+                OnPropertyChanged( nameof( FilterText ) );
             }
         }
 
@@ -267,140 +254,7 @@ namespace Sniffy
             set
             {
                 _selectedViewModel = value;
-                OnPropertyChanged( nameof( SelectedViewModel ) );
-            }
-        }
-
-        /// <summary>
-        /// The network scan vm
-        /// </summary>
-        public NetworkScanViewModel NetworkScanViewModel
-        {
-            get
-            {
-                return _networkScanViewModel;
-            }
-            set
-            {
-                if( _networkScanViewModel != value )
-                {
-                    _networkScanViewModel = value;
-                    OnPropertyChanged( nameof( NetworkScanViewModel ) );
-                }
-            }
-        }
-
-        /// <summary>
-        /// The performance vm
-        /// </summary>
-        public PerformanceViewModel PerformanceViewModel
-        {
-            get
-            {
-                return _performanceViewModel;
-            }
-            set
-            {
-                if( _performanceViewModel != value )
-                {
-                    _performanceViewModel = value;
-                    OnPropertyChanged( nameof( PerformanceViewModel ) );
-                }
-            }
-        }
-
-        /// <summary>
-        /// The port scan vm
-        /// </summary>
-        public PortScanViewModel PortScanViewModel
-        {
-            get
-            {
-                return _portScanViewModel;
-            }
-            set
-            {
-                if( _portScanViewModel != value )
-                {
-                    _portScanViewModel = value;
-                    OnPropertyChanged( nameof( PortScanViewModel ) );
-                }
-            }
-        }
-
-        /// <summary>
-        /// The port vm
-        /// </summary>
-        public PortViewModel PortViewModel
-        {
-            get
-            {
-                return _portViewModel;
-            }
-            set
-            {
-                if( _portViewModel != value )
-                {
-                    _portViewModel = value;
-                    OnPropertyChanged( nameof( PortViewModel ) );
-                }
-            }
-        }
-
-        /// <summary>
-        /// The route vm
-        /// </summary>
-        public RouteViewModel RouteViewModel
-        {
-            get
-            {
-                return _routeViewModel;
-            }
-            set
-            {
-                if( _routeViewModel != value )
-                {
-                    _routeViewModel = value;
-                    OnPropertyChanged( nameof( RouteViewModel ) );
-                }
-            }
-        }
-
-        /// <summary>
-        /// The server vm
-        /// </summary>
-        public ServerViewModel ServerViewModel
-        {
-            get
-            {
-                return _serverViewModel;
-            }
-            set
-            {
-                if( _serverViewModel != value )
-                {
-                    _serverViewModel = value;
-                    OnPropertyChanged( nameof( ServerViewModel ) );
-                }
-            }
-        }
-
-        /// <summary>
-        /// The sniffer vm
-        /// </summary>
-        public SnifferViewModel SnifferViewModel
-        {
-            get
-            {
-                return _snifferViewModel;
-            }
-            set
-            {
-                if( _snifferViewModel != value )
-                {
-                    _snifferViewModel = value;
-                    OnPropertyChanged( nameof( SnifferViewModel ) );
-                }
+                OnPropertyChanged( "SelectedViewModel" );
             }
         }
 
@@ -414,31 +268,31 @@ namespace Sniffy
         {
             get
             {
-                if( _menuCommand == null )
+                if( _menucommand == null )
                 {
-                    _menuCommand = new RelayCommand( param => SwitchViews( param ) );
+                    _menucommand = new RelayCommand( param => SwitchViews( param ) );
                 }
 
-                return _menuCommand;
+                return _menucommand;
             }
         }
 
         /// <summary>
-        /// Handles the Filter event of the MenuItems control.
+        /// Called when [menu items filter].
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
+        /// <param name="sender">The sender.</param>
         /// <param name="e">The <see cref="FilterEventArgs"/>
         /// instance containing the event data.</param>
         private void OnMenuItemsFilter( object sender, FilterEventArgs e )
         {
-            if( string.IsNullOrEmpty( _filterText ) )
+            if( string.IsNullOrEmpty( FilterText ) )
             {
                 e.Accepted = true;
                 return;
             }
 
-            if( e.Item is MenuItems _item
-                && _item.MenuName.ToUpper( ).Contains( _filterText.ToUpper( ) ) )
+            var _item = e.Item as MenuItems;
+            if( _item?.MenuName.ToUpper( )?.Contains( FilterText.ToUpper( ) ) == true )
             {
                 e.Accepted = true;
             }
@@ -451,7 +305,9 @@ namespace Sniffy
         /// <summary>
         /// Runs the calculate.
         /// </summary>
-        /// <param name="parameter">The parameter.</param>
+        /// <param name="parameter">
+        /// The parameter.
+        /// </param>
         public void RunCalc( object parameter )
         {
             Process.Start( "calc.exe" );
@@ -489,11 +345,12 @@ namespace Sniffy
                 }
                 case "Pcap":
                 {
-                    var _uri = "https://www.tcpdump.org/manpages/pcap-filter.7.html";
-                    var _pcapInfo = new ProcessStartInfo( _uri )
-                    {
-                        UseShellExecute = true
-                    };
+                    var _hyperlink = "https://www.tcpdump.org/manpages/pcap-filter.7.html";
+                    var _pcapInfo =
+                        new ProcessStartInfo( _hyperlink )
+                        {
+                            UseShellExecute = true
+                        };
 
                     Process.Start( _pcapInfo );
                     break;
@@ -505,18 +362,18 @@ namespace Sniffy
         /// Switches the views.
         /// </summary>
         /// <param name="parameter">The parameter.</param>
-        public void SwitchViews( object parameter )
+        private protected void SwitchViews( object parameter )
         {
             switch( parameter )
             {
                 case "Iperf":
                 {
-                    if( _performanceViewModel == null )
+                    if( _webViewModel == null )
                     {
-                        _performanceViewModel = new PerformanceViewModel( );
+                        _webViewModel = new WebViewModel( );
                     }
 
-                    _selectedViewModel = _performanceViewModel;
+                    SelectedViewModel = _webViewModel;// new WebViewModel();
                     break;
                 }
                 case "NetworkScan":
@@ -526,7 +383,7 @@ namespace Sniffy
                         _networkScanViewModel = new NetworkScanViewModel( );
                     }
 
-                    _selectedViewModel = _networkScanViewModel;
+                    SelectedViewModel = _networkScanViewModel;// new NetworkScanViewModel();
                     break;
                 }
                 case "PortScan":
@@ -536,7 +393,7 @@ namespace Sniffy
                         _portScanViewModel = new PortScanViewModel( );
                     }
 
-                    _selectedViewModel = _portScanViewModel;
+                    SelectedViewModel = _portScanViewModel;
                     break;
                 }
                 case "RouteTable":
@@ -546,7 +403,7 @@ namespace Sniffy
                         _routeViewModel = new RouteViewModel( );
                     }
 
-                    _selectedViewModel = _routeViewModel;
+                    SelectedViewModel = _routeViewModel;
                     break;
                 }
                 case "PortListen":
@@ -556,7 +413,7 @@ namespace Sniffy
                         _portViewModel = new PortViewModel( );
                     }
 
-                    _selectedViewModel = _portViewModel;
+                    SelectedViewModel = _portViewModel;
                     break;
                 }
                 case "Server":
@@ -566,7 +423,7 @@ namespace Sniffy
                         _serverViewModel = new ServerViewModel( );
                     }
 
-                    _selectedViewModel = _serverViewModel;
+                    SelectedViewModel = _serverViewModel;
                     break;
                 }
                 case "Sniffer":
@@ -576,11 +433,7 @@ namespace Sniffy
                         _snifferViewModel = new SnifferViewModel( );
                     }
 
-                    _selectedViewModel = _snifferViewModel;
-                    break;
-                }
-                default:
-                {
+                    SelectedViewModel = _snifferViewModel;
                     break;
                 }
             }

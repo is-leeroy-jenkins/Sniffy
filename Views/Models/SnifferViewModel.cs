@@ -1,16 +1,16 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Sniffy
 //     Author:                  Terry D. Eppler
-//     Created:                 08-13-2024
+//     Created:                 08-19-2021
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        08-13-2024
+//     Last Modified On:        08-19-2024
 // ******************************************************************************************
 // <copyright file="SnifferViewModel.cs" company="Terry D. Eppler">
 //     A tiny .NET WPF tool that can be used to establish TCP (raw) or WebSocket connections
 //     and exchange text messages for testing/debugging purposes.
 // 
-//     Copyright ©  2020 Terry D. Eppler
+//     Copyright ©  2021 Terry D. Eppler
 // 
 //    Permission is hereby granted, free of charge, to any person obtaining a copy
 //    of this software and associated documentation files (the “Software”),
@@ -41,43 +41,53 @@
 
 namespace Sniffy
 {
-	using System.Collections.ObjectModel;
-	using System.Diagnostics.CodeAnalysis;
+    using System.Collections.ObjectModel;
+    using System.Diagnostics.CodeAnalysis;
 
-	[ SuppressMessage( "ReSharper", "ClassCanBeSealed.Global" ) ]
-	[ SuppressMessage( "ReSharper", "FieldCanBeMadeReadOnly.Local" ) ]
-	[ SuppressMessage( "ReSharper", "ConvertToAutoProperty" ) ]
-	public class SnifferViewModel : MainWindowBase
-	{
-		/// <summary>
-		/// The sniffer views
-		/// </summary>
-		private ObservableCollection<object> _snifferViews;
+    /// <inheritdoc />
+    /// <summary>
+    /// </summary>
+    /// <seealso cref="T:Sniffy.MainWindowBase" />
+    [ SuppressMessage( "ReSharper", "ClassCanBeSealed.Global" ) ]
+    [ SuppressMessage( "ReSharper", "ArrangeTypeMemberModifiers" ) ]
+    public class SnifferViewModel : MainWindowBase
+    {
+        /// <summary>
+        /// The sniffer views
+        /// </summary>
+        ObservableCollection<object> _snifferViews;
 
-		/// <summary>
-		/// Initializes a new instance of the <see cref="SnifferViewModel"/> class.
-		/// </summary>
-		public SnifferViewModel( )
-		{
-			_snifferViews = new ObservableCollection<object>
-			{
-				new SnifferCaptureViewModel( ),
-				new SnifferStatsViewModel( )
-			};
-		}
+        /// <summary>
+        /// Initializes a new instance of the
+        /// <see cref="SnifferViewModel"/> class.
+        /// </summary>
+        public SnifferViewModel( )
+        {
+            _snifferViews = new ObservableCollection<object>( );
+            _snifferViews.Add( new CaptureViewModel( ) );
+            _snifferViews.Add( new StatsViewModel( ) );
+        }
 
-		/// <summary>
-		/// Gets the sniffer views.
-		/// </summary>
-		/// <value>
-		/// The sniffer views.
-		/// </value>
-		public ObservableCollection<object> SnifferViews
-		{
-			get
-			{
-				return _snifferViews;
-			}
-		}
-	}
+        /// <summary>
+        /// Gets the sniffer views.
+        /// </summary>
+        /// <value>
+        /// The sniffer views.
+        /// </value>
+        public ObservableCollection<object> SnifferViews
+        {
+            get
+            {
+                return _snifferViews;
+            }
+            set
+            {
+                if( _snifferViews != value )
+                {
+                    _snifferViews = value;
+                    OnPropertyChanged( nameof( SnifferViews ) );
+                }
+            }
+        }
+    }
 }

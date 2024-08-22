@@ -5,21 +5,16 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:Sniffy"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:skin="clr-namespace:Syncfusion.SfSkinManager;assembly=Syncfusion.SfSkinManager.WPF"
-    xmlns:sync="http://schemas.syncfusion.com/wpf"
     d:DesignHeight="450"
     d:DesignWidth="800"
-    sync:SfSkinManager.Theme="{skin:SkinManagerExtension ThemeName=FluentDark}"
     mc:Ignorable="d">
-
 
 
     <!--  ******************************************** Resources *********************************************  -->
 
     <UserControl.Resources>
-        <local:BytesSuffixConverter x:Key="BytesSuffixConverter" />
 
-        <Style TargetType="ToolTip">
+        <Style TargetType="{x:Type ToolTip}">
             <Setter Property="BorderThickness" Value="1,1,1,1" />
             <Setter Property="BorderBrush" Value="#0078D4" />
             <Setter Property="Background" Value="#FF000000" />
@@ -28,6 +23,7 @@
 
     </UserControl.Resources>
 
+    <!--  ******************************************** Main Layout ******************************************  -->
 
 
     <Grid>
@@ -39,7 +35,7 @@
         </Grid.ColumnDefinitions>
         <Grid
             Grid.Column="0"
-            Background="#FF282828"
+            Background="{StaticResource DefaultBackground}"
             UseLayoutRounding="True">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
@@ -59,6 +55,7 @@
                 VerticalAlignment="Top"
                 FontSize="24"
                 FontWeight="Bold"
+                Foreground="{StaticResource BorderBrush}"
                 Text="Port Listen" />
             <Separator
                 Grid.Row="0"
@@ -75,8 +72,8 @@
                     Height="Auto"
                     HorizontalAlignment="Stretch"
                     Header="Network Interfaces"
-                    Style="{DynamicResource AccentGroupBox}">
-                    <Grid Background="#FF282828">
+                    Style="{StaticResource AccentGroupBox}">
+                    <Grid Background="{StaticResource ControlInterior}">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
@@ -99,22 +96,26 @@
                         <TextBlock
                             Grid.Row="1"
                             Margin="5,10,0,0"
+                            Foreground="{StaticResource Foreground-Primary2}"
                             Text="Name:" />
                         <TextBlock
                             Grid.Row="1"
                             Margin="50,10,0,0"
+                            Foreground="{StaticResource Foreground-Primary2}"
                             Text="{Binding ElementName=NetInfoCombox, Path=SelectedItem.Name}" />
                         <TextBlock
                             Grid.Row="2"
                             Margin="5,10,0,0"
+                            Foreground="{StaticResource Foreground-Primary2}"
                             Text="IP:" />
                         <TextBlock
                             Grid.Row="2"
                             Margin="50,10,0,0"
-                            Text="{Binding ElementName=NetInfoCombox, Path=SelectedItem.IpAddress}" />
+                            Text="{Binding ElementName=NetInfoCombox, Path=SelectedItem.Ip}" />
                         <TextBlock
                             Grid.Row="3"
                             Margin="5,10,0,10"
+                            Foreground="{StaticResource Foreground-Primary2}"
                             Text="Mask:" />
                         <TextBlock
                             Grid.Row="3"
@@ -131,19 +132,20 @@
                 Margin="10,10,10,0">
                 <GroupBox
                     Header="Port Config"
-                    Style="{DynamicResource AccentGroupBox}">
-                    <Grid Background="#FF282828">
+                    Style="{StaticResource AccentGroupBox}">
+                    <Grid Background="{StaticResource ControlInterior}">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
+                            <RowDefinition />
                         </Grid.RowDefinitions>
                         <local:ButtonEx
+                            Grid.Row="3"
                             Width="100"
                             Height="30"
                             Margin="0,15,0,10"
                             HorizontalAlignment="Center"
-                            ButtonType="Normal"
                             Command="{Binding RefreshCommand}"
                             Content="Refresh" />
                     </Grid>
@@ -164,12 +166,11 @@
                     ClipToBounds="True"
                     SnapsToDevicePixels="True">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="7*" />
-                        <RowDefinition Height="28*" />
-                        <RowDefinition Height="40*" />
+                        <RowDefinition Height="6*" />
+                        <RowDefinition Height="59*" />
                     </Grid.RowDefinitions>
                     <DataGrid
-                        Grid.RowSpan="3"
+                        Grid.RowSpan="2"
                         Width="Auto"
                         Height="Auto"
                         Margin="4,6,4,6"

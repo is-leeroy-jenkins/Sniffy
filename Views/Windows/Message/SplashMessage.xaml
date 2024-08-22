@@ -17,6 +17,24 @@
     WindowStartupLocation="CenterScreen"
     WindowStyle="None"
     mc:Ignorable="d">
+
+
+    <!--  ******************************************** Resources *********************************************  -->
+
+    <Window.Resources>
+
+        <Style TargetType="{x:Type ToolTip}">
+            <Setter Property="BorderThickness" Value="1,1,1,1" />
+            <Setter Property="BorderBrush" Value="#0078D4" />
+            <Setter Property="Background" Value="#FF000000" />
+            <Setter Property="Foreground" Value="#FFA0BDFC" />
+        </Style>
+
+    </Window.Resources>
+
+
+    <!--  ******************************************** Main Layout *********************************************  -->
+
     <Canvas Margin="0,0,8,8">
         <Image
             Canvas.Left="1"
@@ -25,7 +43,7 @@
             Height="18"
             HorizontalAlignment="Center"
             VerticalAlignment="Center"
-            Source="/Resources/Assets/Dialog/SplashNotification.png" />
+            Source="/Resources/Assets/DialogImages/SplashNotification.png" />
         <Label
             x:Name="TitleLabel"
             Canvas.Left="36"
@@ -50,7 +68,7 @@
             Content="Label"
             FontSize="14"
             Foreground="#FFFCFEFF" />
-        <local:MetroLabel
+        <Label
             x:Name="StatusLabel"
             Canvas.Left="520"
             Canvas.Top="5"

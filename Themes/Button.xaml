@@ -3,12 +3,9 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="/Themes/BaseStyle.xaml" />
+        <ResourceDictionary Source="BaseStyle.xaml" />
     </ResourceDictionary.MergedDictionaries>
-
-
-    <!--  ***************************  ButtonBaseBaseStyle  **************************  -->
-
+    <!--  ButtonBase  -->
     <Style
         x:Key="ButtonBaseBaseStyle"
         BasedOn="{StaticResource BaseStyle}"
@@ -23,9 +20,7 @@
         <Setter Property="HorizontalContentAlignment" Value="Center" />
         <Setter Property="VerticalContentAlignment" Value="Center" />
     </Style>
-
-    <!--  ************************ ButtonBaseStyle ***********************************  -->
-
+    <!--  Button  -->
     <Style
         x:Key="ButtonBaseStyle"
         BasedOn="{StaticResource ButtonBaseBaseStyle}"
@@ -35,7 +30,7 @@
                 <ControlTemplate TargetType="{x:Type Button}">
                     <Grid>
                         <Border
-                            x:Name="Border"
+                            x:Name="border"
                             Padding="0"
                             Background="{TemplateBinding Background}"
                             BorderBrush="{TemplateBinding BorderBrush}"
@@ -57,7 +52,7 @@
                                     </Rectangle.Effect>
                                 </Rectangle>
                                 <Border
-                                    BorderBrush="#FF0078D4"
+                                    BorderBrush="{StaticResource BorderBrush}"
                                     BorderThickness="1,0"
                                     CornerRadius="4">
                                     <Border.Effect>
@@ -85,7 +80,7 @@
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsPressed" Value="true">
                             <Setter TargetName="PressedLayer" Property="Visibility" Value="Visible" />
-                            <Setter TargetName="Border" Property="BorderBrush" Value="#FF0078D4" />
+                            <Setter TargetName="border" Property="BorderBrush" Value="#80cccccc" />
                         </Trigger>
                         <Trigger Property="IsEnabled" Value="false">
                             <Setter TargetName="EnabledLayer" Property="Visibility" Value="Visible" />
@@ -95,9 +90,7 @@
             </Setter.Value>
         </Setter>
     </Style>
-
-    <!--  ********************************   ToggleButtonBaseStyle  ***********************************  -->
-
+    <!--  ToggleButton  -->
     <Style
         x:Key="ToggleButtonBaseStyle"
         BasedOn="{StaticResource ButtonBaseBaseStyle}"
@@ -107,7 +100,7 @@
                 <ControlTemplate TargetType="{x:Type ToggleButton}">
                     <Grid>
                         <Border
-                            x:Name="Border"
+                            x:Name="border"
                             Padding="0"
                             Background="{TemplateBinding Background}"
                             BorderBrush="{TemplateBinding BorderBrush}"
@@ -129,7 +122,7 @@
                                     </Rectangle.Effect>
                                 </Rectangle>
                                 <Border
-                                    BorderBrush="#FF0078D4"
+                                    BorderBrush="#1F000000"
                                     BorderThickness="1,0"
                                     CornerRadius="4">
                                     <Border.Effect>
@@ -146,7 +139,7 @@
                                 RecognizesAccessKey="True"
                                 SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
                         </Border>
-
+                        <!--    -->
                         <Rectangle
                             x:Name="EnabledLayer"
                             Fill="#4CFFFFFF"
@@ -157,7 +150,7 @@
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsChecked" Value="true">
                             <Setter TargetName="CheckedLayer" Property="Visibility" Value="Visible" />
-                            <Setter TargetName="Border" Property="BorderBrush" Value="#80cccccc" />
+                            <Setter TargetName="border" Property="BorderBrush" Value="#80cccccc" />
                         </Trigger>
                         <Trigger Property="IsEnabled" Value="false">
                             <Setter TargetName="EnabledLayer" Property="Visibility" Value="Visible" />
@@ -167,10 +160,7 @@
             </Setter.Value>
         </Setter>
     </Style>
-
-
-    <!--  ************************************      ButtonBaseStyle   *****************************  -->
-
+    <!--  Button  -->
     <Style
         BasedOn="{StaticResource ButtonBaseStyle}"
         TargetType="{x:Type Button}">
@@ -179,13 +169,11 @@
         <Setter Property="Foreground" Value="{DynamicResource Foreground-Default}" />
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Background" Value="#FF012336" />
-                <Setter Property="BorderBrush" Value="#FFB0C4DE" />
+                <Setter Property="Background" Value="#e6e6e6" />
+                <Setter Property="BorderBrush" Value="#adadad" />
             </Trigger>
         </Style.Triggers>
     </Style>
-
-    <!--  ************************************  Button-Primary   ***********************************  -->
 
     <Style
         x:Key="Button-Primary"
@@ -195,13 +183,11 @@
         <Setter Property="BorderBrush" Value="{DynamicResource BorderBrush-Primary1}" />
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Background" Value="#FF012336" />
-                <Setter Property="BorderBrush" Value="#FFB0C4DE" />
+                <Setter Property="Background" Value="#3071a9" />
+                <Setter Property="BorderBrush" Value="#285e8e" />
             </Trigger>
         </Style.Triggers>
     </Style>
-
-    <!--  ************************************  Button-Success   ***********************************  -->
 
     <Style
         x:Key="Button-Success"
@@ -211,14 +197,11 @@
         <Setter Property="BorderBrush" Value="{DynamicResource BorderBrush-Success1}" />
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Background" Value="#FF012336" />
-                <Setter Property="BorderBrush" Value="#FFB0C4DE" />
+                <Setter Property="Background" Value="#449d44" />
+                <Setter Property="BorderBrush" Value="#398439" />
             </Trigger>
         </Style.Triggers>
     </Style>
-
-    <!--  ************************************  Button-Info   ***********************************  -->
-
     <Style
         x:Key="Button-Info"
         BasedOn="{StaticResource ButtonBaseStyle}"
@@ -227,14 +210,11 @@
         <Setter Property="BorderBrush" Value="{DynamicResource BorderBrush-Info1}" />
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Background" Value="#FF012336" />
-                <Setter Property="BorderBrush" Value="#FFB0C4DE" />
+                <Setter Property="Background" Value="#31b0d5" />
+                <Setter Property="BorderBrush" Value="#269abc" />
             </Trigger>
         </Style.Triggers>
     </Style>
-
-    <!--  ************************************  Button-Warning   ***********************************  -->
-
     <Style
         x:Key="Button-Warning"
         BasedOn="{StaticResource ButtonBaseStyle}"
@@ -248,9 +228,6 @@
             </Trigger>
         </Style.Triggers>
     </Style>
-
-    <!--  ************************************  Button-Danger   ***********************************  -->
-
     <Style
         x:Key="Button-Danger"
         BasedOn="{StaticResource ButtonBaseStyle}"
@@ -264,9 +241,7 @@
             </Trigger>
         </Style.Triggers>
     </Style>
-
-    <!--  ************************************  ToggleButtonBaseStyle   ***********************************  -->
-
+    <!--  ToggleButton  -->
     <Style
         BasedOn="{StaticResource ToggleButtonBaseStyle}"
         TargetType="{x:Type ToggleButton}">
@@ -280,9 +255,6 @@
             </Trigger>
         </Style.Triggers>
     </Style>
-
-    <!--  ************************************  ToggleButton-Primary   ***********************************  -->
-
     <Style
         x:Key="ToggleButton-Primary"
         BasedOn="{StaticResource ToggleButtonBaseStyle}"
@@ -296,9 +268,6 @@
             </Trigger>
         </Style.Triggers>
     </Style>
-
-    <!--  ************************************  ToggleButton-Success   ***********************************  -->
-
     <Style
         x:Key="ToggleButton-Success"
         BasedOn="{StaticResource ToggleButtonBaseStyle}"
@@ -312,9 +281,6 @@
             </Trigger>
         </Style.Triggers>
     </Style>
-
-    <!--  ************************************  ToggleButton-Info   ***********************************  -->
-
     <Style
         x:Key="ToggleButton-Info"
         BasedOn="{StaticResource ToggleButtonBaseStyle}"
@@ -328,9 +294,6 @@
             </Trigger>
         </Style.Triggers>
     </Style>
-
-    <!--  ************************************  ToggleButton-Warning   ***********************************  -->
-
     <Style
         x:Key="ToggleButton-Warning"
         BasedOn="{StaticResource ToggleButtonBaseStyle}"
@@ -344,9 +307,6 @@
             </Trigger>
         </Style.Triggers>
     </Style>
-
-    <!--  ************************************  ToggleButton-Danger   ***********************************  -->
-
     <Style
         x:Key="ToggleButton-Danger"
         BasedOn="{StaticResource ToggleButtonBaseStyle}"

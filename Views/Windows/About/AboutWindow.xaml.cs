@@ -1,16 +1,16 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Sniffy
 //     Author:                  Terry D. Eppler
-//     Created:                 08-13-2024
+//     Created:                 08-20-2021
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        08-13-2024
+//     Last Modified On:        08-20-2024
 // ******************************************************************************************
 // <copyright file="AboutWindow.xaml.cs" company="Terry D. Eppler">
 //     A tiny .NET WPF tool that can be used to establish TCP (raw) or WebSocket connections
 //     and exchange text messages for testing/debugging purposes.
 // 
-//     Copyright ©  2020 Terry D. Eppler
+//     Copyright ©  2021 Terry D. Eppler
 // 
 //    Permission is hereby granted, free of charge, to any person obtaining a copy
 //    of this software and associated documentation files (the “Software”),
@@ -41,303 +41,472 @@
 
 namespace Sniffy
 {
-	using System;
-	using System.Diagnostics;
-	using System.Diagnostics.CodeAnalysis;
-	using System.Threading.Tasks;
-	using System.Windows;
-	using Microsoft.Win32;
-	using Syncfusion.SfSkinManager;
+    using System;
+    using System.Diagnostics;
+    using System.Diagnostics.CodeAnalysis;
+    using System.Threading.Tasks;
+    using System.Windows;
+    using Microsoft.Win32;
+    using ToastNotifications;
+    using ToastNotifications.Lifetime;
+    using ToastNotifications.Messages;
+    using ToastNotifications.Position;
 
-	/// <summary>
-	/// AboutWindow.xaml
-	/// </summary>
-	[ SuppressMessage( "ReSharper", "MemberCanBeInternal" ) ]
-	[ SuppressMessage( "ReSharper", "InheritdocConsiderUsage" ) ]
-	[ SuppressMessage( "ReSharper", "RedundantExtendsListEntry" ) ]
-	[ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
-	[ SuppressMessage( "ReSharper", "FieldCanBeMadeReadOnly.Global" ) ]
-	[ SuppressMessage( "ReSharper", "UnusedParameter.Global" ) ]
-	[ SuppressMessage( "ReSharper", "UnusedVariable" ) ]
-	[ SuppressMessage( "ReSharper", "ClassCanBeSealed.Global" ) ]
-	public partial class AboutWindow : Window
-	{
-		/// <summary>
-		/// Initializes a new instance of the <see cref="AboutWindow"/> class.
-		/// </summary>
-		public AboutWindow( )
-		{
-			// Theme Properties
-			SfSkinManager.ApplyStylesOnApplication = true;
-			SfSkinManager.SetTheme( this, new Theme( "FluentDark", App.Controls ) );
+    /// <inheritdoc />
+    /// <summary>
+    /// AboutWindow.xaml
+    /// </summary>
+    /// <seealso cref="T:System.Windows.Window" />
+    /// <seealso cref="T:System.Windows.Markup.IComponentConnector" />
+    [ SuppressMessage( "ReSharper", "ClassCanBeSealed.Global" ) ]
+    [ SuppressMessage( "ReSharper", "RedundantExtendsListEntry" ) ]
+    public partial class AboutWindow : Window
+    {
+        /// <inheritdoc />
+        /// <summary>
+        /// Initializes a new instance of the
+        /// <see cref="T:Sniffy.AboutWindow" /> class.
+        /// </summary>
+        public AboutWindow( )
+        {
+            WindowStartupLocation = WindowStartupLocation.CenterScreen;
+            InitializeComponent( );
+            Height = 300;
+            Width = Height / 0.675;
+            ResizeMode = ResizeMode.NoResize;
+        }
 
-			// Window Properties
-			InitializeComponent( );
-			Height = 800;
-			Width = 1400;
-			WindowStartupLocation = WindowStartupLocation.CenterScreen;
-			ResizeMode = ResizeMode.NoResize;
-		}
+        /// <summary>
+        /// Handles the Click event of the GithubButton control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/>
+        /// instance containing the event data.</param>
+        private void OnGithubButtonClick( object sender, RoutedEventArgs e )
+        {
+            Process.Start( "https://github.com/linkmeta/Sniffy" );
+            Close( );
+        }
 
-		/// <summary>
-		/// Called when [github button click].
-		/// </summary>
-		/// <param name="sender">The sender.</param>
-		/// <param name="e">The <see cref="RoutedEventArgs"/>
-		/// instance containing the event data.</param>
-		private void OnGithubButtonClick( object sender, RoutedEventArgs e )
-		{
-			Process.Start( "https://github.com/is-leeroy-jenkins/Sniffy" );
-			Close( );
-		}
+        /// <summary>
+        /// Handles the Click event of the GiteeButton control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/>
+        /// instance containing the event data.</param>
+        private void OnGiteeButtonClick( object sender, RoutedEventArgs e )
+        {
+            Process.Start( "https://gitee.com/linkmeta/Sniffy" );
+            Close( );
+        }
 
-		/// <summary>
-		/// Called when [gitee button click].
-		/// </summary>
-		/// <param name="sender">The sender.</param>
-		/// <param name="e">The <see cref="RoutedEventArgs"/>
-		/// instance containing the event data.</param>
-		private void OnGiteeButtonClick( object sender, RoutedEventArgs e )
-		{
-			Process.Start( "https://github.com/is-leeroy-jenkins/Sniffy" );
-			Close( );
-		}
+        /// <summary>
+        /// Handles the Click event of the ButtonEx control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs" />
+        /// instance containing the event data.</param>
+        private void OnButtonClick( object sender, RoutedEventArgs e )
+        {
+            Close( );
+        }
+        
+        
+        /// <summary>
+        /// Initializes the delegates.
+        /// </summary>
+        private void InitializeDelegates( )
+        {
+            try
+            {
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
 
-		/// <summary>
-		/// Called when [button ex click].
-		/// </summary>
-		/// <param name="sender">The sender.</param>
-		/// <param name="e">The <see cref="RoutedEventArgs"/>
-		/// instance containing the event data.</param>
-		private void OnButtonExClick( object sender, RoutedEventArgs e )
-		{
-			Close( );
-		}
+        /// <summary>
+        /// Invokes if needed.
+        /// </summary>
+        /// <param name="action">The action.</param>
+        private protected void InvokeIf( Action action )
+        {
+            try
+            {
+                ThrowIf.Null( action, nameof( action ) );
+                if( Dispatcher.CheckAccess( ) )
+                {
+                    action?.Invoke( );
+                }
+                else
+                {
+                    Dispatcher.BeginInvoke( action );
+                }
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
 
-		/// <summary>
-		/// Fades the in asynchronous.
-		/// </summary>
-		/// <param name="form">The o.</param>
-		/// <param name="interval">The interval.</param>
-		private async void FadeInAsync( Window form, int interval = 80 )
-		{
-			try
-			{
-				ThrowIf.Null( form, nameof( form ) );
-				while( form.Opacity < 1.0 )
-				{
-					await Task.Delay( interval );
-					form.Opacity += 0.05;
-				}
+        /// <summary>
+        /// Invokes if.
+        /// </summary>
+        /// <param name="action">The action.</param>
+        private protected void InvokeIf( Action<object> action )
+        {
+            try
+            {
+                ThrowIf.Null( action, nameof( action ) );
+                if( Dispatcher.CheckAccess( ) )
+                {
+                    action?.Invoke( null );
+                }
+                else
+                {
+                    Dispatcher.BeginInvoke( action );
+                }
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
 
-				form.Opacity = 1;
-			}
-			catch( Exception ex )
-			{
-				Fail( ex );
-			}
-		}
+        /// <summary>
+        /// Fades the in asynchronous.
+        /// </summary>
+        /// <param name="form">The o.</param>
+        /// <param name="interval">The interval.</param>
+        private async void FadeInAsync( Window form, int interval = 80 )
+        {
+            try
+            {
+                ThrowIf.Null( form, nameof( form ) );
+                while( form.Opacity < 1.0 )
+                {
+                    await Task.Delay( interval );
+                    form.Opacity += 0.05;
+                }
 
-		/// <summary>
-		/// Fades the out asynchronous.
-		/// </summary>
-		/// <param name="form">The o.</param>
-		/// <param name="interval">The interval.</param>
-		private async void FadeOutAsync( Window form, int interval = 80 )
-		{
-			try
-			{
-				ThrowIf.Null( form, nameof( form ) );
-				while( form.Opacity > 0.0 )
-				{
-					await Task.Delay( interval );
-					form.Opacity -= 0.05;
-				}
+                form.Opacity = 1;
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
 
-				form.Opacity = 0;
-			}
-			catch( Exception ex )
-			{
-				Fail( ex );
-			}
-		}
+        /// <summary>
+        /// Fades the out asynchronous.
+        /// </summary>
+        /// <param name="form">The o.</param>
+        /// <param name="interval">The interval.</param>
+        private async void FadeOutAsync( Window form, int interval = 80 )
+        {
+            try
+            {
+                ThrowIf.Null( form, nameof( form ) );
+                while( form.Opacity > 0.0 )
+                {
+                    await Task.Delay( interval );
+                    form.Opacity -= 0.05;
+                }
 
-		/// <summary>
-		/// Called when [calculator menu option click].
-		/// </summary>
-		/// <param name="sender">The sender.</param>
-		/// <param name="e">The <see cref="EventArgs"/>
-		/// instance containing the event data.</param>Cal
-		private void OnCalculatorMenuOptionClick( object sender, EventArgs e )
-		{
-			try
-			{
-				var _calculator = new CalculatorWindow( );
-				_calculator.ShowDialog( );
-			}
-			catch( Exception ex )
-			{
-				Fail( ex );
-			}
-		}
+                form.Opacity = 0;
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
 
-		/// <summary>
-		/// Called when [file menu option click].
-		/// </summary>
-		/// <param name="sender">The sender.</param>
-		/// <param name="e">The <see cref="EventArgs"/>
-		/// instance containing the event data.</param>
-		private void OnFileMenuOptionClick( object sender, EventArgs e )
-		{
-			try
-			{
-				var _dialog = new SaveFileDialog( );
-				_dialog.ShowDialog( );
-			}
-			catch( Exception ex )
-			{
-				Fail( ex );
-			}
-		}
+        /// <summary>
+        /// Creates a notifier.
+        /// </summary>
+        /// <returns>
+        /// Notifier
+        /// </returns>
+        private Notifier CreateNotifier( )
+        {
+            try
+            {
+                var _position = new PrimaryScreenPositionProvider( Corner.BottomRight, 10, 10 );
+                var _lifeTime = new TimeAndCountBasedLifetimeSupervisor( TimeSpan.FromSeconds( 5 ),
+                    MaximumNotificationCount.UnlimitedNotifications( ) );
 
-		/// <summary>
-		/// Called when [folder menu option click].
-		/// </summary>
-		/// <param name="sender">The sender.</param>
-		/// <param name="e">The <see cref="EventArgs"/>
-		/// instance containing the event data.</param>
-		private void OnFolderMenuOptionClick( object sender, EventArgs e )
-		{
-			try
-			{
-				var _dialog = new FolderBrowser( );
-				_dialog.ShowDialog( );
-			}
-			catch( Exception ex )
-			{
-				Fail( ex );
-			}
-		}
+                return new Notifier( cfg =>
+                {
+                    cfg.LifetimeSupervisor = _lifeTime;
+                    cfg.PositionProvider = _position;
+                    cfg.Dispatcher = Application.Current.Dispatcher;
+                } );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+                return default( Notifier );
+            }
+        }
 
-		/// <summary>
-		/// Called when [control panel option click].
-		/// </summary>
-		/// <param name="sender">The sender.</param>
-		/// <param name="e">The <see cref="EventArgs"/>
-		/// instance containing the event data.</param>
-		private void OnControlPanelOptionClick( object sender, EventArgs e )
-		{
-			try
-			{
-				WinMinion.LaunchControlPanel( );
-			}
-			catch( Exception ex )
-			{
-				Fail( ex );
-			}
-		}
+        /// <summary>
+        /// Sends the notification.
+        /// </summary>
+        /// <param name="message">
+        /// The message.
+        /// </param>
+        private void SendNotification( string message )
+        {
+            try
+            {
+                ThrowIf.Null( message, nameof( message ) );
+                var _notification = CreateNotifier( );
+                _notification.ShowInformation( message );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
 
-		/// <summary>
-		/// Called when [task manager option click].
-		/// </summary>
-		/// <param name="sender">The sender.</param>
-		/// <param name="e">The <see cref="EventArgs"/>
-		/// instance containing the event data.</param>
-		private void OnTaskManagerOptionClick( object sender, EventArgs e )
-		{
-			try
-			{
-				WinMinion.LaunchTaskManager( );
-			}
-			catch( Exception ex )
-			{
-				Fail( ex );
-			}
-		}
+        /// <summary>
+        /// Shows the splash message.
+        /// </summary>
+        private void SendMessage( string message )
+        {
+            try
+            {
+                ThrowIf.Null( message, nameof( message ) );
+                var _splash = new SplashMessage( message );
+                _splash.Show( );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
 
-		/// <summary>
-		/// Called when [close option click].
-		/// </summary>
-		/// <param name="sender">The sender.</param>
-		/// <param name="e">The <see cref="EventArgs"/>
-		/// instance containing the event data.</param>
-		private void OnCloseOptionClick( object sender, EventArgs e )
-		{
-			try
-			{
-				Opacity = 0;
-				FadeOutAsync( this );
-				Application.Current.Shutdown( );
-			}
-			catch( Exception ex )
-			{
-				Fail( ex );
-			}
-		}
+        /// <summary>
+        /// Updates the status.
+        /// </summary>
+        private void UpdateStatus( )
+        {
+            try
+            {
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
 
-		/// <summary>
-		/// Called when [chrome option click].
-		/// </summary>
-		/// <param name="sender">The sender.</param>
-		/// <param name="e">The <see cref="EventArgs"/>
-		/// containing the event data.</param>
-		private void OnChromeOptionClick( object sender, EventArgs e )
-		{
-			try
-			{
-				WebMinion.RunChrome( );
-			}
-			catch( Exception ex )
-			{
-				Fail( ex );
-			}
-		}
+        /// <summary>
+        /// Updates the status.
+        /// </summary>
+        private void UpdateStatus( object state )
+        {
+            try
+            {
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
 
-		/// <summary>
-		/// Called when [edge option click].
-		/// </summary>
-		/// <param name="sender">The sender.</param>
-		/// <param name="e">The <see cref="EventArgs"/>
-		/// instance containing the event data.</param>
-		private void OnEdgeOptionClick( object sender, EventArgs e )
-		{
-			try
-			{
-				WebMinion.RunEdge( );
-			}
-			catch( Exception ex )
-			{
-				Fail( ex );
-			}
-		}
+        /// <summary>
+        /// Called when [load].
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="EventArgs"/>
+        /// instance containing the event data.</param>
+        private void OnLoaded( object sender, RoutedEventArgs e )
+        {
+            try
+            {
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
 
-		/// <summary>
-		/// Called when [firefox option click].
-		/// </summary>
-		/// <param name="sender">The sender.</param>
-		/// <param name="e">The <see cref="EventArgs"/>
-		/// containing the event data.</param>
-		private void OnFirefoxOptionClick( object sender, EventArgs e )
-		{
-			try
-			{
-				WebMinion.RunFirefox( );
-			}
-			catch( Exception ex )
-			{
-				Fail( ex );
-			}
-		}
+        /// <summary>
+        /// Called when [calculator menu option click].
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="EventArgs"/>
+        /// instance containing the event data.</param>Cal
+        private void OnCalculatorMenuOptionClick( object sender, EventArgs e )
+        {
+            try
+            {
+                WinMinion.LaunchCalculator( );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
 
-		/// <summary>
-		/// Fails the specified ex.
-		/// </summary>
-		/// <param name="ex">The ex.</param>
-		private protected void Fail( Exception ex )
-		{
-			var _error = new ErrorWindow( ex );
-			_error?.SetText( );
-			_error?.ShowDialog( );
-		}
-	}
+        /// <summary>
+        /// Called when [file menu option click].
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="EventArgs"/>
+        /// instance containing the event data.</param>
+        private void OnFileMenuOptionClick( object sender, EventArgs e )
+        {
+            try
+            {
+                var _dialog = new SaveFileDialog( );
+                _dialog.ShowDialog( );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Called when [folder menu option click].
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="EventArgs"/>
+        /// instance containing the event data.</param>
+        private void OnFolderMenuOptionClick( object sender, EventArgs e )
+        {
+            try
+            {
+                var _dialog = new OpenFileDialog( );
+                _dialog.ShowDialog( );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Called when [control panel option click].
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="EventArgs"/>
+        /// instance containing the event data.</param>
+        private void OnControlPanelOptionClick( object sender, EventArgs e )
+        {
+            try
+            {
+                WinMinion.LaunchControlPanel( );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Called when [task manager option click].
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="EventArgs"/>
+        /// instance containing the event data.</param>
+        private void OnTaskManagerOptionClick( object sender, EventArgs e )
+        {
+            try
+            {
+                WinMinion.LaunchTaskManager( );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Called when [close option click].
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="EventArgs"/>
+        /// instance containing the event data.</param>
+        private void OnCloseOptionClick( object sender, EventArgs e )
+        {
+            try
+            {
+                Opacity = 0;
+                FadeOutAsync( this );
+                Application.Current.Shutdown( );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Called when [chrome option click].
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="EventArgs"/>
+        /// containing the event data.</param>
+        private void OnChromeOptionClick( object sender, EventArgs e )
+        {
+            try
+            {
+                WebMinion.RunChrome( );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Called when [edge option click].
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="EventArgs"/>
+        /// instance containing the event data.</param>
+        private void OnEdgeOptionClick( object sender, EventArgs e )
+        {
+            try
+            {
+                WebMinion.RunEdge( );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Called when [firefox option click].
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="EventArgs"/>
+        /// containing the event data.</param>
+        private void OnFirefoxOptionClick( object sender, EventArgs e )
+        {
+            try
+            {
+                WebMinion.RunFirefox( );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Fails the specified _ex.
+        /// </summary>
+        /// <param name="ex">The _ex.</param>
+        private void Fail( Exception ex )
+        {
+            var _error = new ErrorWindow( ex );
+            _error?.SetText( );
+            _error?.ShowDialog( );
+        }
+    }
 }

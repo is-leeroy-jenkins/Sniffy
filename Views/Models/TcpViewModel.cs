@@ -1,549 +1,309 @@
-﻿// ******************************************************************************************
-//     Assembly:                Sniffy
-//     Author:                  Terry D. Eppler
-//     Created:                 08-13-2024
-// 
-//     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        08-13-2024
-// ******************************************************************************************
-// <copyright file="TcpViewModel.cs" company="Terry D. Eppler">
-//     A tiny .NET WPF tool that can be used to establish TCP (raw) or WebSocket connections
-//     and exchange text messages for testing/debugging purposes.
-// 
-//     Copyright ©  2020 Terry D. Eppler
-// 
-//    Permission is hereby granted, free of charge, to any person obtaining a copy
-//    of this software and associated documentation files (the “Software”),
-//    to deal in the Software without restriction,
-//    including without limitation the rights to use,
-//    copy, modify, merge, publish, distribute, sublicense,
-//    and/or sell copies of the Software,
-//    and to permit persons to whom the Software is furnished to do so,
-//    subject to the following conditions:
-// 
-//    The above copyright notice and this permission notice shall be included in all
-//    copies or substantial portions of the Software.
-// 
-//    THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
-//    INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-//    FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT.
-//    IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
-//    DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
-//    ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
-//    DEALINGS IN THE SOFTWARE.
-// 
-//    You can contact me at:  terryeppler@gmail.com or eppler.terry@epa.gov
-// </copyright>
-// <summary>
-//   TcpViewModel.cs
-// </summary>
-// ******************************************************************************************
+﻿using Sniffy;
+using System;
+using System.Net;
+using System.Net.Sockets;
+using System.Windows.Input;
+using Sniffy;
+using System.Windows.Threading;
+using System.Collections.ObjectModel;
 
 namespace Sniffy
 {
-	using System;
-	using System.Net;
-	using System.Net.Sockets;
-	using System.Windows.Input;
-	using System.Windows.Threading;
-	using System.Collections.ObjectModel;
-	using System.Diagnostics.CodeAnalysis;
-	using System.Windows;
+    internal class TcpViewModel : MainWindowBase
+    {
+        public TcpModel TcpModel { get; set; }
 
-	/// <summary>
-	/// 
-	/// </summary>
-	/// <seealso cref="Sniffy.MainWindowBase" />
-	[ SuppressMessage( "ReSharper", "MemberCanBeInternal" ) ]
-	[ SuppressMessage( "ReSharper", "InheritdocConsiderUsage" ) ]
-	[ SuppressMessage( "ReSharper", "RedundantExtendsListEntry" ) ]
-	[ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
-	[ SuppressMessage( "ReSharper", "FieldCanBeMadeReadOnly.Global" ) ]
-	[ SuppressMessage( "ReSharper", "UnusedParameter.Global" ) ]
-	[ SuppressMessage( "ReSharper", "UnusedVariable" ) ]
-	[ SuppressMessage( "ReSharper", "ClassCanBeSealed.Global" ) ]
-	[ SuppressMessage( "ReSharper", "AutoPropertyCanBeMadeGetOnly.Global" ) ]
-	public class TcpViewModel : MainWindowBase
-	{
-		/// <summary>
-		/// The m client automatic send timer
-		/// </summary>
-		private DispatcherTimer _clientAutoSendTimer;
+        #region TcpServer
+        TcpServerSocket tcpServerSocket = null;
 
-		/// <summary>
-		/// The m server automatic send timer
-		/// </summary>
-		private DispatcherTimer _serverAutoSendTimer;
+        public class TcpServerInfo
+        {
+            public string RemoteIp { get; set; }
+            public string Port { get; set; }
+            public DateTime Time { get; set; }
+        }
+        public ObservableCollection<TcpServerInfo> TcpServerInfos { get; set; } = new ObservableCollection<TcpServerInfo> { };
 
-		/// <summary>
-		/// The TCP client socket
-		/// </summary>
-		private TcpClientSocket _tcpClientSocket;
+        public ICommand StartListenCommand
+        {
+            get
+            {
+                return new RelayCommand(param => StartListen(param));
+            }
+        }
+        public void StartListen(object parameter)
+        {
+            if (TcpModel.ServerListenButtonName == "Start Listen")
+            {
+                TcpModel.ServerListenButtonName = "Stop Listen";
 
-		/// <summary>
-		/// The TCP server socket
-		/// </summary>
-		private TcpServerSocket _tcpServerSocket;
+                tcpServerSocket = new TcpServerSocket(IPAddress.Any.ToString(), TcpModel.ListenPort);
+                tcpServerSocket.recvEvent = new Action<Socket, string>(Recv);
+                tcpServerSocket.connectEvent = new Action<Socket>(ConnectCallback);
+                tcpServerSocket.disConnectEvent = new Action<Socket>(DisConnectCallback);
+                tcpServerSocket.Start();
+                TcpModel.ServerStatus += "Tcp Server Started!\n";
+            }
+            else
+            {
+                TcpModel.ServerListenButtonName = "Start Listen";
+                tcpServerSocket.CloseAllClientSocket();
+                TcpServerInfos.Clear();
+                TcpModel.ServerStatus += "Tcp Server Stopped!\n";
 
-		/// <summary>
-		/// Initializes a new instance of the
-		/// <see cref="TcpViewModel"/> class.
-		/// </summary>
-		public TcpViewModel( )
-		{
-			TcpModel = new TcpModel( );
-		}
+            }
+        }
+        private void Recv(Socket socket, string message)
+        {
+            App.Current.Dispatcher.BeginInvoke(new Action(() =>
+            {
+                TcpModel.ServerReceive += "[" + socket.RemoteEndPoint.ToString() + "] :";
+                TcpModel.ServerReceive += message;
+                TcpModel.ServerReceive += "\n";
+            }));
 
-		/// <summary>
-		/// Gets or sets the TCP model.
-		/// </summary>
-		/// <value>
-		/// The TCP model.
-		/// </value>
-		public TcpModel TcpModel { get; set; }
+        }
+        private void ConnectCallback(Socket socket)
+        {
+            App.Current.Dispatcher.BeginInvoke(new Action(() =>
+            {
+                DateTime time = DateTime.Now;
+                TcpServerInfos.Add(new TcpServerInfo {RemoteIp = socket.RemoteEndPoint.ToString().Split(':')[0], Port = socket.RemoteEndPoint.ToString().Split(':')[1], Time = time });
+                TcpModel.ServerStatus += "++[" + socket.RemoteEndPoint.ToString() + "] connected at " + time + "\n";
+            }));
 
-		/// <summary>
-		/// Gets or sets the TCP server infos.
-		/// </summary>
-		/// <value>
-		/// The TCP server infos.
-		/// </value>
-		public ObservableCollection<TcpServerInfo> TcpServerInfos { get; set; } =
-			new ObservableCollection<TcpServerInfo>( );
+        }
+        private void DisConnectCallback(Socket socket)
+        {
+            App.Current.Dispatcher.BeginInvoke(new Action(() =>
+            {
+                foreach (TcpServerInfo info in TcpServerInfos)
+                {
+                    if (info.RemoteIp == socket.RemoteEndPoint.ToString().Split(':')[0] && info.Port == socket.RemoteEndPoint.ToString().Split(':')[1])
+                    {
+                        TcpServerInfos.Remove(info);
+                        TcpModel.ServerStatus += "--[" + socket.RemoteEndPoint.ToString() + "] disconnected at " + info.Time + "\n";
+                        break;
+                    }
+                }
+            }));
+        }
 
-		/// <summary>
-		/// Gets the start listen command.
-		/// </summary>
-		/// <value>
-		/// The start listen command.
-		/// </value>
-		public ICommand StartListenCommand
-		{
-			get
-			{
-				return new RelayCommand( param => StartListen( param ) );
-			}
-		}
+        public ICommand ServerAutoSendCommand
+        {
+            get
+            {
+                return new RelayCommand(param => ServerAutoSend(param));
+            }
+        }
+        private System.Windows.Threading.DispatcherTimer mServerAutoSendTimer;
+        /// <param name="e"></param>
+        private void ServerAutoSendTimerFunc(object sender, EventArgs e)
+        {
+            if (tcpServerSocket!=null)
+            {
+                tcpServerSocket.SendMessageToAllClientsAsync(TcpModel.ServerSendText);
+            }
+        }
 
-		/// <summary>
-		/// Gets the server automatic send command.
-		/// </summary>
-		/// <value>
-		/// The server automatic send command.
-		/// </value>
-		public ICommand ServerAutoSendCommand
-		{
-			get
-			{
-				return new RelayCommand( param => ServerAutoSend( param ) );
-			}
-		}
+        public void ServerAutoSend(object parameter)
+        {
+            if (TcpModel.ServerSendButtonName == "Auto Send Start")
+            {
+                TcpModel.ServerSendButtonName = "Auto Send Stop";
+                mServerAutoSendTimer = new System.Windows.Threading.DispatcherTimer()
+                {
+                    Interval = new TimeSpan(0, 0, 0, 0, TcpModel.ServerSendInterval)
+                };
 
-		/// <summary>
-		/// Gets the server recv clear command.
-		/// </summary>
-		/// <value>
-		/// The server recv clear command.
-		/// </value>
-		public ICommand ServerRecvClearCommand
-		{
-			get
-			{
-				return new RelayCommand( param => ServerRecvClear( param ) );
-			}
-		}
+                mServerAutoSendTimer.Tick += ServerAutoSendTimerFunc;
+                mServerAutoSendTimer.Start();
 
-		/// <summary>
-		/// Gets the server send clear command.
-		/// </summary>
-		/// <value>
-		/// The server send clear command.
-		/// </value>
-		public ICommand ServerSendClearCommand
-		{
-			get
-			{
-				return new RelayCommand( param => ServerSendClear( param ) );
-			}
-		}
+            }
+            else
+            {
 
-		/// <summary>
-		/// Gets the server send command.
-		/// </summary>
-		/// <value>
-		/// The server send command.
-		/// </value>
-		public ICommand ServerSendCommand
-		{
-			get
-			{
-				return new RelayCommand( param => ServerSend( param ) );
-			}
-		}
+                TcpModel.ServerSendButtonName = "Auto Send Start";
+                mServerAutoSendTimer.Stop();
+            }
+        }
 
-		/// <summary>
-		/// Gets the client connect command.
-		/// </summary>
-		/// <value>
-		/// The client connect command.
-		/// </value>
-		public ICommand ClientConnectCommand
-		{
-			get
-			{
-				return new RelayCommand( param => ClientConnect( param ) );
-			}
-		}
+        public ICommand ServerRecvClearCommand
+        {
+            get
+            {
+                return new RelayCommand(param => ServerRecvClear(param));
+            }
+        }
+        public void ServerRecvClear(object parameter)
+        {
+            TcpModel.ServerReceive = "";
+        }
 
-		/// <summary>
-		/// Gets the client send clear command.
-		/// </summary>
-		/// <value>
-		/// The client send clear command.
-		/// </value>
-		public ICommand ClientSendClearCommand
-		{
-			get
-			{
-				return new RelayCommand( param => ClientSendClear( param ) );
-			}
-		}
+        public ICommand ServerSendClearCommand
+        {
+            get
+            {
+                return new RelayCommand(param => ServerSendClear(param));
+            }
+        }
+        public void ServerSendClear(object parameter)
+        {
+            TcpModel.ServerSend = "";
+        }
+        public ICommand ServerSendCommand
+        {
+            get
+            {
+                return new RelayCommand(param => ServerSend(param));
+            }
+        }
+        public void ServerSend(object parameter)
+        {
+            if(tcpServerSocket != null)
+            {
+                tcpServerSocket.SendMessageToAllClientsAsync(TcpModel.ServerSend);
+            }
 
-		/// <summary>
-		/// Gets the client send command.
-		/// </summary>
-		/// <value>
-		/// The client send command.
-		/// </value>
-		public ICommand ClientSendCommand
-		{
-			get
-			{
-				return new RelayCommand( param => ClientSend( param ) );
-			}
-		}
+        }
+        #endregion
 
-		/// <summary>
-		/// Gets the client automatic send command.
-		/// </summary>
-		/// <value>
-		/// The client automatic send command.
-		/// </value>
-		public ICommand ClientAutoSendCommand
-		{
-			get
-			{
-				return new RelayCommand( param => ClientAutoSend( param ) );
-			}
-		}
+        #region TcpClient
+        private TcpClientSocket tcpClientSocket = null;
+        public ICommand ClientConnectCommand
+        {
+            get
+            {
+                return new RelayCommand(param => ClientConnect(param));
+            }
+        }
+        public void ClientConnect(object parameter)
+        {
+            if (TcpModel.ClientConnectButtonName == "Connect")
+            {
+                TcpModel.ClientConnectButtonName = "Disconnect";
+                tcpClientSocket = new TcpClientSocket(TcpModel.ServerIp, TcpModel.ServerPort);
+                tcpClientSocket.recvEvent = new Action<string>(ClientRecvCB);
+                tcpClientSocket.connectEvent = new Action<Socket>(ClientConnectCB);
+                tcpClientSocket.disConnectEvent = new Action<Socket>(ClientDisConnectCB);
+                tcpClientSocket.Start();
+            }
+            else
+            {
+                TcpModel.ClientConnectButtonName = "Connect";
+                tcpClientSocket.CloseClientSocket();
+            }
+        }
 
-		/// <summary>
-		/// Gets the client recv clear command.
-		/// </summary>
-		/// <value>
-		/// The client recv clear command.
-		/// </value>
-		public ICommand ClientRecvClearCommand
-		{
-			get
-			{
-				return new RelayCommand( param => ClientRecvClear( param ) );
-			}
-		}
+        private void ClientConnectCB(Socket socket)
+        {
+            App.Current.Dispatcher.BeginInvoke(new Action(() =>
+            {
+                DateTime time = DateTime.Now;
+                TcpModel.ClientReceive += "++[" + socket.RemoteEndPoint.ToString() + "] connected at " + time + "\n";
+                TcpModel.LocalPort = socket.LocalEndPoint.ToString().Split(':')[1];
+            }));
+        }
+        private void ClientDisConnectCB(Socket socket)
+        {
+            App.Current.Dispatcher.BeginInvoke(new Action(() =>
+            {
+                TcpModel.ClientReceive += "--[" + socket.RemoteEndPoint.ToString() + "] disconnected at " + DateTime.Now + "\n";
+                if (TcpModel.ClientConnectButtonName == "Disconnect")
+                {
+                    TcpModel.ClientConnectButtonName = "Connect";
+                    tcpClientSocket.CloseClientSocket();
+                }
+            }));
 
-		/// <summary>
-		/// Starts the listen.
-		/// </summary>
-		/// <param name="parameter">The parameter.</param>
-		public void StartListen( object parameter )
-		{
-			if( TcpModel.ServerListenBtnName == "Start Listen" )
-			{
-				TcpModel.ServerListenBtnName = "Stop Listen";
-				_tcpServerSocket =
-					new TcpServerSocket( IPAddress.Any.ToString( ), TcpModel.ListenPort )
-					{
-						recvEvent = Recv,
-						connectEvent = ConnectCallback,
-						disConnectEvent = DisConnectCallback
-					};
+        }
+        private void ClientRecvCB(string msg)
+        {
+            App.Current.Dispatcher.BeginInvoke(new Action(() =>
+            {
+                TcpModel.ClientReceive += msg;
+                TcpModel.ClientReceive += "\n";
+            }));
 
-				_tcpServerSocket.Start( );
-				TcpModel.ServerStatus += "Tcp Server Started!\n";
-			}
-			else
-			{
-				TcpModel.ServerListenBtnName = "Start Listen";
-				_tcpServerSocket.CloseAllClientSocket( );
-				TcpServerInfos.Clear( );
-				TcpModel.ServerStatus += "Tcp Server Stopped!\n";
-			}
-		}
+        }
+        public ICommand ClientSendClearCommand
+        {
+            get
+            {
+                return new RelayCommand(param => ClientSendClear(param));
+            }
+        }
+        public void ClientSendClear(object parameter)
+        {
+            TcpModel.ClientSend = "";
+        }
+        public ICommand ClientSendCommand
+        {
+            get
+            {
+                return new RelayCommand(param => ClientSend(param));
+            }
+        }
+        public void ClientSend(object parameter)
+        {
+            if(tcpClientSocket != null)
+            {
+                tcpClientSocket.SendAsync(TcpModel.ClientSend);
+            }
 
-		/// <summary>
-		/// Recvs the specified socket.
-		/// </summary>
-		/// <param name="socket">The socket.</param>
-		/// <param name="message">The message.</param>
-		private void Recv( Socket socket, string message )
-		{
-			Application.Current.Dispatcher.BeginInvoke( new Action( ( ) =>
-			{
-				TcpModel.ServerRecv += "[" + socket.RemoteEndPoint + "] :";
-				TcpModel.ServerRecv += message;
-				TcpModel.ServerRecv += "\n";
-			} ) );
-		}
+        }
+        public ICommand ClientAutoSendCommand
+        {
+            get
+            {
+                return new RelayCommand(param => ClientAutoSend(param));
+            }
+        }
 
-		/// <summary>
-		/// Connects the callback.
-		/// </summary>
-		/// <param name="socket">The socket.</param>
-		private void ConnectCallback( Socket socket )
-		{
-			Application.Current.Dispatcher.BeginInvoke( new Action( ( ) =>
-			{
-				var _time = DateTime.Now;
-				TcpServerInfos.Add( new TcpServerInfo
-				{
-					RemoteIp = socket.RemoteEndPoint?.ToString( )?.Split( ':' )[ 0 ],
-					Port = socket.RemoteEndPoint?.ToString( )?.Split( ':' )[ 1 ],
-					Time = _time
-				} );
+        private System.Windows.Threading.DispatcherTimer mClientAutoSendTimer;
+        private void ClientAutoSendFunc(object sender, EventArgs e)
+        {
+            if(tcpClientSocket != null)
+            {
+                tcpClientSocket.SendAsync(TcpModel.ClientSendText);
+            }
 
-				TcpModel.ServerStatus +=
-					"++[" + socket.RemoteEndPoint + "] connected at " + _time + "\n";
-			} ) );
-		}
+        }
 
-		/// <summary>
-		/// Dises the connect callback.
-		/// </summary>
-		/// <param name="socket">The socket.</param>
-		private void DisConnectCallback( Socket socket )
-		{
-			Application.Current.Dispatcher.BeginInvoke( new Action( ( ) =>
-			{
-				foreach( var _info in TcpServerInfos )
-				{
-					if( socket.RemoteEndPoint != null
-						&& _info.RemoteIp == socket.RemoteEndPoint.ToString( )?.Split( ':' )[ 0 ]
-						&& _info.Port == socket.RemoteEndPoint.ToString( )?.Split( ':' )[ 1 ] )
-					{
-						TcpServerInfos.Remove( _info );
-						TcpModel.ServerStatus += "--[" + socket.RemoteEndPoint
-							+ "] disconnected at " + _info.Time + "\n";
+        public void ClientAutoSend(object parameter)
+        {
+            if (TcpModel.ClientSendButtonName == "Auto Send Start")
+            {
+                TcpModel.ClientSendButtonName = "Auto Send Stop";
+                mClientAutoSendTimer = new DispatcherTimer()
+                {
+                    Interval = new TimeSpan(0, 0, 0, 0, TcpModel.ClientSendInterval)
+                };
+                mClientAutoSendTimer.Tick += ClientAutoSendFunc;
+                mClientAutoSendTimer.Start();
+            }
+            else
+            {
+                TcpModel.ClientSendButtonName = "Auto Send Start";
+                mClientAutoSendTimer.Stop();
+            }
+        }
+        public ICommand ClientRecvClearCommand
+        {
+            get
+            {
+                return new RelayCommand(param => ClientRecvClear(param));
+            }
+        }
+        public void ClientRecvClear(object parameter)
+        {
+            TcpModel.ClientReceive = "";
+        }
 
-						break;
-					}
-				}
-			} ) );
-		}
-
-		/// <summary>
-		/// Servers the automatic send timer function.
-		/// </summary>
-		/// <param name="sender">The sender.</param>
-		/// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
-		private void ServerAutoSendTimerFunc( object sender, EventArgs e )
-		{
-			if( _tcpServerSocket != null )
-			{
-				_tcpServerSocket.SendMessageToAllClientsAsync( TcpModel.ServerSendStr );
-			}
-		}
-
-		/// <summary>
-		/// Servers the automatic send.
-		/// </summary>
-		/// <param name="parameter">The parameter.</param>
-		public void ServerAutoSend( object parameter )
-		{
-			if( TcpModel.ServerSendBtnName == "Auto Send Start" )
-			{
-				TcpModel.ServerSendBtnName = "Auto Send Stop";
-				_serverAutoSendTimer = new DispatcherTimer( )
-				{
-					Interval = new TimeSpan( 0, 0, 0, 0,
-						TcpModel.ServerSendInterval )
-				};
-
-				_serverAutoSendTimer.Tick += ServerAutoSendTimerFunc;
-				_serverAutoSendTimer.Start( );
-			}
-			else
-			{
-				TcpModel.ServerSendBtnName = "Auto Send Start";
-				_serverAutoSendTimer.Stop( );
-			}
-		}
-
-		/// <summary>
-		/// Servers the recv clear.
-		/// </summary>
-		/// <param name="parameter">The parameter.</param>
-		public void ServerRecvClear( object parameter )
-		{
-			TcpModel.ServerRecv = "";
-		}
-
-		/// <summary>
-		/// Servers the send clear.
-		/// </summary>
-		/// <param name="parameter">The parameter.</param>
-		public void ServerSendClear( object parameter )
-		{
-			TcpModel.ServerSend = "";
-		}
-
-		/// <summary>
-		/// Servers the send.
-		/// </summary>
-		/// <param name="parameter">The parameter.</param>
-		public void ServerSend( object parameter )
-		{
-			if( _tcpServerSocket != null )
-			{
-				_tcpServerSocket.SendMessageToAllClientsAsync( TcpModel.ServerSend );
-			}
-		}
-
-		/// <summary>
-		/// Clients the connect.
-		/// </summary>
-		/// <param name="parameter">The parameter.</param>
-		public void ClientConnect( object parameter )
-		{
-			if( TcpModel.ClientConnectBtnName == "Connect" )
-			{
-				TcpModel.ClientConnectBtnName = "Disconnect";
-				_tcpClientSocket = new TcpClientSocket( TcpModel.ServerIp, TcpModel.ServerPort );
-				_tcpClientSocket.recvEvent = ClientRecvCb;
-				_tcpClientSocket.connectEvent = ClientConnectCb;
-				_tcpClientSocket.disConnectEvent = ClientDisConnectCb;
-				_tcpClientSocket.Start( );
-			}
-			else
-			{
-				TcpModel.ClientConnectBtnName = "Connect";
-				_tcpClientSocket.CloseClientSocket( );
-			}
-		}
-
-		/// <summary>
-		/// Clients the connect cb.
-		/// </summary>
-		/// <param name="socket">The socket.</param>
-		private void ClientConnectCb( Socket socket )
-		{
-			Application.Current.Dispatcher.BeginInvoke( new Action( ( ) =>
-			{
-				var _time = DateTime.Now;
-				TcpModel.ClientRecv +=
-					"++[" + socket.RemoteEndPoint + "] connected at " + _time + "\n";
-
-				TcpModel.LocalPort = socket.LocalEndPoint.ToString( ).Split( ':' )[ 1 ];
-			} ) );
-		}
-
-		/// <summary>
-		/// Clients the dis connect cb.
-		/// </summary>
-		/// <param name="socket">The socket.</param>
-		private void ClientDisConnectCb( Socket socket )
-		{
-			Application.Current.Dispatcher.BeginInvoke( new Action( ( ) =>
-			{
-				TcpModel.ClientRecv += "--[" + socket.RemoteEndPoint + "] disconnected at "
-					+ DateTime.Now + "\n";
-
-				if( TcpModel.ClientConnectBtnName == "Disconnect" )
-				{
-					TcpModel.ClientConnectBtnName = "Connect";
-					_tcpClientSocket.CloseClientSocket( );
-				}
-			} ) );
-		}
-
-		/// <summary>
-		/// Clients the recv cb.
-		/// </summary>
-		/// <param name="msg">The MSG.</param>
-		private void ClientRecvCb( string msg )
-		{
-			Application.Current.Dispatcher.BeginInvoke( new Action( ( ) =>
-			{
-				TcpModel.ClientRecv += msg;
-				TcpModel.ClientRecv += "\n";
-			} ) );
-		}
-
-		/// <summary>
-		/// Clients the send clear.
-		/// </summary>
-		/// <param name="parameter">The parameter.</param>
-		public void ClientSendClear( object parameter )
-		{
-			TcpModel.ClientSend = "";
-		}
-
-		/// <summary>
-		/// Clients the send.
-		/// </summary>
-		/// <param name="parameter">The parameter.</param>
-		public void ClientSend( object parameter )
-		{
-			if( _tcpClientSocket != null )
-			{
-				_tcpClientSocket.SendAsync( TcpModel.ClientSend );
-			}
-		}
-
-		/// <summary>
-		/// Clients the automatic send function.
-		/// </summary>
-		/// <param name="sender">The sender.</param>
-		/// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
-		private void ClientAutoSendFunc( object sender, EventArgs e )
-		{
-			if( _tcpClientSocket != null )
-			{
-				_tcpClientSocket.SendAsync( TcpModel.ClientSendStr );
-			}
-		}
-
-		/// <summary>
-		/// Clients the automatic send.
-		/// </summary>
-		/// <param name="parameter">The parameter.</param>
-		public void ClientAutoSend( object parameter )
-		{
-			if( TcpModel.ClientSendBtnName == "Auto Send Start" )
-			{
-				TcpModel.ClientSendBtnName = "Auto Send Stop";
-				_clientAutoSendTimer = new DispatcherTimer( )
-				{
-					Interval = new TimeSpan( 0, 0, 0, 0,
-						TcpModel.ClientSendInterval )
-				};
-
-				_clientAutoSendTimer.Tick += ClientAutoSendFunc;
-				_clientAutoSendTimer.Start( );
-			}
-			else
-			{
-				TcpModel.ClientSendBtnName = "Auto Send Start";
-				_clientAutoSendTimer.Stop( );
-			}
-		}
-
-		/// <summary>
-		/// Clients the recv clear.
-		/// </summary>
-		/// <param name="parameter">The parameter.</param>
-		public void ClientRecvClear( object parameter )
-		{
-			TcpModel.ClientRecv = "";
-		}
-	}
+        #endregion
+        public TcpViewModel()
+        {
+            TcpModel = new TcpModel();
+        }
+    }
 }

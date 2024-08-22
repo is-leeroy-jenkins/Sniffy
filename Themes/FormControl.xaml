@@ -2,13 +2,9 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
-    <!--  ******************************** Resources  **************************************  -->
-
     <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="/Themes/BaseStyle.xaml" />
+        <ResourceDictionary Source="BaseStyle.xaml" />
     </ResourceDictionary.MergedDictionaries>
-
-    <!--  ******************************** Resources  **************************************  -->
 
     <Style
         x:Key="FormControlBaseStyle"
@@ -16,7 +12,7 @@
         TargetType="{x:Type Control}">
         <Setter Property="Height" Value="{DynamicResource DefaultControlHeight}" />
         <Setter Property="Padding" Value="{DynamicResource DefaultControlPadding}" />
-        <Setter Property="Background" Value="{DynamicResource FormControlBackground}" />
+        <Setter Property="Background" Value="{StaticResource FormControlBackground}" />
         <Setter Property="BorderBrush" Value="{DynamicResource FormControlBorderBrush}" />
         <Setter Property="Foreground" Value="{DynamicResource FormControlForeground}" />
         <Setter Property="BorderThickness" Value="1" />
@@ -27,7 +23,7 @@
                 <ControlTemplate TargetType="{x:Type Control}">
                     <Grid>
                         <Border
-                            x:Name="Border"
+                            x:Name="border"
                             Background="{TemplateBinding Background}"
                             BorderBrush="{TemplateBinding BorderBrush}"
                             BorderThickness="{TemplateBinding BorderThickness}"
@@ -35,17 +31,17 @@
                             SnapsToDevicePixels="true">
                             <Border.Effect>
                                 <DropShadowEffect
-                                    x:Name="DSE"
+                                    x:Name="dse"
                                     BlurRadius="8"
                                     Opacity="0"
                                     ShadowDepth="0"
-                                    Color="#9966afe9" />
+                                    Color="{StaticResource ForegroundColor3}" />
                             </Border.Effect>
                             <Rectangle
                                 Height="1"
                                 VerticalAlignment="Top"
                                 Opacity="0.1"
-                                Stroke="#000000">
+                                Stroke="{StaticResource Background-Black}">
                                 <Rectangle.Effect>
                                     <BlurEffect Radius="1" />
                                 </Rectangle.Effect>
@@ -64,7 +60,7 @@
                                 <BeginStoryboard>
                                     <Storyboard>
                                         <DoubleAnimation
-                                            Storyboard.TargetName="DSE"
+                                            Storyboard.TargetName="dse"
                                             Storyboard.TargetProperty="Opacity"
                                             To="1"
                                             Duration="0:0:0.15">
@@ -79,7 +75,7 @@
                                 <BeginStoryboard>
                                     <Storyboard>
                                         <DoubleAnimation
-                                            Storyboard.TargetName="DSE"
+                                            Storyboard.TargetName="dse"
                                             Storyboard.TargetProperty="Opacity"
                                             To="0"
                                             Duration="0:0:0.15">
@@ -90,7 +86,7 @@
                                     </Storyboard>
                                 </BeginStoryboard>
                             </Trigger.ExitActions>
-                            <Setter Property="BorderBrush" Value="#66afe9" />
+                            <Setter Property="BorderBrush" Value="{StaticResource LightBlueBrush}" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -98,28 +94,25 @@
         </Setter>
         <Style.Triggers>
             <Trigger Property="IsEnabled" Value="False">
-                <Setter Property="Background" Value="#eee" />
+                <Setter Property="Background" Value="{StaticResource ControlBackground}" />
                 <Setter Property="Cursor" Value="No" />
             </Trigger>
         </Style.Triggers>
     </Style>
-
-    <!--  ******************************** TextBox  **************************************  -->
-
+    <!--  TextBox  -->
     <Style
         BasedOn="{StaticResource FormControlBaseStyle}"
         TargetType="{x:Type TextBox}">
         <Style.Triggers>
             <Trigger Property="IsReadOnly" Value="True">
-                <Setter Property="Background" Value="#eee" />
+                <Setter Property="Background" Value="{StaticResource ControlBackground}" />
             </Trigger>
             <Trigger Property="IsMouseOver" Value="True">
                 <Setter Property="Cursor" Value="IBeam" />
             </Trigger>
         </Style.Triggers>
     </Style>
-    <!--  ******************************** Resources  **************************************  -->
-
+    <!--  PasswordBox  -->
     <Style
         BasedOn="{StaticResource FormControlBaseStyle}"
         TargetType="{x:Type PasswordBox}">
@@ -131,13 +124,11 @@
         </Style.Triggers>
     </Style>
 
-    <!--  ******************************** Resources  **************************************  -->
-
     <Style
         x:Key="Has-Success"
         BasedOn="{StaticResource FormControlBaseStyle}"
         TargetType="{x:Type Control}">
-        <Setter Property="BorderBrush" Value="{DynamicResource BorderBrush-Success3}" />
+        <Setter Property="BorderBrush" Value="{StaticResource BorderBrush-Primary1}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Control}">
@@ -151,17 +142,17 @@
                             SnapsToDevicePixels="true">
                             <Border.Effect>
                                 <DropShadowEffect
-                                    x:Name="DSE"
+                                    x:Name="dse"
                                     BlurRadius="8"
                                     Opacity="0"
                                     ShadowDepth="0"
-                                    Color="#67b168" />
+                                    Color="{StaticResource PrimaryColor1}" />
                             </Border.Effect>
                             <Rectangle
                                 Height="1"
                                 VerticalAlignment="Top"
                                 Opacity="0.1"
-                                Stroke="#000000">
+                                Stroke="{StaticResource Background-Black}">
                                 <Rectangle.Effect>
                                     <BlurEffect Radius="1" />
                                 </Rectangle.Effect>
@@ -179,7 +170,7 @@
                                 <BeginStoryboard>
                                     <Storyboard>
                                         <DoubleAnimation
-                                            Storyboard.TargetName="DSE"
+                                            Storyboard.TargetName="dse"
                                             Storyboard.TargetProperty="Opacity"
                                             To="1"
                                             Duration="0:0:0.15">
@@ -194,7 +185,7 @@
                                 <BeginStoryboard>
                                     <Storyboard>
                                         <DoubleAnimation
-                                            Storyboard.TargetName="DSE"
+                                            Storyboard.TargetName="dse"
                                             Storyboard.TargetProperty="Opacity"
                                             To="0"
                                             Duration="0:0:0.15">
@@ -205,7 +196,7 @@
                                     </Storyboard>
                                 </BeginStoryboard>
                             </Trigger.ExitActions>
-                            <Setter Property="BorderBrush" Value="#2b542c" />
+                            <Setter Property="BorderBrush" Value="{StaticResource BorderBrush-Primary1}" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -221,7 +212,7 @@
         x:Key="Has-Warning"
         BasedOn="{StaticResource FormControlBaseStyle}"
         TargetType="{x:Type Control}">
-        <Setter Property="BorderBrush" Value="{DynamicResource BorderBrush-Warning3}" />
+        <Setter Property="BorderBrush" Value="{StaticResource BorderBrush-Warning3}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Control}">
@@ -235,17 +226,17 @@
                             SnapsToDevicePixels="true">
                             <Border.Effect>
                                 <DropShadowEffect
-                                    x:Name="DSE"
+                                    x:Name="dse"
                                     BlurRadius="8"
                                     Opacity="0"
                                     ShadowDepth="0"
-                                    Color="#c0a16b" />
+                                    Color="{StaticResource PrimaryColor1}" />
                             </Border.Effect>
                             <Rectangle
                                 Height="1"
                                 VerticalAlignment="Top"
                                 Opacity="0.1"
-                                Stroke="#000000">
+                                Stroke="{StaticResource Background-Black}">
                                 <Rectangle.Effect>
                                     <BlurEffect Radius="1" />
                                 </Rectangle.Effect>
@@ -263,7 +254,7 @@
                                 <BeginStoryboard>
                                     <Storyboard>
                                         <DoubleAnimation
-                                            Storyboard.TargetName="DSE"
+                                            Storyboard.TargetName="dse"
                                             Storyboard.TargetProperty="Opacity"
                                             To="1"
                                             Duration="0:0:0.15">
@@ -278,7 +269,7 @@
                                 <BeginStoryboard>
                                     <Storyboard>
                                         <DoubleAnimation
-                                            Storyboard.TargetName="DSE"
+                                            Storyboard.TargetName="dse"
                                             Storyboard.TargetProperty="Opacity"
                                             To="0"
                                             Duration="0:0:0.15">
@@ -289,7 +280,7 @@
                                     </Storyboard>
                                 </BeginStoryboard>
                             </Trigger.ExitActions>
-                            <Setter Property="BorderBrush" Value="#66512c" />
+                            <Setter Property="BorderBrush" Value="{StaticResource BorderBrush-Primary1}" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -305,7 +296,7 @@
         x:Key="Has-Error"
         BasedOn="{StaticResource FormControlBaseStyle}"
         TargetType="{x:Type Control}">
-        <Setter Property="BorderBrush" Value="{DynamicResource BorderBrush-Danger3}" />
+        <Setter Property="BorderBrush" Value="{StaticResource BorderBrush-Primary1}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Control}">
@@ -319,17 +310,17 @@
                             SnapsToDevicePixels="true">
                             <Border.Effect>
                                 <DropShadowEffect
-                                    x:Name="DSE"
+                                    x:Name="dse"
                                     BlurRadius="8"
                                     Opacity="0"
                                     ShadowDepth="0"
-                                    Color="#ce8483" />
+                                    Color="{StaticResource BorderColor}" />
                             </Border.Effect>
                             <Rectangle
                                 Height="1"
                                 VerticalAlignment="Top"
                                 Opacity="0.1"
-                                Stroke="#000000">
+                                Stroke="{StaticResource Background-Black}">
                                 <Rectangle.Effect>
                                     <BlurEffect Radius="1" />
                                 </Rectangle.Effect>
@@ -347,7 +338,7 @@
                                 <BeginStoryboard>
                                     <Storyboard>
                                         <DoubleAnimation
-                                            Storyboard.TargetName="DSE"
+                                            Storyboard.TargetName="dse"
                                             Storyboard.TargetProperty="Opacity"
                                             To="1"
                                             Duration="0:0:0.15">
@@ -362,7 +353,7 @@
                                 <BeginStoryboard>
                                     <Storyboard>
                                         <DoubleAnimation
-                                            Storyboard.TargetName="DSE"
+                                            Storyboard.TargetName="dse"
                                             Storyboard.TargetProperty="Opacity"
                                             To="0"
                                             Duration="0:0:0.15">
@@ -373,7 +364,7 @@
                                     </Storyboard>
                                 </BeginStoryboard>
                             </Trigger.ExitActions>
-                            <Setter Property="BorderBrush" Value="#843534" />
+                            <Setter Property="BorderBrush" Value="{StaticResource BorderBrush-Primary1}" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -406,21 +397,18 @@
                             SnapsToDevicePixels="true">
                             <Border.Effect>
                                 <DropShadowEffect
-                                    x:Name="DSE"
+                                    x:Name="dse"
                                     BlurRadius="8"
                                     Opacity="0"
                                     ShadowDepth="0"
-                                    Color="#9966afe9" />
+                                    Color="{StaticResource BorderColor}" />
                             </Border.Effect>
                             <Rectangle
                                 Height="1"
                                 VerticalAlignment="Top"
                                 Opacity="0.1"
-                                Stroke="#000000">
-                                <Rectangle.Effect>
-                                    <BlurEffect Radius="1" />
-                                </Rectangle.Effect>
-                            </Rectangle>
+                                Stroke="{StaticResource Background-Black}" />
+
                         </Border>
 
                         <ScrollViewer
@@ -434,7 +422,7 @@
                                 <BeginStoryboard>
                                     <Storyboard>
                                         <DoubleAnimation
-                                            Storyboard.TargetName="DSE"
+                                            Storyboard.TargetName="dse"
                                             Storyboard.TargetProperty="Opacity"
                                             To="1"
                                             Duration="0:0:0.15">
@@ -449,7 +437,7 @@
                                 <BeginStoryboard>
                                     <Storyboard>
                                         <DoubleAnimation
-                                            Storyboard.TargetName="DSE"
+                                            Storyboard.TargetName="dse"
                                             Storyboard.TargetProperty="Opacity"
                                             To="0"
                                             Duration="0:0:0.15">
@@ -460,7 +448,7 @@
                                     </Storyboard>
                                 </BeginStoryboard>
                             </Trigger.ExitActions>
-                            <Setter Property="BorderBrush" Value="#66afe9" />
+                            <Setter Property="BorderBrush" Value="{StaticResource BorderBrush-Primary1}" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -471,7 +459,7 @@
                 <Setter Property="Cursor" Value="IBeam" />
             </Trigger>
             <Trigger Property="IsEnabled" Value="False">
-                <Setter Property="Background" Value="#eee" />
+                <Setter Property="Background" Value="{StaticResource FormControlBackground}" />
                 <Setter Property="Cursor" Value="No" />
             </Trigger>
         </Style.Triggers>
@@ -496,17 +484,17 @@
                             SnapsToDevicePixels="True">
                             <Border.Effect>
                                 <DropShadowEffect
-                                    x:Name="DSE"
+                                    x:Name="dse"
                                     BlurRadius="8"
                                     Opacity="0"
                                     ShadowDepth="0"
-                                    Color="#9966afe9" />
+                                    Color="{StaticResource BorderColor}" />
                             </Border.Effect>
                             <Rectangle
                                 Height="1"
                                 VerticalAlignment="Top"
                                 Opacity="0.1"
-                                Stroke="#000000">
+                                Stroke="{StaticResource Background-Black}">
                                 <Rectangle.Effect>
                                     <BlurEffect Radius="1" />
                                 </Rectangle.Effect>
@@ -524,7 +512,7 @@
                                 <BeginStoryboard>
                                     <Storyboard>
                                         <DoubleAnimation
-                                            Storyboard.TargetName="DSE"
+                                            Storyboard.TargetName="dse"
                                             Storyboard.TargetProperty="Opacity"
                                             To="1"
                                             Duration="0:0:0.15">
@@ -539,7 +527,7 @@
                                 <BeginStoryboard>
                                     <Storyboard>
                                         <DoubleAnimation
-                                            Storyboard.TargetName="DSE"
+                                            Storyboard.TargetName="dse"
                                             Storyboard.TargetProperty="Opacity"
                                             To="0"
                                             Duration="0:0:0.15">
@@ -550,7 +538,7 @@
                                     </Storyboard>
                                 </BeginStoryboard>
                             </Trigger.ExitActions>
-                            <Setter Property="BorderBrush" Value="#66afe9" />
+                            <Setter Property="BorderBrush" Value="{StaticResource BorderBrush-Primary1}" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -561,7 +549,7 @@
                 <Setter Property="Cursor" Value="IBeam" />
             </Trigger>
             <Trigger Property="IsEnabled" Value="False">
-                <Setter Property="Background" Value="#eee" />
+                <Setter Property="Background" Value="{StaticResource ControlBackground}" />
                 <Setter Property="Cursor" Value="No" />
             </Trigger>
         </Style.Triggers>
@@ -581,7 +569,7 @@
                 <ControlTemplate TargetType="{x:Type ToggleButton}">
                     <Grid>
                         <Border
-                            x:Name="Border"
+                            x:Name="border"
                             Background="{TemplateBinding Background}"
                             BorderBrush="{TemplateBinding BorderBrush}"
                             BorderThickness="{TemplateBinding BorderThickness}"
@@ -589,7 +577,7 @@
                             SnapsToDevicePixels="true">
                             <Border.Effect>
                                 <DropShadowEffect
-                                    x:Name="DSE"
+                                    x:Name="dse"
                                     BlurRadius="8"
                                     Opacity="0"
                                     ShadowDepth="0"
@@ -599,7 +587,7 @@
                                 Height="1"
                                 VerticalAlignment="Top"
                                 Opacity="0.1"
-                                Stroke="#000000">
+                                Stroke="{StaticResource Background-Black}">
                                 <Rectangle.Effect>
                                     <BlurEffect Radius="1" />
                                 </Rectangle.Effect>
@@ -628,7 +616,7 @@
                                 <BeginStoryboard>
                                     <Storyboard>
                                         <DoubleAnimation
-                                            Storyboard.TargetName="DSE"
+                                            Storyboard.TargetName="dse"
                                             Storyboard.TargetProperty="Opacity"
                                             To="1"
                                             Duration="0:0:0.15">
@@ -643,7 +631,7 @@
                                 <BeginStoryboard>
                                     <Storyboard>
                                         <DoubleAnimation
-                                            Storyboard.TargetName="DSE"
+                                            Storyboard.TargetName="dse"
                                             Storyboard.TargetProperty="Opacity"
                                             To="0"
                                             Duration="0:0:0.15">
@@ -654,7 +642,7 @@
                                     </Storyboard>
                                 </BeginStoryboard>
                             </Trigger.ExitActions>
-                            <Setter TargetName="Border" Property="BorderBrush" Value="#66afe9" />
+                            <Setter TargetName="border" Property="BorderBrush" Value="#66afe9" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -708,7 +696,7 @@
                             HorizontalAlignment="Center"
                             VerticalAlignment="Center"
                             Data="{StaticResource DownArrowGeometry}"
-                            Fill="Black" />
+                            Fill="{StaticResource Background-Black}" />
                     </Border>
                 </ControlTemplate>
             </Setter.Value>
@@ -732,10 +720,10 @@
                 Placement="Bottom"
                 PopupAnimation="{DynamicResource {x:Static SystemParameters.ComboBoxPopupAnimationKey}}">
                 <Border
-                    x:Name="Shadow"
+                    x:Name="Shdw"
                     MinWidth="{Binding ActualWidth, ElementName=Placement}"
                     MaxHeight="{TemplateBinding MaxDropDownHeight}"
-                    Background="Transparent">
+                    Background="{StaticResource BorderBrush-Primary1}">
                     <Border
                         x:Name="DropDownBorder"
                         Background="{DynamicResource {x:Static SystemColors.WindowBrushKey}}"
@@ -764,7 +752,7 @@
                 </Border>
             </Popup>
             <Border
-                x:Name="Border"
+                x:Name="border"
                 Grid.ColumnSpan="2"
                 Background="{TemplateBinding Background}"
                 BorderBrush="{TemplateBinding BorderBrush}"
@@ -773,7 +761,7 @@
                 SnapsToDevicePixels="true">
                 <Border.Effect>
                     <DropShadowEffect
-                        x:Name="DSE"
+                        x:Name="dse"
                         BlurRadius="8"
                         Opacity="0"
                         ShadowDepth="0"
@@ -783,7 +771,7 @@
                     Height="1"
                     VerticalAlignment="Top"
                     Opacity="0.1"
-                    Stroke="#000000">
+                    Stroke="{StaticResource Background-Black}">
                     <Rectangle.Effect>
                         <BlurEffect Radius="1" />
                     </Rectangle.Effect>
@@ -808,7 +796,7 @@
                     <BeginStoryboard>
                         <Storyboard>
                             <DoubleAnimation
-                                Storyboard.TargetName="DSE"
+                                Storyboard.TargetName="dse"
                                 Storyboard.TargetProperty="Opacity"
                                 To="1"
                                 Duration="0:0:0.15">
@@ -823,7 +811,7 @@
                     <BeginStoryboard>
                         <Storyboard>
                             <DoubleAnimation
-                                Storyboard.TargetName="DSE"
+                                Storyboard.TargetName="dse"
                                 Storyboard.TargetProperty="Opacity"
                                 To="0"
                                 Duration="0:0:0.15">
@@ -834,7 +822,7 @@
                         </Storyboard>
                     </BeginStoryboard>
                 </Trigger.ExitActions>
-                <Setter TargetName="Border" Property="BorderBrush" Value="#66afe9" />
+                <Setter TargetName="border" Property="BorderBrush" Value="#66afe9" />
             </Trigger>
             <Trigger Property="HasItems" Value="false">
                 <Setter TargetName="DropDownBorder" Property="Height" Value="80" />
@@ -847,8 +835,8 @@
                 <Setter Property="ScrollViewer.CanContentScroll" Value="false" />
             </MultiTrigger>
             <Trigger SourceName="PART_Popup" Property="HasDropShadow" Value="true">
-                <Setter TargetName="Shadow" Property="Margin" Value="0,0,2,2" />
-                <Setter TargetName="Shadow" Property="Background" Value="#71000000" />
+                <Setter TargetName="Shdw" Property="Margin" Value="0,0,2,2" />
+                <Setter TargetName="Shdw" Property="Background" Value="#71000000" />
             </Trigger>
             <Trigger SourceName="DropDownScrollViewer" Property="ScrollViewer.CanContentScroll" Value="false">
                 <Setter TargetName="OpaqueRect" Property="Canvas.Top" Value="{Binding VerticalOffset, ElementName=DropDownScrollViewer}" />
@@ -885,7 +873,7 @@
                             Placement="Bottom"
                             PopupAnimation="{DynamicResource {x:Static SystemParameters.ComboBoxPopupAnimationKey}}">
                             <Border
-                                x:Name="Shadow"
+                                x:Name="Shdw"
                                 MinWidth="{Binding ActualWidth, ElementName=MainGrid}"
                                 MaxHeight="{TemplateBinding MaxDropDownHeight}"
                                 Background="Transparent">
@@ -942,8 +930,8 @@
                     </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger SourceName="PART_Popup" Property="HasDropShadow" Value="true">
-                            <Setter TargetName="Shadow" Property="Margin" Value="0,0,2,2" />
-                            <Setter TargetName="Shadow" Property="Background" Value="#71000000" />
+                            <Setter TargetName="Shdw" Property="Margin" Value="0,0,2,2" />
+                            <Setter TargetName="Shdw" Property="Background" Value="#71000000" />
                         </Trigger>
                         <Trigger Property="HasItems" Value="false">
                             <Setter TargetName="DropDownBorder" Property="Height" Value="80" />
@@ -969,9 +957,7 @@
             </Trigger>
         </Style.Triggers>
     </Style>
-
-    <!--  ********************************   **************************************  -->
-
+    <!--  CheckBox  -->
     <Style
         x:Key="CheckBoxBaseStyle"
         BasedOn="{StaticResource FormControlBaseStyle}"
@@ -997,13 +983,13 @@
                             CornerRadius="4">
                             <Grid>
                                 <Path
-                                    x:Name="CheckedPath"
+                                    x:Name="checkedPath"
                                     Data="M1,5 L4,8 9,2"
                                     Stroke="{TemplateBinding BorderBrush}"
                                     StrokeThickness="2"
                                     Visibility="Collapsed" />
                                 <Rectangle
-                                    x:Name="NullRec"
+                                    x:Name="nullRec"
                                     Width="8"
                                     Height="8"
                                     Fill="{TemplateBinding BorderBrush}"
@@ -1022,10 +1008,10 @@
                     </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsChecked" Value="true">
-                            <Setter TargetName="CheckedPath" Property="Visibility" Value="Visible" />
+                            <Setter TargetName="checkedPath" Property="Visibility" Value="Visible" />
                         </Trigger>
                         <Trigger Property="IsChecked" Value="{x:Null}">
-                            <Setter TargetName="NullRec" Property="Visibility" Value="Visible" />
+                            <Setter TargetName="nullRec" Property="Visibility" Value="Visible" />
                         </Trigger>
                         <Trigger Property="HasContent" Value="true">
                             <Setter Property="Padding" Value="4,0,0,0" />
@@ -1038,7 +1024,6 @@
     <Style
         BasedOn="{StaticResource CheckBoxBaseStyle}"
         TargetType="{x:Type CheckBox}" />
-
     <Style
         x:Key="Checkbox Has-Success"
         BasedOn="{StaticResource CheckBoxBaseStyle}"
@@ -1046,7 +1031,6 @@
         <Setter Property="BorderBrush" Value="{DynamicResource Foreground-Success}" />
         <Setter Property="Foreground" Value="{DynamicResource Foreground-Success}" />
     </Style>
-
     <Style
         x:Key="Checkbox Has-Warning"
         BasedOn="{StaticResource CheckBoxBaseStyle}"
@@ -1054,7 +1038,6 @@
         <Setter Property="BorderBrush" Value="{DynamicResource Foreground-Warning}" />
         <Setter Property="Foreground" Value="{DynamicResource Foreground-Warning}" />
     </Style>
-
     <Style
         x:Key="Checkbox Has-Error"
         BasedOn="{StaticResource CheckBoxBaseStyle}"
@@ -1062,94 +1045,47 @@
         <Setter Property="BorderBrush" Value="{DynamicResource Foreground-Danger}" />
         <Setter Property="Foreground" Value="{DynamicResource Foreground-Danger}" />
     </Style>
-
-    <!--  ************************  RadioButtonBaseStyle  ****************************  -->
-
-    <Style
-        x:Key="RadioButtonBaseStyle"
-        BasedOn="{StaticResource FormControlBaseStyle}"
-        TargetType="{x:Type RadioButton}">
-        <Setter Property="BorderThickness" Value="2" />
-        <Setter Property="Padding" Value="0" />
-        <Setter Property="Cursor" Value="Hand" />
+    <!--  RadioButton  -->
+    <!--<Style x:Key="RadioButtonBaseStyle" BasedOn="{StaticResource FormControlBaseStyle}" TargetType="{x:Type RadioButton}">
+        <Setter Property="BorderThickness" Value="2"/>
+        <Setter Property="Padding" Value="0"/>
+        <Setter Property="Cursor" Value="Hand"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type RadioButton}">
                     <Grid SnapsToDevicePixels="true">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="14" />
-                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="14"/>
+                            <ColumnDefinition Width="Auto"/>
                         </Grid.ColumnDefinitions>
-                        <Border
-                            Grid.Column="0"
-                            Width="14"
-                            Height="14"
-                            Background="{TemplateBinding Background}"
-                            BorderBrush="{TemplateBinding BorderBrush}"
-                            BorderThickness="{TemplateBinding BorderThickness}"
-                            CornerRadius="7">
-                            <Ellipse
-                                x:Name="CheckedEll"
-                                Width="8"
-                                Height="8"
-                                Fill="{TemplateBinding BorderBrush}"
-                                Visibility="Collapsed" />
+                        <Border Grid.Column="0" Width="14" Height="14" CornerRadius="7" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}">
+                            <Ellipse x:Name="checkedEll" Width="8" Height="8" Fill="{TemplateBinding BorderBrush}" Visibility="Collapsed"/>
                         </Border>
-                        <ContentPresenter
-                            x:Name="Cp"
-                            Grid.Column="1"
-                            Margin="{TemplateBinding Padding}"
-                            HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                            RecognizesAccessKey="True"
-                            SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                        <ContentPresenter Grid.Column="1" x:Name="Cp" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
                     </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsChecked" Value="true">
-                            <Setter TargetName="CheckedEll" Property="Visibility" Value="Visible" />
+                            <Setter TargetName="checkedEll" Property="Visibility" Value="Visible"/>
                         </Trigger>
                         <Trigger Property="HasContent" Value="true">
-                            <Setter Property="Padding" Value="4,0,0,0" />
+                            <Setter Property="Padding" Value="4,0,0,0"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
     </Style>
-
-    <!--  **************************  RadioButtonBaseStyle  **************************************  -->
-
-    <Style
-        BasedOn="{StaticResource RadioButtonBaseStyle}"
-        TargetType="{x:Type RadioButton}" />
-
-    <!--  ******************************  Radio Has-Success **************************************  -->
-
-    <Style
-        x:Key="Radio Has-Success"
-        BasedOn="{StaticResource RadioButtonBaseStyle}"
-        TargetType="{x:Type RadioButton}">
-        <Setter Property="BorderBrush" Value="{DynamicResource Foreground-Success}" />
-        <Setter Property="Foreground" Value="{DynamicResource Foreground-Success}" />
+    <Style BasedOn="{StaticResource RadioButtonBaseStyle}" TargetType="{x:Type RadioButton}"/>
+    <Style x:Key="radio has-success" BasedOn="{StaticResource RadioButtonBaseStyle}" TargetType="{x:Type RadioButton}">
+        <Setter Property="BorderBrush" Value="{DynamicResource Foreground-Success}"/>
+        <Setter Property="Foreground" Value="{DynamicResource Foreground-Success}"/>
     </Style>
-
-    <!--  ******************************** Radio Has-Warning **************************************  -->
-
-    <Style
-        x:Key="Radio Has-Warning"
-        BasedOn="{StaticResource RadioButtonBaseStyle}"
-        TargetType="{x:Type RadioButton}">
-        <Setter Property="BorderBrush" Value="{DynamicResource Foreground-Warning}" />
-        <Setter Property="Foreground" Value="{DynamicResource Foreground-Warning}" />
+    <Style x:Key="radio has-warning" BasedOn="{StaticResource RadioButtonBaseStyle}" TargetType="{x:Type RadioButton}">
+        <Setter Property="BorderBrush" Value="{DynamicResource Foreground-Warning}"/>
+        <Setter Property="Foreground" Value="{DynamicResource Foreground-Warning}"/>
     </Style>
-
-    <!--  ******************************** Radio Has-Error**************************************  -->
-
-    <Style
-        x:Key="Radio Has-Error"
-        BasedOn="{StaticResource RadioButtonBaseStyle}"
-        TargetType="{x:Type RadioButton}">
-        <Setter Property="BorderBrush" Value="{DynamicResource Foreground-Danger}" />
-        <Setter Property="Foreground" Value="{DynamicResource Foreground-Danger}" />
-    </Style>
+    <Style x:Key="radio has-error" BasedOn="{StaticResource RadioButtonBaseStyle}" TargetType="{x:Type RadioButton}">
+        <Setter Property="BorderBrush" Value="{DynamicResource Foreground-Danger}"/>
+        <Setter Property="Foreground" Value="{DynamicResource Foreground-Danger}"/>
+    </Style>-->
 </ResourceDictionary>

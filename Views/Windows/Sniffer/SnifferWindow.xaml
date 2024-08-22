@@ -2,25 +2,20 @@
     x:Class="Sniffy.SnifferWindow"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:Sniffy"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:oxy="http://oxyplot.org/wpf"
-    xmlns:skin="clr-namespace:Syncfusion.SfSkinManager;assembly=Syncfusion.SfSkinManager.WPF"
-    xmlns:sync="http://schemas.syncfusion.com/wpf"
-    xmlns:ui="http://schemas.modernwpf.com/2019"
     d:DesignHeight="450"
     d:DesignWidth="800"
-    sync:SfSkinManager.Theme="{skin:SkinManagerExtension ThemeName=FluentDark}"
     mc:Ignorable="d">
 
     <!--  ******************************************** Resources *********************************************  -->
 
     <UserControl.Resources>
-        <local:BytesSuffixConverter x:Key="ABytesSuffixConverter" />
 
-        <Style TargetType="ToolTip">
+        <local:BytesSuffixConverter x:Key="BytesSuffixConverter" />
+
+        <Style TargetType="{x:Type ToolTip}">
             <Setter Property="BorderThickness" Value="1,1,1,1" />
             <Setter Property="BorderBrush" Value="#0078D4" />
             <Setter Property="Background" Value="#FF000000" />
@@ -28,126 +23,128 @@
         </Style>
 
     </UserControl.Resources>
-
-
     <!--  ******************************************** Context Menu ******************************************  -->
 
     <UserControl.ContextMenu>
-        <ContextMenu Name="MainWindowContextMenu">
-            <sync:MenuItemAdv
-                Background="#FF282828"
+        <ContextMenu x:Name="MainWindowContextMenu">
+            <MenuItem
+                Background="#FF101010"
                 Foreground="#FFA0BDFC"
                 Header="File"
                 ToolTip="Browse File System">
-                <sync:MenuItemAdv.Icon>
-                    <Image Source="/Resources/Assets/Menu/FileItem.png" />
-                </sync:MenuItemAdv.Icon>
-            </sync:MenuItemAdv>
+                <MenuItem.Icon>
+                    <Image Source="/Resources/Assets/MenuImages/FileItem.png" />
+                </MenuItem.Icon>
+            </MenuItem>
 
-            <sync:MenuItemAdv
-                Background="#FF282828"
+            <MenuItem
+                Background="#FF101010"
                 Click="OnFolderMenuOptionClick"
                 Foreground="#FFA0BDFC"
                 Header="Folder"
                 ToolTip="Browse Directories">
-                <sync:MenuItemAdv.Icon>
-                    <Image Source="/Resources/Assets/Menu/FolderItem.png" />
-                </sync:MenuItemAdv.Icon>
-            </sync:MenuItemAdv>
+                <MenuItem.Icon>
+                    <Image Source="/Resources/Assets/MenuImages/FolderItem.png" />
+                </MenuItem.Icon>
+            </MenuItem>
 
             <Separator />
 
-            <sync:MenuItemAdv
-                Background="#FF282828"
+            <MenuItem
+                Background="#FF101010"
                 Click="OnChromeOptionClick"
                 Foreground="#FFA0BDFC"
                 Header="Chrome"
                 ToolTip="Launch Chrome Browser">
-                <sync:MenuItemAdv.Icon>
-                    <Image Source="/Resources/Assets/Menu/ChromeItem.png" />
-                </sync:MenuItemAdv.Icon>
-            </sync:MenuItemAdv>
+                <MenuItem.Icon>
+                    <Image Source="/Resources/Assets/MenuImages/ChromeItem.png" />
+                </MenuItem.Icon>
+            </MenuItem>
 
-            <sync:MenuItemAdv
-                Background="#FF282828"
+            <MenuItem
+                Background="#FF101010"
                 Click="OnEdgeOptionClick"
                 Foreground="#FFA0BDFC"
                 Header="Edge"
                 ToolTip="Launch Edge Browser">
-                <sync:MenuItemAdv.Icon>
-                    <Image Source="/Resources/Assets/Menu/EdgeItem.png" />
-                </sync:MenuItemAdv.Icon>
-            </sync:MenuItemAdv>
+                <MenuItem.Icon>
+                    <Image Source="/Resources/Assets/MenuImages/EdgeItem.png" />
+                </MenuItem.Icon>
+            </MenuItem>
 
-            <sync:MenuItemAdv
-                Background="#FF282828"
+            <MenuItem
+                Background="#FF101010"
                 Click="OnFirefoxOptionClick"
                 Foreground="#FFA0BDFC"
                 Header="FireFox"
                 ToolTip="Launch Firefox Browser">
-                <sync:MenuItemAdv.Icon>
-                    <Image Source="/Resources/Assets/Menu/FirefoxItem.png" />
-                </sync:MenuItemAdv.Icon>
-            </sync:MenuItemAdv>
+                <MenuItem.Icon>
+                    <Image Source="/Resources/Assets/MenuImages/FirefoxItem.png" />
+                </MenuItem.Icon>
+            </MenuItem>
 
             <Separator />
 
-            <sync:MenuItemAdv
-                Background="#FF282828"
+            <MenuItem
+                Background="#FF101010"
                 Click="OnCalculatorMenuOptionClick"
                 Foreground="#FFA0BDFC"
                 Header="Calculator"
                 ToolTip="Open Calculator">
-                <sync:MenuItemAdv.Icon>
-                    <Image Source="/Resources/Assets/Menu/CalculatorItem.png" />
-                </sync:MenuItemAdv.Icon>
-            </sync:MenuItemAdv>
+                <MenuItem.Icon>
+                    <Image Source="/Resources/Assets/MenuImages/CalculatorItem.png" />
+                </MenuItem.Icon>
+            </MenuItem>
 
-            <sync:MenuItemAdv
-                Background="#FF282828"
+            <MenuItem
+                Background="#FF101010"
                 Click="OnControlPanelOptionClick"
                 Foreground="#FFA0BDFC"
                 Header="Control Panel"
                 ToolTip="Windows Control Panel">
-                <sync:MenuItemAdv.Icon>
-                    <Image Source="/Resources/Assets/Menu/ControlPanelItem.png" />
-                </sync:MenuItemAdv.Icon>
-            </sync:MenuItemAdv>
+                <MenuItem.Icon>
+                    <Image Source="/Resources/Assets/MenuImages/ControlPanelItem.png" />
+                </MenuItem.Icon>
+            </MenuItem>
 
-            <sync:MenuItemAdv
-                Background="#FF282828"
+            <MenuItem
+                Background="#FF101010"
                 Click="OnTaskManagerOptionClick"
                 Foreground="#FFA0BDFC"
                 Header="Task Manager"
                 ToolTip="Windows Task Manager">
-                <sync:MenuItemAdv.Icon>
-                    <Image Source="/Resources/Assets/Menu/TaskManagerItem.png" />
-                </sync:MenuItemAdv.Icon>
-            </sync:MenuItemAdv>
+                <MenuItem.Icon>
+                    <Image Source="/Resources/Assets/MenuImages/TaskManagerItem.png" />
+                </MenuItem.Icon>
+            </MenuItem>
 
             <Separator />
 
-            <sync:MenuItemAdv
-                Background="#FF282828"
+            <MenuItem
+                Background="#FF101010"
                 Click="OnCloseOptionClick"
                 Foreground="#FFA0BDFC"
                 Header="Exit"
                 ToolTip="Exit Application">
-                <sync:MenuItemAdv.Icon>
-                    <Image Source="/Resources/Assets/Menu/CloseItem.png" />
-                </sync:MenuItemAdv.Icon>
-            </sync:MenuItemAdv>
+                <MenuItem.Icon>
+                    <Image Source="/Resources/Assets/MenuImages/CloseItem.png" />
+                </MenuItem.Icon>
+            </MenuItem>
         </ContextMenu>
     </UserControl.ContextMenu>
 
-    <!--  ******************************************** Canvass ******************************************  -->
 
-    <Canvas>
+    <!--  ******************************************** Main Layout *********************************************  -->
+
+    <Grid>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="250" />
+            <ColumnDefinition Width="1*" />
+        </Grid.ColumnDefinitions>
         <Grid
-            Height="440"
-            HorizontalAlignment="Center"
-            VerticalAlignment="Top"
-            Background="#FF141414"
+            Grid.Column="0"
+            Background="{StaticResource ControlInterior}"
             UseLayoutRounding="True">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
@@ -157,12 +154,12 @@
             </Grid.RowDefinitions>
             <TextBlock
                 Grid.Row="0"
-                Margin="1,1,1,1"
+                Margin="10,10,0,0"
                 HorizontalAlignment="Stretch"
                 VerticalAlignment="Top"
                 FontSize="24"
                 FontWeight="Bold"
-                Foreground="#FFFFFFFF"
+                Foreground="{StaticResource BorderBrush}"
                 Text="Sniffer" />
             <Separator
                 Grid.Row="0"
@@ -173,12 +170,12 @@
             <StackPanel
                 Grid.Row="1"
                 MinWidth="200"
-                Margin="10,10,10,3">
+                Margin="10,10,10,0">
                 <GroupBox
                     DataContext="{Binding SnifferViews[0]}"
                     Header="Capture Control"
-                    Style="{DynamicResource AccentGroupBox}">
-                    <Grid>
+                    Style="{StaticResource AccentGroupBox}">
+                    <Grid Background="{StaticResource ControlInterior}">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
@@ -208,7 +205,6 @@
                             Height="30"
                             Margin="0,5,5,0"
                             HorizontalAlignment="Center"
-                            ButtonType="Normal"
                             Command="{Binding StartCaptureCommand}"
                             Content="{Binding StartCaptureBtnName}" />
                         <local:ButtonEx
@@ -217,7 +213,6 @@
                             Height="30"
                             Margin="0,5,5,0"
                             HorizontalAlignment="Center"
-                            ButtonType="Normal"
                             Command="{Binding SavePacketsCommand}"
                             Content="Save To File"
                             IsEnabled="{Binding SaveStatus}" />
@@ -232,7 +227,7 @@
                 <GroupBox
                     DataContext="{Binding SnifferViews[0]}"
                     Header="Filter Config"
-                    Style="{DynamicResource AccentGroupBox}">
+                    Style="{StaticResource AccentGroupBox}">
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="30" />
@@ -242,16 +237,15 @@
                             Grid.Row="0"
                             Margin="0,5,5,0"
                             VerticalAlignment="Center"
-                            Background="Transparent"
+                            Background="{StaticResource ControlInterior}"
                             Content="Packet filter syntax man page-&gt;"
-                            Foreground="#FFA0BDFC" />
+                            Foreground="{StaticResource FormControlForeground}" />
                         <local:ButtonEx
                             Grid.Row="0"
                             Width="25"
                             Height="30"
                             Margin="0,5,5,0"
                             HorizontalAlignment="Right"
-                            ButtonType="Normal"
                             Command="{Binding FilterHelpCommand}"
                             Content="Go" />
 
@@ -263,20 +257,18 @@
                             Padding="3"
                             HorizontalAlignment="Stretch"
                             VerticalAlignment="Center"
-                            Background="#FF282828"
-                            Foreground="#FFFFFFFF"
+                            Background="{StaticResource Background-Black}"
+                            Foreground="{StaticResource Foreground-Primary2}"
                             Text="{Binding PacketFilter, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                             ToolTip="Packet filter expression">
                             <TextBox.Style>
                                 <Style TargetType="{x:Type TextBox}">
                                     <Setter Property="IsEnabled" Value="True" />
-                                    <Style.Triggers>
-                                        <DataTrigger
-                                            Binding="{Binding IsBusy}"
-                                            Value="True">
+                                    <!--<Style.Triggers>
+                                        <DataTrigger Binding="{Binding IsBusy}" Value="True">
                                             <Setter Property="IsEnabled" Value="False" />
                                         </DataTrigger>
-                                    </Style.Triggers>
+                                    </Style.Triggers>-->
                                 </Style>
                             </TextBox.Style>
                         </TextBox>
@@ -289,10 +281,14 @@
                 Margin="10,10,10,0">
                 <GroupBox
                     Header="Capture Status"
-                    Style="{DynamicResource AccentGroupBox}">
-                    <TreeView>
+                    Style="{StaticResource AccentGroupBox}">
+                    <TreeView
+                        Background="{StaticResource ControlInterior}"
+                        Foreground="{StaticResource FormControlForeground}">
                         <TreeViewItem
+                            Background="{StaticResource ControlInterior}"
                             DataContext="{Binding SnifferViews[1]}"
+                            Foreground="{StaticResource FormControlForeground}"
                             Header="Statistics"
                             IsExpanded="True"
                             Visibility="Visible">
@@ -308,58 +304,43 @@
                             </TreeViewItem.Style>
                             <!--<StackPanel Orientation="Horizontal">-->
                             <!--<TextBlock Text="Source: "></TextBlock>-->
-                            <TextBlock Text="{Binding PacketCount, StringFormat=Total Packets: \{0\}}" />
+                            <TextBlock Text="{Binding PacketCount, StringFormat=Total Packets: {0}}" />
                             <!--</StackPanel>-->
                             <StackPanel Orientation="Horizontal">
-                                <TextBlock
-                                    Foreground="#FFA0BDFC"
-                                    Text="Total Bytes: " />
+                                <TextBlock Text="Total Bytes: " />
                                 <TextBlock
                                     HorizontalAlignment="Left"
-                                    Text="{Binding ByteCount, Converter={StaticResource ABytesSuffixConverter}}" />
+                                    Text="{Binding ByteCount, Converter={StaticResource BytesSuffixConverter}}" />
                             </StackPanel>
-                            <TextBlock Text="{Binding CaptureTime, StringFormat=Total Time: \{0\}}" />
+                            <TextBlock Text="{Binding CaptureTime, StringFormat=Total Time: {0}}" />
                         </TreeViewItem>
 
                     </TreeView>
                 </GroupBox>
             </StackPanel>
         </Grid>
-        <Canvas
-            Canvas.Left="225"
-            Canvas.Top="10"
-            Width="565"
-            Height="430"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Center">
+        <Grid
+            Grid.Column="1"
+            HorizontalAlignment="Stretch">
             <Grid
-                Canvas.Top="10"
                 Width="Auto"
-                Height="Auto">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto" />
-                </Grid.ColumnDefinitions>
-                <TabControl
-                    Height="425"
-                    Margin="3,0,3,0"
-                    VerticalAlignment="Bottom">
-
+                HorizontalAlignment="Stretch">
+                <TabControl>
                     <TabItem
                         DataContext="{Binding SnifferViews[0]}"
                         Header="Capture View"
-                        Style="{DynamicResource TabControlEx}">
-                        <local:CaptureView />
+                        Style="{StaticResource TabControlEx}">
+                        <local:SnifferCaptureView />
                     </TabItem>
-
                     <TabItem
                         DataContext="{Binding SnifferViews[1]}"
                         Header="Statistics View"
-                        Style="{DynamicResource TabControlEx}">
-                        <local:SnifferStatsView Width="560" />
+                        Style="{StaticResource TabControlEx}">
+                        <local:SnifferStatsView />
                     </TabItem>
 
                 </TabControl>
             </Grid>
-        </Canvas>
-    </Canvas>
+        </Grid>
+    </Grid>
 </UserControl>

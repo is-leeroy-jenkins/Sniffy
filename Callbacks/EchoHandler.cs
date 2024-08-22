@@ -1,15 +1,16 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Sniffy
 //     Author:                  Terry D. Eppler
-//     Created:                 08-12-2024
+//     Created:                 08-20-2021
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        08-12-2024
+//     Last Modified On:        08-20-2024
 // ******************************************************************************************
 // <copyright file="EchoHandler.cs" company="Terry D. Eppler">
-//    Sniffy is a tiny .NET WPF tool for network interaction written C sharp.
+//     A tiny .NET WPF tool that can be used to establish TCP (raw) or WebSocket connections
+//     and exchange text messages for testing/debugging purposes.
 // 
-//     Copyright ©  2020 Terry D. Eppler
+//     Copyright ©  2021 Terry D. Eppler
 // 
 //    Permission is hereby granted, free of charge, to any person obtaining a copy
 //    of this software and associated documentation files (the “Software”),
@@ -38,7 +39,7 @@
 // </summary>
 // ******************************************************************************************
 
-namespace Sniffy 
+namespace Sniffy
 {
     using System;
     using System.Collections.ObjectModel;
@@ -51,10 +52,10 @@ namespace Sniffy
     /// <summary>
     /// </summary>
     /// <seealso cref="T:WebSocketSharp.Server.WebSocketBehavior" />
-    [SuppressMessage("ReSharper", "ClassCanBeSealed.Global")]
-    [SuppressMessage("ReSharper", "AutoPropertyCanBeMadeGetOnly.Global")]
-    [SuppressMessage("ReSharper", "UnusedType.Global")]
-    [SuppressMessage("ReSharper", "MemberCanBePrivate.Global")]
+    [ SuppressMessage( "ReSharper", "ClassCanBeSealed.Global" ) ]
+    [ SuppressMessage( "ReSharper", "AutoPropertyCanBeMadeGetOnly.Global" ) ]
+    [ SuppressMessage( "ReSharper", "UnusedType.Global" ) ]
+    [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
     public class EchoHandler : WebSocketBehavior
     {
         /// <inheritdoc />
@@ -62,7 +63,7 @@ namespace Sniffy
         /// Initializes a new instance of the
         /// <see cref="T:Sniffy.EchoHandler" /> class.
         /// </summary>
-        public EchoHandler()
+        public EchoHandler( )
         {
         }
 
@@ -73,7 +74,7 @@ namespace Sniffy
         /// The socket receiver.
         /// </value>
         public static ObservableCollection<string> SocketReceiver { get; set; } =
-            new ObservableCollection<string>();
+            new ObservableCollection<string>( );
 
         /// <inheritdoc />
         /// <summary>
@@ -83,17 +84,17 @@ namespace Sniffy
         /// <param name="e">A <see cref="T:WebSocketSharp.MessageEventArgs" /> 
         /// that represents the event data passed to
         /// a <see cref="E:WebSocketSharp.WebSocket.OnMessage" /> event.</param>
-        protected override void OnMessage(MessageEventArgs e)
+        protected override void OnMessage( MessageEventArgs e )
         {
-            Application.Current.Dispatcher.BeginInvoke(new Action(() =>
+            Application.Current.Dispatcher.BeginInvoke( new Action( ( ) =>
             {
                 var _time = "[" + StartTime + "][";
-                var _from = Context.UserEndPoint.ToString();
+                var _from = Context.UserEndPoint.ToString( );
                 var _str = "][" + e.Data + "]\n";
-                SocketReceiver.Add(_time + _from + _str);
-            }));
+                SocketReceiver.Add( _time + _from + _str );
+            } ) );
 
-            Send(e.Data);
+            Send( e.Data );
         }
 
         /// <inheritdoc />
@@ -101,12 +102,12 @@ namespace Sniffy
         /// Called when the WebSocket connection 
         /// used in a session has been established.
         /// </summary>
-        protected override void OnOpen()
+        protected override void OnOpen( )
         {
             var _time = "[" + StartTime + "][";
-            var _from = Context.UserEndPoint.ToString();
+            var _from = Context.UserEndPoint.ToString( );
             var _status = "][" + State + "]\n";
-            SocketReceiver.Add(_time + _from + _status);
+            SocketReceiver.Add( _time + _from + _status );
         }
 
         /// <inheritdoc />
@@ -116,12 +117,12 @@ namespace Sniffy
         /// <param name="e">A <see cref="T:WebSocketSharp.CloseEventArgs" />
         /// that represents the event data passed to
         /// a <see cref="E:WebSocketSharp.WebSocket.OnClose" /> event.</param>
-        protected override void OnClose(CloseEventArgs e)
+        protected override void OnClose( CloseEventArgs e )
         {
             var _time = "[" + StartTime + "][";
             var _reason = e.Reason;
             var _status = "][" + State + "]\n";
-            SocketReceiver.Add(_time + _reason + _status);
+            SocketReceiver.Add( _time + _reason + _status );
         }
 
         /// <inheritdoc />
@@ -132,12 +133,12 @@ namespace Sniffy
         /// <param name="e">A <see cref="T:WebSocketSharp.ErrorEventArgs" />
         /// that represents the event data passed to
         /// a <see cref="E:WebSocketSharp.WebSocket.OnError" /> event.</param>
-        protected override void OnError(ErrorEventArgs e)
+        protected override void OnError( ErrorEventArgs e )
         {
             var _time = "[" + StartTime + "][";
             var _reason = e.Message;
             var _status = "][" + State + "]\n";
-            SocketReceiver.Add(_time + _reason + _status);
+            SocketReceiver.Add( _time + _reason + _status );
         }
     }
 }

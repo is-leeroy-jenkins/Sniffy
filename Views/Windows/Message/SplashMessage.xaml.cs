@@ -61,6 +61,7 @@ namespace Sniffy
     [ SuppressMessage( "ReSharper", "FieldCanBeMadeReadOnly.Global" ) ]
     [ SuppressMessage( "ReSharper", "RedundantExtendsListEntry" ) ]
     [ SuppressMessage( "ReSharper", "ClassCanBeSealed.Global" ) ]
+    [ SuppressMessage( "ReSharper", "UnusedType.Global" ) ]
     public partial class SplashMessage : Window
     {
         /// <summary>
@@ -219,7 +220,7 @@ namespace Sniffy
             Margin = new Thickness( 3 );
             Padding = new Thickness( 1 );
             WindowStyle = WindowStyle.None;
-            WindowStartupLocation = WindowStartupLocation.CenterOwner;
+            WindowStartupLocation = WindowStartupLocation.CenterScreen;
             HorizontalAlignment = HorizontalAlignment.Stretch;
             VerticalAlignment = VerticalAlignment.Stretch;
             Background = new SolidColorBrush( _backColor );

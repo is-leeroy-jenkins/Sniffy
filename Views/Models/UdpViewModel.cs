@@ -1,494 +1,267 @@
-﻿// ******************************************************************************************
-//     Assembly:                Sniffy
-//     Author:                  Terry D. Eppler
-//     Created:                 08-13-2024
-// 
-//     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        08-13-2024
-// ******************************************************************************************
-// <copyright file="UdpViewModel.cs" company="Terry D. Eppler">
-//     A tiny .NET WPF tool that can be used to establish TCP (raw) or WebSocket connections
-//     and exchange text messages for testing/debugging purposes.
-// 
-//     Copyright ©  2020 Terry D. Eppler
-// 
-//    Permission is hereby granted, free of charge, to any person obtaining a copy
-//    of this software and associated documentation files (the “Software”),
-//    to deal in the Software without restriction,
-//    including without limitation the rights to use,
-//    copy, modify, merge, publish, distribute, sublicense,
-//    and/or sell copies of the Software,
-//    and to permit persons to whom the Software is furnished to do so,
-//    subject to the following conditions:
-// 
-//    The above copyright notice and this permission notice shall be included in all
-//    copies or substantial portions of the Software.
-// 
-//    THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
-//    INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-//    FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT.
-//    IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
-//    DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
-//    ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
-//    DEALINGS IN THE SOFTWARE.
-// 
-//    You can contact me at:  terryeppler@gmail.com or eppler.terry@epa.gov
-// </copyright>
-// <summary>
-//   UdpViewModel.cs
-// </summary>
-// ******************************************************************************************
+﻿using Sniffy;
+using System;
+using System.Net;
+using System.Net.Sockets;
+using System.Windows.Input;
+using Sniffy;
+using System.Windows.Threading;
+using System.Collections.ObjectModel;
 
 namespace Sniffy
 {
-	using System;
-	using System.Net;
-	using System.Net.Sockets;
-	using System.Windows.Input;
-	using System.Windows.Threading;
-	using System.Collections.ObjectModel;
-	using System.Diagnostics.CodeAnalysis;
-	using System.Windows;
+    internal class UdpViewModel : MainWindowBase
+    {
+        public UdpModel UdpModel { get; set; }
 
-	/// <summary>
-	/// 
-	/// </summary>
-	/// <seealso cref="Sniffy.MainWindowBase" />
-	[ SuppressMessage( "ReSharper", "MemberCanBeInternal" ) ]
-	[ SuppressMessage( "ReSharper", "InheritdocConsiderUsage" ) ]
-	[ SuppressMessage( "ReSharper", "RedundantExtendsListEntry" ) ]
-	[ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
-	[ SuppressMessage( "ReSharper", "FieldCanBeMadeReadOnly.Global" ) ]
-	[ SuppressMessage( "ReSharper", "UnusedParameter.Global" ) ]
-	[ SuppressMessage( "ReSharper", "UnusedVariable" ) ]
-	[ SuppressMessage( "ReSharper", "ClassCanBeSealed.Global" ) ]
-	public class UdpViewModel : MainWindowBase
-	{
-		/// <summary>
-		/// The m client automatic send timer
-		/// </summary>
-		private DispatcherTimer _mClientAutoSendTimer;
+        #region TcpServer
+        UdpServerSocket udpServerSocket = null;
 
-		/// <summary>
-		/// The m server automatic send timer
-		/// </summary>
-		private DispatcherTimer _mServerAutoSendTimer;
+        public class UdpClientInfo
+        {
+            public string RemoteIp { get; set; }
+            public string Port { get; set; }
+            public int RecvBytes { get; set; }
+            public DateTime Time { get; set; }
+        }
+        public ObservableCollection<UdpClientInfo> UdpClientInfos { get; set; } = new ObservableCollection<UdpClientInfo> { };
 
-		/// <summary>
-		/// The UDP client socket
-		/// </summary>
-		private UdpClientSocket _udpClientSocket;
+        public ICommand StartListenCommand
+        {
+            get
+            {
+                return new RelayCommand(param => StartListen(param));
+            }
+        }
+        public void StartListen(object parameter)
+        {
+            if (UdpModel.ServerListenButtonName == "Start Listen")
+            {
+                UdpModel.ServerListenButtonName = "Stop Listen";
 
-		/// <summary>
-		/// The UDP server socket
-		/// </summary>
-		private UdpServerSocket _udpServerSocket;
+                udpServerSocket = new UdpServerSocket(IPAddress.Any.ToString(), UdpModel.ListenPort);
+                udpServerSocket.recvEvent = new Action<EndPoint,string,int>(Recv);
+                udpServerSocket.Start();
+                UdpModel.ServerStatus += "Udp Server Started!\n";
+            }
+            else
+            {
+                UdpModel.ServerListenButtonName = "Start Listen";
+                UdpClientInfos.Clear();
+                UdpModel.ServerStatus += "Udp Server Stopped!\n";
 
-		/// <summary>
-		/// Initializes a new instance of the <see cref="UdpViewModel"/> class.
-		/// </summary>
-		public UdpViewModel( )
-		{
-			UdpModel = new UdpModel( );
-		}
+            }
+        }
+        private void Recv(EndPoint point, string message, int len)
+        {
+            App.Current.Dispatcher.BeginInvoke(new Action(() =>
+            {
+                UdpModel.ServerRecieve += "[" + point.ToString() + "] :";
+                UdpModel.ServerRecieve += message;
+                UdpModel.ServerRecieve += "\n";
+                DateTime time = DateTime.Now;
+                UdpClientInfos.Add(new UdpClientInfo { RemoteIp = point.ToString().Split(':')[0], Port = point.ToString().Split(':')[1], RecvBytes = len, Time = time });
+                UdpModel.ServerStatus += "++[" + point.ToString() + "] connected at " + time + "\n";
+            }));
 
-		/// <summary>
-		/// Gets or sets the UDP model.
-		/// </summary>
-		/// <value>
-		/// The UDP model.
-		/// </value>
-		public UdpModel UdpModel { get; set; }
+        }
 
-		/// <summary>
-		/// Gets or sets the UDP client infos.
-		/// </summary>
-		/// <value>
-		/// The UDP client infos.
-		/// </value>
-		public ObservableCollection<UdpClientInfo> UdpClientInfos { get; set; } =
-			new ObservableCollection<UdpClientInfo>( );
+        public ICommand ServerAutoSendCommand
+        {
+            get
+            {
+                return new RelayCommand(param => ServerAutoSend(param));
+            }
+        }
+        private System.Windows.Threading.DispatcherTimer mServerAutoSendTimer;
+        /// <param name="e"></param>
+        private void ServerAutoSendTimerFunc(object sender, EventArgs e)
+        {
+            udpServerSocket.SendMessageToAllClientsAsync(UdpModel.ServerSendText);
+        }
 
-		/// <summary>
-		/// Gets the start listen command.
-		/// </summary>
-		/// <value>
-		/// The start listen command.
-		/// </value>
-		public ICommand StartListenCommand
-		{
-			get
-			{
-				return new RelayCommand( param => StartListen( param ) );
-			}
-		}
+        public void ServerAutoSend(object parameter)
+        {
+            if (UdpModel.ServerSendButtonName == "Auto Send Start")
+            {
+                UdpModel.ServerSendButtonName = "Auto Send Stop";
+                mServerAutoSendTimer = new System.Windows.Threading.DispatcherTimer()
+                {
+                    Interval = new TimeSpan(0, 0, 0, 0, UdpModel.ServerSendInterval)
+                };
 
-		/// <summary>
-		/// Gets the server automatic send command.
-		/// </summary>
-		/// <value>
-		/// The server automatic send command.
-		/// </value>
-		public ICommand ServerAutoSendCommand
-		{
-			get
-			{
-				return new RelayCommand( param => ServerAutoSend( param ) );
-			}
-		}
+                mServerAutoSendTimer.Tick += ServerAutoSendTimerFunc;
+                mServerAutoSendTimer.Start();
 
-		/// <summary>
-		/// Gets the server recv clear command.
-		/// </summary>
-		/// <value>
-		/// The server recv clear command.
-		/// </value>
-		public ICommand ServerRecvClearCommand
-		{
-			get
-			{
-				return new RelayCommand( param => ServerRecvClear( param ) );
-			}
-		}
+            }
+            else
+            {
+                UdpModel.ServerSendButtonName = "Auto Send Start";
+                mServerAutoSendTimer.Stop();
+            }
+        }
 
-		/// <summary>
-		/// Gets the server send clear command.
-		/// </summary>
-		/// <value>
-		/// The server send clear command.
-		/// </value>
-		public ICommand ServerSendClearCommand
-		{
-			get
-			{
-				return new RelayCommand( param => ServerSendClear( param ) );
-			}
-		}
+        public ICommand ServerRecvClearCommand
+        {
+            get
+            {
+                return new RelayCommand(param => ServerRecvClear(param));
+            }
+        }
+        public void ServerRecvClear(object parameter)
+        {
+            UdpModel.ServerRecieve = "";
+        }
 
-		/// <summary>
-		/// Gets the server send command.
-		/// </summary>
-		/// <value>
-		/// The server send command.
-		/// </value>
-		public ICommand ServerSendCommand
-		{
-			get
-			{
-				return new RelayCommand( param => ServerSend( param ) );
-			}
-		}
+        public ICommand ServerSendClearCommand
+        {
+            get
+            {
+                return new RelayCommand(param => ServerSendClear(param));
+            }
+        }
+        public void ServerSendClear(object parameter)
+        {
+            UdpModel.ServerSend = "";
+        }
+        public ICommand ServerSendCommand
+        {
+            get
+            {
+                return new RelayCommand(param => ServerSend(param));
+            }
+        }
+        public void ServerSend(object parameter)
+        {
+            udpServerSocket.SendMessageToAllClientsAsync(UdpModel.ServerSend);
+        }
+        #endregion
 
-		/// <summary>
-		/// Gets the client connect command.
-		/// </summary>
-		/// <value>
-		/// The client connect command.
-		/// </value>
-		public ICommand ClientConnectCommand
-		{
-			get
-			{
-				return new RelayCommand( param => ClientConnect( param ) );
-			}
-		}
+        #region UdpClient
+        private UdpClientSocket udpClientSocket = null;
+        public ICommand ClientConnectCommand
+        {
+            get
+            {
+                return new RelayCommand(param => ClientConnect(param));
+            }
+        }
+        public void ClientConnect(object parameter)
+        {
+            if (UdpModel.ClientConnectButtonName == "Connect")
+            {
+                UdpModel.ClientConnectButtonName = "Disconnect";
+                udpClientSocket = new UdpClientSocket(UdpModel.ServerIp, UdpModel.ServerPort);
+                udpClientSocket.recvEvent = new Action<string>(ClientRecvCB);
+                udpClientSocket.Start();
+            }
+            else
+            {
+                UdpModel.ClientConnectButtonName = "Connect";
+                udpClientSocket.CloseClientSocket();
+            }
+        }
 
-		/// <summary>
-		/// Gets the client send clear command.
-		/// </summary>
-		/// <value>
-		/// The client send clear command.
-		/// </value>
-		public ICommand ClientSendClearCommand
-		{
-			get
-			{
-				return new RelayCommand( param => ClientSendClear( param ) );
-			}
-		}
+        private void ClientConnectCB(Socket socket)
+        {
+            App.Current.Dispatcher.BeginInvoke(new Action(() =>
+            {
+                DateTime time = DateTime.Now;
+                UdpModel.ClientRecieve += "++[" + socket.RemoteEndPoint.ToString() + "] connected at " + time + "\n";
+                UdpModel.LocalPort = socket.LocalEndPoint.ToString().Split(':')[1];
+            }));
+        }
+        private void ClientDisConnectCB(Socket socket)
+        {
+            App.Current.Dispatcher.BeginInvoke(new Action(() =>
+            {
+                UdpModel.ClientRecieve += "--[" + socket.RemoteEndPoint.ToString() + "] disconnected at " + DateTime.Now + "\n";
+                if (UdpModel.ClientConnectButtonName == "Disconnect")
+                {
+                    UdpModel.ClientConnectButtonName = "Connect";
+                    udpClientSocket.CloseClientSocket();
+                }
+            }));
 
-		/// <summary>
-		/// Gets the client send command.
-		/// </summary>
-		/// <value>
-		/// The client send command.
-		/// </value>
-		public ICommand ClientSendCommand
-		{
-			get
-			{
-				return new RelayCommand( param => ClientSend( param ) );
-			}
-		}
+        }
+        private void ClientRecvCB(string msg)
+        {
+            App.Current.Dispatcher.BeginInvoke(new Action(() =>
+            {
+                UdpModel.ClientRecieve += msg;
+                UdpModel.ClientRecieve += "\n";
+            }));
 
-		/// <summary>
-		/// Gets the client automatic send command.
-		/// </summary>
-		/// <value>
-		/// The client automatic send command.
-		/// </value>
-		public ICommand ClientAutoSendCommand
-		{
-			get
-			{
-				return new RelayCommand( param => ClientAutoSend( param ) );
-			}
-		}
+        }
+        public ICommand ClientSendClearCommand
+        {
+            get
+            {
+                return new RelayCommand(param => ClientSendClear(param));
+            }
+        }
+        public void ClientSendClear(object parameter)
+        {
+            UdpModel.ClientSend = "";
+        }
+        public ICommand ClientSendCommand
+        {
+            get
+            {
+                return new RelayCommand(param => ClientSend(param));
+            }
+        }
+        public void ClientSend(object parameter)
+        {
+            udpClientSocket.SendAsync(UdpModel.ClientSend);
+        }
+        public ICommand ClientAutoSendCommand
+        {
+            get
+            {
+                return new RelayCommand(param => ClientAutoSend(param));
+            }
+        }
 
-		/// <summary>
-		/// Gets the client recv clear command.
-		/// </summary>
-		/// <value>
-		/// The client recv clear command.
-		/// </value>
-		public ICommand ClientRecvClearCommand
-		{
-			get
-			{
-				return new RelayCommand( param => ClientRecvClear( param ) );
-			}
-		}
+        private System.Windows.Threading.DispatcherTimer mClientAutoSendTimer;
+        private void ClientAutoSendFunc(object sender, EventArgs e)
+        {
+            udpClientSocket.SendAsync(UdpModel.ClientSendText);
+        }
 
-		/// <summary>
-		/// Starts the listen.
-		/// </summary>
-		/// <param name="parameter">The parameter.</param>
-		public void StartListen( object parameter )
-		{
-			if( UdpModel.ServerListenButtonName == "Start Listen" )
-			{
-				UdpModel.ServerListenButtonName = "Stop Listen";
-				_udpServerSocket =
-					new UdpServerSocket( IPAddress.Any.ToString( ), UdpModel.ListenPort );
+        public void ClientAutoSend(object parameter)
+        {
+            if (UdpModel.ClientSendButtonName == "Auto Send Start")
+            {
+                UdpModel.ClientSendButtonName = "Auto Send Stop";
+                mClientAutoSendTimer = new DispatcherTimer()
+                {
+                    Interval = new TimeSpan(0, 0, 0, 0, UdpModel.ClientSendInterval)
+                };
+                mClientAutoSendTimer.Tick += ClientAutoSendFunc;
+                mClientAutoSendTimer.Start();
+            }
+            else
+            {
+                UdpModel.ClientSendButtonName = "Auto Send Start";
+                mClientAutoSendTimer.Stop();
+            }
+        }
+        public ICommand ClientRecvClearCommand
+        {
+            get
+            {
+                return new RelayCommand(param => ClientRecvClear(param));
+            }
+        }
+        public void ClientRecvClear(object parameter)
+        {
+            UdpModel.ClientRecieve = "";
+        }
 
-				_udpServerSocket.recvEvent = Recv;
-				_udpServerSocket.Start( );
-				UdpModel.ServerStatus += "Udp Server Started!\n";
-			}
-			else
-			{
-				UdpModel.ServerListenButtonName = "Start Listen";
-				UdpClientInfos.Clear( );
-				UdpModel.ServerStatus += "Udp Server Stopped!\n";
-			}
-		}
-
-		/// <summary>
-		/// Recvs the specified point.
-		/// </summary>
-		/// <param name="point">The point.</param>
-		/// <param name="message">The message.</param>
-		/// <param name="len">The length.</param>
-		private void Recv( EndPoint point, string message, int len )
-		{
-			Application.Current.Dispatcher.BeginInvoke( new Action( ( ) =>
-			{
-				UdpModel.ReceivingServer += "[" + point + "] :";
-				UdpModel.ReceivingServer += message;
-				UdpModel.ReceivingServer += "\n";
-				var _time = DateTime.Now;
-				UdpClientInfos.Add( new UdpClientInfo
-				{
-					RemoteIp = point.ToString( ).Split( ':' )[ 0 ],
-					Port = point.ToString( ).Split( ':' )[ 1 ],
-					RecvBytes = len,
-					Time = _time
-				} );
-
-				UdpModel.ServerStatus += "++[" + point + "] connected at " + _time + "\n";
-			} ) );
-		}
-
-		/// <summary>
-		/// Servers the automatic send timer function.
-		/// </summary>
-		/// <param name="sender">The sender.</param>
-		/// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
-		private void ServerAutoSendTimerFunc( object sender, EventArgs e )
-		{
-			_udpServerSocket.SendMessageToAllClientsAsync( UdpModel.SendingServerText );
-		}
-
-		/// <summary>
-		/// Servers the automatic send.
-		/// </summary>
-		/// <param name="parameter">The parameter.</param>
-		public void ServerAutoSend( object parameter )
-		{
-			if( UdpModel.ServerSendButtonName == "Auto Send Start" )
-			{
-				UdpModel.ServerSendButtonName = "Auto Send Stop";
-				_mServerAutoSendTimer = new DispatcherTimer( )
-				{
-					Interval = new TimeSpan( 0, 0, 0, 0,
-						UdpModel.ServerSendInterval )
-				};
-
-				_mServerAutoSendTimer.Tick += ServerAutoSendTimerFunc;
-				_mServerAutoSendTimer.Start( );
-			}
-			else
-			{
-				UdpModel.ServerSendButtonName = "Auto Send Start";
-				_mServerAutoSendTimer.Stop( );
-			}
-		}
-
-		/// <summary>
-		/// Servers the recv clear.
-		/// </summary>
-		/// <param name="parameter">The parameter.</param>
-		public void ServerRecvClear( object parameter )
-		{
-			UdpModel.ReceivingServer = "";
-		}
-
-		/// <summary>
-		/// Servers the send clear.
-		/// </summary>
-		/// <param name="parameter">The parameter.</param>
-		public void ServerSendClear( object parameter )
-		{
-			UdpModel.SendingServer = "";
-		}
-
-		/// <summary>
-		/// Servers the send.
-		/// </summary>
-		/// <param name="parameter">The parameter.</param>
-		public void ServerSend( object parameter )
-		{
-			_udpServerSocket.SendMessageToAllClientsAsync( UdpModel.SendingServer );
-		}
-
-		/// <summary>
-		/// Clients the connect.
-		/// </summary>
-		/// <param name="parameter">The parameter.</param>
-		public void ClientConnect( object parameter )
-		{
-			if( UdpModel.ClientConnectButtonName == "Connect" )
-			{
-				UdpModel.ClientConnectButtonName = "Disconnect";
-				_udpClientSocket = new UdpClientSocket( UdpModel.ServerIpAddress, UdpModel.ServerPort );
-				_udpClientSocket.recvEvent = ClientRecvCb;
-				_udpClientSocket.Start( );
-			}
-			else
-			{
-				UdpModel.ClientConnectButtonName = "Connect";
-				_udpClientSocket.CloseClientSocket( );
-			}
-		}
-
-		/// <summary>
-		/// Clients the connect cb.
-		/// </summary>
-		/// <param name="socket">The socket.</param>
-		private void ClientConnectCb( Socket socket )
-		{
-			Application.Current.Dispatcher.BeginInvoke( new Action( ( ) =>
-			{
-				var _time = DateTime.Now;
-				UdpModel.ReceivingClient +=
-					"++[" + socket.RemoteEndPoint + "] connected at " + _time + "\n";
-
-				UdpModel.LocalPort = socket.LocalEndPoint.ToString( ).Split( ':' )[ 1 ];
-			} ) );
-		}
-
-		/// <summary>
-		/// Clients the dis connect cb.
-		/// </summary>
-		/// <param name="socket">The socket.</param>
-		private void ClientDisConnectCb( Socket socket )
-		{
-			Application.Current.Dispatcher.BeginInvoke( new Action( ( ) =>
-			{
-				UdpModel.ReceivingClient += "--[" + socket.RemoteEndPoint + "] disconnected at "
-					+ DateTime.Now + "\n";
-
-				if( UdpModel.ClientConnectButtonName == "Disconnect" )
-				{
-					UdpModel.ClientConnectButtonName = "Connect";
-					_udpClientSocket.CloseClientSocket( );
-				}
-			} ) );
-		}
-
-		/// <summary>
-		/// Clients the recv cb.
-		/// </summary>
-		/// <param name="msg">The MSG.</param>
-		private void ClientRecvCb( string msg )
-		{
-			Application.Current.Dispatcher.BeginInvoke( new Action( ( ) =>
-			{
-				UdpModel.ReceivingClient += msg;
-				UdpModel.ReceivingClient += "\n";
-			} ) );
-		}
-
-		/// <summary>
-		/// Clients the send clear.
-		/// </summary>
-		/// <param name="parameter">The parameter.</param>
-		public void ClientSendClear( object parameter )
-		{
-			UdpModel.SendingClient = "";
-		}
-
-		/// <summary>
-		/// Clients the send.
-		/// </summary>
-		/// <param name="parameter">The parameter.</param>
-		public void ClientSend( object parameter )
-		{
-			_udpClientSocket.SendAsync( UdpModel.SendingClient );
-		}
-
-		/// <summary>
-		/// Clients the automatic send function.
-		/// </summary>
-		/// <param name="sender">The sender.</param>
-		/// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
-		private void ClientAutoSendFunc( object sender, EventArgs e )
-		{
-			_udpClientSocket.SendAsync( UdpModel.SendingClientText );
-		}
-
-		/// <summary>
-		/// Clients the automatic send.
-		/// </summary>
-		/// <param name="parameter">The parameter.</param>
-		public void ClientAutoSend( object parameter )
-		{
-			if( UdpModel.ClientSendButtonName == "Auto Send Start" )
-			{
-				UdpModel.ClientSendButtonName = "Auto Send Stop";
-				_mClientAutoSendTimer = new DispatcherTimer( )
-				{
-					Interval = new TimeSpan( 0, 0, 0, 0,
-						UdpModel.ClientSendInterval )
-				};
-
-				_mClientAutoSendTimer.Tick += ClientAutoSendFunc;
-				_mClientAutoSendTimer.Start( );
-			}
-			else
-			{
-				UdpModel.ClientSendButtonName = "Auto Send Start";
-				_mClientAutoSendTimer.Stop( );
-			}
-		}
-
-		/// <summary>
-		/// Clients the recv clear.
-		/// </summary>
-		/// <param name="parameter">The parameter.</param>
-		public void ClientRecvClear( object parameter )
-		{
-			UdpModel.ReceivingClient = "";
-		}
-	}
+        #endregion
+        public UdpViewModel()
+        {
+            UdpModel = new UdpModel();
+        }
+    }
 }

@@ -3,20 +3,14 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="clr-namespace:Sniffy">
 
-
-    <!--  ******************************************** Resources *********************************************  -->
-
-    <local:TextBoxConverter x:Key="TextBoxExConverter" />
-
-
-    <!--  ******************************************** TextBox Ex *********************************************  -->
+    <local:TextBoxConverter x:Key="TextBoxConverter" />
 
     <Style TargetType="{x:Type local:TextBoxEx}">
         <!--  Default style  -->
-        <Setter Property="BorderBrush" Value="#FF0078D4" />
+        <Setter Property="BorderBrush" Value="{StaticResource BorderBrush}" />
         <Setter Property="BorderThickness" Value="1" />
-        <Setter Property="Foreground" Value="#FFA0BDFC" />
-        <Setter Property="Background" Value="#FF050505" />
+        <Setter Property="Foreground" Value="{StaticResource Foreground-Default}" />
+        <Setter Property="Background" Value="{StaticResource Background-Black}" />
         <Setter Property="FontSize" Value="12" />
         <Setter Property="Height" Value="30" />
         <Setter Property="Width" Value="100" />
@@ -31,7 +25,7 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:TextBoxEx}">
                     <Border
-                        x:Name="Border"
+                        x:Name="border"
                         Background="{TemplateBinding Background}"
                         BorderBrush="{TemplateBinding BorderBrush}"
                         BorderThickness="{TemplateBinding BorderThickness}"
@@ -58,13 +52,13 @@
                                 </Grid.RowDefinitions>
                                 <Grid Grid.Row="0">
                                     <RepeatButton
-                                        Name="PART_ButtonAdd"
+                                        Name="PART_BtnAdd"
                                         Width="25"
                                         HorizontalAlignment="Center"
                                         VerticalAlignment="Center"
-                                        Background="#FF050505"
-                                        BorderBrush="#FF0078D4"
-                                        Visibility="{Binding Path=(local:TextBoxEx.IsAddButtonVisible), RelativeSource={RelativeSource AncestorType=TextBox}, Converter={StaticResource TextBoxExConverter}}">
+                                        Background="{StaticResource Background-Black}"
+                                        BorderBrush="{StaticResource BorderBrush}"
+                                        Visibility="{Binding Path=(local:TextBoxEx.IsAddButtonVisible), RelativeSource={RelativeSource AncestorType=TextBox}, Converter={StaticResource TextBoxConverter}}">
                                         <RepeatButton.Content>
                                             <Image Source="/Themes/up_arrow.png" />
                                         </RepeatButton.Content>
@@ -72,13 +66,13 @@
                                 </Grid>
                                 <Grid Grid.Row="1">
                                     <RepeatButton
-                                        Name="PART_ButtonRemove"
+                                        Name="PART_BtnRemove"
                                         Width="25"
                                         HorizontalAlignment="Center"
                                         VerticalAlignment="Center"
-                                        Background="#FF050505"
-                                        BorderBrush="#FF0078D4"
-                                        Visibility="{Binding Path=(local:TextBoxEx.IsRemoveButtonVisible), RelativeSource={RelativeSource AncestorType=TextBox}, Converter={StaticResource TextBoxExConverter}}">
+                                        Background="{StaticResource Background-Black}"
+                                        BorderBrush="{StaticResource BorderBrush}"
+                                        Visibility="{Binding Path=(local:TextBoxEx.IsRemoveButtonVisible), RelativeSource={RelativeSource AncestorType=TextBox}, Converter={StaticResource TextBoxConverter}}">
                                         <RepeatButton.Content>
                                             <Image Source="/Themes/down_arrow.png" />
                                         </RepeatButton.Content>
