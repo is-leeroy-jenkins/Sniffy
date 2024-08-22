@@ -26,12 +26,11 @@
     <!--  ******************************************** Context Menu ******************************************  -->
 
     <UserControl.ContextMenu>
-        <ContextMenu 
-            x:Name="SnifferContextMenu">
+        <ContextMenu x:Name="SnifferContextMenu">
             <MenuItem
+                Height="40"
                 Background="{StaticResource MenuBackground}"
                 Foreground="{StaticResource MenuForeground}"
-                Height="40"
                 Header="File"
                 ToolTip="Browse File System">
                 <MenuItem.Icon>
@@ -40,10 +39,10 @@
             </MenuItem>
 
             <MenuItem
-                Background="{StaticResource MenuBackground}"
-                Foreground="{StaticResource MenuForeground}"
                 Height="40"
+                Background="{StaticResource MenuBackground}"
                 Click="OnFolderMenuOptionClick"
+                Foreground="{StaticResource MenuForeground}"
                 Header="Folder"
                 ToolTip="Browse Directories">
                 <MenuItem.Icon>
@@ -54,10 +53,10 @@
             <Separator />
 
             <MenuItem
-                Background="{StaticResource MenuBackground}"
-                Foreground="{StaticResource MenuForeground}"
                 Height="40"
+                Background="{StaticResource MenuBackground}"
                 Click="OnChromeOptionClick"
+                Foreground="{StaticResource MenuForeground}"
                 Header="Chrome"
                 ToolTip="Launch Chrome Browser">
                 <MenuItem.Icon>
@@ -66,10 +65,10 @@
             </MenuItem>
 
             <MenuItem
-                Background="{StaticResource MenuBackground}"
-                Foreground="{StaticResource MenuForeground}"
                 Height="40"
+                Background="{StaticResource MenuBackground}"
                 Click="OnEdgeOptionClick"
+                Foreground="{StaticResource MenuForeground}"
                 Header="Edge"
                 ToolTip="Launch Edge Browser">
                 <MenuItem.Icon>
@@ -78,10 +77,10 @@
             </MenuItem>
 
             <MenuItem
-                Background="{StaticResource MenuBackground}"
-                Foreground="{StaticResource MenuForeground}"
                 Height="40"
+                Background="{StaticResource MenuBackground}"
                 Click="OnFirefoxOptionClick"
+                Foreground="{StaticResource MenuForeground}"
                 Header="FireFox"
                 ToolTip="Launch Firefox Browser">
                 <MenuItem.Icon>
@@ -92,10 +91,10 @@
             <Separator />
 
             <MenuItem
-                Background="{StaticResource MenuBackground}"
-                Foreground="{StaticResource MenuForeground}"
                 Height="40"
+                Background="{StaticResource MenuBackground}"
                 Click="OnCalculatorMenuOptionClick"
+                Foreground="{StaticResource MenuForeground}"
                 Header="Calculator"
                 ToolTip="Open Calculator">
                 <MenuItem.Icon>
@@ -104,10 +103,10 @@
             </MenuItem>
 
             <MenuItem
-                Background="{StaticResource MenuBackground}"
-                Foreground="{StaticResource MenuForeground}"
                 Height="40"
+                Background="{StaticResource MenuBackground}"
                 Click="OnControlPanelOptionClick"
+                Foreground="{StaticResource MenuForeground}"
                 Header="Control Panel"
                 ToolTip="Windows Control Panel">
                 <MenuItem.Icon>
@@ -116,10 +115,10 @@
             </MenuItem>
 
             <MenuItem
-                Background="{StaticResource MenuBackground}"
-                Foreground="{StaticResource MenuForeground}"
                 Height="40"
+                Background="{StaticResource MenuBackground}"
                 Click="OnTaskManagerOptionClick"
+                Foreground="{StaticResource MenuForeground}"
                 Header="Task Manager"
                 ToolTip="Windows Task Manager">
                 <MenuItem.Icon>
@@ -130,10 +129,10 @@
             <Separator />
 
             <MenuItem
-                Background="{StaticResource MenuBackground}"
-                Foreground="{StaticResource MenuForeground}"
                 Height="40"
+                Background="{StaticResource MenuBackground}"
                 Click="OnCloseOptionClick"
+                Foreground="{StaticResource MenuForeground}"
                 Header="Exit"
                 ToolTip="Exit Application">
                 <MenuItem.Icon>
@@ -202,10 +201,10 @@
                         <ComboBox
                             Grid.Row="0"
                             Width="Auto"
-                            Foreground="{StaticResource DefaultForeground}"
                             HorizontalAlignment="Stretch"
                             VerticalContentAlignment="Center"
                             DisplayMemberPath="Description"
+                            Foreground="{StaticResource DefaultForeground}"
                             ItemsSource="{Binding NetworkInterfaceList}"
                             SelectedIndex="0"
                             SelectedItem="{Binding SelectedInterface, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
@@ -269,8 +268,8 @@
                             HorizontalAlignment="Stretch"
                             VerticalAlignment="Center"
                             Background="{StaticResource Background-Black}"
-                            Foreground="{StaticResource Foreground-Primary2}"
                             BorderBrush="{StaticResource BorderBrush}"
+                            Foreground="{StaticResource Foreground-Primary2}"
                             Text="{Binding PacketFilter, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                             ToolTip="Packet filter expression">
                             <TextBox.Style>

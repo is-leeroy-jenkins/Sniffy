@@ -1,0 +1,387 @@
+<UserControl
+    x:Class="Sniffy.PerformanceWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:Sniffy"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:oxy="http://oxyplot.org/wpf"
+    xmlns:skin="clr-namespace:Syncfusion.SfSkinManager;assembly=Syncfusion.SfSkinManager.WPF"
+    xmlns:sync="http://schemas.syncfusion.com/wpf"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    sync:SfSkinManager.Theme="{skin:SkinManagerExtension ThemeName=FluentDark}"
+    mc:Ignorable="d">
+
+
+
+    <!--  ******************************************** Resources *********************************************  -->
+
+
+    <UserControl.Resources>
+
+        <local:PerformanceCommandConverter x:Key="PerformanceCommandConverter" />
+
+        <Style TargetType="ToolTip">
+            <Setter Property="BorderThickness" Value="1,1,1,1" />
+            <Setter Property="BorderBrush" Value="#0078D4" />
+            <Setter Property="Background" Value="#FF000000" />
+            <Setter Property="Foreground" Value="#FFA0BDFC" />
+        </Style>
+
+    </UserControl.Resources>
+
+
+
+    <!--  ******************************************** Content ***********************************************  -->
+
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="250" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid
+            Grid.Column="0"
+            Background="#FF141414"
+            UseLayoutRounding="True">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+
+            </Grid.RowDefinitions>
+            <TextBlock
+                Grid.Row="0"
+                Margin="10,10,0,0"
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Top"
+                FontSize="24"
+                FontWeight="Bold"
+                Text="Iperf" />
+            <Separator
+                Grid.Row="0"
+                Margin="10,50,10,0"
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Bottom" />
+
+            <StackPanel
+                Grid.Row="1"
+                MinWidth="200"
+                Margin="10,10,10,0">
+                <GroupBox
+                    Header="Iperf Config"
+                    Style="{DynamicResource AccentGroupBox}">
+                    <Grid Background="#FF282828">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="4*" />
+                        </Grid.RowDefinitions>
+
+                        <TextBlock
+                            Grid.Row="1"
+                            Style="{DynamicResource MenuItemTextStyle}"
+                            Text="Version" />
+                        <ComboBox
+                            Grid.Row="1"
+                            Width="130"
+                            Margin="0,15,10,0"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Center"
+                            SelectedItem="{Binding PerformanceModel.Version}"
+                            Text="{Binding PerformanceModel.Version, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                            <ComboBoxItem>iperf.exe</ComboBoxItem>
+                            <ComboBoxItem>iperf3.exe</ComboBoxItem>
+                        </ComboBox>
+                        <TextBlock
+                            Grid.Row="2"
+                            Style="{DynamicResource MenuItemTextStyle}"
+                            Text="Role" />
+                        <ComboBox
+                            Grid.Row="2"
+                            Width="130"
+                            Margin="0,5,10,0"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Top"
+                            SelectedItem="{Binding PerformanceModel.Role}"
+                            Text="{Binding PerformanceModel.Role, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                            <ComboBoxItem>-s</ComboBoxItem>
+                            <ComboBoxItem>-c</ComboBoxItem>
+                        </ComboBox>
+                        <TextBlock
+                            Grid.Row="3"
+                            Style="{DynamicResource MenuItemTextStyle}"
+                            Text="Server IP" />
+                        <TextBox
+                            Grid.Row="3"
+                            Width="130"
+                            Margin="0,5,10,0"
+                            HorizontalAlignment="Right"
+                            Text="{Binding PerformanceModel.ServerIpAddress}" />
+                        <TextBlock
+                            Grid.Row="4"
+                            Style="{DynamicResource MenuItemTextStyle}"
+                            Text="Port" />
+                        <local:TextBoxEx
+                            Grid.Row="4"
+                            Cursor="Hand"
+                            Text="{Binding PerformanceModel.Port}" />
+
+                        <TextBlock
+                            Grid.Row="5"
+                            Style="{DynamicResource MenuItemTextStyle}"
+                            Text="Parallel" />
+                        <local:TextBoxEx
+                            Grid.Row="5"
+                            Minimum="1"
+                            Text="{Binding PerformanceModel.Parallel}" />
+
+                        <TextBlock
+                            Grid.Row="6"
+                            Style="{DynamicResource MenuItemTextStyle}"
+                            Text="Time(s)" />
+                        <local:TextBoxEx
+                            Grid.Row="6"
+                            Minimum="1"
+                            Text="{Binding PerformanceModel.Time}" />
+
+                        <TextBlock
+                            Grid.Row="7"
+                            Style="{DynamicResource MenuItemTextStyle}"
+                            Text="Interval(s)" />
+                        <local:TextBoxEx
+                            Grid.Row="7"
+                            Minimum="1"
+                            Text="{Binding PerformanceModel.Interval}" />
+
+                        <RadioButton
+                            Grid.Row="8"
+                            Width="97"
+                            Margin="0,13,0,0"
+                            VerticalAlignment="Top"
+                            Content="TCP Window Size"
+                            GroupName="TcpUdp"
+                            IsChecked="{Binding PerformanceModel.TcpFlag}"
+                            Style="{DynamicResource MenuItemRadioButtonStyle}" />
+                        <local:TextBoxEx
+                            Grid.Row="8"
+                            Width="45"
+                            Margin="0,5,63,0"
+                            Text="{Binding PerformanceModel.TcpWindowSize}" />
+                        <ComboBox
+                            Grid.Row="8"
+                            Width="48"
+                            Margin="154,10,0,0"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Top"
+                            HorizontalContentAlignment="Left"
+                            FontSize="12"
+                            SelectedItem="{Binding PerformanceModel.TcpWindowUnit}"
+                            Text="{Binding PerformanceModel.TcpWindowUnit, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                            <ComboBoxItem>M</ComboBoxItem>
+                            <ComboBoxItem>m</ComboBoxItem>
+                            <ComboBoxItem>K</ComboBoxItem>
+                            <ComboBoxItem>k</ComboBoxItem>
+                        </ComboBox>
+
+                        <RadioButton
+                            Grid.Row="9"
+                            Width="98"
+                            Margin="0,13,0,0"
+                            VerticalAlignment="Top"
+                            Content="UDP Bandwidth"
+                            GroupName="TcpUdp"
+                            IsChecked="{Binding PerformanceModel.UdpFlag}"
+                            Style="{DynamicResource MenuItemRadioButtonStyle}" />
+
+                        <local:TextBoxEx
+                            Grid.Row="9"
+                            Width="45"
+                            Margin="0,5,65,0"
+                            Cursor="Hand"
+                            Text="{Binding PerformanceModel.BandWidth}" />
+
+                        <ComboBox
+                            Grid.Row="9"
+                            Width="48"
+                            Margin="0,5,10,0"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Top"
+                            FontSize="12"
+                            SelectedItem="{Binding PerformanceModel.BandWidthUnit}"
+                            Text="{Binding PerformanceModel.BandWidthUnit, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                            <ComboBoxItem>M</ComboBoxItem>
+                            <ComboBoxItem>m</ComboBoxItem>
+                            <ComboBoxItem>K</ComboBoxItem>
+                            <ComboBoxItem>k</ComboBoxItem>
+                        </ComboBox>
+
+                        <TextBlock
+                            Grid.Row="10"
+                            Style="{DynamicResource MenuItemTextStyle}"
+                            Text="Packet Length" />
+                        <local:TextBoxEx
+                            Grid.Row="10"
+                            Text="{Binding PerformanceModel.PacketLength}" />
+
+                        <CheckBox
+                            Grid.Row="11"
+                            Margin="10,10,0,10"
+                            Content="Reverse Transmit"
+                            IsChecked="{Binding PerformanceModel.Reverse}"
+                            Style="{StaticResource MenuItemCheckBoxStyle}" />
+
+                    </Grid>
+                </GroupBox>
+            </StackPanel>
+        </Grid>
+        <Grid
+            Grid.Column="1"
+            Background="#FF141414"
+            ClipToBounds="True"
+            SnapsToDevicePixels="True">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50" />
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="2" />
+                <RowDefinition Height="1*" />
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="4*" />
+                    <!--<ColumnDefinition Width="150"/>-->
+                    <ColumnDefinition Width="1*" />
+                </Grid.ColumnDefinitions>
+
+                <TextBox
+                    x:Name="PerformanceCommand"
+                    Grid.Column="0"
+                    Width="Auto"
+                    Height="30"
+                    Margin="10,0,0,0"
+                    HorizontalAlignment="Stretch"
+                    Style="{DynamicResource Input-Group-Addon Left}"
+                    Tag="{Binding PerformanceModel.Version}">
+
+                    <TextBox.Text>
+                        <MultiBinding
+                            Converter="{StaticResource PerformanceCommandConverter}"
+                            Mode="TwoWay">
+                            <Binding Path="PerformanceModel.Role" />
+                            <Binding Path="PerformanceModel.ServerIpAddress" />
+                            <Binding Path="PerformanceModel.Port" />
+                            <Binding Path="PerformanceModel.Parallel" />
+                            <Binding Path="PerformanceModel.Time" />
+                            <Binding Path="PerformanceModel.Interval" />
+                            <Binding Path="PerformanceModel.TcpFlag" />
+                            <Binding Path="PerformanceModel.TcpWindowSize" />
+                            <Binding Path="PerformanceModel.TcpWindowUnit" />
+                            <Binding Path="PerformanceModel.UdpFlag" />
+                            <Binding Path="PerformanceModel.BandWidth" />
+                            <Binding Path="PerformanceModel.BandWidthUnit" />
+                            <Binding Path="PerformanceModel.PacketLength" />
+                            <Binding Path="PerformanceModel.Reverse" />
+                            <Binding Path="PerformanceModel.Command" />
+                        </MultiBinding>
+                    </TextBox.Text>
+                </TextBox>
+
+                <local:ButtonEx
+                    Grid.Column="1"
+                    Margin="10,0,0,0"
+                    ButtonType="Normal"
+                    Command="{Binding RunIperfCommand}"
+                    CommandParameter="{Binding ElementName=PerformanceCommand, Path=Text}"
+                    Content="Run" />
+                <local:ButtonEx
+                    Grid.Column="1"
+                    Margin="45,0,0,0"
+                    ButtonType="Normal"
+                    Command="{Binding StopPerformanceCommand}"
+                    Content="Stop" />
+                <local:ButtonEx
+                    Grid.Column="1"
+                    Margin="80,0,0,0"
+                    ButtonType="Normal"
+                    Command="{Binding HelpCommand}"
+                    Content="Help" />
+
+            </Grid>
+
+            <GroupBox
+                Grid.Row="1"
+                Header="Bandwidth PlotView"
+                Style="{DynamicResource AccentGroupBox}">
+                <oxy:PlotView
+                    Width="Auto"
+                    Model="{Binding PlotModel}"
+                    PanCursor="Hand"
+                    ZoomHorizontalCursor="SizeWE"
+                    ZoomRectangleCursor="SizeNWSE"
+                    ZoomVerticalCursor="SizeNS" />
+            </GroupBox>
+            <GridSplitter
+                Grid.Row="2"
+                Height="2"
+                HorizontalAlignment="Stretch"
+                Background="LightGray"
+                ClipToBounds="True"
+                RenderTransformOrigin="0.5,0.5"
+                SnapsToDevicePixels="True" />
+            <GroupBox
+                Grid.Row="3"
+                Header="Output"
+                Style="{DynamicResource AccentGroupBox}">
+                <Grid>
+                    <TextBox
+                        x:Name="IperfOutput"
+                        Height="Auto"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch"
+                        VerticalContentAlignment="Top"
+                        local:TextBoxBehaviour.ScrollOnTextChanged="True"
+                        Text="{Binding PerformanceModel.Output}"
+                        VerticalScrollBarVisibility="Visible" />
+
+                    <local:ButtonEx
+                        Width="30"
+                        Height="25"
+                        Margin="0,0,70,5"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Bottom"
+                        Command="{Binding SaveOutputCommand}"
+                        Content="Save" />
+
+                    <local:ButtonEx
+                        Width="30"
+                        Height="25"
+                        Margin="0,0,30,5"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Bottom"
+                        Command="{Binding ClearOutputCommand}"
+                        Content="Clear" />
+
+                </Grid>
+            </GroupBox>
+
+        </Grid>
+    </Grid>
+</UserControl>

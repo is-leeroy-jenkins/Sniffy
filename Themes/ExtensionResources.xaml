@@ -1,0 +1,67 @@
+﻿<ResourceDictionary
+    x:Class="Sniffy.ExtensionResources"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Image
+        x:Key="ACCDB"
+        Source="/Resources/Assets/ExtensionImages/ACCDB.png" />
+    <Image
+        x:Key="CSV"
+        Source="/Resources/Assets/ExtensionImages/CSV.png" />
+    <Image
+        x:Key="DB"
+        Source="/Resources/Assets/ExtensionImages/DB.png" />
+    <Image
+        x:Key="DLL"
+        Source="/Resources/Assets/ExtensionImages/" />
+    <Image
+        x:Key="DOC"
+        Source="/Resources/Assets/ExtensionImages/DOC.png" />
+    <Image
+        x:Key="DOCX"
+        Source="/Resources/Assets/ExtensionImages/DOCX.png" />
+    <Image
+        x:Key="EXE"
+        Source="/Resources/Assets/ExtensionImages/EXE.png" />
+    <Image
+        x:Key="MDB"
+        Source="/Resources/Assets/ExtensionImages/MDB.png" />
+    <Image
+        x:Key="MDF"
+        Source="/Resources/Assets/ExtensionImages/MDF.png" />
+    <Image
+        x:Key="PDF"
+        Source="/Resources/Assets/ExtensionImages/PDF.png" />
+    <Image
+        x:Key="PNG"
+        Source="/Resources/Assets/ExtensionImages/PNG.png" />
+    <Image
+        x:Key="PPTX"
+        Source="/Resources/Assets/ExtensionImages/PPTX.png" />
+    <Image
+        x:Key="PY"
+        Source="/Resources/Assets/ExtensionImages/PY.png" />
+    <Image
+        x:Key="SDF"
+        Source="/Resources/Assets/ExtensionImages/SDF.png" />
+    <Image
+        x:Key="SQL"
+        Source="/Resources/Assets/ExtensionImages/SQL.png" />
+    <Image
+        x:Key="TXT"
+        Source="/Resources/Assets/ExtensionImages/TXT.png" />
+    <Image
+        x:Key="XLS"
+        Source="/Resources/Assets/ExtensionImages/XLS" />
+    <Image
+        x:Key="XLSX"
+        Source="/Resources/Assets/ExtensionImages/XLSX.png" />
+    <Image
+        x:Key="XML"
+        Source="/Resources/Assets/ExtensionImages/XML.png" />
+    <Image
+        x:Key="HTML"
+        Source="/Resources/Assets/ExtensionImages/HTML.png" />
+
+</ResourceDictionary>

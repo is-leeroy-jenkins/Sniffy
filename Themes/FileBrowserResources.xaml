@@ -1,0 +1,11 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Image x:Key="ACCDB" Source="/Resources/Assets/ExtensionImages/ACCDB.png" />
+    <Image x:Key="XLSX" Source="/Resources/Assets/ExtensionImages/XLSX.png" />
+    <Image x:Key="PDF" Source="/Resources/Assets/ExtensionImages/PDF.png" />
+    <Image x:Key="DB" Source="/Resources/Assets/ExtensionImages/DB.png" />
+    <Image x:Key="MDF" Source="/Resources/Assets/ExtensionImages/MDF.png" />
+    <Image x:Key="EXE" Source="/Resources/Assets/ExtensionImages/EXE.png" />
+    <Image x:Key="DLL" Source="/Resources/Assets/ExtensionImages/DLL.png" />
+    <Image x:Key="DOCX" Source="/Resources/Assets/ExtensionImages/DOCX.png" />
+    <Image x:Key="PPTX" Source="/Resources/Assets/ExtensionImages/PPTX.png" />
+</ResourceDictionary>

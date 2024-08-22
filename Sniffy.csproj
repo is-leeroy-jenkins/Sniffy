@@ -450,6 +450,16 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Resources\Assets\GIthub\csharp.png" />
+    <Resource Include="Resources\Assets\GIthub\documentation.png" />
+    <Resource Include="Resources\Assets\GIthub\edit.png" />
+    <Resource Include="Resources\Assets\GIthub\example-tcp.gif" />
+    <Resource Include="Resources\Assets\GIthub\example-websocket.gif" />
+    <Resource Include="Resources\Assets\GIthub\features.png" />
+    <Resource Include="Resources\Assets\GIthub\git_sniffy.png" />
+    <Resource Include="Resources\Assets\GIthub\Sniffy-Intro.gif" />
+    <Resource Include="Resources\Assets\GIthub\Sniffy.png" />
+    <Resource Include="Resources\Assets\GIthub\system_requirements.png" />
     <Resource Include="Resources\Assets\ToolStripImages\AddColumnButton.png" />
     <Resource Include="Resources\Assets\ToolStripImages\AddRecordButton.png" />
     <Resource Include="Resources\Assets\ToolStripImages\AreaButton.png" />
