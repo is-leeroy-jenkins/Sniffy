@@ -1,17 +1,14 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Sniffy
 //     Author:                  Terry D. Eppler
-//     Created:                 08-02-2024
+//     Created:                 03-26-2024
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        08-02-2024
+//     Last Modified On:        03-26-2024
 // ******************************************************************************************
-// <copyright file="WinMinion.cs" company="Terry D. Eppler">
-//    Sniffy is a tiny .NET WPF tool that can be used to establish TCP (raw) or 
-//    WebSocket connections and exchange text messages for testing/debugging purposes.
-//
-//    Copyright ©  2023 Terry Eppler
-// 
+// <copyright file="WinMinion" company="Terry D. Eppler">
+//    Sniffy is a tiny, WPF web socket client/server application.
+//    Copyright ©  2024  Terry Eppler
 // 
 //    Permission is hereby granted, free of charge, to any person obtaining a copy
 //    of this software and associated documentation files (the “Software”),
@@ -33,7 +30,7 @@
 //    ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 //    DEALINGS IN THE SOFTWARE.
 // 
-//    You can contact me at:   terryeppler@gmail.com or eppler.terry@epa.gov
+//    You can contact me at:  terryeppler@gmail.com or eppler.terry@epa.gov
 // </copyright>
 // <summary>
 //   WinMinion.cs
@@ -72,7 +69,7 @@ namespace Sniffy
             }
             catch( Exception _ex )
             {
-                WinMinion.Fail( _ex );
+                Fail( _ex );
             }
         }
 
@@ -95,7 +92,7 @@ namespace Sniffy
             }
             catch( Exception _ex )
             {
-                WinMinion.Fail( _ex );
+                Fail( _ex );
             }
         }
 
@@ -118,7 +115,7 @@ namespace Sniffy
             }
             catch( Exception _ex )
             {
-                WinMinion.Fail( _ex );
+                Fail( _ex );
             }
         }
 
@@ -141,7 +138,7 @@ namespace Sniffy
             }
             catch( Exception _ex )
             {
-                WinMinion.Fail( _ex );
+                Fail( _ex );
             }
         }
 
@@ -164,7 +161,7 @@ namespace Sniffy
             }
             catch( Exception _ex )
             {
-                WinMinion.Fail( _ex );
+                Fail( _ex );
             }
         }
 
@@ -187,7 +184,7 @@ namespace Sniffy
             }
             catch( Exception _ex )
             {
-                WinMinion.Fail( _ex );
+                Fail( _ex );
             }
         }
 
@@ -210,7 +207,7 @@ namespace Sniffy
             }
             catch( Exception _ex )
             {
-                WinMinion.Fail( _ex );
+                Fail( _ex );
             }
         }
 
@@ -233,7 +230,7 @@ namespace Sniffy
             }
             catch( Exception _ex )
             {
-                WinMinion.Fail( _ex );
+                Fail( _ex );
             }
         }
 
@@ -256,7 +253,7 @@ namespace Sniffy
             }
             catch( Exception _ex )
             {
-                WinMinion.Fail( _ex );
+                Fail( _ex );
             }
         }
 

@@ -1,16 +1,14 @@
-﻿// ******************************************************************************************
+﻿// ************************************************************************************************
 //     Assembly:                Sniffy
 //     Author:                  Terry D. Eppler
-//     Created:                 08-15-2021
+//     Created:              19-10-2023
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        08-15-2024
-// ******************************************************************************************
-// <copyright file="Static.cs" company="Terry D. Eppler">
-//     A tiny .NET WPF tool that can be used to establish TCP (raw) or WebSocket connections
-//     and exchange text messages for testing/debugging purposes.
-// 
-//     Copyright ©  2021 Terry D. Eppler
+//     Last Modified On:        14-11-2023
+// ************************************************************************************************
+// <copyright file="Static.cs.cs" company="Terry D. Eppler">
+//    Sniffy is a tiny, WPF web socket client/server application.
+//    Copyright ©  2024  Terry Eppler
 // 
 //    Permission is hereby granted, free of charge, to any person obtaining a copy
 //    of this software and associated documentation files (the “Software”),
@@ -32,13 +30,12 @@
 //    ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 //    DEALINGS IN THE SOFTWARE.
 // 
-//    You can contact me at:  terryeppler@gmail.com or eppler.terry@epa.gov
+//    You can contact me at: terryeppler@gmail.com or eppler.terry@epa.gov
 // </copyright>
 // <summary>
-//   Static.cs
+//   Eppler, Terry.cs
 // </summary>
-// ******************************************************************************************
-
+// ************************************************************************************************
 namespace Sniffy
 {
     using System;
@@ -46,14 +43,14 @@ namespace Sniffy
     using System.Collections.Specialized;
     using System.Data;
     using System.Diagnostics.CodeAnalysis;
+    using System.Linq;
     using System.Text;
 
     /// <summary>
     /// 
     /// </summary>
-    [ SuppressMessage( "ReSharper", "MemberCanBeInternal" ) ]
+    [SuppressMessage( "ReSharper", "MemberCanBeInternal" ) ]
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
-    [ SuppressMessage( "ReSharper", "ConvertSwitchStatementToSwitchExpression" ) ]
     public static class Static
     {
         /// <summary>
@@ -93,9 +90,9 @@ namespace Sniffy
                     }
                 }
             }
-            catch( Exception ex )
+            catch( Exception _ex )
             {
-                Static.Fail( ex );
+                Fail( _ex );
                 return default( string );
             }
         }
@@ -120,9 +117,9 @@ namespace Sniffy
                     ? _command
                     : default( IDbCommand );
             }
-            catch( Exception ex )
+            catch( Exception _ex )
             {
-                Static.Fail( ex );
+                Fail( _ex );
                 return default( IDbCommand );
             }
         }
@@ -143,9 +140,9 @@ namespace Sniffy
                 using var _command = connection?.CreateCommand( sql );
                 return _command?.ExecuteNonQuery( ) ?? 0;
             }
-            catch( Exception ex )
+            catch( Exception _ex )
             {
-                Static.Fail( ex );
+                Fail( _ex );
                 return default( int );
             }
         }
@@ -235,9 +232,9 @@ namespace Sniffy
                     ? _builder.ToString( )
                     : string.Empty;
             }
-            catch( Exception ex )
+            catch( Exception _ex )
             {
-                Static.Fail( ex );
+                Fail( _ex );
                 return string.Empty;
             }
         }
@@ -267,9 +264,9 @@ namespace Sniffy
 
                 return _dictionary;
             }
-            catch( Exception ex )
+            catch( Exception _ex )
             {
-                Static.Fail( ex );
+                Fail( _ex );
                 return default( IDictionary<string, object> );
             }
         }

@@ -1,15 +1,14 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Sniffy
 //     Author:                  Terry D. Eppler
-//     Created:                 08-11-2024
+//     Created:                 12-24-2023
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        08-11-2024
+//     Last Modified On:        03-23-2024
 // ******************************************************************************************
-// <copyright file="DataTableExtensions.cs" company="Terry D. Eppler">
-//    Sniffy is a tiny .NET WPF tool for network interaction written C sharp.
-// 
-//     Copyright ©  2020 Terry D. Eppler
+// <copyright file="Terry Eppler" company="Terry D. Eppler">
+//    Sniffy is a tiny, WPF web socket client/server application.
+//    Copyright ©  2024  Terry Eppler
 // 
 //    Permission is hereby granted, free of charge, to any person obtaining a copy
 //    of this software and associated documentation files (the “Software”),
@@ -40,329 +39,408 @@
 
 namespace Sniffy
 {
-	using System;
-	using System.Collections.Generic;
-	using System.ComponentModel;
-	using System.Data;
-	using System.Diagnostics.CodeAnalysis;
-	using System.Linq;
-	using System.Xml.Linq;
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel;
+    using System.Data;
+    using System.Diagnostics.CodeAnalysis;
+    using System.Linq;
+    using System.Xml.Linq;
 
-	/// <summary>
-	///
-	/// </summary>
-	[ SuppressMessage( "ReSharper", "AssignNullToNotNullAttribute" ) ]
-	[ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
-	[ SuppressMessage( "ReSharper", "ArrangeRedundantParentheses" ) ]
-	[ SuppressMessage( "ReSharper", "ArrangeDefaultValueWhenTypeNotEvident" ) ]
-	[ SuppressMessage( "ReSharper", "UnusedParameter.Global" ) ]
-	[ SuppressMessage( "ReSharper", "UseObjectOrCollectionInitializer" ) ]
-	[ SuppressMessage( "ReSharper", "ReturnTypeCanBeEnumerable.Global" ) ]
-	[ SuppressMessage( "ReSharper", "MemberCanBeInternal" ) ]
-	public static class DataTableExtensions
-	{
-		/// <summary>
-		/// Converts to xml.
-		/// </summary>
-		/// <param name="dataTable">The dataTable.</param>
-		/// <param name="rootName">The rootName.</param>
-		/// <returns></returns>
-		public static XDocument ToXml( this DataTable dataTable, string rootName )
-		{
-			try
-			{
-				ThrowIf.Null( rootName, nameof( rootName ) );
-				var _xml = new XDocument
-				{
-					Declaration = new XDeclaration( "1.0", "utf-8", "" )
-				};
+    /// <summary>
+    /// 
+    /// </summary>
+    [ SuppressMessage( "ReSharper", "AssignNullToNotNullAttribute" ) ]
+    [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
+    [ SuppressMessage( "ReSharper", "ArrangeRedundantParentheses" ) ]
+    [ SuppressMessage( "ReSharper", "ArrangeDefaultValueWhenTypeNotEvident" ) ]
+    [ SuppressMessage( "ReSharper", "UnusedParameter.Global" ) ]
+    [ SuppressMessage( "ReSharper", "UseObjectOrCollectionInitializer" ) ]
+    [ SuppressMessage( "ReSharper", "ReturnTypeCanBeEnumerable.Global" ) ]
+    [ SuppressMessage( "ReSharper", "MemberCanBeInternal" ) ]
+    public static class DataTableExtensions
+    {
+        /// <summary>
+        /// Converts to xml.
+        /// </summary>
+        /// <param name="dataTable">The dataTable.</param>
+        /// <param name="rootName">The rootName.</param>
+        /// <returns></returns>
+        public static XDocument ToXml( this DataTable dataTable, string rootName )
+        {
+            try
+            {
+                ThrowIf.Null( rootName, nameof( rootName ) );
+                var _xml = new XDocument { Declaration = new XDeclaration( "1.0", "utf-8", "" ) };
+                _xml.Add( new XElement( rootName ) );
+                foreach( DataRow _dataRow in dataTable.Rows )
+                {
+                    var _element = new XElement( dataTable.TableName );
+                    for( var _i = 0; _i < dataTable.Columns.Count; _i++ )
+                    {
+                        var _col = dataTable.Columns[ _i ];
+                        var _row = _dataRow?[ _col ]?.ToString( )?.Trim( ' ' );
+                        var _node = new XElement( _col.ColumnName, _row );
+                        _element.Add( new XElement( _node ) );
+                    }
 
-				_xml.Add( new XElement( rootName ) );
-				foreach( DataRow _dataRow in dataTable.Rows )
-				{
-					var _element = new XElement( dataTable.TableName );
-					for( var _i = 0; _i < dataTable.Columns.Count; _i++ )
-					{
-						var _col = dataTable.Columns[ _i ];
-						var _row = _dataRow?[ _col ]?.ToString( )?.Trim( ' ' );
-						var _node = new XElement( _col.ColumnName, _row );
-						_element.Add( new XElement( _node ) );
-					}
+                    _xml.Root?.Add( _element );
+                }
 
-					_xml.Root?.Add( _element );
-				}
+                return _xml;
+            }
+            catch( Exception _ex )
+            {
+                Fail( _ex );
+                return default( XDocument );
+            }
+        }
 
-				return _xml;
-			}
-			catch( Exception ex )
-			{
-				DataTableExtensions.Fail( ex );
-				return default( XDocument );
-			}
-		}
+        /// <summary>
+        /// Gets the primary key values.
+        /// </summary>
+        /// <param name="dataTable">The dataTable.</param>
+        /// <returns>
+        /// IEnumerable
+        /// </returns>
+        public static IEnumerable<int> GetIndexValues( this DataTable dataTable )
+        {
+            try
+            {
+                if( dataTable?.Rows?.Count > 0 )
+                {
+                    var _list = new List<int>( );
+                    foreach( DataColumn _col in dataTable.Columns )
+                    {
+                        for( var _i = 0; _i < dataTable.Rows.Count; _i++ )
+                        {
+                            if( ( _col.DataType == typeof( int ) )
+                               && ( _col.Ordinal == 0 ) )
+                            {
+                                var _row = dataTable.Rows[ _i ];
+                                var _value = _row[ _col.ColumnName ]?.ToString( );
+                                if( !string.IsNullOrEmpty( _value ) )
+                                {
+                                    var _index = int.Parse( _value );
+                                    _list.Add( _index );
+                                }
+                            }
+                        }
+                    }
 
-		/// <summary>
-		/// Gets the primary key values.
-		/// </summary>
-		/// <param name="dataTable">The dataTable.</param>
-		/// <returns>
-		/// IEnumerable
-		/// </returns>
-		public static IEnumerable<int> GetIndexValues( this DataTable dataTable )
-		{
-			try
-			{
-				if( dataTable?.Rows?.Count > 0 )
-				{
-					var _list = new List<int>( );
-					foreach( DataColumn _col in dataTable.Columns )
-					{
-						for( var _i = 0; _i < dataTable.Rows.Count; _i++ )
-						{
-							if( ( _col.DataType == typeof( int ) )
-								&& ( _col.Ordinal == 0 ) )
-							{
-								var _row = dataTable.Rows[ _i ];
-								var _value = _row[ _col.ColumnName ]?.ToString( );
-								if( !string.IsNullOrEmpty( _value ) )
-								{
-									var _index = int.Parse( _value );
-									_list.Add( _index );
-								}
-							}
-						}
-					}
+                    return _list?.Any( ) == true
+                        ? _list
+                        : default( IEnumerable<int> );
+                }
 
-					return _list?.Any( ) == true
-						? _list
-						: default( IEnumerable<int> );
-				}
+                return default( IEnumerable<int> );
+            }
+            catch( Exception _ex )
+            {
+                Fail( _ex );
+                return default( IEnumerable<int> );
+            }
+        }
 
-				return default( IEnumerable<int> );
-			}
-			catch( Exception ex )
-			{
-				DataTableExtensions.Fail( ex );
-				return default( IEnumerable<int> );
-			}
-		}
+        /// <summary>
+        /// Gets the unique column values.
+        /// </summary>
+        /// <param name="dataTable">The data table.</param>
+        /// <param name="columnName">Name of the column.</param>
+        /// <returns>
+        /// string[ ]
+        /// </returns>
+        public static string[ ] GetUniqueColumnValues( this DataTable dataTable, string columnName )
+        {
+            try
+            {
+                ThrowIf.Null( columnName, nameof( columnName ) );
+                var _names = dataTable.GetColumnNames( );
+                if( _names.Contains( columnName ) == false )
+                {
+                    var _message = $"{columnName} not in DataColumns!";
+                    throw new ArgumentOutOfRangeException( columnName, _message );
+                }
+                else
+                {
+                    var _enumerable = dataTable?.AsEnumerable( )
+                        ?.Select( p => p.Field<string>( columnName ) )
+                        ?.Distinct( );
 
-		/// <summary>
-		/// Filters the specified dictionary.
-		/// </summary>
-		/// <param name="dataTable">The data table.</param>
-		/// <param name="dict">The dictionary.</param>
-		/// <returns>
-		/// IEnumerable
-		/// </returns>
-		public static IEnumerable<DataRow> Filter( this DataTable dataTable,
-			IDictionary<string, object> dict )
-		{
-			try
-			{
-				ThrowIf.Null( dict, nameof( dict ) );
-				var _query = dataTable?.Select( dict.ToCriteria( ) )?.ToList( );
-				return ( _query?.Any( ) == true )
-					? _query
-					: default( IEnumerable<DataRow> );
-			}
-			catch( Exception ex )
-			{
-				DataTableExtensions.Fail( ex );
-				return default( IEnumerable<DataRow> );
-			}
-		}
+                    return ( _enumerable?.Any( ) == true )
+                        ? _enumerable?.ToArray( )
+                        : default( string[ ] );
+                }
+            }
+            catch( Exception _ex )
+            {
+                Fail( _ex );
+                return default( string[ ] );
+            }
+        }
 
-		/// <summary>
-		/// Gets the column names.
-		/// </summary>
-		/// <param name="dataTable">The data table.</param>
-		/// <returns></returns>
-		public static string[ ] GetColumnNames( this DataTable dataTable )
-		{
-			try
-			{
-				var _fields = new string[ dataTable.Columns.Count ];
-				for( var _i = 0; _i < dataTable.Columns.Count; _i++ )
-				{
-					_fields[ _i ] = dataTable.Columns[ _i ].ColumnName;
-				}
+        /// <summary>
+        /// Gets the unique column values.
+        /// </summary>
+        /// <param name="dataTable">The data table.</param>
+        /// <param name="columnName">Name of the column.</param>
+        /// <param name="where">The where.</param>
+        /// <returns></returns>
+        public static string[ ] GetUniqueColumnValues( this DataTable dataTable, string columnName,
+            IDictionary<string, object> where )
+        {
+            try
+            {
+                ThrowIf.Null( columnName, nameof( columnName ) );
+                ThrowIf.Null( where, nameof( where ) );
+                var _criteria = where.ToCriteria( );
+                var _names = dataTable.GetColumnNames( );
+                if( _names.Contains( columnName ) == false )
+                {
+                    var _message = $"{columnName} not in DataColumns!";
+                    throw new ArgumentOutOfRangeException( columnName, _message );
+                }
+                else
+                {
+                    var _query = dataTable.Select( _criteria )
+                        ?.Select( p => p.Field<string>( columnName ) )
+                        ?.Distinct( );
 
-				var _names = _fields?.OrderBy( f => f.IndexOf( f ) )?.Select( f => f )?.ToArray( );
-				return ( _names?.Any( ) == true )
-					? _names
-					: default( string[ ] );
-			}
-			catch( Exception ex )
-			{
-				DataTableExtensions.Fail( ex );
-				return default( string[ ] );
-			}
-		}
+                    return ( _query?.Any( ) == true )
+                        ? _query?.ToArray( )
+                        : default( string[ ] );
+                }
+            }
+            catch( Exception _ex )
+            {
+                Fail( _ex );
+                return default( string[ ] );
+            }
+        }
 
-		/// <summary>
-		/// Gets the numeric columns.
-		/// </summary>
-		/// <param name="dataTable">The data table.</param>
-		/// <returns>
-		/// IList{DataColumn}
-		/// </returns>
-		public static IList<DataColumn> GetNumericColumns( this DataTable dataTable )
-		{
-			try
-			{
-				var _columns = new List<DataColumn>( );
-				foreach( DataColumn _col in dataTable.Columns )
-				{
-					if( !_col.ColumnName.EndsWith( "Id" )
-						&& ( _col.Ordinal > 0 )
-						&& ( ( _col.DataType == typeof( decimal ) )
-							| ( _col.DataType == typeof( float ) )
-							| ( _col.DataType == typeof( double ) )
-							| ( _col.DataType == typeof( int ) )
-							| ( _col.DataType == typeof( uint ) )
-							| ( _col.DataType == typeof( ushort ) )
-							| ( _col.DataType == typeof( short ) ) ) )
-					{
-						_columns.Add( _col );
-					}
-				}
+        /// <summary>
+        /// Filters the specified dictionary.
+        /// </summary>
+        /// <param name="dataTable">The data table.</param>
+        /// <param name="dict">The dictionary.</param>
+        /// <returns>
+        /// IEnumerable
+        /// </returns>
+        public static IEnumerable<DataRow> Filter( this DataTable dataTable,
+            IDictionary<string, object> dict )
+        {
+            try
+            {
+                ThrowIf.Null( dict, nameof( dict ) );
+                var _query = dataTable
+                    ?.Select( dict.ToCriteria( ) )
+                    ?.ToList( );
 
-				return _columns?.Any( ) == true
-					? _columns
-					: default( IList<DataColumn> );
-			}
-			catch( Exception ex )
-			{
-				DataTableExtensions.Fail( ex );
-				return default( IList<DataColumn> );
-			}
-		}
+                return ( _query?.Any( ) == true )
+                    ? _query
+                    : default( IEnumerable<DataRow> );
+            }
+            catch( Exception _ex )
+            {
+                Fail( _ex );
+                return default( IEnumerable<DataRow> );
+            }
+        }
 
-		/// <summary>
-		/// Gets the date columns.
-		/// </summary>
-		/// <param name="dataTable">The data table.</param>
-		/// <returns>
-		/// IList{DataColumn}
-		/// </returns>
-		public static IList<DataColumn> GetDateColumns( this DataTable dataTable )
-		{
-			try
-			{
-				var _columns = new List<DataColumn>( );
-				foreach( DataColumn _col in dataTable.Columns )
-				{
-					if( _col.ColumnName.EndsWith( "Date" )
-						|| _col.ColumnName.EndsWith( "Day" )
-						|| ( ( _col.DataType == typeof( DateTime ) )
-							| ( _col.DataType == typeof( DateTimeOffset ) ) ) )
-					{
-						_columns.Add( _col );
-					}
-				}
+        /// <summary>
+        /// Gets the column names.
+        /// </summary>
+        /// <param name="dataTable">The data table.</param>
+        /// <returns></returns>
+        public static string[ ] GetColumnNames( this DataTable dataTable )
+        {
+            try
+            {
+                var _fields = new string[ dataTable.Columns.Count ];
+                for( var _i = 0; _i < dataTable.Columns.Count; _i++ )
+                {
+                    _fields[ _i ] = dataTable.Columns[ _i ].ColumnName;
+                }
 
-				return _columns?.Any( ) == true
-					? _columns
-					: default( IList<DataColumn> );
-			}
-			catch( Exception ex )
-			{
-				DataTableExtensions.Fail( ex );
-				return default( IList<DataColumn> );
-			}
-		}
+                var _names = _fields
+                    ?.OrderBy( f => f.IndexOf( f ) )
+                    ?.Select( f => f )
+                    ?.ToArray( );
 
-		/// <summary>
-		/// Removes the column.
-		/// </summary>
-		/// <param name="dataTable">The data table.</param>
-		/// <param name="columnName">Name of the column.</param>
-		public static void RemoveColumn( this DataTable dataTable, string columnName )
-		{
-			try
-			{
-				ThrowIf.Null( columnName, nameof( columnName ) );
-				var _index = dataTable.Columns.IndexOf( columnName );
-				dataTable.Columns.RemoveAt( _index );
-				dataTable.AcceptChanges( );
-			}
-			catch( Exception ex )
-			{
-				DataTableExtensions.Fail( ex );
-			}
-		}
+                return ( _names?.Any( ) == true )
+                    ? _names
+                    : default( string[ ] );
+            }
+            catch( Exception _ex )
+            {
+                Fail( _ex );
+                return default( string[ ] );
+            }
+        }
 
-		/// <summary>
-		/// Converts to bindinglist.
-		/// </summary>
-		/// <param name="dataTable">The data table.</param>
-		/// <returns></returns>
-		public static BindingList<DataRow> ToBindingList( this DataTable dataTable )
-		{
-			try
-			{
-				var _bindingList = new BindingList<DataRow>( );
-				foreach( DataRow _row in dataTable.Rows )
-				{
-					_bindingList.Add( _row );
-				}
+        /// <summary>
+        /// Gets the numeric columns.
+        /// </summary>
+        /// <param name="dataTable">The data table.</param>
+        /// <returns>
+        /// IList{DataColumn}
+        /// </returns>
+        public static IList<DataColumn> GetNumericColumns( this DataTable dataTable )
+        {
+            try
+            {
+                var _columns = new List<DataColumn>( );
+                foreach( DataColumn _col in dataTable.Columns )
+                {
+                    if( !_col.ColumnName.EndsWith( "Id" )
+                       && ( _col.Ordinal > 0 )
+                       && ( ( _col.DataType == typeof( decimal ) )
+                           | ( _col.DataType == typeof( float ) )
+                           | ( _col.DataType == typeof( double ) )
+                           | ( _col.DataType == typeof( int ) )
+                           | ( _col.DataType == typeof( uint ) )
+                           | ( _col.DataType == typeof( ushort ) )
+                           | ( _col.DataType == typeof( short ) ) ) )
+                    {
+                        _columns.Add( _col );
+                    }
+                }
 
-				return ( _bindingList?.Any( ) == true )
-					? _bindingList
-					: default( BindingList<DataRow> );
-			}
-			catch( Exception ex )
-			{
-				DataTableExtensions.Fail( ex );
-				return default( BindingList<DataRow> );
-			}
-		}
+                return _columns?.Any( ) == true
+                    ? _columns
+                    : default( IList<DataColumn> );
+            }
+            catch( Exception _ex )
+            {
+                Fail( _ex );
+                return default( IList<DataColumn> );
+            }
+        }
 
-		/// <summary>
-		/// Converts to sortedlist.
-		/// </summary>
-		/// <param name="dataTable">The data table.</param>
-		/// <returns>
-		/// SortedList(int, DataRow)
-		/// </returns>
-		public static SortedList<int, DataRow> ToSortedList( this DataTable dataTable )
-		{
-			try
-			{
-				if( dataTable?.Rows.Count > 0 )
-				{
-					var _sortedList = new SortedList<int, DataRow>( );
-					var _columns = dataTable?.Columns;
-					var _items = dataTable?.Rows;
-					for( var _i = 0; _i < _columns?.Count; _i++ )
-					{
-						_sortedList?.Add( _i, _items[ _i ] );
-					}
+        /// <summary>
+        /// Gets the date columns.
+        /// </summary>
+        /// <param name="dataTable">The data table.</param>
+        /// <returns>
+        /// IList{DataColumn}
+        /// </returns>
+        public static IList<DataColumn> GetDateColumns( this DataTable dataTable )
+        {
+            try
+            {
+                var _columns = new List<DataColumn>( );
+                foreach( DataColumn _col in dataTable.Columns )
+                {
+                    if( _col.ColumnName.EndsWith( "Date" )
+                       || _col.ColumnName.EndsWith( "Day" )
+                       || ( ( _col.DataType == typeof( DateTime ) )
+                           | ( _col.DataType == typeof( DateTimeOffset ) ) ) )
+                    {
+                        _columns.Add( _col );
+                    }
+                }
 
-					return _sortedList?.Count > 0
-						? _sortedList
-						: default( SortedList<int, DataRow> );
-				}
+                return _columns?.Any( ) == true
+                    ? _columns
+                    : default( IList<DataColumn> );
+            }
+            catch( Exception _ex )
+            {
+                Fail( _ex );
+                return default( IList<DataColumn> );
+            }
+        }
 
-				return default( SortedList<int, DataRow> );
-			}
-			catch( Exception ex )
-			{
-				DataTableExtensions.Fail( ex );
-				return default( SortedList<int, DataRow> );
-			}
-		}
+        /// <summary>
+        /// Removes the column.
+        /// </summary>
+        /// <param name="dataTable">The data table.</param>
+        /// <param name="columnName">Name of the column.</param>
+        public static void RemoveColumn( this DataTable dataTable, string columnName )
+        {
+            try
+            {
+                ThrowIf.Null( columnName, nameof( columnName ) );
+                var _index = dataTable.Columns.IndexOf( columnName );
+                dataTable.Columns.RemoveAt( _index );
+                dataTable.AcceptChanges( );
+            }
+            catch( Exception _ex )
+            {
+                Fail( _ex );
+            }
+        }
 
-		/// <summary>
-		/// Fails the specified ex.
-		/// </summary>
-		/// <param name="ex">The ex.</param>
-		private static void Fail( Exception ex )
-		{
-			var _error = new ErrorWindow( ex );
-			_error?.SetText( );
-			_error?.ShowDialog( );
-		}
-	}
+        /// <summary>
+        /// Converts to bindinglist.
+        /// </summary>
+        /// <param name="dataTable">The data table.</param>
+        /// <returns></returns>
+        public static BindingList<DataRow> ToBindingList( this DataTable dataTable )
+        {
+            try
+            {
+                var _bindingList = new BindingList<DataRow>( );
+                foreach( DataRow _row in dataTable.Rows )
+                {
+                    _bindingList.Add( _row );
+                }
+
+                return ( _bindingList?.Any( ) == true )
+                    ? _bindingList
+                    : default( BindingList<DataRow> );
+            }
+            catch( Exception _ex )
+            {
+                Fail( _ex );
+                return default( BindingList<DataRow> );
+            }
+        }
+
+        /// <summary>
+        /// Converts to sortedlist.
+        /// </summary>
+        /// <param name="dataTable">The data table.</param>
+        /// <returns>
+        /// SortedList(int, DataRow)
+        /// </returns>
+        public static SortedList<int, DataRow> ToSortedList( this DataTable dataTable )
+        {
+            try
+            {
+                if( dataTable?.Rows.Count > 0 )
+                {
+                    var _sortedList = new SortedList<int, DataRow>( );
+                    var _columns = dataTable?.Columns;
+                    var _items = dataTable?.Rows;
+                    for( var _i = 0; _i < _columns?.Count; _i++ )
+                    {
+                        _sortedList?.Add( _i, _items[ _i ] );
+                    }
+
+                    return _sortedList?.Count > 0
+                        ? _sortedList
+                        : default( SortedList<int, DataRow> );
+                }
+
+                return default( SortedList<int, DataRow> );
+            }
+            catch( Exception _ex )
+            {
+                Fail( _ex );
+                return default( SortedList<int, DataRow> );
+            }
+        }
+
+        /// <summary>
+        /// Fails the specified ex.
+        /// </summary>
+        /// <param name="ex">The ex.</param>
+        private static void Fail( Exception ex )
+        {
+            var _error = new ErrorWindow( ex );
+            _error?.SetText( );
+            _error?.ShowDialog( );
+        }
+    }
 }

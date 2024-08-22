@@ -1,572 +1,131 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{2283BD7E-D801-4D1E-81BE-617EF77739DF}</ProjectGuid>
+    <TargetFramework>net8.0-windows7.0</TargetFramework>
+    <RollForward>Major</RollForward>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>Sniffy</RootNamespace>
-    <AssemblyName>Sniffy</AssemblyName>
-    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <WarningLevel>4</WarningLevel>
-    <Deterministic>true</Deterministic>
-    <TargetFrameworkProfile />
-    <IsWebBootstrapper>false</IsWebBootstrapper>
-    <PublishUrl>publish\</PublishUrl>
-    <Install>true</Install>
-    <InstallFrom>Disk</InstallFrom>
-    <UpdateEnabled>false</UpdateEnabled>
-    <UpdateMode>Foreground</UpdateMode>
-    <UpdateInterval>7</UpdateInterval>
-    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
-    <UpdatePeriodically>false</UpdatePeriodically>
-    <UpdateRequired>false</UpdateRequired>
-    <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>0</ApplicationRevision>
-    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <UseApplicationTrust>false</UseApplicationTrust>
-    <BootstrapperEnabled>true</BootstrapperEnabled>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>false</Prefer32Bit>
-    <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
-    <LangVersion>9</LangVersion>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>false</Prefer32Bit>
-    <LangVersion>9</LangVersion>
-  </PropertyGroup>
-  <PropertyGroup>
+    <Nullable>disable</Nullable>
+    <UseWindowsForms>True</UseWindowsForms>
+    <UseWPF>true</UseWPF>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
     <StartupObject>Sniffy.App</StartupObject>
   </PropertyGroup>
-  <PropertyGroup>
-    <ApplicationIcon>Application.ico</ApplicationIcon>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <Optimize>True</Optimize>
   </PropertyGroup>
-  <PropertyGroup>
-    <TargetZone>LocalIntranet</TargetZone>
-  </PropertyGroup>
-  <PropertyGroup>
-    <GenerateManifests>false</GenerateManifests>
-  </PropertyGroup>
-  <PropertyGroup>
-    <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
-  </PropertyGroup>
+
   <ItemGroup>
-    <Reference Include="ReachFramework" />
-    <Reference Include="System" />
-    <Reference Include="System.Activities" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Data.SqlServerCe, Version=4.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\MetaNet\Libraries\System.Data.SqlServerCe.dll</HintPath>
+    <Compile Remove="Resources\Assets\Window\**" />
+    <EmbeddedResource Remove="Resources\Assets\Window\**" />
+    <None Remove="Resources\Assets\Window\**" />
+    <Page Remove="Resources\Assets\Window\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Resources\Assets\MenuItems\CalculatorItem.png" />
+    <None Remove="Resources\Assets\MenuItems\CalendarItem.png" />
+    <None Remove="Resources\Assets\MenuItems\ChromeItem.png" />
+    <None Remove="Resources\Assets\MenuItems\ClockItem.png" />
+    <None Remove="Resources\Assets\MenuItems\CloseItem.png" />
+    <None Remove="Resources\Assets\MenuItems\ControlPanelItem.png" />
+    <None Remove="Resources\Assets\MenuItems\DocumentaionItem.png" />
+    <None Remove="Resources\Assets\MenuItems\EdgeItem.png" />
+    <None Remove="Resources\Assets\MenuItems\ExitItem.png" />
+    <None Remove="Resources\Assets\MenuItems\FileItem.png" />
+    <None Remove="Resources\Assets\MenuItems\FirefoxItem.png" />
+    <None Remove="Resources\Assets\MenuItems\FolderItem.png" />
+    <None Remove="Resources\Assets\MenuItems\MapItem.png" />
+    <None Remove="Resources\Assets\MenuItems\MediaPlayerItem.png" />
+    <None Remove="Resources\Assets\MenuItems\OneDriveItem.png" />
+    <None Remove="Resources\Assets\MenuItems\RefreshItem.png" />
+    <None Remove="Resources\Assets\MenuItems\SaveItem.png" />
+    <None Remove="Resources\Assets\MenuItems\TaskManagerItem.png" />
+    <None Remove="UI\Windows\Application.png" />
+    <None Remove="UI\Windows\Calculator\Cancel.png" />
+    <None Remove="UI\Windows\Calculator\Main.png" />
+    <None Remove="UI\Windows\Sniffy\Application.png" />
+    <None Remove="UI\Windows\Sniffy\pymtoedh.4xd~" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Syncfusion.Licensing" Version="21.1.41" />
+    <PackageReference Include="Syncfusion.SfSkinManager.WPF" Version="21.1.41" />
+    <PackageReference Include="Syncfusion.Shared.Base" Version="21.1.41" />
+    <PackageReference Include="Syncfusion.Shared.WPF" Version="21.1.41" />
+    <PackageReference Include="Syncfusion.Themes.FluentDark.WPF" Version="21.1.41" />
+    <PackageReference Include="Syncfusion.UI.WPF.NET" Version="21.1.41" />
+    <PackageReference Include="System.Data.OleDb" Version="8.0.0" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.6" />
+    <PackageReference Include="System.Data.SQLite.Core" Version="1.0.118" />
+    <PackageReference Include="ToastNotifications.Messages.Net6" Version="1.0.4" />
+    <PackageReference Include="ToastNotifications.Net6" Version="1.0.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="System.Data.SqlServerCe">
+      <HintPath>Libraries\System.Data.SqlServerCe.dll</HintPath>
     </Reference>
-    <Reference Include="System.Printing" />
-    <Reference Include="System.Xml" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Xaml">
-      <RequiredTargetFramework>4.0</RequiredTargetFramework>
-    </Reference>
-    <Reference Include="WindowsBase" />
-    <Reference Include="PresentationCore" />
-    <Reference Include="PresentationFramework" />
   </ItemGroup>
+
   <ItemGroup>
-    <ApplicationDefinition Include="App.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </ApplicationDefinition>
-    <Compile Include="Callbacks\EchoHandler.cs" />
-    <Compile Include="Enumerations\ButtonTypes.cs" />
-    <Compile Include="Enumerations\ControlTypes.cs" />
-    <Compile Include="Enumerations\EXT.cs" />
-    <Compile Include="Enumerations\MenuOption.cs" />
-    <Compile Include="Views\Controls\Menu\MenuItems.cs" />
-    <Compile Include="Views\Converters\TextBoxConverter.cs" />
-    <Compile Include="Views\Windows\Error\ErrorWindow.xaml.cs" />
-    <Compile Include="Extensions\CollectionExtensions.cs" />
-    <Compile Include="Extensions\DataRowExtensions.cs" />
-    <Compile Include="Extensions\DataTableExtensions.cs" />
-    <Compile Include="Extensions\DateTimeExtensions.cs" />
-    <Compile Include="Extensions\DictionaryExtensions.cs" />
-    <Compile Include="Extensions\EnumerableExtensions.cs" />
-    <Compile Include="Extensions\FileStreamExtensions.cs" />
-    <Compile Include="Extensions\LinqExtensions.cs" />
-    <Compile Include="Extensions\QueueExtensions.cs" />
-    <Compile Include="Extensions\StringExtensions.cs" />
-    <Compile Include="Extensions\TimeSpanExtensions.cs" />
-    <Compile Include="Extensions\TypeExtensions.cs" />
-    <Compile Include="Network\Models\ConnectionModel.cs" />
-    <Compile Include="Network\Models\ProtocolModel.cs" />
-    <Compile Include="Network\Models\SnifferStatsModel.cs" />
-    <Compile Include="Network\Models\SnifferStatsProcess.cs" />
-    <Compile Include="Network\Models\NetInterfaceInfo.cs" />
-    <Compile Include="Network\Results\IpScanResult.cs" />
-    <Compile Include="Network\Results\Ipv4Result.cs" />
-    <Compile Include="Network\Results\Ipv6Result.cs" />
-    <Compile Include="Network\Results\PortScanResult.cs" />
-    <Compile Include="Enumerations\Provider.cs" />
-    <Compile Include="Network\Models\PortListenModel.cs" />
-    <Compile Include="Static\DataMinion.cs" />
-    <Compile Include="Static\Static.cs" />
-    <Compile Include="Static\ThrowIf.cs" />
-    <Compile Include="Static\WebMinion.cs" />
-    <Compile Include="Static\WinMinion.cs" />
-    <Compile Include="Views\Controls\Colors\DarkTheme.cs" />
-    <Compile Include="Views\Controls\Colors\Dimensions.cs" />
-    <Compile Include="Views\Controls\Colors\IPalette.cs" />
-    <Compile Include="Views\Controls\Colors\Palette.cs" />
-    <Compile Include="Views\Converters\BytesSuffixConverter.cs" />
-    <Compile Include="Views\Converters\ByteToHexConverter.cs" />
-    <Compile Include="Views\Converters\ByteToStringConverter.cs" />
-    <Compile Include="Views\Converters\WebSocketConverter.cs" />
-    <Compile Include="Views\Converters\WebCommandConverter.cs" />
-    <Compile Include="Network\Devices\WebInterface.cs" />
-    <Compile Include="Network\Devices\ProcessInterface.cs" />
-    <Compile Include="Network\Sockets\UdpClientSocket.cs" />
-    <Compile Include="Network\Sockets\TcpClientSocket.cs" />
-    <Compile Include="Network\Sockets\UdpServerSocket.cs" />
-    <Compile Include="Network\Sockets\TcpServerSocket.cs" />
-    <Compile Include="Network\Models\WebModel.cs" />
-    <Compile Include="Network\Models\NetworkScanModel.cs" />
-    <Compile Include="Network\Models\SocketModel.cs" />
-    <Compile Include="Network\Models\UdpModel.cs" />
-    <Compile Include="Network\Models\TcpModel.cs" />
-    <Compile Include="Network\Models\PortScanModel.cs" />
-    <Compile Include="Network\Models\PortModel.cs" />
-    <Compile Include="Network\Models\ServerModel.cs" />
-    <Compile Include="Network\Models\RouteModel.cs" />
-    <Compile Include="Views\Controls\Button\ButtonEx.cs" />
-    <Compile Include="Views\Behaviors\TextBoxBehaviour.cs" />
-    <Compile Include="Views\Controls\TextBox\TextBoxEx.cs" />
-    <Compile Include="Views\Models\MainWindowBase.cs" />
-    <Compile Include="Views\Commands\RelayCommand.cs" />
-    <Compile Include="Views\Models\WebViewModel.cs" />
-    <Compile Include="Views\Models\MainViewModel.cs" />
-    <Compile Include="Views\Models\NetworkScanViewModel.cs" />
-    <Compile Include="Views\Models\PortScanViewModel.cs" />
-    <Compile Include="Views\Models\PortViewModel.cs" />
-    <Compile Include="Views\Models\SnifferViewModel.cs" />
-    <Compile Include="Views\Models\ServerViewModel.cs" />
-    <Compile Include="Views\Models\RouteViewModel.cs" />
-    <Compile Include="Views\Models\CaptureViewModel.cs" />
-    <Compile Include="Views\Models\StatsViewModel.cs" />
-    <Compile Include="Views\Models\WebSocketViewModel.cs" />
-    <Compile Include="Views\Models\UdpViewModel.cs" />
-    <Compile Include="Views\Models\TcpViewModel.cs" />
-    <Compile Include="Views\Windows\About\AboutWindow.xaml.cs">
-      <DependentUpon>AboutWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Windows\Message\SplashMessage.xaml.cs" />
-    <Compile Include="Views\Windows\Notification\Notification.xaml.cs" />
-    <Compile Include="Views\Windows\Web\WebWindow.xaml.cs">
-      <DependentUpon>WebWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Windows\NetworkScan\NetworkScanWindow.xaml.cs">
-      <DependentUpon>NetworkScanWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Windows\Port\PortScanWindow.xaml.cs">
-      <DependentUpon>PortScanWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Windows\Port\PortWindow.xaml.cs">
-      <DependentUpon>PortWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Pages\Stats\StatsView.xaml.cs">
-      <DependentUpon>StatsView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Windows\Sniffer\SnifferWindow.xaml.cs">
-      <DependentUpon>SnifferWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Windows\Server\ServerWindow.xaml.cs">
-      <DependentUpon>ServerWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Windows\Route\RouteWindow.xaml.cs">
-      <DependentUpon>RouteWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Pages\Capture\CaptureView.xaml.cs">
-      <DependentUpon>CaptureView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Pages\Socket\SocketView.xaml.cs">
-      <DependentUpon>SocketView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Pages\UDP\UdpView.xaml.cs">
-      <DependentUpon>UdpView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Pages\TCP\TcpView.xaml.cs">
-      <DependentUpon>TcpView.xaml</DependentUpon>
-    </Compile>
-    <Page Include="Views\Windows\Error\ErrorWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Themes\BaseStyle.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Themes\Button.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Themes\ButtonEx.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Themes\CheckBox.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Themes\Colors.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Themes\CommonControls.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Themes\DataGrid.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Themes\ScrollViewer.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Themes\TabControlEx.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\Windows\About\AboutWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\Windows\Message\SplashMessage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\Windows\Notification\Notification.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\Windows\Port\PortWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\Pages\Stats\StatsView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\Windows\Sniffer\SnifferWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\Windows\Server\ServerWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\Windows\Route\RouteWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\Pages\Capture\CaptureView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\Pages\Socket\SocketView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\Pages\UDP\UdpView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\Pages\TCP\TcpView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\Windows\ViewWindows.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Themes\Fonts.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Themes\FormControl.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Themes\GroupBox.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Themes\InputGroup.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Themes\Label.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Themes\Sizes.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Themes\Styles.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Themes\TextBoxEx.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\Windows\Main\MainWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Compile Include="App.xaml.cs">
-      <DependentUpon>App.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Views\Windows\Main\MainWindow.xaml.cs">
-      <DependentUpon>MainWindow.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
-    <Page Include="Views\Windows\Web\WebWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\Windows\NetworkScan\NetworkScanWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\Windows\Port\PortScanWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Properties\AssemblyInfo.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Properties\Settings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Settings.settings</DependentUpon>
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-    </Compile>
-    <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <None Include="app.config" />
-    <None Include="LICENSE" />
-    <None Include="Properties\app.manifest" />
-    <None Include="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
-    </None>
-    <None Include="README.md" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Assets\MainImages\favicon.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <BootstrapperPackage Include=".NETFramework,Version=v4.8">
-      <Visible>False</Visible>
-      <ProductName>Microsoft .NET Framework 4.8 %28x86 和 x64%29</ProductName>
-      <Install>true</Install>
-    </BootstrapperPackage>
-    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
-      <Visible>False</Visible>
-      <ProductName>.NET Framework 3.5 SP1</ProductName>
-      <Install>false</Install>
-    </BootstrapperPackage>
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Assets\MainImages\favicon.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Themes\down_arrow.png" />
-    <Resource Include="Themes\up_arrow.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="OxyPlot.Core">
-      <Version>2.1.0</Version>
-    </PackageReference>
-    <PackageReference Include="OxyPlot.Wpf">
-      <Version>2.1.0</Version>
-    </PackageReference>
-    <PackageReference Include="OxyPlot.Wpf.Shared">
-      <Version>2.1.0</Version>
-    </PackageReference>
-    <PackageReference Include="Pcap.Net.x64">
-      <Version>1.0.4.1</Version>
-    </PackageReference>
-    <PackageReference Include="Pcap.Net.x86">
-      <Version>1.0.4.1</Version>
-    </PackageReference>
-    <PackageReference Include="System.Configuration.ConfigurationManager">
-      <Version>8.0.0</Version>
-    </PackageReference>
-    <PackageReference Include="System.Data.SQLite.Core">
-      <Version>1.0.118</Version>
-    </PackageReference>
-    <PackageReference Include="System.Globalization.Extensions">
-      <Version>4.3.0</Version>
-    </PackageReference>
-    <PackageReference Include="ToastNotifications">
-      <Version>2.5.1</Version>
-    </PackageReference>
-    <PackageReference Include="ToastNotifications.Messages">
-      <Version>2.5.1</Version>
-    </PackageReference>
-    <PackageReference Include="WebSocketSharp">
-      <Version>1.0.3-rc11</Version>
-    </PackageReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Assets\GIthub\csharp.png" />
-    <Resource Include="Resources\Assets\GIthub\documentation.png" />
-    <Resource Include="Resources\Assets\GIthub\edit.png" />
-    <Resource Include="Resources\Assets\GIthub\example-tcp.gif" />
-    <Resource Include="Resources\Assets\GIthub\example-websocket.gif" />
-    <Resource Include="Resources\Assets\GIthub\features.png" />
-    <Resource Include="Resources\Assets\GIthub\git_sniffy.png" />
-    <Resource Include="Resources\Assets\GIthub\Sniffy-Intro.gif" />
-    <Resource Include="Resources\Assets\GIthub\Sniffy.png" />
-    <Resource Include="Resources\Assets\GIthub\system_requirements.png" />
-    <Resource Include="Resources\Assets\ToolStripImages\AddColumnButton.png" />
-    <Resource Include="Resources\Assets\ToolStripImages\AddRecordButton.png" />
-    <Resource Include="Resources\Assets\ToolStripImages\AreaButton.png" />
-    <Resource Include="Resources\Assets\ToolStripImages\BackButton.png" />
-    <Resource Include="Resources\Assets\ToolStripImages\BarButton.png" />
-    <Resource Include="Resources\Assets\ToolStripImages\BrowseButton.png" />
-    <Resource Include="Resources\Assets\ToolStripImages\ColumnButton.png" />
-    <Resource Include="Resources\Assets\ToolStripImages\DataSourceButton.png" />
-    <Resource Include="Resources\Assets\ToolStripImages\DateButton.png" />
-    <Resource Include="Resources\Assets\ToolStripImages\DecreaseButton.png" />
-    <Resource Include="Resources\Assets\ToolStripImages\DeleteButton.png" />
-    <Resource Include="Resources\Assets\ToolStripImages\EditButton.png" />
-    <Resource Include="Resources\Assets\ToolStripImages\ExcelButton.png" />
-    <Resource Include="Resources\Assets\ToolStripImages\ExitButton.png" />
-    <Resource Include="Resources\Assets\ToolStripImages\ExportButton.png" />
-    <Resource Include="Resources\Assets\ToolStripImages\FilterButton.png" />
-    <Resource Include="Resources\Assets\ToolStripImages\FirstButton.png" />
-    <Resource Include="Resources\Assets\ToolStripImages\GanttButton.png" />
-    <Resource Include="Resources\Assets\ToolStripImages\GraphButton.png" />
-    <Resource Include="Resources\Assets\ToolStripImages\GridButton.png" />
-    <Resource Include="Resources\Assets\ToolStripImages\GroupButton.png" />
-    <Resource Include="Resources\Assets\ToolStripImages\HeatButton.png" />
-    <Resource Include="Resources\Assets\ToolStripImages\HistogramButton.png" />
-    <Resource Include="Resources\Assets\ToolStripImages\IncreaseButton.png" />
-    <Resource Include="Resources\Assets\ToolStripImages\LastButton.png" />
-    <Resource Include="Resources\Assets\ToolStripImages\LookUpButton.png" />
-    <Resource Include="Resources\Assets\ToolStripImages\MapTile.png" />
-    <Resource Include="Resources\Assets\ToolStripImages\MenuButton.png" />
-    <Resource Include="Resources\Assets\ToolStripImages\NextButton.png" />
-    <Resource Include="Resources\Assets\ToolStripImages\PieButton.png" />
-    <Resource Include="Resources\Assets\ToolStripImages\PlottButton.png" />
-    <Resource Include="Resources\Assets\ToolStripImages\PolarButton.png" />
-    <Resource Include="Resources\Assets\ToolStripImages\PreviousButton.png" />
-    <Resource Include="Resources\Assets\ToolStripImages\PrintButton.png" />
-    <Resource Include="Resources\Assets\ToolStripImages\RefreshButton.png" />
-    <Resource Include="Resources\Assets\ToolStripImages\SaveButton.png" />
-    <Resource Include="Resources\Assets\ToolStripImages\SchemaButton.png" />
-    <Resource Include="Resources\Assets\ToolStripImages\SmithButton.png" />
-    <Resource Include="Resources\Assets\ToolStripImages\SqlButton.png" />
-    <Resource Include="Resources\Assets\ToolStripImages\SunButton.png" />
-    <Resource Include="Resources\Assets\ToolStripImages\ToggleButton.png" />
-    <Resource Include="Resources\Assets\ExtensionImages\ACCDB.png" />
-    <Resource Include="Resources\Assets\ExtensionImages\CSV.png" />
-    <Resource Include="Resources\Assets\ExtensionImages\DB.png" />
-    <Resource Include="Resources\Assets\ExtensionImages\DLL.png" />
-    <Resource Include="Resources\Assets\ExtensionImages\DOC.png" />
-    <Resource Include="Resources\Assets\ExtensionImages\DOCX.png" />
-    <Resource Include="Resources\Assets\ExtensionImages\EXE.png" />
-    <Resource Include="Resources\Assets\ExtensionImages\HTML.png" />
-    <Resource Include="Resources\Assets\ExtensionImages\MDB.png" />
-    <Resource Include="Resources\Assets\ExtensionImages\MDF.png" />
-    <Resource Include="Resources\Assets\ExtensionImages\PDF.png" />
-    <Resource Include="Resources\Assets\ExtensionImages\PNG.png" />
-    <Resource Include="Resources\Assets\ExtensionImages\PPTX.png" />
-    <Resource Include="Resources\Assets\ExtensionImages\PY.png" />
-    <Resource Include="Resources\Assets\ExtensionImages\SDF.png" />
-    <Resource Include="Resources\Assets\ExtensionImages\SQL.png" />
-    <Resource Include="Resources\Assets\ExtensionImages\TXT.png" />
-    <Resource Include="Resources\Assets\ExtensionImages\XLS.png" />
-    <Resource Include="Resources\Assets\ExtensionImages\XLSX.png" />
-    <Resource Include="Resources\Assets\ExtensionImages\XML.png" />
-    <Resource Include="Resources\Assets\CalculatorImages\Cancel.png" />
-    <Resource Include="Resources\Assets\CalculatorImages\Main.png" />
-    <Resource Include="Resources\Assets\DialogImages\SplashNotification.png" />
-    <Resource Include="Resources\Assets\FormImages\Application.ico" />
-    <Resource Include="Resources\Assets\FormImages\Application.png" />
-    <Resource Include="Resources\Assets\MenuImages\CalculatorItem.png" />
-    <Resource Include="Resources\Assets\MenuImages\CalendarItem.png" />
-    <Resource Include="Resources\Assets\MenuImages\ChromeItem.png" />
-    <Resource Include="Resources\Assets\MenuImages\ClockItem.png" />
-    <Resource Include="Resources\Assets\MenuImages\CloseItem.png" />
-    <Resource Include="Resources\Assets\MenuImages\ControlPanelItem.png" />
-    <Resource Include="Resources\Assets\MenuImages\DocumentaionItem.png" />
-    <Resource Include="Resources\Assets\MenuImages\EdgeItem.png" />
-    <Resource Include="Resources\Assets\MenuImages\ExitItem.png" />
-    <Resource Include="Resources\Assets\MenuImages\FileItem.png" />
-    <Resource Include="Resources\Assets\MenuImages\FirefoxItem.png" />
-    <Resource Include="Resources\Assets\MenuImages\FolderItem.png" />
-    <Resource Include="Resources\Assets\MenuImages\MapItem.png" />
-    <Resource Include="Resources\Assets\MenuImages\MediaPlayerItem.png" />
-    <Resource Include="Resources\Assets\MenuImages\OneDriveItem.png" />
-    <Resource Include="Resources\Assets\MenuImages\RefreshItem.png" />
-    <Resource Include="Resources\Assets\MenuImages\SaveItem.png" />
-    <Resource Include="Resources\Assets\MenuImages\TaskManagerItem.png" />
-    <Resource Include="Resources\Assets\AppImages\Application.ico" />
-    <Resource Include="Resources\Assets\AppImages\Application.png" />
-    <Resource Include="Resources\Assets\MainImages\reload.png" />
-    <Resource Include="Resources\Assets\MainImages\Speed.png" />
-    <Resource Include="Resources\Assets\MainImages\Download.png" />
-    <Resource Include="Resources\Assets\MainImages\IP.png" />
-    <Resource Include="Resources\Assets\MainImages\port.png" />
-    <Resource Include="Resources\Assets\MainImages\route.png" />
-    <Resource Include="Resources\Assets\MainImages\portlisten.png" />
-    <Resource Include="Resources\Assets\MainImages\servers.png" />
-    <Resource Include="Resources\Assets\MainImages\sniffer.png" />
-    <Resource Include="Application.ico" />
-    <Content Include=".gitignore" />
-    <Content Include="Libraries\iperf\cygwin1.dll">
+    <Resource Include="Resources\Assets\MenuItems\CalculatorItem.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Libraries\iperf\iperf.exe">
+    </Resource>
+    <Resource Include="Resources\Assets\MenuItems\CalendarItem.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Libraries\iperf\iperf3.exe">
+    </Resource>
+    <Resource Include="Resources\Assets\MenuItems\ChromeItem.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    </Resource>
+    <Resource Include="Resources\Assets\MenuItems\ClockItem.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Assets\MenuItems\CloseItem.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Assets\MenuItems\ControlPanelItem.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Assets\MenuItems\DocumentaionItem.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Assets\MenuItems\EdgeItem.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Assets\MenuItems\ExitItem.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Assets\MenuItems\FileItem.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Assets\MenuItems\FirefoxItem.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Assets\MenuItems\FolderItem.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Assets\MenuItems\MapItem.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Assets\MenuItems\MediaPlayerItem.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Assets\MenuItems\OneDriveItem.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Assets\MenuItems\RefreshItem.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Assets\MenuItems\SaveItem.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Assets\MenuItems\TaskManagerItem.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="UI\Windows\Calculator\Cancel.png" />
+    <Resource Include="UI\Windows\Calculator\Main.png" />
+    <Resource Include="UI\Windows\Sniffy\Application.png" />
   </ItemGroup>
-  <ItemGroup />
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+
 </Project>

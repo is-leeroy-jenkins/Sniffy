@@ -1,15 +1,14 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Sniffy
 //     Author:                  Terry D. Eppler
-//     Created:                 08-11-2024
+//     Created:                 12-24-2023
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        08-11-2024
+//     Last Modified On:        03-23-2024
 // ******************************************************************************************
-// <copyright file="QueueExtensions.cs" company="Terry D. Eppler">
-//    Sniffy is a tiny .NET WPF tool for network interaction written C sharp.
-// 
-//     Copyright ©  2020 Terry D. Eppler
+// <copyright file="Terry Eppler" company="Terry D. Eppler">
+//    Sniffy is a tiny, WPF web socket client/server application.
+//    Copyright ©  2024  Terry Eppler
 // 
 //    Permission is hereby granted, free of charge, to any person obtaining a copy
 //    of this software and associated documentation files (the “Software”),
@@ -40,25 +39,25 @@
 
 namespace Sniffy
 {
-	using System;
-	using System.Collections.Generic;
-	using System.Diagnostics.CodeAnalysis;
+    using System;
+    using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
 
-	/// <summary>
-	/// 
-	/// </summary>
-	[ SuppressMessage( "ReSharper", "UnusedType.Global" ) ]
-	public static class QueueExtensions
-	{
-		/// <summary>
-		/// Adds the specified item.
-		/// </summary>
-		/// <typeparam name="T"></typeparam>
-		/// <param name="queue">The queue.</param>
-		/// <param name="item">The item.</param>
-		public static void Add<T>( this Queue<T> queue, T item )
-		{
-			queue.Enqueue( item );
-		}
-	}
+    /// <summary>
+    /// 
+    /// </summary>
+    [ SuppressMessage( "ReSharper", "UnusedType.Global" ) ]
+    public static class QueueExtensions
+    {
+        /// <summary>
+        /// Adds the specified item.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="queue">The queue.</param>
+        /// <param name="item">The item.</param>
+        public static void Add<T>( this Queue<T> queue, T item )
+        {
+            queue.Enqueue( item );
+        }
+    }
 }

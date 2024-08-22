@@ -1,17 +1,14 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Sniffy
 //     Author:                  Terry D. Eppler
-//     Created:                 08-02-2024
+//     Created:                 03-24-2023
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        08-02-2024
+//     Last Modified On:        05-31-2023
 // ******************************************************************************************
 // <copyright file="DataMinion.cs" company="Terry D. Eppler">
-//    Sniffy is a tiny .NET WPF tool that can be used to establish TCP (raw) or 
-//    WebSocket connections and exchange text messages for testing/debugging purposes.
-//
-//    Copyright ©  2023 Terry Eppler
-// 
+//    Sniffy is a tiny, WPF web socket client/server application.
+//    Copyright ©  2024  Terry Eppler
 // 
 //    Permission is hereby granted, free of charge, to any person obtaining a copy
 //    of this software and associated documentation files (the “Software”),
@@ -43,17 +40,16 @@
 namespace Sniffy
 {
     using System;
-    using System.Configuration;
     using System.Diagnostics;
     using System.Diagnostics.CodeAnalysis;
+    using static System.Configuration.ConfigurationManager;
 
     /// <summary>
     /// 
     /// </summary>
     [ SuppressMessage( "ReSharper", "UseObjectOrCollectionInitializer" ) ]
     [ SuppressMessage( "ReSharper", "MemberCanBeInternal" ) ]
-	[ SuppressMessage( "ReSharper", "UnusedType.Global" ) ]
-	public static class DataMinion
+    public static class DataMinion
     {
         /// <summary>
         /// Opens the sql lite client
@@ -62,8 +58,8 @@ namespace Sniffy
         {
             try
             {
-                var _app = ConfigurationManager.AppSettings[ "SQLiteMinion" ];
-                var _args = ConfigurationManager.AppSettings[ "SQLiteArgs" ];
+                var _app = AppSettings[ "SQLiteMinion" ];
+                var _args = AppSettings[ "SQLiteArgs" ];
                 var _startInfo = new ProcessStartInfo( );
                 _startInfo.UseShellExecute = true;
                 if( !string.IsNullOrEmpty( _app ) )
@@ -80,7 +76,7 @@ namespace Sniffy
             }
             catch( Exception _ex )
             {
-                DataMinion.Fail( _ex );
+                Fail( _ex );
             }
         }
 
@@ -91,8 +87,8 @@ namespace Sniffy
         {
             try
             {
-                var _app = ConfigurationManager.AppSettings[ "SqlCeMinion" ];
-                var _args = ConfigurationManager.AppSettings[ "SqlCeArgs" ];
+                var _app = AppSettings[ "SqlCeMinion" ];
+                var _args = AppSettings[ "SqlCeArgs" ];
                 var _startInfo = new ProcessStartInfo( );
                 _startInfo.UseShellExecute = true;
                 if( !string.IsNullOrEmpty( _app ) )
@@ -109,7 +105,7 @@ namespace Sniffy
             }
             catch( Exception _ex )
             {
-                DataMinion.Fail( _ex );
+                Fail( _ex );
             }
         }
 
@@ -120,7 +116,7 @@ namespace Sniffy
         {
             try
             {
-                var _app = ConfigurationManager.AppSettings[ "AccessMinion" ];
+                var _app = AppSettings[ "AccessMinion" ];
                 var _startInfo = new ProcessStartInfo( );
                 _startInfo.UseShellExecute = true;
                 _startInfo.LoadUserProfile = true;
@@ -134,7 +130,7 @@ namespace Sniffy
             }
             catch( Exception _ex )
             {
-                DataMinion.Fail( _ex );
+                Fail( _ex );
             }
         }
 
@@ -145,7 +141,7 @@ namespace Sniffy
         {
             try
             {
-                var _app = ConfigurationManager.AppSettings[ "Reports" ];
+                var _app = AppSettings[ "Reports" ];
                 var _startInfo = new ProcessStartInfo( );
                 _startInfo.UseShellExecute = true;
                 _startInfo.LoadUserProfile = true;
@@ -159,7 +155,7 @@ namespace Sniffy
             }
             catch( Exception _ex )
             {
-                DataMinion.Fail( _ex );
+                Fail( _ex );
             }
         }
 
@@ -170,7 +166,7 @@ namespace Sniffy
         {
             try
             {
-                var _path = ConfigurationManager.AppSettings[ "Edge" ];
+                var _path = AppSettings[ "Edge" ];
                 var _startInfo = new ProcessStartInfo( );
                 _startInfo.UseShellExecute = true;
                 _startInfo.LoadUserProfile = true;
@@ -184,7 +180,7 @@ namespace Sniffy
             }
             catch( Exception _ex )
             {
-                DataMinion.Fail( _ex );
+                Fail( _ex );
             }
         }
 
@@ -196,7 +192,7 @@ namespace Sniffy
         {
             try
             {
-                var _path = ConfigurationManager.AppSettings[ "Edge" ];
+                var _path = AppSettings[ "Edge" ];
                 var _startInfo = new ProcessStartInfo( );
                 _startInfo.UseShellExecute = true;
                 _startInfo.LoadUserProfile = true;
@@ -211,7 +207,7 @@ namespace Sniffy
             }
             catch( Exception _ex )
             {
-                DataMinion.Fail( _ex );
+                Fail( _ex );
             }
         }
 
@@ -222,7 +218,7 @@ namespace Sniffy
         {
             try
             {
-                var _path = ConfigurationManager.AppSettings[ "Baby" ];
+                var _path = AppSettings[ "Baby" ];
                 var _startInfo = new ProcessStartInfo( );
                 _startInfo.UseShellExecute = true;
                 _startInfo.LoadUserProfile = true;
@@ -235,7 +231,7 @@ namespace Sniffy
             }
             catch( Exception _ex )
             {
-                DataMinion.Fail( _ex );
+                Fail( _ex );
             }
         }
 
@@ -246,7 +242,7 @@ namespace Sniffy
         {
             try
             {
-                var _path = ConfigurationManager.AppSettings[ "Chrome" ];
+                var _path = AppSettings[ "Chrome" ];
                 var _startInfo = new ProcessStartInfo( );
                 _startInfo.UseShellExecute = true;
                 _startInfo.LoadUserProfile = true;
@@ -260,7 +256,7 @@ namespace Sniffy
             }
             catch( Exception _ex )
             {
-                DataMinion.Fail( _ex );
+                Fail( _ex );
             }
         }
 
@@ -272,7 +268,7 @@ namespace Sniffy
         {
             try
             {
-                var _path = ConfigurationManager.AppSettings[ "Chrome" ];
+                var _path = AppSettings[ "Chrome" ];
                 var _startInfo = new ProcessStartInfo( );
                 _startInfo.UseShellExecute = true;
                 _startInfo.LoadUserProfile = true;
@@ -287,7 +283,7 @@ namespace Sniffy
             }
             catch( Exception _ex )
             {
-                DataMinion.Fail( _ex );
+                Fail( _ex );
             }
         }
 
@@ -298,7 +294,7 @@ namespace Sniffy
         {
             try
             {
-                var _path = ConfigurationManager.AppSettings[ "Firefox" ];
+                var _path = AppSettings[ "Firefox" ];
                 var _startInfo = new ProcessStartInfo( );
                 _startInfo.UseShellExecute = true;
                 _startInfo.LoadUserProfile = true;
@@ -312,7 +308,7 @@ namespace Sniffy
             }
             catch( Exception _ex )
             {
-                DataMinion.Fail( _ex );
+                Fail( _ex );
             }
         }
 
@@ -324,7 +320,7 @@ namespace Sniffy
         {
             try
             {
-                var _path = ConfigurationManager.AppSettings[ "Firefox" ];
+                var _path = AppSettings[ "Firefox" ];
                 var _startInfo = new ProcessStartInfo( );
                 _startInfo.UseShellExecute = true;
                 _startInfo.LoadUserProfile = true;
@@ -339,7 +335,7 @@ namespace Sniffy
             }
             catch( Exception _ex )
             {
-                DataMinion.Fail( _ex );
+                Fail( _ex );
             }
         }
 

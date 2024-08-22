@@ -1,16 +1,14 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Sniffy
 //     Author:                  Terry D. Eppler
-//     Created:                 08-15-2021
+//     Created:                 12-24-2023
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        08-15-2024
+//     Last Modified On:        03-23-2024
 // ******************************************************************************************
-// <copyright file="TypeExtensions.cs" company="Terry D. Eppler">
-//     A tiny .NET WPF tool that can be used to establish TCP (raw) or WebSocket connections
-//     and exchange text messages for testing/debugging purposes.
-// 
-//     Copyright ©  2021 Terry D. Eppler
+// <copyright file="Terry Eppler" company="Terry D. Eppler">
+//    Sniffy is a tiny, WPF web socket client/server application.
+//    Copyright ©  2024  Terry Eppler
 // 
 //    Permission is hereby granted, free of charge, to any person obtaining a copy
 //    of this software and associated documentation files (the “Software”),
@@ -44,6 +42,8 @@ namespace Sniffy
     using System;
     using System.Diagnostics.CodeAnalysis;
     using System.IO;
+    using System.Runtime.Serialization.Json;
+    using System.Text;
     using System.Windows;
     using System.Windows.Controls;
     using System.Xml.Serialization;
@@ -55,6 +55,32 @@ namespace Sniffy
     [ SuppressMessage( "ReSharper", "UnusedType.Global" ) ]
     public static class TypeExtensions
     {
+        /// <summary>
+        /// Javas the script serialize.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="type">The type.</param>
+        /// <returns></returns>
+        public static string SerializeToJavaScript<T>( this T type )
+        {
+            try
+            {
+                var _encoding = Encoding.Default;
+                var _serializer = new DataContractJsonSerializer( typeof( T ) );
+                using var _stream = new MemoryStream( );
+                _serializer.WriteObject( _stream, type );
+                var _json = _encoding.GetString( _stream.ToArray( ) );
+                return !string.IsNullOrEmpty( _json )
+                    ? _json
+                    : string.Empty;
+            }
+            catch( Exception _ex )
+            {
+                Fail( _ex );
+                return default( string );
+            }
+        }
+
         /// <summary>
         /// XMLs serialize.
         /// </summary>
@@ -74,9 +100,9 @@ namespace Sniffy
                 using var _reader = new StringReader( _string );
                 return _reader?.ReadToEnd( ) ?? string.Empty;
             }
-            catch( Exception ex )
+            catch( Exception _ex )
             {
-                TypeExtensions.Fail( ex );
+                Fail( _ex );
                 return default( string );
             }
         }
@@ -100,34 +126,9 @@ namespace Sniffy
                     control.Dispatcher.BeginInvoke( action );
                 }
             }
-            catch( Exception ex )
+            catch( Exception _ex )
             {
-                TypeExtensions.Fail( ex );
-            }
-        }
-
-        /// <summary>
-        /// Invokes if.
-        /// </summary>
-        /// <param name="control">The control.</param>
-        /// <param name="action">The action.</param>
-        public static void InvokeIf( this UserControl control, Action action )
-        {
-            try
-            {
-                ThrowIf.Null( action, nameof( action ) );
-                if( control.Dispatcher.CheckAccess( ) )
-                {
-                    action?.Invoke( );
-                }
-                else
-                {
-                    control.Dispatcher.BeginInvoke( action );
-                }
-            }
-            catch( Exception ex )
-            {
-                TypeExtensions.Fail( ex );
+                Fail( _ex );
             }
         }
 
@@ -150,9 +151,9 @@ namespace Sniffy
                     window.Dispatcher.BeginInvoke( action );
                 }
             }
-            catch( Exception ex )
+            catch( Exception _ex )
             {
-                TypeExtensions.Fail( ex );
+                Fail( _ex );
             }
         }
 
