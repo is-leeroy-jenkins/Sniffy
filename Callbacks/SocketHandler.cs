@@ -209,7 +209,7 @@ namespace Sniffy
         {
             if( _isSocket )
             {
-                var _socket = $"...connecting to WebSocket URL '{_uri!.AbsoluteUri}'…";
+                var _socket = $"...Connecting to WebSocket URL '{_uri!.AbsoluteUri}'…";
                 OnSocketMessage( new SocketEventArgs( _socket, true ) );
             }
             else
@@ -234,7 +234,7 @@ namespace Sniffy
             _task!.GetAwaiter( )
                 .GetResult( );
 
-            var _cnlmsg = "Connection closed/aborted.";
+            var _cnlmsg = "Connection Closed/Aborted.";
             OnSocketMessage( new SocketEventArgs( _cnlmsg, true ) );
             _cancel.Dispose( );
             _semaphore.Dispose( );
@@ -260,7 +260,6 @@ namespace Sniffy
         }
 
         /// <summary>
-        /// Raises the <see cref="E:SocketMessage" /> event.
         /// </summary>
         /// <param name="e">The <see cref="SocketEventArgs"/>
         /// instance containing the event data.</param>
@@ -270,7 +269,6 @@ namespace Sniffy
         }
 
         /// <summary>
-        /// Raises the <see cref="E:ConnectionFinished" /> event.
         /// </summary>
         /// <param name="e">The <see cref="EventArgs"/>
         /// instance containing the event data.</param>
@@ -292,7 +290,7 @@ namespace Sniffy
                 Stream _clientStream = new NetworkStream( _client.Client, false );
                 var _remoteEndpoint = _client.Client.RemoteEndPoint;
                 _ = InvokeAsync( ( ) => 
-                    OnSocketMessage( new SocketEventArgs( $"TCP connection established to '{_remoteEndpoint}'." 
+                    OnSocketMessage( new SocketEventArgs( $"TCP Connection Established to '{_remoteEndpoint}'." 
                         + ( _useSsl
                             ? " Negotiating TLS…"
                             : "" ), true ) ) );
@@ -325,7 +323,7 @@ namespace Sniffy
                         _ = InvokeAsync( ( ) => 
                             OnSocketMessage( new SocketEventArgs( $"TLS negotiated. Protocol: " 
                                 + $"{FormatSslProtocol( _sslProtocol )}, " 
-                                + "CipherSuite: {cipherSuite}, Certificate SHA-1 Hash: " 
+                                + "CipherSuite: {CipherSuite}, Certificate SHA-1 Hash: " 
                                 + $"{_remoteCertificate.GetCertHashString( )} (issued by: " 
                                 + $"{_remoteCertificate.Issuer}; not after: " 
                                 + $"{_remoteCertificate.GetExpirationDateString( )})", true ) ) );
@@ -356,7 +354,7 @@ namespace Sniffy
 
                                 if( _tuple.close )
                                 {
-                                    var _clsmsg = "...closing channel!";
+                                    var _clsmsg = "...Closing Channel!";
                                     var _clsarg = new SocketEventArgs( _clsmsg, true );
                                     _ = InvokeAsync( ( ) => OnSocketMessage( _clsarg ) );
                                     if( _clientStream is SslStream _sslStream )
@@ -391,9 +389,9 @@ namespace Sniffy
                                 }
                             }
                         }
-                        catch( Exception _ex )
+                        catch( Exception ex )
                         {
-                            var _errmsg = "Error when sending data: " + _ex.Message;
+                            var _errmsg = "Error When Sending Data: " + ex.Message;
                             var _errarg = new SocketEventArgs( _errmsg, true );
                             _ = InvokeAsync( ( ) => OnSocketMessage( _errarg ) );
                         }
@@ -401,15 +399,13 @@ namespace Sniffy
 
                     try
                     {
-                        using( var _reader = new StreamReader( _clientStream,
-                                  _binaryEncoding,
-                                  false,
-                                  leaveOpen: true ) )
+                        using( var _reader = new StreamReader( _clientStream, _binaryEncoding,
+                            false, leaveOpen: true ) )
                         {
                             int _read;
                             var _input = new char[ 32768 ];
-                            while( ( _read = await _reader.ReadAsync( _input, _cancel.Token ) )
-                                  > 0 )
+                            while( ( _read = await _reader.ReadAsync( _input, _cancel.Token ) ) 
+                                > 0 )
                             {
                                 var _text = new string( _input, 0, _read );
                                 var _rdrarg = new SocketEventArgs( _text );
@@ -420,15 +416,15 @@ namespace Sniffy
                             }
                         }
 
-                        var _clsmsg = "...channel closing!";
+                        var _clsmsg = "...Channel Closing!";
                         var _clsarg = new SocketEventArgs( _clsmsg, true );
                         _ = InvokeAsync( ( ) => OnSocketMessage( _clsarg ) );
                     }
-                    catch( Exception _ex )
+                    catch( Exception ex )
                     {
                         try
                         {
-                            var _rcrmsg = "...error recieved!" + _ex.Message;
+                            var _rcrmsg = "...Error Recieved!" + ex.Message;
                             var _rcrarg = new SocketEventArgs( _rcrmsg, true );
                             _ = InvokeAsync( ( ) => OnSocketMessage( _rcrarg ) );
                         }
@@ -446,11 +442,11 @@ namespace Sniffy
                     }
                 }
             }
-            catch( Exception _ex )
+            catch( Exception ex )
             {
                 try
                 {
-                    var _connText = "Error when establishing connection: " + _ex.Message;
+                    var _connText = "Error When Establishing Connection: " + ex.Message;
                     var _connarg = new SocketEventArgs( _connText, true );
                     _ = InvokeAsync( ( ) => 
                         OnSocketMessage( _connarg ) );
@@ -475,12 +471,12 @@ namespace Sniffy
         /// </exception>
         private async Task RunWebSocketReceiveTaskAsync( )
         {
-            const int size = 100 * 1024 * 1024;
+            const int _size = 100 * 1024 * 1024;
             try
             {
                 using var _socket = new ClientWebSocket( );
                 await _socket.ConnectAsync( _uri!, _cancel.Token );
-                var _text = "...connection established.";
+                var _text = "...Connection Established.";
                 var _socarg = new SocketEventArgs( _text, true );
                 _ = InvokeAsync( ( ) => OnSocketMessage( _socarg ) );
                 var _sendTask = Task.Run( async ( ) =>
@@ -497,7 +493,7 @@ namespace Sniffy
 
                             if( _tuple.close )
                             {
-                                var _csdmsg = "Send Channel closing.";
+                                var _csdmsg = "Send Channel Closing.";
                                 var _csdarg = new SocketEventArgs( _csdmsg, true );
                                 _ = InvokeAsync( ( ) => OnSocketMessage( _csdarg ) );
                                 await _socket.CloseOutputAsync( WebSocketCloseStatus.NormalClosure, null, 
@@ -509,7 +505,7 @@ namespace Sniffy
                             {
                                 _ = InvokeAsync( ( ) =>
                                 {
-                                    var _sending = "Sending WebSocket message (type: Text):";
+                                    var _sending = "Sending WebSocket Message (type: Text):";
                                     OnSocketMessage( new SocketEventArgs( _sending, true ) );
                                     OnSocketMessage( new SocketEventArgs( _tuple.text!,
                                         isSendText: true ) );
@@ -526,9 +522,9 @@ namespace Sniffy
                             }
                         }
                     }
-                    catch( Exception _ex )
+                    catch( Exception ex )
                     {
-                        var _errmsg = "Error when sending data: " + _ex.Message;
+                        var _errmsg = "Error when sending data: " + ex.Message;
                         var _errarg = new SocketEventArgs( _errmsg, true );
                         _ = InvokeAsync( ( ) => OnSocketMessage( _errarg ) );
                     }
@@ -540,7 +536,7 @@ namespace Sniffy
                     using var _stream = new MemoryStream( );
                     while( true )
                     {
-                        var _received = await _socket.ReceiveAsync( (Memory<byte>)_input,
+                        var _received = await _socket.ReceiveAsync( ( Memory<byte> )_input,
                             _cancel.Token );
 
                         if( _received.MessageType == WebSocketMessageType.Close )
@@ -549,10 +545,10 @@ namespace Sniffy
                         }
 
                         _stream.Write( _input.AsSpan( )[ .._received.Count ] );
-                        if( _stream.Length > size )
+                        if( _stream.Length > _size )
                         {
-                            var _err = $"The message exceeds " 
-                                + $"{size / 1024 / 1024} MiB.";
+                            var _err = $"The Message Exceeds " 
+                                + $"{_size / 1024 / 1024} MiB.";
 
                             throw new InvalidOperationException( _err );
                         }
@@ -579,15 +575,15 @@ namespace Sniffy
                         }
                     }
 
-                    var _csdmsg = "...channel closed!";
+                    var _csdmsg = "...Channel Closed!";
                     var _csdarg = new SocketEventArgs( _csdmsg, true );
                     _ = InvokeAsync( ( ) => OnSocketMessage( _csdarg ) );
                 }
-                catch( Exception _ex )
+                catch( Exception ex )
                 {
                     try
                     {
-                        var _excmsg = "Error when receiving data: " + _ex.Message;
+                        var _excmsg = "Error When Receiving Data: " + ex.Message;
                         var _excarg = new SocketEventArgs( _excmsg, true );
                         _ = InvokeAsync( ( ) => OnSocketMessage( _excarg ) );
                     }
@@ -601,11 +597,11 @@ namespace Sniffy
                     await _sendTask;
                 }
             }
-            catch( Exception _ex )
+            catch( Exception ex )
             {
                 try
                 {
-                    var _excmsg = "Error when receiving data: " + _ex.Message;
+                    var _excmsg = "Error When Receiving Data: " + ex.Message;
                     var _excarg = new SocketEventArgs( _excmsg, true );
                     _ = InvokeAsync( ( ) => OnSocketMessage( _excarg ) );
                 }

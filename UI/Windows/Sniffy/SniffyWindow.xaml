@@ -120,6 +120,10 @@
             </sync:MenuItemAdv>
         </ContextMenu>
     </Window.ContextMenu>
+
+
+    <!--********************************************** Layout ***********************************************-->
+
     <Canvas
         x:Name="SissyCanvas"
         Background="{StaticResource DefaultBackground}">
@@ -225,7 +229,8 @@
             IsReadOnly="True"
             IsReadOnlyCaretVisible="True"
             VerticalScrollBarVisibility="Auto">
-            <FlowDocument x:Name="FlowDocument" />
+            <FlowDocument 
+                x:Name="FlowDocument" />
         </RichTextBox>
         <TextBox
             x:Name="OutputTextBox"
@@ -385,6 +390,7 @@
             x:Name="SendTextLabel"
             Canvas.Left="10"
             Canvas.Top="455"
+            Foreground="{StaticResource LightBlueBrush}"
             HorizontalAlignment="Center"
             VerticalAlignment="Top"
             Content="Text to send:" />
@@ -448,6 +454,7 @@
             Canvas.Left="10"
             Canvas.Top="560"
             Width="125"
+            Foreground="{StaticResource LightBlueBrush}"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Content="MetroLabel"
