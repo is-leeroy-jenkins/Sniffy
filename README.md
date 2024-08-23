@@ -10,8 +10,8 @@ text messages for testing/debugging purposes.
 
 ## Example (TCP):
 
-![](example-tcp.png)
+![](example-tcp.gif)
 
 ## Example (WebSocket):
 
-![](example-websocket.png)
+![](example-websocket.gif)
