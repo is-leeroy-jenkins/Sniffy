@@ -12,12 +12,13 @@ text messages for testing/debugging purposes.
 
  - Sniffy is built on NET 8
  - Supports AnyCPU as well as x86/x64 specific builds
- - [Callbacks](https://github.com/is-leeroy-jenkins/Sniffy/tree/master/Sniffy/Callbacks) - Delegates, Events, etc.
- - [Enumerations](https://github.com/is-leeroy-jenkins/Sniffy/tree/master/Sniffy/Enumerations) - various enumerations used for budgetary accounting.
- - [Extensions](https://github.com/is-leeroy-jenkins/Sniffy/tree/master/Sniffy/Extensions)- extension methods for sniffy.
- - [Config](https://github.com/is-leeroy-jenkins/Sniffy/tree/master/Sniffy/Config) - configuration class used by sockethandlers.
- - [Static](https://github.com/is-leeroy-jenkins/Sniffy/tree/master/Sniffy/Static) - static types used by sniffy.
- - [UI](https://github.com/is-leeroy-jenkins/Sniffy/tree/master/Sniffy/UI) - classes associated with the user interface.
+ - [Callbacks](https://github.com/is-leeroy-jenkins/Sniffy/tree/master/Callbacks) - Delegates, Events, etc.
+ - [Enumerations](https://github.com/is-leeroy-jenkins/Sniffy/tree/master/Enumerations) - various enumerations used for budgetary accounting.
+ - [Extensions](https://github.com/is-leeroy-jenkins/Sniffy/tree/master/Extensions)- extension methods for sniffy.
+ - [Config](https://github.com/is-leeroy-jenkins/Sniffy/tree/master/Config) - configuration class used by sockethandlers.
+ - [Static](https://github.com/is-leeroy-jenkins/Sniffy/tree/master/Static) - static types used by sniffy.
+ - [Controls](https://github.com/is-leeroy-jenkins/Sniffy/tree/master/Sniffy/UI/Controls) - classes associated with controls for the user interface.
+ - [Windows](https://github.com/is-leeroy-jenkins/Sniffy/tree/master/Sniffy/UI/Windows) - classes associated with controls for the user interface.
 
 
 ## Example (General)
