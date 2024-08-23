@@ -1,4 +1,4 @@
-# [](https://github.com/is-leeroy-jenkins/Sniffy/blob/master/Sniffy/Resources/Assets/Github/Sniffy.png)
+# [](https://github.com/is-leeroy-jenkins/Sniffy/blob/master/Resources/Assets/Github/Sniffy.png)
 A simple .NET WPF application that can be used to establish TCP (raw) or WebSocket connections and exchange
 text messages for testing/debugging purposes.
 
@@ -21,13 +21,13 @@ text messages for testing/debugging purposes.
 
 
 ## Example (General)
-![](https://github.com/is-leeroy-jenkins/Sniffy/blob/master/Sniffy/Resources/Assets/Github/Sniffy-Intro.gif)
+![](https://github.com/is-leeroy-jenkins/Sniffy/blob/master/Resources/Assets/Github/Sniffy-Intro.gif)
 
 
 ## Example (TCP):
 
-![](https://github.com/is-leeroy-jenkins/Sniffy/blob/master/Sniffy/Resources/Assets/Github/example-tcp.gif)
+![](https://github.com/is-leeroy-jenkins/Sniffy/blob/master/Resources/Assets/Github/example-tcp.gif)
 
 ## Example (WebSocket):
 
-![](https://github.com/is-leeroy-jenkins/Sniffy/blob/master/Sniffy/Resources/Assets/Github/example-websocket.gif)
+![](https://github.com/is-leeroy-jenkins/Sniffy/blob/master/Resources/Assets/Github/example-websocket.gif)
