@@ -111,9 +111,6 @@
     <None Remove="Resources\Assets\Windows\Dialog\SplashNotification.png" />
     <None Remove="Resources\Assets\Windows\Sissy\Application.png" />
     <None Remove="UI\Windows\Application.png" />
-    <None Remove="UI\Windows\Calculator\Cancel.png" />
-    <None Remove="UI\Windows\Calculator\Main.png" />
-    <None Remove="UI\Windows\Sniffy\Application.png" />
     <None Remove="UI\Windows\Sniffy\pymtoedh.4xd~" />
   </ItemGroup>
 
@@ -261,9 +258,6 @@
     <Resource Include="Resources\Assets\Windows\Calculator\Main.png" />
     <Resource Include="Resources\Assets\Windows\Dialog\SplashNotification.png" />
     <Resource Include="Resources\Assets\Windows\Sissy\Application.png" />
-    <Resource Include="UI\Windows\Calculator\Cancel.png" />
-    <Resource Include="UI\Windows\Calculator\Main.png" />
-    <Resource Include="UI\Windows\Sniffy\Application.png" />
   </ItemGroup>
 
   <ItemGroup>

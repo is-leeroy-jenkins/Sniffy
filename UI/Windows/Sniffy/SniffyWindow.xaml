@@ -122,7 +122,7 @@
     </Window.ContextMenu>
     <Canvas
         x:Name="SissyCanvas"
-        Background="#FF141414">
+        Background="{StaticResource DefaultBackground}">
         <Label
             x:Name="HostLabel"
             Canvas.Left="177"
@@ -207,7 +207,7 @@
             Width="678"
             Height="1"
             VerticalAlignment="Top"
-            Stroke="#FF0078D4" />
+            Stroke="{StaticResource BorderBrush}"/>
         <RichTextBox
             x:Name="InputTextBox"
             Canvas.Left="15"
@@ -217,14 +217,14 @@
             Padding="10,1,1,1"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
-            Background="Black"
-            BorderBrush="#FF0078D4"
+            Background="{StaticResource Background-Black}"
+            BorderBrush="{StaticResource BorderBrush}"
             CaretBrush="White"
             FontFamily="Segoe UI"
-            Foreground="#FFDEDEDE"
+            Foreground="{StaticResource DefaultForeground}"
             IsReadOnly="True"
             IsReadOnlyCaretVisible="True"
-            VerticalScrollBarVisibility="Visible">
+            VerticalScrollBarVisibility="Auto">
             <FlowDocument x:Name="FlowDocument" />
         </RichTextBox>
         <TextBox
@@ -236,12 +236,12 @@
             Padding="10,1,1,1"
             HorizontalAlignment="Center"
             VerticalAlignment="Top"
-            Background="#FF464646"
-            BorderBrush="#FF0078D4"
+            Background="{StaticResource ControlInterior}"
+            BorderBrush="{StaticResource BorderBrush}"
             FontFamily="Consolas"
             KeyDown="OnSendTextBoxKeyDown"
             TextWrapping="Wrap"
-            VerticalScrollBarVisibility="Visible" />
+            VerticalScrollBarVisibility="Auto" />
         <Label
             x:Name="LineEncodingLabel"
             Canvas.Left="160"
@@ -286,23 +286,23 @@
             VerticalAlignment="Top"
             HorizontalContentAlignment="Center"
             AllowMultiSelect="False"
-            Background="#FF282828"
-            BorderBrush="#FF0078D4"
+            Background="{StaticResource ControlInterior}"
+            BorderBrush="{StaticResource BorderBrush}"
             DefaultText="Select Mode"
-            Foreground="#FFDEDEDE"
+            Foreground="{StaticResource DefaultForeground}"
             SelectedIndex="0">
             <sync:ComboBoxItemAdv
                 Content="Dual Mode"
-                Foreground="#FFDEDEDE"
-                Tag="dual" />
+                Foreground="{StaticResource DefaultForeground}"
+                Tag="Dual" />
             <sync:ComboBoxItemAdv
                 Content="IPv4"
-                Foreground="#FFDEDEDE"
-                Tag="ipv4" />
+                Foreground="{StaticResource DefaultForeground}"
+                Tag="IPV4" />
             <sync:ComboBoxItemAdv
                 Content="IPv6"
-                Foreground="#FFDEDEDE"
-                Tag="ipv6" />
+                Foreground="{StaticResource DefaultForeground}"
+                Tag="IPV6" />
         </sync:ComboBoxAdv>
         <sync:ComboBoxAdv
             x:Name="ProtocolComboBox"
@@ -314,18 +314,18 @@
             VerticalAlignment="Center"
             HorizontalContentAlignment="Center"
             AllowMultiSelect="false"
-            Background="#FF282828"
-            BorderBrush="#FF0078D4"
+            Background="{StaticResource ControlInterior}"
+            BorderBrush="{StaticResource BorderBrush}"
             DefaultText="Select Protocol"
-            Foreground="#FFDEDEDE">
+            Foreground="{StaticResource DefaultForeground}">
             <sync:ComboBoxItemAdv
                 Content="TCP (Raw)"
-                Foreground="#FFDEDEDE"
-                Tag="tcp" />
+                Foreground="{StaticResource DefaultForeground}"
+                Tag="TCP" />
             <sync:ComboBoxItemAdv
                 Content="WebSocket"
-                Foreground="#FFDEDEDE"
-                Tag="websocket" />
+                Foreground="{StaticResource DefaultForeground}"
+                Tag="WebSocket" />
         </sync:ComboBoxAdv>
         <sync:ComboBoxAdv
             x:Name="LineEncodingComboBox"
@@ -337,22 +337,22 @@
             VerticalAlignment="Top"
             HorizontalContentAlignment="Center"
             AllowMultiSelect="False"
-            Background="#FF282828"
-            BorderBrush="#FF0078D4"
+            Background="{StaticResource ControlInterior}"
+            BorderBrush="{StaticResource BorderBrush}"
             DefaultText="Select Encoding"
-            Foreground="#FFDEDEDE"
+            Foreground="{StaticResource DefaultForeground}"
             SelectedIndex="0">
             <sync:ComboBoxItemAdv
                 Content="CR+LF (0x0D, 0x0A)"
-                Foreground="#FFDEDEDE"
+                Foreground="{StaticResource DefaultForeground}"
                 Tag="&#xd;&#xa;" />
             <sync:ComboBoxItemAdv
                 Content="LF (0x0A)"
-                Foreground="#FFDEDEDE"
+                Foreground="{StaticResource DefaultForeground}"
                 Tag="&#xa;" />
             <sync:ComboBoxItemAdv
                 Content="CR (0x0D)"
-                Foreground="#FFDEDEDE"
+                Foreground="{StaticResource DefaultForeground}"
                 Tag="&#xd;" />
             <sync:ComboBoxItemAdv Content="None" />
         </sync:ComboBoxAdv>
@@ -366,19 +366,20 @@
             VerticalAlignment="Top"
             HorizontalContentAlignment="Center"
             AllowMultiSelect="false"
-            Background="#FF282828"
-            BorderBrush="#FF0078D4"
+            Background="{StaticResource ControlInterior}"
+            BorderBrush="{StaticResource BorderBrush}"
             DefaultText="Encodings"
-            Foreground="#FFDEDEDE"
+            Foreground="{StaticResource DefaultForeground}"
             SelectedIndex="0">
             <sync:ComboBoxItemAdv
                 Content="Windows-1252 (Single Byte)"
-                Foreground="#FFDEDEDE"
-                Tag="windows-1252" />
+                Foreground="{StaticResource DefaultForeground}"
+                Tag="Windows-1252" />
             <sync:ComboBoxItemAdv
                 Content="UTF-8 (Multi Byte)"
-                Foreground="#FFDEDEDE"
-                Tag="utf-8" />
+                Foreground="{StaticResource DefaultForeground}"
+                Tag="UTF-8" />
+
         </sync:ComboBoxAdv>
         <local:MetroLabel
             x:Name="SendTextLabel"
@@ -427,12 +428,12 @@
             x:Name="ConnectButton"
             Title="Connect"
             Canvas.Left="610"
-            Canvas.Top="51"
+            Canvas.Top="48"
             Width="75"
-            Height="39"
+            Height="30"
             Foreground="{StaticResource LightBlueBrush}" 
-            HorizontalAlignment="Left"
-            VerticalAlignment="Center"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Top"
             Header="" />
         <local:MetroTile
             x:Name="CloseSendChannelButton"

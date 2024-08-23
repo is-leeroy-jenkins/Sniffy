@@ -1,13 +1,14 @@
 ﻿// ******************************************************************************************
-//     Assembly:                Sniffy
+//     Assembly:             Bitsy
 //     Author:                  Terry D. Eppler
-//     Created:                 06-14-2024
+//     Created:                 08-23-2024
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        06-14-2024
+//     Last Modified On:        08-23-2024
 // ******************************************************************************************
 // <copyright file="SniffyWindow.xaml.cs" company="Terry D. Eppler">
-//    Sniffy is a tiny, WPF web socket client/server application.
+//    Badger is a tiny web browser used is a budget, finance, and accounting tool for analysts with
+//    the US Environmental Protection Agency (US EPA).
 //    Copyright ©  2024  Terry Eppler
 // 
 //    Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -64,7 +65,7 @@ namespace Sniffy
     using ToastNotifications.Position;
     using static App;
     using Application = System.Windows.Application;
-    using Timer = System.Windows.Forms.Timer;
+    using Timer = System.Threading.Timer;
 
     /// <inheritdoc />
     /// <summary>
@@ -82,49 +83,9 @@ namespace Sniffy
     public partial class SniffyWindow : Window
     {
         /// <summary>
-        /// The path
-        /// </summary>
-        private protected object _path;
-
-        /// <summary>
         /// The busy
         /// </summary>
         private protected bool _busy;
-
-        /// <summary>
-        /// The time
-        /// </summary>
-        private protected int _time;
-
-        /// <summary>
-        /// The seconds
-        /// </summary>
-        private protected int _seconds;
-
-        /// <summary>
-        /// The update status
-        /// </summary>
-        private protected Action _statusUpdate;
-
-        /// <summary>
-        /// The timer
-        /// </summary>
-        private protected TimerCallback _timerCallback;
-
-        /// <summary>
-        /// The timer
-        /// </summary>
-        private protected System.Threading.Timer _timer;
-
-        /// <summary>
-        /// The available encodings
-        /// </summary>
-        private static IReadOnlyDictionary<string, Encoding> _encodings;
-
-        /// <summary>
-        /// The current socket handler
-        /// </summary>
-        private SocketHandler _socketHandler;
 
         /// <summary>
         /// The current inline paragraph
@@ -132,63 +93,69 @@ namespace Sniffy
         private Paragraph _paragraph;
 
         /// <summary>
-        /// The back color
+        /// The path
         /// </summary>
-        private protected Color _backColor = new Color( )
-        {
-            A = 255,
-            R = 20,
-            G = 20,
-            B = 20
-        };
+        private protected object _path;
 
         /// <summary>
-        /// The fore color
+        /// The seconds
         /// </summary>
-        private protected Color _foreColor = new Color( )
-        {
-            A = 255,
-            R = 222,
-            G = 222,
-            B = 222
-        };
+        private protected int _seconds;
 
         /// <summary>
-        /// The border color
+        /// The current socket handler
         /// </summary>
-        private protected Color _borderColor = new Color( )
-        {
-            A = 255,
-            R = 0,
-            G = 120,
-            B = 212
-        };
+        private SocketHandler _socketHandler;
+
+        /// <summary>
+        /// The update status
+        /// </summary>
+        private protected Action _statusUpdate;
+
+        /// <summary>
+        /// The time
+        /// </summary>
+        private protected int _time;
+
+        /// <summary>
+        /// The timer
+        /// </summary>
+        private protected Timer _timer;
+
+        /// <summary>
+        /// The timer
+        /// </summary>
+        private protected TimerCallback _timerCallback;
+
+        /// <summary>
+        /// The available encodings
+        /// </summary>
+        private static IReadOnlyDictionary<string, Encoding> _encodings;
 
         /// <inheritdoc />
         /// <summary>
         /// Static constructor that initializes the
-        /// <see cref="T:Sniffy.SniffyWindow" /> class.
         /// </summary>
         static SniffyWindow( )
         {
             Encoding.RegisterProvider( CodePagesEncodingProvider.Instance );
             var _win1252 = Encoding.GetEncoding( 1252 );
             var _utf8 = new UTF8Encoding( false );
-            _encodings = new Dictionary<string, Encoding>( StringComparer.OrdinalIgnoreCase )
-            {
+            SniffyWindow._encodings =
+                new Dictionary<string, Encoding>( StringComparer.OrdinalIgnoreCase )
                 {
-                    _win1252.WebName, _win1252
-                },
-                {
-                    _utf8.WebName, _utf8
-                }
-            };
+                    {
+                        _win1252.WebName, _win1252
+                    },
+                    {
+                        _utf8.WebName, _utf8
+                    }
+                };
         }
 
         /// <inheritdoc />
         /// <summary>
         /// Initializes a new instance of the
-        /// <see cref="T:Sniffy.SniffyWindow" /> class.
         /// </summary>
         public SniffyWindow( )
         {
@@ -210,9 +177,6 @@ namespace Sniffy
             WindowStyle = WindowStyle.SingleBorderWindow;
             Title = "Sniffy";
             WindowStartupLocation = WindowStartupLocation.CenterScreen;
-            Background = new SolidColorBrush( _backColor );
-            Foreground = new SolidColorBrush( _foreColor );
-            BorderBrush = new SolidColorBrush( _borderColor );
 
             // Window Events
             Loaded += OnLoaded;
@@ -264,7 +228,7 @@ namespace Sniffy
             try
             {
                 _timerCallback += UpdateStatus;
-                _timer = new System.Threading.Timer( _timerCallback, null, 0, 260 );
+                _timer = new Timer( _timerCallback, null, 0, 260 );
             }
             catch( Exception _ex )
             {
@@ -277,28 +241,19 @@ namespace Sniffy
         /// </summary>
         private void UpdateControls( )
         {
-            ProtocolComboBox.IsEnabled =
-                UrlTextBox.IsEnabled =
-                    SingleLineCheckBox.IsEnabled =
-                        BinaryEncodingComboBox.IsEnabled =
-                            _socketHandler == null;
+            ProtocolComboBox.IsEnabled = UrlTextBox.IsEnabled = SingleLineCheckBox.IsEnabled =
+                BinaryEncodingComboBox.IsEnabled = _socketHandler == null;
 
-            CloseSendChannelButton.IsEnabled =
-                SendButton.IsEnabled =
-                    _socketHandler != null;
+            CloseSendChannelButton.IsEnabled = SendButton.IsEnabled = _socketHandler != null;
+            var _isWebSocket =
+                ( (ComboBoxItemAdv)ProtocolComboBox.SelectedItem ).Tag is "WebSocket";
 
-            var _isWebSocket = ( (ComboBoxItemAdv)ProtocolComboBox.SelectedItem ).Tag is "websocket";
-            PortTextBox.IsEnabled =
-                SslCheckBox.IsEnabled =
-                    DualModeComboBox.IsEnabled =
-                        _socketHandler == null && !_isWebSocket;
+            PortTextBox.IsEnabled = SslCheckBox.IsEnabled =
+                DualModeComboBox.IsEnabled = _socketHandler == null && !_isWebSocket;
 
-            IgnoreCertErrorsCheckBox.IsEnabled =
-                Tls1CheckBox.IsEnabled =
-                    Tls11CheckBox.IsEnabled =
-                        Tls12CheckBox.IsEnabled =
-                            Tls13CheckBox.IsEnabled =
-                                SslCheckBox.IsEnabled && SslCheckBox.IsChecked == true;
+            IgnoreCertErrorsCheckBox.IsEnabled = Tls1CheckBox.IsEnabled = Tls11CheckBox.IsEnabled =
+                Tls12CheckBox.IsEnabled = Tls13CheckBox.IsEnabled =
+                    SslCheckBox.IsEnabled && SslCheckBox.IsChecked == true;
         }
 
         /// <summary>
@@ -604,7 +559,8 @@ namespace Sniffy
         /// <param name="sender">The sender.</param>
         /// <param name="e">The <see cref="SelectionChangedEventArgs"/>
         /// instance containing the event data.</param>
-        private void OnProtocolComboBoxSelectionChanged( object sender, SelectionChangedEventArgs e )
+        private void OnProtocolComboBoxSelectionChanged( object sender,
+            SelectionChangedEventArgs e )
         {
             UpdateControls( );
         }
@@ -634,7 +590,9 @@ namespace Sniffy
                 FlowDocument.Blocks.Clear( );
                 try
                 {
-                    var _isWebSocket = ( (ComboBoxItemAdv)ProtocolComboBox.SelectedItem ).Tag is "websocket";
+                    var _isWebSocket =
+                        ( (ComboBoxItemAdv)ProtocolComboBox.SelectedItem ).Tag is "WebSocket";
+
                     var _host = UrlTextBox.Text;
                     var _port = _isWebSocket
                         ? 0
@@ -644,14 +602,14 @@ namespace Sniffy
                         ? default( AddressFamily )
                         : (string)( (ComboBoxItemAdv)DualModeComboBox.SelectedItem ).Tag switch
                         {
-                            "dual" => AddressFamily.Unknown,
-                            "ipv4" => AddressFamily.InterNetwork,
-                            "ipv6" => AddressFamily.InterNetworkV6,
+                            "Dual" => AddressFamily.Unknown,
+                            "IPV4" => AddressFamily.InterNetwork,
+                            "IPV6" => AddressFamily.InterNetworkV6,
                             _ => throw new InvalidOperationException( )
                         };
 
-                    var _encoding = 
-                        _encodings[ (string)( (ComboBoxItemAdv)BinaryEncodingComboBox.SelectedItem ).Tag ];
+                    var _encoding = SniffyWindow._encodings[
+                        (string)( (ComboBoxItemAdv)BinaryEncodingComboBox.SelectedItem ).Tag ];
 
                     var _useSsl = SslCheckBox.IsChecked == true;
                     var _ignoreSslCertErrors = IgnoreCertErrorsCheckBox.IsChecked == true;
@@ -677,10 +635,9 @@ namespace Sniffy
                     }
 
                     var _clientState = new SocketHandler( async ( action, token ) =>
-                            await Dispatcher.InvokeAsync( action, DispatcherPriority.Normal, token ),
-                        _isWebSocket, _host, _port, _addressFamily, 
-                        _encoding, _useSsl, _ignoreSslCertErrors,
-                        _sslProtocols );
+                            await Dispatcher.InvokeAsync( action, DispatcherPriority.Normal,
+                                token ), _isWebSocket, _host, _port, _addressFamily, _encoding,
+                        _useSsl, _ignoreSslCertErrors, _sslProtocols );
 
                     _clientState.SocketMessage += ( s, e ) =>
                         AddStreamText( e.Text, e.IsMetaText, e.IsSendText );
@@ -763,8 +720,8 @@ namespace Sniffy
         private void OnSendTextBoxKeyDown( object sender, KeyEventArgs e )
         {
             if( e.Key == Key.Enter
-               && SingleLineCheckBox.IsChecked == true
-               && SendButton.IsEnabled )
+                && SingleLineCheckBox.IsChecked == true
+                && SendButton.IsEnabled )
             {
                 OnSendButtonClick( sender, e );
             }
@@ -786,9 +743,9 @@ namespace Sniffy
 
             _timer?.Dispose( );
             FadeOutAsync( this );
-            App.Current.Shutdown( );
+            Application.Current.Shutdown( );
         }
-        
+
         /// <summary>
         /// Called when [calculator menu option click].
         /// </summary>
@@ -966,5 +923,6 @@ namespace Sniffy
             _error?.SetText( );
             _error?.ShowDialog( );
         }
+
     }
 }

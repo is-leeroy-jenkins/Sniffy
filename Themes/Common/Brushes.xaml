@@ -171,16 +171,16 @@
         Color="#B20078D4" />
     <SolidColorBrush
         x:Key="PrimaryBackground"
-        Color="#FF0078D4" />
+        Color="#FF141414" />
     <SolidColorBrush
         x:Key="PrimaryColorForeground"
-        Color="#FF0078D4" />
+        Color="#FFDEDEDE" />
     <SolidColorBrush
         x:Key="ContentBackground"
-        Color="#FF161616" />
+        Color="#FF282828" />
     <SolidColorBrush
         x:Key="PopupBackground"
-        Color="#FF333333" />
+        Color="#FF505050" />
     <SolidColorBrush
         x:Key="PrimaryForeground"
         Color="#FFDEDEDE" />

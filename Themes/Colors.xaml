@@ -64,7 +64,7 @@
     <Color x:Key="BackgroundColor5">#FF012336</Color>
 
 
-    <!--  ************************************  Foreground Colors  *****************************  -->
+    <!--  ************************************  Foreground Colors  ****************************  -->
 
     <Color x:Key="ForegroundColor1">#FFDEDEDE</Color>
     <Color x:Key="ForegroundColor2">#FFA0BDFC</Color>
@@ -84,14 +84,14 @@
 
     <!--  ************************************  Menu Colors  *****************************  -->
 
-    <Color x:Key="MenuBackColor">#FF101010</Color>
+    <Color x:Key="MenuBackColor">#FF0A0A0A</Color>
     <Color x:Key="MenuForeColor">#FFA0BDFC</Color>
     <Color x:Key="MenuBorderColor">#FF4682B4</Color>
     <Color x:Key="MenuHoverColor">#FF0E3C5E</Color>
 
 
 
-    <!--  ************************************  Series Colors ***********************************  -->
+    <!--  ************************************  Series Colors **********************************  -->
 
 
     <Color x:Key="SeriesColor1">#FF4682B4</Color>
@@ -184,16 +184,16 @@
 
 
     <SolidColorBrush
-        x:Key="ControlInterior.Hover"
-        Color="{StaticResource BackgroundColor5}" />
+        x:Key="ControlHoverBrush"
+        Color="{StaticResource DefaultColor4}" />
 
 
     <SolidColorBrush
-        x:Key="Foreground-Muted"
+        x:Key="MutedForeground"
         Color="{StaticResource MutedForegroundColor}" />
 
     <SolidColorBrush
-        x:Key="Background-Default1"
+        x:Key="DefaultBackground"
         Color="{StaticResource BackgroundColor1}" />
 
     <SolidColorBrush
@@ -340,98 +340,93 @@
         Color="{StaticResource ForegroundColor1}" />
 
     <SolidColorBrush
-        x:Key="DefaultBackground"
-        Color="{StaticResource BackgroundColor1}" />
-
-    <SolidColorBrush
         x:Key="ControlBackground"
-        Color="{StaticResource BackgroundColor.Control}" />
+        Color="{StaticResource BackgroundColor2}" />
 
     <SolidColorBrush
-        x:Key="SmallForeground"
+        x:Key="MutedBorderBrush"
         Color="{StaticResource MutedForegroundColor}" />
 
-    <SolidColorBrush
-        x:Key="ForegroundBrush"
-        Color="{StaticResource ForegroundColor}" />
 
     <SolidColorBrush
-        x:Key="ForegroundBrush.LightBlue"
-        Color="{StaticResource ForegroundColor.LightBlue}" />
-
-    <SolidColorBrush
-        x:Key="BackgroundBrush.Dark"
-        Color="{StaticResource BackgroundColor.Control}" />
-
-
-    <SolidColorBrush
-        x:Key="Disabled.ForegroundBrush"
-        Color="{StaticResource Disabled.ForegroundColor}" />
+        x:Key="DisabledForeground"
+        Color="{StaticResource MutedForegroundColor}" />
 
 
     <!--  Separator  -->
-    <SolidColorBrush x:Key="SeparatorBrush">#c2c2c2</SolidColorBrush>
+    <SolidColorBrush
+        x:Key="SeparatorBrush"
+        Color="{StaticResource PrimaryColor1}" />
 
     <!--  FontStyle  -->
     <Style TargetType="{x:Type Control}">
-        <Setter Property="Foreground" Value="{StaticResource ForegroundBrush}" />
+        <Setter Property="Foreground" Value="{StaticResource DefaultForeground}" />
+        <Setter Property="Background" Value="{StaticResource DefaultBackground}" />
+        <Setter Property="BorderBrush" Value="{StaticResource BorderBrush}" />
     </Style>
 
     <Style TargetType="{x:Type Window}">
-        <Setter Property="Foreground" Value="{StaticResource ForegroundBrush}" />
-        <Setter Property="Background" Value="{StaticResource BackgroundBrush}" />
+        <Setter Property="Foreground" Value="{StaticResource DefaultForeground}" />
+        <Setter Property="Background" Value="{StaticResource DefaultBackground}" />
+        <Setter Property="BorderBrush" Value="{StaticResource BorderBrush}" />
     </Style>
 
     <Style TargetType="{x:Type UserControl}">
-        <Setter Property="Foreground" Value="{StaticResource ForegroundBrush}" />
+        <Setter Property="Foreground" Value="{StaticResource DefaultForeground}" />
+        <Setter Property="Background" Value="{StaticResource DefaultBackground}" />
+        <Setter Property="BorderBrush" Value="{StaticResource BorderBrush}" />
     </Style>
 
     <!--  Button  -->
     <SolidColorBrush
-        x:Key="Button.Static.Background"
-        Color="{StaticResource BackgroundColor}" />
+        x:Key="ButtonBackground"
+        Color="{StaticResource BackgroundColor3}" />
 
     <SolidColorBrush
-        x:Key="Button.Static.Border"
+        x:Key="ButtonBorder"
         Color="{StaticResource BorderColor}" />
 
     <SolidColorBrush
-        x:Key="Button.Disabled.Background"
+        x:Key="ButtonDisabledBackground"
         Color="{StaticResource Disabled.BackgroundColor}" />
 
     <SolidColorBrush
-        x:Key="Button.Disabled.Border"
+        x:Key="ButtonHoverBackground"
+        Color="{StaticResource DefaultColor4}" />
+
+    <SolidColorBrush
+        x:Key="ButtonDisabledBorder"
         Color="{StaticResource Disabled.BorderColor}" />
 
     <SolidColorBrush
-        x:Key="Button.Disabled.Foreground"
+        x:Key="ButtonDisabledForeground"
         Color="{StaticResource Disabled.ForegroundColor}" />
 
 
     <!--  CheckBox  -->
     <SolidColorBrush
-        x:Key="CheckBox.Static.Background"
-        Color="{StaticResource BackgroundColor}" />
+        x:Key="CheckBoxBackground"
+        Color="{StaticResource MutedForegroundColor}" />
 
     <SolidColorBrush
-        x:Key="CheckBox.Static.Border"
+        x:Key="CheckBoxBorder"
         Color="{StaticResource BorderColor}" />
 
     <SolidColorBrush
-        x:Key="CheckBox.MouseOver.Glyph"
+        x:Key="CheckBoxMouseOverGlyph"
         Color="{StaticResource GlyphColor}" />
 
     <SolidColorBrush
-        x:Key="CheckBox.Disabled.Background"
-        Color="{StaticResource Disabled.BackgroundColor}" />
+        x:Key="CheckBoxDisabledBackground"
+        Color="{StaticResource BackgroundColor1}" />
 
     <SolidColorBrush
-        x:Key="CheckBox.Disabled.Border"
-        Color="{StaticResource Disabled.BorderColor}" />
+        x:Key="CheckBoxDisabledBorder"
+        Color="{StaticResource BackgroundColor1}" />
 
     <SolidColorBrush
         x:Key="CheckBox.Disabled.Glyph"
-        Color="{StaticResource Disabled.GlyphColor}" />
+        Color="{StaticResource MutedForegroundColor}" />
 
 
 
@@ -473,19 +468,23 @@
 
     <!--  ListBox  -->
     <SolidColorBrush
-        x:Key="ListBox.Static.Background"
-        Color="{StaticResource BackgroundColor}" />
+        x:Key="ListBoxBackground"
+        Color="{StaticResource BackgroundColor2}" />
 
     <SolidColorBrush
-        x:Key="ListBox.Static.Border"
+        x:Key="ListBoxForeground"
+        Color="{StaticResource PrimaryColor2}" />
+
+    <SolidColorBrush
+        x:Key="ListBoxBorder"
         Color="{StaticResource BorderColor}" />
 
     <SolidColorBrush
-        x:Key="ListBox.Disabled.Background"
+        x:Key="ListBoxDisabledBackground"
         Color="{StaticResource Disabled.BackgroundColor}" />
 
     <SolidColorBrush
-        x:Key="ListBox.Disabled.Border"
+        x:Key="ListBoxDisabledBorder"
         Color="{StaticResource Disabled.BorderColor}" />
 
     <!--  ListBoxItemStyle  -->
@@ -494,15 +493,15 @@
     <!--  Menu  -->
     <SolidColorBrush
         x:Key="Menu.Static.Background"
-        Color="{StaticResource BackgroundColor.Control}" />
+        Color="{StaticResource MenuBackColor}" />
 
     <SolidColorBrush
         x:Key="Menu.Static.Foreground"
-        Color="{StaticResource ForegroundColor}" />
+        Color="{StaticResource PrimaryColor2}" />
 
     <SolidColorBrush
         x:Key="Menu.Static.Border"
-        Color="{StaticResource BackgroundColor.Control}" />
+        Color="{StaticResource MenuBackColor}" />
 
     <SolidColorBrush
         x:Key="Menu.MenuItem.Static.Border"
@@ -510,7 +509,7 @@
 
     <SolidColorBrush
         x:Key="Menu.MenuItem.Static.Background"
-        Color="{StaticResource BackgroundColor}" />
+        Color="{StaticResource MenuBackColor}" />
 
     <SolidColorBrush
         x:Key="Menu.MenuItem.MouseOver.BackgroundDark"
@@ -533,12 +532,9 @@
     <!--  TabControl  -->
     <!--  TabItem  -->
     <SolidColorBrush
-        x:Key="TabItem.Static.Background"
+        x:Key="TabItemBackground"
         Color="{StaticResource BackgroundColor}" />
 
-    <SolidColorBrush
-        x:Key="TabItem.Disabled.Background"
-        Color="{StaticResource Disabled.BackgroundColor}" />
 
     <SolidColorBrush
         x:Key="TabItem.Disabled.Border"
