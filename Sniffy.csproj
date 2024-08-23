@@ -5,10 +5,14 @@
     <RollForward>Major</RollForward>
     <OutputType>WinExe</OutputType>
     <Nullable>disable</Nullable>
-    <UseWindowsForms>True</UseWindowsForms>
+    <UseWindowsForms>False</UseWindowsForms>
     <UseWPF>true</UseWPF>
-    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
     <StartupObject>Sniffy.App</StartupObject>
+    <ApplicationIcon>Application.ico</ApplicationIcon>
+    <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
+    <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
+    <AnalysisLevel>6.0-recommended</AnalysisLevel>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -23,6 +27,26 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="Resources\Assets\ExtensionImages\ACCDB.png" />
+    <None Remove="Resources\Assets\ExtensionImages\CSV.png" />
+    <None Remove="Resources\Assets\ExtensionImages\DB.png" />
+    <None Remove="Resources\Assets\ExtensionImages\DLL.png" />
+    <None Remove="Resources\Assets\ExtensionImages\DOC.png" />
+    <None Remove="Resources\Assets\ExtensionImages\DOCX.png" />
+    <None Remove="Resources\Assets\ExtensionImages\EXE.png" />
+    <None Remove="Resources\Assets\ExtensionImages\HTML.png" />
+    <None Remove="Resources\Assets\ExtensionImages\MDB.png" />
+    <None Remove="Resources\Assets\ExtensionImages\MDF.png" />
+    <None Remove="Resources\Assets\ExtensionImages\PDF.png" />
+    <None Remove="Resources\Assets\ExtensionImages\PNG.png" />
+    <None Remove="Resources\Assets\ExtensionImages\PPTX.png" />
+    <None Remove="Resources\Assets\ExtensionImages\PY.png" />
+    <None Remove="Resources\Assets\ExtensionImages\SDF.png" />
+    <None Remove="Resources\Assets\ExtensionImages\SQL.png" />
+    <None Remove="Resources\Assets\ExtensionImages\TXT.png" />
+    <None Remove="Resources\Assets\ExtensionImages\XLS.png" />
+    <None Remove="Resources\Assets\ExtensionImages\XLSX.png" />
+    <None Remove="Resources\Assets\ExtensionImages\XML.png" />
     <None Remove="Resources\Assets\MenuItems\CalculatorItem.png" />
     <None Remove="Resources\Assets\MenuItems\CalendarItem.png" />
     <None Remove="Resources\Assets\MenuItems\ChromeItem.png" />
@@ -41,11 +65,60 @@
     <None Remove="Resources\Assets\MenuItems\RefreshItem.png" />
     <None Remove="Resources\Assets\MenuItems\SaveItem.png" />
     <None Remove="Resources\Assets\MenuItems\TaskManagerItem.png" />
+    <None Remove="Resources\Assets\ToolStripImages\AddColumnButton.png" />
+    <None Remove="Resources\Assets\ToolStripImages\AddRecordButton.png" />
+    <None Remove="Resources\Assets\ToolStripImages\AreaButton.png" />
+    <None Remove="Resources\Assets\ToolStripImages\BackButton.png" />
+    <None Remove="Resources\Assets\ToolStripImages\BarButton.png" />
+    <None Remove="Resources\Assets\ToolStripImages\BrowseButton.png" />
+    <None Remove="Resources\Assets\ToolStripImages\ColumnButton.png" />
+    <None Remove="Resources\Assets\ToolStripImages\DataSourceButton.png" />
+    <None Remove="Resources\Assets\ToolStripImages\DateButton.png" />
+    <None Remove="Resources\Assets\ToolStripImages\DecreaseButton.png" />
+    <None Remove="Resources\Assets\ToolStripImages\DeleteButton.png" />
+    <None Remove="Resources\Assets\ToolStripImages\EditButton.png" />
+    <None Remove="Resources\Assets\ToolStripImages\ExcelButton.png" />
+    <None Remove="Resources\Assets\ToolStripImages\ExitButton.png" />
+    <None Remove="Resources\Assets\ToolStripImages\ExportButton.png" />
+    <None Remove="Resources\Assets\ToolStripImages\FilterButton.png" />
+    <None Remove="Resources\Assets\ToolStripImages\FirstButton.png" />
+    <None Remove="Resources\Assets\ToolStripImages\GanttButton.png" />
+    <None Remove="Resources\Assets\ToolStripImages\GraphButton.png" />
+    <None Remove="Resources\Assets\ToolStripImages\GridButton.png" />
+    <None Remove="Resources\Assets\ToolStripImages\GroupButton.png" />
+    <None Remove="Resources\Assets\ToolStripImages\HeatButton.png" />
+    <None Remove="Resources\Assets\ToolStripImages\HistogramButton.png" />
+    <None Remove="Resources\Assets\ToolStripImages\IncreaseButton.png" />
+    <None Remove="Resources\Assets\ToolStripImages\LastButton.png" />
+    <None Remove="Resources\Assets\ToolStripImages\LookUpButton.png" />
+    <None Remove="Resources\Assets\ToolStripImages\MapTile.png" />
+    <None Remove="Resources\Assets\ToolStripImages\MenuButton.png" />
+    <None Remove="Resources\Assets\ToolStripImages\NextButton.png" />
+    <None Remove="Resources\Assets\ToolStripImages\PieButton.png" />
+    <None Remove="Resources\Assets\ToolStripImages\PlottButton.png" />
+    <None Remove="Resources\Assets\ToolStripImages\PolarButton.png" />
+    <None Remove="Resources\Assets\ToolStripImages\PreviousButton.png" />
+    <None Remove="Resources\Assets\ToolStripImages\PrintButton.png" />
+    <None Remove="Resources\Assets\ToolStripImages\RefreshButton.png" />
+    <None Remove="Resources\Assets\ToolStripImages\SaveButton.png" />
+    <None Remove="Resources\Assets\ToolStripImages\SchemaButton.png" />
+    <None Remove="Resources\Assets\ToolStripImages\SmithButton.png" />
+    <None Remove="Resources\Assets\ToolStripImages\SqlButton.png" />
+    <None Remove="Resources\Assets\ToolStripImages\SunButton.png" />
+    <None Remove="Resources\Assets\ToolStripImages\ToggleButton.png" />
+    <None Remove="Resources\Assets\Windows\Calculator\Cancel.png" />
+    <None Remove="Resources\Assets\Windows\Calculator\Main.png" />
+    <None Remove="Resources\Assets\Windows\Dialog\SplashNotification.png" />
+    <None Remove="Resources\Assets\Windows\Sissy\Application.png" />
     <None Remove="UI\Windows\Application.png" />
     <None Remove="UI\Windows\Calculator\Cancel.png" />
     <None Remove="UI\Windows\Calculator\Main.png" />
     <None Remove="UI\Windows\Sniffy\Application.png" />
     <None Remove="UI\Windows\Sniffy\pymtoedh.4xd~" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Application.ico" />
   </ItemGroup>
 
   <ItemGroup>
@@ -69,63 +142,135 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Resources\Assets\ExtensionImages\ACCDB.png" />
+    <Resource Include="Resources\Assets\ExtensionImages\CSV.png" />
+    <Resource Include="Resources\Assets\ExtensionImages\DB.png" />
+    <Resource Include="Resources\Assets\ExtensionImages\DLL.png" />
+    <Resource Include="Resources\Assets\ExtensionImages\DOC.png" />
+    <Resource Include="Resources\Assets\ExtensionImages\DOCX.png" />
+    <Resource Include="Resources\Assets\ExtensionImages\EXE.png" />
+    <Resource Include="Resources\Assets\ExtensionImages\HTML.png" />
+    <Resource Include="Resources\Assets\ExtensionImages\MDB.png" />
+    <Resource Include="Resources\Assets\ExtensionImages\MDF.png" />
+    <Resource Include="Resources\Assets\ExtensionImages\PDF.png" />
+    <Resource Include="Resources\Assets\ExtensionImages\PNG.png" />
+    <Resource Include="Resources\Assets\ExtensionImages\PPTX.png" />
+    <Resource Include="Resources\Assets\ExtensionImages\PY.png" />
+    <Resource Include="Resources\Assets\ExtensionImages\SDF.png" />
+    <Resource Include="Resources\Assets\ExtensionImages\SQL.png" />
+    <Resource Include="Resources\Assets\ExtensionImages\TXT.png" />
+    <Resource Include="Resources\Assets\ExtensionImages\XLS.png" />
+    <Resource Include="Resources\Assets\ExtensionImages\XLSX.png" />
+    <Resource Include="Resources\Assets\ExtensionImages\XML.png" />
     <Resource Include="Resources\Assets\MenuItems\CalculatorItem.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Resources\Assets\MenuItems\CalendarItem.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Resources\Assets\MenuItems\ChromeItem.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Resources\Assets\MenuItems\ClockItem.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Resources\Assets\MenuItems\CloseItem.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Resources\Assets\MenuItems\ControlPanelItem.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Resources\Assets\MenuItems\DocumentaionItem.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Resources\Assets\MenuItems\EdgeItem.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Resources\Assets\MenuItems\ExitItem.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Resources\Assets\MenuItems\FileItem.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Resources\Assets\MenuItems\FirefoxItem.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Resources\Assets\MenuItems\FolderItem.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Resources\Assets\MenuItems\MapItem.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Resources\Assets\MenuItems\MediaPlayerItem.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Resources\Assets\MenuItems\OneDriveItem.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Resources\Assets\MenuItems\RefreshItem.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Resources\Assets\MenuItems\SaveItem.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Resources\Assets\MenuItems\TaskManagerItem.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="Resources\Assets\ToolStripImages\AddColumnButton.png" />
+    <Resource Include="Resources\Assets\ToolStripImages\AddRecordButton.png" />
+    <Resource Include="Resources\Assets\ToolStripImages\AreaButton.png" />
+    <Resource Include="Resources\Assets\ToolStripImages\BackButton.png" />
+    <Resource Include="Resources\Assets\ToolStripImages\BarButton.png" />
+    <Resource Include="Resources\Assets\ToolStripImages\BrowseButton.png" />
+    <Resource Include="Resources\Assets\ToolStripImages\ColumnButton.png" />
+    <Resource Include="Resources\Assets\ToolStripImages\DataSourceButton.png" />
+    <Resource Include="Resources\Assets\ToolStripImages\DateButton.png" />
+    <Resource Include="Resources\Assets\ToolStripImages\DecreaseButton.png" />
+    <Resource Include="Resources\Assets\ToolStripImages\DeleteButton.png" />
+    <Resource Include="Resources\Assets\ToolStripImages\EditButton.png" />
+    <Resource Include="Resources\Assets\ToolStripImages\ExcelButton.png" />
+    <Resource Include="Resources\Assets\ToolStripImages\ExitButton.png" />
+    <Resource Include="Resources\Assets\ToolStripImages\ExportButton.png" />
+    <Resource Include="Resources\Assets\ToolStripImages\FilterButton.png" />
+    <Resource Include="Resources\Assets\ToolStripImages\FirstButton.png" />
+    <Resource Include="Resources\Assets\ToolStripImages\GanttButton.png" />
+    <Resource Include="Resources\Assets\ToolStripImages\GraphButton.png" />
+    <Resource Include="Resources\Assets\ToolStripImages\GridButton.png" />
+    <Resource Include="Resources\Assets\ToolStripImages\GroupButton.png" />
+    <Resource Include="Resources\Assets\ToolStripImages\HeatButton.png" />
+    <Resource Include="Resources\Assets\ToolStripImages\HistogramButton.png" />
+    <Resource Include="Resources\Assets\ToolStripImages\IncreaseButton.png" />
+    <Resource Include="Resources\Assets\ToolStripImages\LastButton.png" />
+    <Resource Include="Resources\Assets\ToolStripImages\LookUpButton.png" />
+    <Resource Include="Resources\Assets\ToolStripImages\MapTile.png" />
+    <Resource Include="Resources\Assets\ToolStripImages\MenuButton.png" />
+    <Resource Include="Resources\Assets\ToolStripImages\NextButton.png" />
+    <Resource Include="Resources\Assets\ToolStripImages\PieButton.png" />
+    <Resource Include="Resources\Assets\ToolStripImages\PlottButton.png" />
+    <Resource Include="Resources\Assets\ToolStripImages\PolarButton.png" />
+    <Resource Include="Resources\Assets\ToolStripImages\PreviousButton.png" />
+    <Resource Include="Resources\Assets\ToolStripImages\PrintButton.png" />
+    <Resource Include="Resources\Assets\ToolStripImages\RefreshButton.png" />
+    <Resource Include="Resources\Assets\ToolStripImages\SaveButton.png" />
+    <Resource Include="Resources\Assets\ToolStripImages\SchemaButton.png" />
+    <Resource Include="Resources\Assets\ToolStripImages\SmithButton.png" />
+    <Resource Include="Resources\Assets\ToolStripImages\SqlButton.png" />
+    <Resource Include="Resources\Assets\ToolStripImages\SunButton.png" />
+    <Resource Include="Resources\Assets\ToolStripImages\ToggleButton.png" />
+    <Resource Include="Resources\Assets\Windows\Calculator\Cancel.png" />
+    <Resource Include="Resources\Assets\Windows\Calculator\Main.png" />
+    <Resource Include="Resources\Assets\Windows\Dialog\SplashNotification.png" />
+    <Resource Include="Resources\Assets\Windows\Sissy\Application.png" />
     <Resource Include="UI\Windows\Calculator\Cancel.png" />
     <Resource Include="UI\Windows\Calculator\Main.png" />
     <Resource Include="UI\Windows\Sniffy\Application.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Properties\LICENSE.txt">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
   </ItemGroup>
 
 </Project>

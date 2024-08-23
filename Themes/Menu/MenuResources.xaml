@@ -1,0 +1,62 @@
+﻿<ResourceDictionary
+    x:Class="Badger.MenuResources"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:Badger">
+
+    <Image
+        x:Key="CalculatorItem"
+        Source="/Resources/Assets/MenuImages/CalculatorItem.png" />
+    <Image
+        x:Key="CalendarItem"
+        Source="/Resources/Assets/MenuImages/CalendarItem.png" />
+    <Image
+        x:Key="ChromeItem"
+        Source="/Resources/Assets/MenuImages/ChromeItem.png" />
+    <Image
+        x:Key="ClockItem"
+        Source="/Resources/Assets/MenuImages/ClockItem.png" />
+    <Image
+        x:Key="ClosetItem"
+        Source="/Resources/Assets/MenuImages/CloseItem.png" />
+    <Image
+        x:Key="ControlPanelItem"
+        Source="/Resources/Assets/MenuImages/ControlPanelItem.png" />
+    <Image
+        x:Key="DocumentationItem"
+        Source="/Resources/Assets/MenuImages/DocumentaionItem.png" />
+    <Image
+        x:Key="EdgeItem"
+        Source="/Resources/Assets/MenuImages/EdgeItem.png" />
+    <Image
+        x:Key="ExitItem"
+        Source="/Resources/Assets/MenuImages/ExitItem.png" />
+    <Image
+        x:Key="FileItem"
+        Source="/Resources/Assets/MenuImages/FileItem.png" />
+    <Image
+        x:Key="FireFoxItem"
+        Source="/Resources/Assets/MenuImages/FirefoxItem.png" />
+    <Image
+        x:Key="FolderItem"
+        Source="/Resources/Assets/MenuImages/FolderItem.png" />
+    <Image
+        x:Key="MapItem"
+        Source="/Resources/Assets/MenuImages/MapItem.png" />
+    <Image
+        x:Key="MediaPlayerItem"
+        Source="/Resources/Assets/MenuImages/MediaPlayerItem.png" />
+    <Image
+        x:Key="OneDriveItem"
+        Source="/Resources/Assets/MenuImages/OneDriveItem.png" />
+    <Image
+        x:Key="RefreshItem"
+        Source="/Resources/Assets/MenuImages/RefreshItem.png" />
+    <Image
+        x:Key="SaveItem"
+        Source="/Resources/Assets/MenuImages/SaveItem.png" />
+    <Image
+        x:Key="TaskManagerItem"
+        Source="/Resources/Assets/MenuImages/TaskManagerItem.png" />
+
+</ResourceDictionary>

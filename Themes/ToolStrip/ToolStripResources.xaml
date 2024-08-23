@@ -1,0 +1,71 @@
+﻿<ResourceDictionary
+    x:Class="Badger.ToolStripResources"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:Badger">
+
+    <Image
+        x:Key="BrowseButton"
+        Source="/Resources/Assets/ToolStripImages/BrowseButton.png" />
+    <Image
+        x:Key="DataSourceButton"
+        Source="/Resources/Assets/ToolStripImages/DataSourceButton.png" />
+    <Image
+        x:Key="DateButton"
+        Source="/Resources/Assets/ToolStripImages/DateButton.png" />
+    <Image
+        x:Key="DeleteButton"
+        Source="/Resources/Assets/ToolStripImages/DeleteButton.png" />
+    <Image
+        x:Key="EditButton"
+        Source="/Resources/Assets/ToolStripImages/EditButton.png" />
+    <Image
+        x:Key="ExcelButton"
+        Source="/Resources/Assets/ToolStripImages/ExcelButton.png" />
+    <Image
+        x:Key="ExitButton"
+        Source="/Resources/Assets/ToolStripImages/ExportButton.png" />
+    <Image
+        x:Key="ExportButton"
+        Source="/Resources/Assets/ToolStripImages/ExportButton.png" />
+    <Image
+        x:Key="FilterButton"
+        Source="/Resources/Assets/ToolStripImages/FirstButton.png" />
+    <Image
+        x:Key="FirstButton"
+        Source="/Resources/Assets/ToolStripImages/BrowseButton.png" />
+    <Image
+        x:Key="PreviousButton"
+        Source="/Resources/Assets/ToolStripImages/FirstButton.png" />
+    <Image
+        x:Key="NextButton"
+        Source="/Resources/Assets/ToolStripImages/NextButton.png" />
+    <Image
+        x:Key="LastButton"
+        Source="/Resources/Assets/ToolStripImages/LastButton.png" />
+    <Image
+        x:Key="RefreshButton"
+        Source="/Resources/Assets/ToolStripImages/RefreshButton.png" />
+    <Image
+        x:Key="SaveButton"
+        Source="/Resources/Assets/ToolStripImages/SaveButton.png" />
+    <Image
+        x:Key="GridButton"
+        Source="/Resources/Assets/ToolStripImages/GridButton.png" />
+    <Image
+        x:Key="GroupButton"
+        Source="/Resources/Assets/ToolStripImages/GroupButton.png" />
+    <Image
+        x:Key="LookupButton"
+        Source="/Resources/Assets/ToolStripImages/LookupButton.png" />
+    <Image
+        x:Key="SchemaButton"
+        Source="/Resources/Assets/ToolStripImages/SchemaButton.png" />
+    <Image
+        x:Key="SqlButton"
+        Source="/Resources/Assets/ToolStripImages/SqlButton.png" />
+    <Image
+        x:Key="ToggleButton"
+        Source="/Resources/Assets/ToolStripImages/MenuButton.png" />
+
+</ResourceDictionary>

@@ -1,0 +1,53 @@
+﻿<ResourceDictionary
+    x:Class="Badger.TileResources"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:Badger">
+
+    <Image
+        x:Key="AccessTile"
+        Source="/Resources/Assets/TileImages/AccessTile.png" />
+    <Image
+        x:Key="BrowserTile"
+        Source="/Resources/Assets/TileImages/BrowserTile.png" />
+    <Image
+        x:Key="CalendarTile"
+        Source="/Resources/Assets/TileImages/CalendarTile.png" />
+    <Image
+        x:Key="DataTile"
+        Source="/Resources/Assets/TileImages/DataTile.png" />
+    <Image
+        x:Key="ExcelTile"
+        Source="/Resources/Assets/TileImages/ExcelTile.png" />
+    <Image
+        x:Key="EmailTile"
+        Source="/Resources/Assets/TileImages/EmailTile.png" />
+    <Image
+        x:Key="GuidanceTile"
+        Source="/Resources/Assets/TileImages/GuidanceTile.png" />
+    <Image
+        x:Key="MapTile"
+        Source="/Resources/Assets/TileImages/MapTile.png" />
+    <Image
+        x:Key="PivotTile"
+        Source="/Resources/Assets/TileImages/PivotTile.png" />
+    <Image
+        x:Key="ProgramTile"
+        Source="/Resources/Assets/TileImages/ProgramTile.png" />
+    <Image
+        x:Key="SqlCeTile"
+        Source="/Resources/Assets/TileImages/SqlCeTile.png" />
+    <Image
+        x:Key="SqlEditorTile"
+        Source="/Resources/Assets/TileImages/SqlEditorTile.png" />
+    <Image
+        x:Key="SQLiteTile"
+        Source="/Resources/Assets/TileImages/SQLiteTile.png" />
+    <Image
+        x:Key="SqlServerTile"
+        Source="/Resources/Assets/TileImages/SqlServerTile.png" />
+    <Image
+        x:Key="VisualizationTile"
+        Source="/Resources/Assets/TileImages/VisualizationTile.png" />
+
+</ResourceDictionary>
