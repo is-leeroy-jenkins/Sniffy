@@ -58,7 +58,6 @@ namespace Sniffy
         /// <inheritdoc />
         /// <summary>
         /// Initializes a new instance of the
-        /// <see cref="T:Sniffy.MetroComboBox" /> class.
         /// </summary>
         public MetroComboBox( )
             : base( )

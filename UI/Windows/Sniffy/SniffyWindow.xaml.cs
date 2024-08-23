@@ -1,15 +1,16 @@
 ﻿// ******************************************************************************************
-//     Assembly:             Bitsy
+//     Assembly:                Sniffy
 //     Author:                  Terry D. Eppler
-//     Created:                 08-23-2024
+//     Created:                 08-23-2021
 // 
 //     Last Modified By:        Terry D. Eppler
 //     Last Modified On:        08-23-2024
 // ******************************************************************************************
 // <copyright file="SniffyWindow.xaml.cs" company="Terry D. Eppler">
-//    Badger is a tiny web browser used is a budget, finance, and accounting tool for analysts with
-//    the US Environmental Protection Agency (US EPA).
-//    Copyright ©  2024  Terry Eppler
+//     A tiny .NET WPF tool that can be used to establish TCP (raw) or WebSocket connections
+//     and exchange text messages for testing/debugging purposes.
+// 
+//     Copyright ©  2021 Terry D. Eppler
 // 
 //    Permission is hereby granted, free of charge, to any person obtaining a copy
 //    of this software and associated documentation files (the “Software”),
@@ -31,7 +32,7 @@
 //    ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 //    DEALINGS IN THE SOFTWARE.
 // 
-//    You can contact me at:   terryeppler@gmail.com or eppler.terry@epa.gov
+//    You can contact me at:  terryeppler@gmail.com or eppler.terry@epa.gov
 // </copyright>
 // <summary>
 //   SniffyWindow.xaml.cs
@@ -132,57 +133,6 @@ namespace Sniffy
         /// </summary>
         private static IReadOnlyDictionary<string, Encoding> _encodings;
 
-        /// <inheritdoc />
-        /// <summary>
-        /// Static constructor that initializes the
-        /// </summary>
-        static SniffyWindow( )
-        {
-            Encoding.RegisterProvider( CodePagesEncodingProvider.Instance );
-            var _win1252 = Encoding.GetEncoding( 1252 );
-            var _utf8 = new UTF8Encoding( false );
-            SniffyWindow._encodings =
-                new Dictionary<string, Encoding>( StringComparer.OrdinalIgnoreCase )
-                {
-                    {
-                        _win1252.WebName, _win1252
-                    },
-                    {
-                        _utf8.WebName, _utf8
-                    }
-                };
-        }
-
-        /// <inheritdoc />
-        /// <summary>
-        /// Initializes a new instance of the
-        /// </summary>
-        public SniffyWindow( )
-        {
-            // Theme Properties
-            SfSkinManager.ApplyStylesOnApplication = true;
-            SfSkinManager.SetTheme( this, new Theme( "FluentDark", Controls ) );
-
-            // Window Initialization
-            InitializeComponent( );
-            InitializeDelegates( );
-            RegisterCallbacks( );
-
-            // Window Properties
-            Height = 625;
-            Width = 725;
-            Padding = new Thickness( 1 );
-            Margin = new Thickness( 1 );
-            BorderThickness = new Thickness( 1 );
-            WindowStyle = WindowStyle.SingleBorderWindow;
-            Title = "Sniffy";
-            WindowStartupLocation = WindowStartupLocation.CenterScreen;
-
-            // Window Events
-            Loaded += OnLoaded;
-            Closing += OnClosing;
-        }
-
         /// <summary>
         /// Registers the callbacks.
         /// </summary>
@@ -246,7 +196,7 @@ namespace Sniffy
 
             CloseSendChannelButton.IsEnabled = SendButton.IsEnabled = _socketHandler != null;
             var _isWebSocket =
-                ( (ComboBoxItemAdv)ProtocolComboBox.SelectedItem ).Tag is "WebSocket";
+                ( ( ComboBoxItemAdv )ProtocolComboBox.SelectedItem ).Tag is "WebSocket";
 
             PortTextBox.IsEnabled = SslCheckBox.IsEnabled =
                 DualModeComboBox.IsEnabled = _socketHandler == null && !_isWebSocket;
@@ -591,7 +541,7 @@ namespace Sniffy
                 try
                 {
                     var _isWebSocket =
-                        ( (ComboBoxItemAdv)ProtocolComboBox.SelectedItem ).Tag is "WebSocket";
+                        ( ( ComboBoxItemAdv )ProtocolComboBox.SelectedItem ).Tag is "WebSocket";
 
                     var _host = UrlTextBox.Text;
                     var _port = _isWebSocket
@@ -600,7 +550,7 @@ namespace Sniffy
 
                     var _addressFamily = _isWebSocket
                         ? default( AddressFamily )
-                        : (string)( (ComboBoxItemAdv)DualModeComboBox.SelectedItem ).Tag switch
+                        : ( string )( ( ComboBoxItemAdv )DualModeComboBox.SelectedItem ).Tag switch
                         {
                             "Dual" => AddressFamily.Unknown,
                             "IPV4" => AddressFamily.InterNetwork,
@@ -608,8 +558,8 @@ namespace Sniffy
                             _ => throw new InvalidOperationException( )
                         };
 
-                    var _encoding = SniffyWindow._encodings[
-                        (string)( (ComboBoxItemAdv)BinaryEncodingComboBox.SelectedItem ).Tag ];
+                    var _encoding = _encodings[
+                        ( string )( ( ComboBoxItemAdv )BinaryEncodingComboBox.SelectedItem ).Tag ];
 
                     var _useSsl = SslCheckBox.IsChecked == true;
                     var _ignoreSslCertErrors = IgnoreCertErrorsCheckBox.IsChecked == true;
@@ -636,8 +586,8 @@ namespace Sniffy
 
                     var _clientState = new SocketHandler( async ( action, token ) =>
                             await Dispatcher.InvokeAsync( action, DispatcherPriority.Normal,
-                                token ), _isWebSocket, _host, _port, _addressFamily, _encoding,
-                        _useSsl, _ignoreSslCertErrors, _sslProtocols );
+                                token ), _isWebSocket, _host, _port, _addressFamily,
+                        _encoding, _useSsl, _ignoreSslCertErrors, _sslProtocols );
 
                     _clientState.SocketMessage += ( s, e ) =>
                         AddStreamText( e.Text, e.IsMetaText, e.IsSendText );
@@ -675,7 +625,7 @@ namespace Sniffy
         /// instance containing the event data.</param>
         private void OnSendButtonClick( object sender, RoutedEventArgs e )
         {
-            var _ending = (string)( (ComboBoxItemAdv)LineEncodingComboBox.SelectedItem ).Tag;
+            var _ending = ( string )( ( ComboBoxItemAdv )LineEncodingComboBox.SelectedItem ).Tag;
             var _text = OutputTextBox.Text;
             _text = _text.Replace( "\r\n", "\n" ).Replace( "\n", _ending );
             if( SingleLineCheckBox.IsChecked == true )
@@ -924,5 +874,54 @@ namespace Sniffy
             _error?.ShowDialog( );
         }
 
+        /// <inheritdoc />
+        /// <summary>
+        /// Static constructor that initializes the
+        /// </summary>
+        static SniffyWindow( )
+        {
+            Encoding.RegisterProvider( CodePagesEncodingProvider.Instance );
+            var _win1252 = Encoding.GetEncoding( 1252 );
+            var _utf8 = new UTF8Encoding( false );
+            _encodings = new Dictionary<string, Encoding>( StringComparer.OrdinalIgnoreCase )
+            {
+                {
+                    _win1252.WebName, _win1252
+                },
+                {
+                    _utf8.WebName, _utf8
+                }
+            };
+        }
+
+        /// <inheritdoc />
+        /// <summary>
+        /// Initializes a new instance of the
+        /// </summary>
+        public SniffyWindow( )
+        {
+            // Theme Properties
+            SfSkinManager.ApplyStylesOnApplication = true;
+            SfSkinManager.SetTheme( this, new Theme( "FluentDark", Controls ) );
+
+            // Window Initialization
+            InitializeComponent( );
+            InitializeDelegates( );
+            RegisterCallbacks( );
+
+            // Window Properties
+            Height = 625;
+            Width = 725;
+            Padding = new Thickness( 1 );
+            Margin = new Thickness( 1 );
+            BorderThickness = new Thickness( 1 );
+            WindowStyle = WindowStyle.SingleBorderWindow;
+            Title = "Sniffy";
+            WindowStartupLocation = WindowStartupLocation.CenterScreen;
+
+            // Window Events
+            Loaded += OnLoaded;
+            Closing += OnClosing;
+        }
     }
 }

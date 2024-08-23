@@ -58,9 +58,9 @@ namespace Sniffy
         private protected Color _backColor = new Color( )
         {
             A = 255,
-            R = 40,
-            G = 40,
-            B = 40
+            R = 45,
+            G = 45,
+            B = 45
         };
 
         /// <summary>
@@ -130,7 +130,7 @@ namespace Sniffy
             BorderThickness = new Thickness( 1 );
             Background = new SolidColorBrush( _backColor );
             Foreground = new SolidColorBrush( _foreColor );
-            BorderBrush = new SolidColorBrush( _borderColor );
+            BorderBrush = new SolidColorBrush( _backColor );
 
             // Wire Events
             MouseEnter += OnMouseEnter;
@@ -171,7 +171,7 @@ namespace Sniffy
             {
                 Background = new SolidColorBrush( _backColor );
                 Foreground = new SolidColorBrush( _foreColor );
-                BorderBrush = new SolidColorBrush( _borderColor );
+                BorderBrush = new SolidColorBrush( _backColor );
             }
             catch( Exception _ex )
             {
