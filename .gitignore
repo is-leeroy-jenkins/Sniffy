@@ -364,3 +364,8 @@ MigrationBackup/
 FodyWeavers.xsd
 /Sniffy.DotSettings
 /.editorconfig
+
+# Rider Files
+*./idea
+*.idea
+*/idea

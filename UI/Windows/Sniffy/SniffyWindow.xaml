@@ -51,6 +51,7 @@
                     <Image Source="/Resources/Assets/MenuItems/FileItem.png" />
                 </sync:MenuItemAdv.Icon>
             </sync:MenuItemAdv>
+
             <sync:MenuItemAdv
                 Click="OnFolderMenuOptionClick"
                 Header="Folder"
@@ -59,7 +60,9 @@
                     <Image Source="/Resources/Assets/MenuItems/FolderItem.png" />
                 </sync:MenuItemAdv.Icon>
             </sync:MenuItemAdv>
-            <Separator />
+
+            <Separator Foreground="{StaticResource BorderBrush}"/>
+
             <sync:MenuItemAdv
                 Click="OnChromeOptionClick"
                 Header="Chrome"
@@ -76,6 +79,7 @@
                     <Image Source="/Resources/Assets/MenuItems/EdgeItem.png" />
                 </sync:MenuItemAdv.Icon>
             </sync:MenuItemAdv>
+
             <sync:MenuItemAdv
                 Click="OnFirefoxOptionClick"
                 Header="FireFox"
@@ -93,6 +97,7 @@
                     <Image Source="/Resources/Assets/MenuItems/CalculatorItem.png" />
                 </sync:MenuItemAdv.Icon>
             </sync:MenuItemAdv>
+
             <sync:MenuItemAdv
                 Click="OnControlPanelOptionClick"
                 Header="Control Panel"
@@ -101,6 +106,7 @@
                     <Image Source="/Resources/Assets/MenuItems/ControlPanelItem.png" />
                 </sync:MenuItemAdv.Icon>
             </sync:MenuItemAdv>
+
             <sync:MenuItemAdv
                 Click="OnTaskManagerOptionClick"
                 Header="Task Manager"
@@ -109,7 +115,9 @@
                     <Image Source="/Resources/Assets/MenuItems/TaskManagerItem.png" />
                 </sync:MenuItemAdv.Icon>
             </sync:MenuItemAdv>
-            <Separator />
+
+            <Separator Foreground="{StaticResource BorderBrush}"/>
+
             <sync:MenuItemAdv
                 Click="OnCloseOptionClick"
                 Header="Exit"
@@ -118,6 +126,7 @@
                     <Image Source="/Resources/Assets/MenuItems/ExitItem.png" />
                 </sync:MenuItemAdv.Icon>
             </sync:MenuItemAdv>
+
         </ContextMenu>
     </Window.ContextMenu>
 

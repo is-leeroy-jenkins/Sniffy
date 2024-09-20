@@ -229,9 +229,14 @@ namespace Sniffy
         /// <summary>
         /// Adds the stream text.
         /// </summary>
-        /// <param name="text">The text.</param>
-        /// <param name="isMetaText">if set to <c>true</c> [is meta text].</param>
-        /// <param name="isSendText">if set to <c>true</c> [is send text].</param>
+        /// <param name="text">
+        /// The text.</param>
+        /// <param name="isMetaText">
+        /// if set to <c>true</c>
+        /// [is meta text].</param>
+        /// <param name="isSendText">
+        /// if set to <c>true</c>
+        /// [is send text].</param>
         private void AddStreamText( string text, bool isMetaText = false, bool isSendText = false )
         {
             var _run = new Run( text );

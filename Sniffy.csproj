@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net8.0-windows7.0</TargetFramework>
+    <TargetFramework>net8.0-windows</TargetFramework>
     <RollForward>Major</RollForward>
     <OutputType>WinExe</OutputType>
     <Nullable>disable</Nullable>
@@ -15,7 +15,7 @@
     <AnalysisLevel>6.0-recommended</AnalysisLevel>
     <Title>Sniffy</Title>
     <Company>Terry Eppler</Company>
-    <Description>A simple .NET WPF application that can be used to establish TCP (raw) or WebSocket connections and exchange text messages for testing/debugging purposes.</Description>
+    <Description>A simple .NET WPF application that can be used to establish TCP (raw) or WebSocket connections and exchange text messages for testing and debugging purposes.</Description>
     <Copyright>2022 Terry Eppler</Copyright>
     <PackageIcon>Application.png</PackageIcon>
     <PackageReadmeFile>README.md</PackageReadmeFile>
@@ -30,10 +30,12 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <Optimize>True</Optimize>
     <WarningLevel>6</WarningLevel>
+    <DebugType>embedded</DebugType>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <WarningLevel>6</WarningLevel>
+    <DebugType>embedded</DebugType>
   </PropertyGroup>
 
   <ItemGroup>
