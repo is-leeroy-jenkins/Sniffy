@@ -13,10 +13,27 @@
     <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
     <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
     <AnalysisLevel>6.0-recommended</AnalysisLevel>
+    <Title>Sniffy</Title>
+    <Company>Terry Eppler</Company>
+    <Description>A simple .NET WPF application that can be used to establish TCP (raw) or WebSocket connections and exchange text messages for testing/debugging purposes.</Description>
+    <Copyright>2022 Terry Eppler</Copyright>
+    <PackageIcon>Application.png</PackageIcon>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <RepositoryUrl>https://github.com/is-leeroy-jenkins/Sniffy</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>tcp; packets; ip; networking;</PackageTags>
+    <IncludeSymbols>True</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <GenerateDocumentationFile>True</GenerateDocumentationFile>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <Optimize>True</Optimize>
+    <WarningLevel>6</WarningLevel>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <WarningLevel>6</WarningLevel>
   </PropertyGroup>
 
   <ItemGroup>
@@ -109,7 +126,6 @@
     <None Remove="Resources\Assets\Windows\Calculator\Cancel.png" />
     <None Remove="Resources\Assets\Windows\Calculator\Main.png" />
     <None Remove="Resources\Assets\Windows\Dialog\SplashNotification.png" />
-    <None Remove="Resources\Assets\Windows\Sissy\Application.png" />
     <None Remove="UI\Windows\Application.png" />
     <None Remove="UI\Windows\Sniffy\pymtoedh.4xd~" />
   </ItemGroup>
@@ -262,6 +278,14 @@
 
   <ItemGroup>
     <None Update="Properties\LICENSE.txt">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Update="README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Update="Resources\Assets\Windows\Sissy\Application.png">
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
     </None>
