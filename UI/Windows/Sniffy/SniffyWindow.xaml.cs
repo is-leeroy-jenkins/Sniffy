@@ -72,8 +72,6 @@ namespace Sniffy
     /// <summary>
     /// Interaction logic for SniffyWindow.xaml
     /// </summary>
-    /// <seealso cref="T:System.Windows.Window" />
-    /// <seealso cref="T:System.Windows.Markup.IComponentConnector" />
     [ SuppressMessage( "ReSharper", "MemberCanBeInternal" ) ]
     [ SuppressMessage( "ReSharper", "RedundantExtendsListEntry" ) ]
     [ SuppressMessage( "ReSharper", "ClassCanBeSealed.Global" ) ]
@@ -133,6 +131,56 @@ namespace Sniffy
         /// </summary>
         private static IReadOnlyDictionary<string, Encoding> _encodings;
 
+        /// <inheritdoc />
+        /// <summary>
+        /// Static constructor that initializes the
+        /// </summary>
+        static SniffyWindow( )
+        {
+            Encoding.RegisterProvider( CodePagesEncodingProvider.Instance );
+            var _win1252 = Encoding.GetEncoding( 1252 );
+            var _utf8 = new UTF8Encoding( false );
+            _encodings = new Dictionary<string, Encoding>( StringComparer.OrdinalIgnoreCase )
+            {
+                {
+                    _win1252.WebName, _win1252
+                },
+                {
+                    _utf8.WebName, _utf8
+                }
+            };
+        }
+
+        /// <inheritdoc />
+        /// <summary>
+        /// Initializes a new instance of the
+        /// </summary>
+        public SniffyWindow( )
+        {
+            // Theme Properties
+            SfSkinManager.ApplyStylesOnApplication = true;
+            SfSkinManager.SetTheme( this, new Theme( "FluentDark", Controls ) );
+
+            // Window Initialization
+            InitializeComponent( );
+            InitializeDelegates( );
+            RegisterCallbacks( );
+
+            // Window Properties
+            Height = 625;
+            Width = 725;
+            Padding = new Thickness( 1 );
+            Margin = new Thickness( 1 );
+            BorderThickness = new Thickness( 1 );
+            WindowStyle = WindowStyle.SingleBorderWindow;
+            Title = "Sniffy";
+            WindowStartupLocation = WindowStartupLocation.CenterScreen;
+
+            // Window Events
+            Loaded += OnLoaded;
+            Closing += OnClosing;
+        }
+        
         /// <summary>
         /// Registers the callbacks.
         /// </summary>
@@ -872,61 +920,11 @@ namespace Sniffy
         /// Fails the specified ex.
         /// </summary>
         /// <param name="ex">The ex.</param>
-        private protected void Fail( Exception ex )
+        private protected void Fail(Exception ex)
         {
-            var _error = new ErrorWindow( ex );
-            _error?.SetText( );
-            _error?.ShowDialog( );
-        }
-
-        /// <inheritdoc />
-        /// <summary>
-        /// Static constructor that initializes the
-        /// </summary>
-        static SniffyWindow( )
-        {
-            Encoding.RegisterProvider( CodePagesEncodingProvider.Instance );
-            var _win1252 = Encoding.GetEncoding( 1252 );
-            var _utf8 = new UTF8Encoding( false );
-            _encodings = new Dictionary<string, Encoding>( StringComparer.OrdinalIgnoreCase )
-            {
-                {
-                    _win1252.WebName, _win1252
-                },
-                {
-                    _utf8.WebName, _utf8
-                }
-            };
-        }
-
-        /// <inheritdoc />
-        /// <summary>
-        /// Initializes a new instance of the
-        /// </summary>
-        public SniffyWindow( )
-        {
-            // Theme Properties
-            SfSkinManager.ApplyStylesOnApplication = true;
-            SfSkinManager.SetTheme( this, new Theme( "FluentDark", Controls ) );
-
-            // Window Initialization
-            InitializeComponent( );
-            InitializeDelegates( );
-            RegisterCallbacks( );
-
-            // Window Properties
-            Height = 625;
-            Width = 725;
-            Padding = new Thickness( 1 );
-            Margin = new Thickness( 1 );
-            BorderThickness = new Thickness( 1 );
-            WindowStyle = WindowStyle.SingleBorderWindow;
-            Title = "Sniffy";
-            WindowStartupLocation = WindowStartupLocation.CenterScreen;
-
-            // Window Events
-            Loaded += OnLoaded;
-            Closing += OnClosing;
+            var _error = new ErrorWindow(ex);
+            _error?.SetText();
+            _error?.ShowDialog();
         }
     }
 }

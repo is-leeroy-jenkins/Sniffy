@@ -9,6 +9,7 @@
     <Color x:Key="MutedForeColor">#FF505050</Color>
     <Color x:Key="WhiteColor">#FFF</Color>
     <Color x:Key="BlackColor">#000</Color>
+    <Color x:Key="TransparentColor">#00000000</Color>
 
     <!--  ************************************  Default Colors   ***********************************  -->
 
@@ -53,29 +54,29 @@
     <Color x:Key="DangerColor2">#FFAB0202</Color>
     <Color x:Key="DangerColor3">#FF6C0000</Color>
     <Color x:Key="DangerColor4">#FF4A0101</Color>
-    <Color x:Key="DangerColor5">#FF290000</Color>
+    <Color x:Key="DangerColor5">#FF280000</Color>
 
     <!--  ************************************  Background Colors  *****************************  -->
 
-    <Color x:Key="BackgroundColor1">#FF141414</Color>
-    <Color x:Key="BackgroundColor2">#FF282828</Color>
-    <Color x:Key="BackgroundColor3">#FF323232</Color>
-    <Color x:Key="BackgroundColor4">#FF013D11</Color>
-    <Color x:Key="BackgroundColor5">#FF012336</Color>
+    <Color x:Key="BackColor1">#FF141414</Color>
+    <Color x:Key="BackColor2">#FF282828</Color>
+    <Color x:Key="BackColor3">#FF2D2D2D</Color>
+    <Color x:Key="BackColor4">#FF013D11</Color>
+    <Color x:Key="BackColor5">#FF012336</Color>
 
 
     <!--  ************************************  Foreground Colors  ****************************  -->
 
-    <Color x:Key="ForegroundColor1">#FFDEDEDE</Color>
-    <Color x:Key="ForegroundColor2">#FFA0BDFC</Color>
-    <Color x:Key="ForegroundColor3">#FF0078D4</Color>
-    <Color x:Key="ForegroundColor4">#FF4CAE4C</Color>
-    <Color x:Key="ForegroundColor5">#FFAB0202</Color>
+    <Color x:Key="ForeColor1">#FFDEDEDE</Color>
+    <Color x:Key="ForeColor2">#FFA0BDFC</Color>
+    <Color x:Key="ForeColor3">#FF0078D4</Color>
+    <Color x:Key="ForeColor4">#FF4CAE4C</Color>
+    <Color x:Key="ForeColor5">#FFAB0202</Color>
 
 
     <!--  ************************************  Hover Colors  *****************************  -->
 
-    <Color x:Key="HoverColor1">#FFDEDEDE</Color>
+    <Color x:Key="HoverColor1">#FFFFFFFF</Color>
     <Color x:Key="HoverColor2">#FFA0BDFC</Color>
     <Color x:Key="HoverColor3">#FF4682B4</Color>
     <Color x:Key="HoverColor4">#FF505050</Color>
@@ -84,15 +85,20 @@
 
     <!--  ************************************  Menu Colors  *****************************  -->
 
-    <Color x:Key="MenuBackColor">#FF0A0A0A</Color>
+    <Color x:Key="MenuBackColor">#FF0F0F0F</Color>
     <Color x:Key="MenuForeColor">#FFA0BDFC</Color>
     <Color x:Key="MenuBorderColor">#FF4682B4</Color>
     <Color x:Key="MenuHoverColor">#FF0E3C5E</Color>
 
 
+    <!--  ***************************************  DataGrid  *************************************  -->
+
+
+    <Color x:Key="DataGridLinesColor">#FF4682B4</Color>
+    <Color x:Key="DataGridSelectAllButtonColor">#DFDFDF</Color>
+    <Color x:Key="DataGridSelectAllButtonHoverColor">#E9E9E9</Color>
 
     <!--  ************************************  Series Colors **********************************  -->
-
 
     <Color x:Key="SeriesColor1">#FF4682B4</Color>
     <Color x:Key="SeriesColor2">#FFA9A9A9</Color>
@@ -103,621 +109,420 @@
     <Color x:Key="SeriesColor7">#FF556B2F</Color>
     <Color x:Key="SeriesColor8">#FFA0BDFC</Color>
 
-
     <!--  ************************************  Common Colors ***********************************  -->
 
-
     <Color x:Key="GlyphColor">#FF0078D4</Color>
-
-    <Color x:Key="ForegroundColor">#FFDEDEDE</Color>
-
-    <Color x:Key="MutedForegroundColor">#FF555555</Color>
-
-    <Color x:Key="ForegroundColor.LightBlue">#FFA0BDFC</Color>
-
-    <Color x:Key="BackgroundColor">#FF141414</Color>
-
-    <Color x:Key="BackgroundColor.Control">#FF282828</Color>
-
+    <Color x:Key="MutedBorderColor">#FF555555</Color>
+    <Color x:Key="LightBlueForeColor">#FFA0BDFC</Color>
+    <Color x:Key="SteelBlueColor">#FF4682B4</Color>
+    <Color x:Key="DefaultBackColor">#FF141414</Color>
+    <Color x:Key="ControlBackColor">#FF282828</Color>
+    <Color x:Key="ControlInteriorColor">#FF2D2D2D</Color>
     <Color x:Key="BorderColor">#FF0078D4</Color>
+    <Color x:Key="LightBlueColor">#FFA0BDFC</Color>
+    <Color x:Key="ControlHoverColor">#FF0E3C5E</Color>
 
-    <Color x:Key="BorderColor.Light">#FFA0BDFC</Color>
-
-    <Color x:Key="Disabled.BackgroundColor">#FF141414</Color>
-
-    <Color x:Key="Disabled.BackgroundColorLight">#FF282828</Color>
-
-    <Color x:Key="Disabled.BorderColor">#FF141414</Color>
-
-    <Color x:Key="Disabled.ForegroundColor">#FF505050</Color>
-
-    <Color x:Key="Disabled.GlyphColor">#FF0E3C5E</Color>
-
-
+    <!--  ************************************  Brushes  ***********************************  -->
 
     <SolidColorBrush
-        x:Key="MenuBackground"
-        Color="{StaticResource MenuBackColor}" />
-
-
-    <SolidColorBrush
-        x:Key="MenuForeground"
-        Color="{StaticResource MenuForeColor}" />
-
-
-    <SolidColorBrush
-        x:Key="MenuBorderBrush"
-        Color="{StaticResource MenuBorderColor}" />
+        x:Key="TransparentBrush"
+        Color="{DynamicResource TransparentColor}" />
 
 
     <SolidColorBrush
         x:Key="BorderBrush"
-        Color="{StaticResource BorderColor}" />
+        Color="{DynamicResource BorderColor}" />
 
     <SolidColorBrush
         x:Key="BackgroundBrush"
-        Color="{StaticResource BackgroundColor}" />
+        Color="{DynamicResource DefaultBackColor}" />
 
     <SolidColorBrush
-        x:Key="FormControlBackground"
-        Color="{StaticResource BackgroundColor1}" />
+        x:Key="FormBackground"
+        Color="{DynamicResource DefaultBackColor}" />
 
     <SolidColorBrush
-        x:Key="FormControlBorderBrush"
-        Color="{StaticResource BorderColor}" />
+        x:Key="FormBorderBrush"
+        Color="{DynamicResource BorderColor}" />
 
     <SolidColorBrush
-        x:Key="FormControlForeground"
-        Color="{StaticResource ForegroundColor}" />
+        x:Key="FormForeground"
+        Color="{DynamicResource LightBlueForeColor}" />
 
     <SolidColorBrush
         x:Key="ButtonForeground"
-        Color="{StaticResource ForegroundColor2}" />
+        Color="{DynamicResource LightBlueForeColor}" />
 
     <SolidColorBrush
         x:Key="LightBlueBrush"
-        Color="{StaticResource ForegroundColor2}" />
+        Color="{DynamicResource LightBlueForeColor}" />
+
+    <SolidColorBrush
+        x:Key="WhiteForeground"
+        Color="{DynamicResource WhiteColor}" />
 
     <SolidColorBrush
         x:Key="ControlInterior"
-        Color="{StaticResource BackgroundColor3}" />
-
-
-    <SolidColorBrush
-        x:Key="ControlHoverBrush"
-        Color="{StaticResource DefaultColor4}" />
-
-
-    <SolidColorBrush
-        x:Key="MutedForeground"
-        Color="{StaticResource MutedForegroundColor}" />
-
-    <SolidColorBrush
-        x:Key="DefaultBackground"
-        Color="{StaticResource BackgroundColor1}" />
-
-    <SolidColorBrush
-        x:Key="Background-Black"
-        Color="{StaticResource BlackColor}" />
-
-    <SolidColorBrush
-        x:Key="BorderBrush-Default1"
-        Color="{StaticResource BorderColor}" />
-
-    <SolidColorBrush
-        x:Key="Background-Default2"
-        Color="{StaticResource DefaultColor3}" />
-
-    <SolidColorBrush
-        x:Key="BorderBrush-Default2"
-        Color="{StaticResource DefaultColor4}" />
-
-    <SolidColorBrush
-        x:Key="Foreground-Default"
-        Color="{StaticResource DefaultColor5}" />
-
-    <SolidColorBrush
-        x:Key="Background-Primary1"
-        Color="{StaticResource PrimaryColor1}" />
-
-    <SolidColorBrush
-        x:Key="BorderBrush-Primary1"
-        Color="{StaticResource PrimaryColor2}" />
-
-    <SolidColorBrush
-        x:Key="Foreground-Primary1"
-        Color="{StaticResource PrimaryColor1}" />
-
-    <SolidColorBrush
-        x:Key="Background-Primary2"
-        Color="{StaticResource PrimaryColor2}" />
-
-    <SolidColorBrush
-        x:Key="BorderBrush-Primary2"
-        Color="{StaticResource PrimaryColor2}" />
-
-    <SolidColorBrush
-        x:Key="Foreground-Primary2"
-        Color="{StaticResource PrimaryColor2}" />
-
-
-    <SolidColorBrush
-        x:Key="Background-Success1"
-        Color="{StaticResource SuccessColor1}" />
-
-    <SolidColorBrush
-        x:Key="BorderBrush-Success1"
-        Color="{StaticResource SuccessColor1}" />
-
-    <SolidColorBrush
-        x:Key="Background-Success2"
-        Color="{StaticResource SuccessColor2}" />
-
-    <SolidColorBrush
-        x:Key="BorderBrush-Success2"
-        Color="{StaticResource SuccessColor2}" />
-
-    <SolidColorBrush
-        x:Key="Foreground-Success"
-        Color="{StaticResource SuccessColor5}" />
-
-    <SolidColorBrush
-        x:Key="BorderBrush-Success3"
-        Color="{StaticResource SuccessColor3}" />
-
-    <SolidColorBrush
-        x:Key="Background-Info1"
-        Color="{StaticResource InfoColor1}" />
-
-    <SolidColorBrush
-        x:Key="BorderBrush-Info1"
-        Color="{StaticResource InfoColor2}" />
-
-    <SolidColorBrush
-        x:Key="Background-Info2"
-        Color="{StaticResource InfoColor2}" />
-
-    <SolidColorBrush
-        x:Key="BorderBrush-Info2"
-        Color="{StaticResource InfoColor2}" />
-
-    <SolidColorBrush
-        x:Key="Foreground-Info"
-        Color="{StaticResource InfoColor1}" />
-
-    <SolidColorBrush
-        x:Key="Background-Warning1"
-        Color="{StaticResource WarningColor1}" />
-
-    <SolidColorBrush
-        x:Key="BorderBrush-Warning1"
-        Color="{StaticResource WarningColor1}" />
-
-    <SolidColorBrush
-        x:Key="Background-Warning2"
-        Color="{StaticResource WarningColor2}" />
-
-    <SolidColorBrush
-        x:Key="BorderBrush-Warning2"
-        Color="{StaticResource WarningColor2}" />
-
-    <SolidColorBrush
-        x:Key="Foreground-Warning"
-        Color="{StaticResource WarningColor5}" />
-
-    <SolidColorBrush
-        x:Key="BorderBrush-Warning3"
-        Color="{StaticResource WarningColor3}" />
-
-
-    <SolidColorBrush
-        x:Key="Background-Danger1"
-        Color="{StaticResource DangerColor1}" />
-
-    <SolidColorBrush
-        x:Key="BorderBrush-Danger1"
-        Color="{StaticResource DangerColor2}" />
-
-    <SolidColorBrush
-        x:Key="Background-Danger2"
-        Color="{StaticResource DangerColor2}" />
-
-    <SolidColorBrush
-        x:Key="BorderBrush-Danger2"
-        Color="{StaticResource DangerColor2}" />
-
-    <SolidColorBrush
-        x:Key="Foreground-Danger"
-        Color="{StaticResource DangerColor1}" />
-
-    <SolidColorBrush
-        x:Key="BorderBrush-Danger3"
-        Color="{StaticResource DangerColor3}" />
-
-
-    <SolidColorBrush
-        x:Key="DefaultForeground"
-        Color="{StaticResource ForegroundColor1}" />
+        Color="{DynamicResource BackColor3}" />
 
     <SolidColorBrush
         x:Key="ControlBackground"
-        Color="{StaticResource BackgroundColor2}" />
+        Color="{DynamicResource ControlBackColor}" />
 
     <SolidColorBrush
-        x:Key="MutedBorderBrush"
-        Color="{StaticResource MutedForegroundColor}" />
-
+        x:Key="ControlHoverBrush"
+        Color="{DynamicResource DefaultColor4}" />
 
     <SolidColorBrush
-        x:Key="DisabledForeground"
-        Color="{StaticResource MutedForegroundColor}" />
+        x:Key="MutedForeground"
+        Color="{DynamicResource MutedBorderColor}" />
 
+    <SolidColorBrush
+        x:Key="DefaultBackground"
+        Color="{DynamicResource DefaultBackColor}" />
+
+    <SolidColorBrush
+        x:Key="BlackBackground"
+        Color="{DynamicResource BlackColor}" />
+
+    <SolidColorBrush
+        x:Key="BlueBorderBrush"
+        Color="{DynamicResource BorderColor}" />
+
+    <SolidColorBrush
+        x:Key="SteelBlueBackground"
+        Color="{DynamicResource DefaultColor3}" />
+
+    <SolidColorBrush
+        x:Key="BlueBackground"
+        Color="{DynamicResource DefaultColor4}" />
+
+    <SolidColorBrush
+        x:Key="DarkRedBackground"
+        Color="{DynamicResource DangerColor5}" />
+
+    <SolidColorBrush
+        x:Key="DarkBlueBackground"
+        Color="{DynamicResource DefaultColor5}" />
+
+    <SolidColorBrush
+        x:Key="GreenBackground"
+        Color="{DynamicResource SuccessColor5}" />
+
+    <SolidColorBrush
+        x:Key="BrightGreenForeground"
+        Color="{DynamicResource SuccessColor3}" />
+
+    <SolidColorBrush
+        x:Key="YellowForeground"
+        Color="{DynamicResource WarningColor1}" />
+
+    <SolidColorBrush
+        x:Key="YellowBackground"
+        Color="{DynamicResource WarningColor5}" />
+
+    <SolidColorBrush
+        x:Key="RedForeground"
+        Color="{DynamicResource DangerColor1}" />
+
+    <SolidColorBrush
+        x:Key="MaroonForeground"
+        Color="{DynamicResource DangerColor3}" />
+
+    <SolidColorBrush
+        x:Key="RedBackground"
+        Color="{DynamicResource DangerColor5}" />
 
     <!--  Separator  -->
     <SolidColorBrush
         x:Key="SeparatorBrush"
-        Color="{StaticResource PrimaryColor1}" />
+        Color="{DynamicResource PrimaryColor1}" />
 
-    <!--  FontStyle  -->
-    <Style TargetType="{x:Type Control}">
-        <Setter Property="Foreground" Value="{StaticResource DefaultForeground}" />
-        <Setter Property="Background" Value="{StaticResource DefaultBackground}" />
-        <Setter Property="BorderBrush" Value="{StaticResource BorderBrush}" />
-    </Style>
+    <!--  *******************************************  Button  *******************************************  -->
 
-    <Style TargetType="{x:Type Window}">
-        <Setter Property="Foreground" Value="{StaticResource DefaultForeground}" />
-        <Setter Property="Background" Value="{StaticResource DefaultBackground}" />
-        <Setter Property="BorderBrush" Value="{StaticResource BorderBrush}" />
-    </Style>
-
-    <Style TargetType="{x:Type UserControl}">
-        <Setter Property="Foreground" Value="{StaticResource DefaultForeground}" />
-        <Setter Property="Background" Value="{StaticResource DefaultBackground}" />
-        <Setter Property="BorderBrush" Value="{StaticResource BorderBrush}" />
-    </Style>
-
-    <!--  Button  -->
     <SolidColorBrush
         x:Key="ButtonBackground"
-        Color="{StaticResource BackgroundColor3}" />
+        Color="{DynamicResource BackColor2}" />
 
     <SolidColorBrush
         x:Key="ButtonBorder"
-        Color="{StaticResource BorderColor}" />
-
-    <SolidColorBrush
-        x:Key="ButtonDisabledBackground"
-        Color="{StaticResource Disabled.BackgroundColor}" />
+        Color="{DynamicResource BorderColor}" />
 
     <SolidColorBrush
         x:Key="ButtonHoverBackground"
-        Color="{StaticResource DefaultColor4}" />
+        Color="{DynamicResource DefaultColor3}" />
 
     <SolidColorBrush
-        x:Key="ButtonDisabledBorder"
-        Color="{StaticResource Disabled.BorderColor}" />
+        x:Key="TileHoverBackground"
+        Color="{DynamicResource DefaultColor4}" />
 
-    <SolidColorBrush
-        x:Key="ButtonDisabledForeground"
-        Color="{StaticResource Disabled.ForegroundColor}" />
+    <!--  ******************************************* Check Box  *******************************************  -->
 
-
-    <!--  CheckBox  -->
     <SolidColorBrush
         x:Key="CheckBoxBackground"
-        Color="{StaticResource MutedForegroundColor}" />
-
-    <SolidColorBrush
-        x:Key="CheckBoxBorder"
-        Color="{StaticResource BorderColor}" />
+        Color="{DynamicResource MutedForeColor}" />
 
     <SolidColorBrush
         x:Key="CheckBoxMouseOverGlyph"
-        Color="{StaticResource GlyphColor}" />
+        Color="{DynamicResource GlyphColor}" />
+
+    <!--  ******************************************* Combo Box  *******************************************  -->
 
     <SolidColorBrush
-        x:Key="CheckBoxDisabledBackground"
-        Color="{StaticResource BackgroundColor1}" />
+        x:Key="ComboBoxBorder"
+        Color="{DynamicResource BorderColor}" />
 
     <SolidColorBrush
-        x:Key="CheckBoxDisabledBorder"
-        Color="{StaticResource BackgroundColor1}" />
+        x:Key="ComboBoxBackground"
+        Color="{DynamicResource BackColor3}" />
 
     <SolidColorBrush
-        x:Key="CheckBox.Disabled.Glyph"
-        Color="{StaticResource MutedForegroundColor}" />
-
-
-
-
-    <SolidColorBrush
-        x:Key="CheckBox.Pressed.Glyph"
-        Color="{StaticResource GlyphColor}" />
-
-    <SolidColorBrush
-        x:Key="CheckBox.Static.Glyph"
-        Color="{StaticResource GlyphColor}" />
-
-    <!--  ComboBox  -->
-    <SolidColorBrush
-        x:Key="ComboBox.Static.Background"
-        Color="{StaticResource BackgroundColor}" />
-
-    <SolidColorBrush
-        x:Key="ComboBox.Static.Border"
-        Color="{StaticResource BorderColor}" />
-
-    <SolidColorBrush
-        x:Key="ComboBox.Static.Editable.Background"
-        Color="{StaticResource BackgroundColor}" />
-
-    <SolidColorBrush
-        x:Key="ComboBox.Static.Editable.Border"
-        Color="{StaticResource BorderColor}" />
-
-    <SolidColorBrush
-        x:Key="ComboBox.Static.Editable.Button.Background"
+        x:Key="ComboBoxItemBorder"
         Color="Transparent" />
 
     <SolidColorBrush
-        x:Key="ComboBox.Static.Editable.Button.Border"
-        Color="Transparent" />
+        x:Key="ComboBoxItemBackground"
+        Color="{DynamicResource BackColor3}" />
+
+    <SolidColorBrush
+        x:Key="ComboBoxItemForeground"
+        Color="{DynamicResource LightBlueForeColor}" />
+
+    <SolidColorBrush
+        x:Key="ComboBoxHoverBackground"
+        Color="{DynamicResource BackColor3}" />
+
+    <SolidColorBrush
+        x:Key="ComboBoxHoverForeground"
+        Color="{DynamicResource BackColor3}" />
 
 
+    <!--  *******************************************  List Controls  *******************************************  -->
 
-    <!--  ListBox  -->
     <SolidColorBrush
         x:Key="ListBoxBackground"
-        Color="{StaticResource BackgroundColor2}" />
+        Color="{DynamicResource ControlBackColor}" />
 
     <SolidColorBrush
         x:Key="ListBoxForeground"
-        Color="{StaticResource PrimaryColor2}" />
+        Color="{DynamicResource PrimaryColor2}" />
 
     <SolidColorBrush
         x:Key="ListBoxBorder"
-        Color="{StaticResource BorderColor}" />
+        Color="{DynamicResource BorderColor}" />
 
     <SolidColorBrush
-        x:Key="ListBoxDisabledBackground"
-        Color="{StaticResource Disabled.BackgroundColor}" />
+        x:Key="ListBoxHoverForeground"
+        Color="{DynamicResource WhiteColor}" />
 
     <SolidColorBrush
-        x:Key="ListBoxDisabledBorder"
-        Color="{StaticResource Disabled.BorderColor}" />
+        x:Key="ListBoxHoverBackground"
+        Color="{DynamicResource MenuHoverColor}" />
 
-    <!--  ListBoxItemStyle  -->
+    <SolidColorBrush
+        x:Key="ListBoxHoverBorder"
+        Color="{DynamicResource LightBlueForeColor}" />
+
+
+
     <!--  ListView  -->
 
-    <!--  Menu  -->
-    <SolidColorBrush
-        x:Key="Menu.Static.Background"
-        Color="{StaticResource MenuBackColor}" />
 
     <SolidColorBrush
-        x:Key="Menu.Static.Foreground"
-        Color="{StaticResource PrimaryColor2}" />
+        x:Key="ListViewBackground"
+        Color="{DynamicResource ControlBackColor}" />
 
     <SolidColorBrush
-        x:Key="Menu.Static.Border"
-        Color="{StaticResource MenuBackColor}" />
+        x:Key="ListViewForeground"
+        Color="{DynamicResource PrimaryColor2}" />
 
     <SolidColorBrush
-        x:Key="Menu.MenuItem.Static.Border"
-        Color="{StaticResource BorderColor}" />
+        x:Key="ListViewBorder"
+        Color="{DynamicResource BorderColor}" />
 
     <SolidColorBrush
-        x:Key="Menu.MenuItem.Static.Background"
-        Color="{StaticResource MenuBackColor}" />
+        x:Key="ListViewHoverForeground"
+        Color="{DynamicResource WhiteColor}" />
 
     <SolidColorBrush
-        x:Key="Menu.MenuItem.MouseOver.BackgroundDark"
-        Color="{StaticResource BorderColor}" />
+        x:Key="ListViewHoverBackground"
+        Color="{DynamicResource MenuHoverColor}" />
 
     <SolidColorBrush
-        x:Key="Menu.MenuItem.Disabled.Foreground"
-        Color="{StaticResource Disabled.ForegroundColor}" />
+        x:Key="ListViewHoverBorder"
+        Color="{DynamicResource LightBlueForeColor}" />
+
+    <!--  *******************************************  Menu  *******************************************  -->
 
     <SolidColorBrush
-        x:Key="MenuTextBrushKey"
-        Color="{StaticResource ForegroundColor}" />
+        x:Key="MenuBackground"
+        Color="{DynamicResource ControlBackColor}" />
 
-    <!--  MenuSeparator  -->
+
     <SolidColorBrush
-        x:Key="Menu.Static.Separator"
-        Color="{StaticResource BorderColor.Light}" />
+        x:Key="MenuForeground"
+        Color="{DynamicResource MenuForeColor}" />
 
 
-    <!--  TabControl  -->
-    <!--  TabItem  -->
+    <SolidColorBrush
+        x:Key="MenuBorderBrush"
+        Color="{DynamicResource MenuBorderColor}" />
+
+
+    <SolidColorBrush
+        x:Key="MenuHoverForeground"
+        Color="{DynamicResource WhiteColor}" />
+
+    <SolidColorBrush
+        x:Key="MenuHoverBackground"
+        Color="{DynamicResource MenuHoverColor}" />
+
+    <SolidColorBrush
+        x:Key="MenuHoverBorder"
+        Color="{DynamicResource LightBlueForeColor}" />
+
+
+    <!--  ******************************************* Tab Control  *******************************************  -->
+
     <SolidColorBrush
         x:Key="TabItemBackground"
-        Color="{StaticResource BackgroundColor}" />
+        Color="{DynamicResource BackColor1}" />
 
 
     <SolidColorBrush
-        x:Key="TabItem.Disabled.Border"
-        Color="{StaticResource Disabled.BorderColor}" />
+        x:Key="TabItemBorder"
+        Color="{DynamicResource BackColor1}" />
 
     <SolidColorBrush
-        x:Key="TabItem.Selected.Background"
-        Color="{StaticResource BackgroundColor}" />
+        x:Key="TabItemSelectedBackground"
+        Color="{DynamicResource BackColor3}" />
 
     <SolidColorBrush
-        x:Key="TabItem.Selected.Border"
-        Color="{StaticResource BorderColor}" />
+        x:Key="TabItemSelectedBorder"
+        Color="{DynamicResource BorderColor}" />
 
-    <!--  RadioButton  -->
-    <SolidColorBrush
-        x:Key="RadioButton.Static.Background"
-        Color="{StaticResource BackgroundColor}" />
+    <!--  ******************************************* Radio Button  *******************************************  -->
 
     <SolidColorBrush
-        x:Key="RadioButton.Static.Border"
-        Color="{StaticResource BorderColor}" />
+        x:Key="RadioButtonBackground"
+        Color="{DynamicResource BackColor1}" />
 
     <SolidColorBrush
-        x:Key="RadioButton.MouseOver.Glyph"
-        Color="{StaticResource GlyphColor}" />
+        x:Key="RadioButtonBorder"
+        Color="{DynamicResource BorderColor}" />
 
     <SolidColorBrush
-        x:Key="RadioButton.Disabled.Background"
-        Color="{StaticResource Disabled.BackgroundColor}" />
+        x:Key="RadioButtonMouseHoverGlyph"
+        Color="{DynamicResource GlyphColor}" />
 
     <SolidColorBrush
-        x:Key="RadioButton.Disabled.Border"
-        Color="{StaticResource Disabled.BorderColor}" />
+        x:Key="RadioButtonPressedGlyph"
+        Color="{DynamicResource GlyphColor}" />
 
     <SolidColorBrush
-        x:Key="RadioButton.Disabled.Glyph"
-        Color="{StaticResource Disabled.GlyphColor}" />
-
-    <SolidColorBrush
-        x:Key="RadioButton.Pressed.Glyph"
-        Color="{StaticResource GlyphColor}" />
-
-    <SolidColorBrush
-        x:Key="RadioButton.Static.Glyph"
-        Color="{StaticResource GlyphColor}" />
-
-
-    <Color x:Key="RadioButton.Telegram.DisabledColor">LightGray</Color>
-
-    <Color x:Key="RadioButton.Telegram.ActiveColor">#FF4EB3EE</Color>
-
-    <SolidColorBrush
-        x:Key="RadioButton.Telegram.DisabledBrush"
-        Color="{StaticResource RadioButton.Telegram.DisabledColor}" />
-
-    <SolidColorBrush
-        x:Key="RadioButton.Telegram.ActiveBrush"
-        Color="{StaticResource RadioButton.Telegram.ActiveColor}" />
+        x:Key="RadioButtonGlyph"
+        Color="{DynamicResource GlyphColor}" />
 
 
     <SolidColorBrush
-        x:Key="Expander.Disabled.Arrow.Stroke"
-        Color="{StaticResource Disabled.ForegroundColor}" />
+        x:Key="RadioButtonDisabledBrush"
+        Color="{DynamicResource BackColor1}" />
 
     <SolidColorBrush
-        x:Key="Expander.Static.Arrow.Stroke"
-        Color="{StaticResource GlyphColor}" />
-
-    <!--  TextBox  -->
-    <SolidColorBrush
-        x:Key="TextBox.Static.Border"
-        Color="{StaticResource BorderColor}" />
-
-    <!--  ScrollViewer  -->
-
-    <Color x:Key="ScrollBar.BackgroundColor">#F3F3F3</Color>
-
-    <Color x:Key="ScrollBar.BorderColorDark">#C3C3C3</Color>
-
-    <SolidColorBrush
-        x:Key="ScrollBar.Static.Background"
-        Color="{StaticResource ScrollBar.BackgroundColor}" />
-
-    <SolidColorBrush
-        x:Key="ScrollBar.MouseOver.Background"
-        Color="{StaticResource ScrollBar.BackgroundColor}" />
-
-    <SolidColorBrush
-        x:Key="ScrollBar.Pressed.Background"
-        Color="{StaticResource ScrollBar.BackgroundColor}" />
-
-    <SolidColorBrush
-        x:Key="ScrollBar.Disabled.Background"
-        Color="{StaticResource Disabled.BackgroundColor}" />
-
-    <SolidColorBrush
-        x:Key="ScrollBar.Static.Border"
-        Color="{StaticResource ScrollBar.BackgroundColor}" />
-
-    <SolidColorBrush
-        x:Key="ScrollBar.MouseOver.Border"
-        Color="{StaticResource ScrollBar.BackgroundColor}" />
-
-    <SolidColorBrush
-        x:Key="ScrollBar.Pressed.Border"
-        Color="{StaticResource ScrollBar.BackgroundColor}" />
-
-    <SolidColorBrush
-        x:Key="ScrollBar.Disabled.Border"
-        Color="{StaticResource Disabled.BorderColor}" />
-
-    <SolidColorBrush
-        x:Key="ScrollBar.Static.Glyph"
-        Color="{StaticResource GlyphColor}" />
-
-    <SolidColorBrush
-        x:Key="ScrollBar.Pressed.Glyph"
-        Color="{StaticResource GlyphColor}" />
-
-    <SolidColorBrush
-        x:Key="ScrollBar.MouseOver.Glyph"
-        Color="{StaticResource GlyphColor}" />
-
-    <SolidColorBrush
-        x:Key="ScrollBar.Disabled.Glyph"
-        Color="{StaticResource Disabled.GlyphColor}" />
-
-    <SolidColorBrush
-        x:Key="ScrollBar.Static.Thumb"
-        Color="{StaticResource BackgroundColor}" />
-
-    <SolidColorBrush
-        x:Key="ScrollBar.Static.Thumb.Border"
-        Color="{StaticResource BorderColor}" />
-
-    <SolidColorBrush
-        x:Key="ScrollBar.MouseOver.Thumb"
-        Color="{StaticResource BackgroundColor.Control}" />
-
-    <SolidColorBrush
-        x:Key="ScrollBar.Pressed.Thumb.Border"
-        Color="{StaticResource ScrollBar.BorderColorDark}" />
-
-    <SolidColorBrush
-        x:Key="ScrollBar.Pressed.Thumb"
-        Color="{StaticResource BackgroundColor.Control}" />
-
-    <!--  DataGrid  -->
-
-    <Color x:Key="DataGrid.GridLinesColor">#E9E9E9</Color>
-
-    <Color x:Key="DataGrid.SelectAllButtonColor">#DFDFDF</Color>
-
-    <Color x:Key="DataGrid.SelectAllButton.MouseOverColor">#E9E9E9</Color>
-
-    <SolidColorBrush
-        x:Key="DataGrid.BackgroundBrush"
-        Color="{StaticResource BackgroundColor}" />
-
-    <SolidColorBrush
-        x:Key="DataGrid.Header.Background"
-        Color="{StaticResource BackgroundColor.Control}" />
-
-    <SolidColorBrush
-        x:Key="DataGrid.Header.Border"
-        Color="{StaticResource DataGrid.GridLinesColor}" />
-
-    <SolidColorBrush
-        x:Key="DataGrid.Cell.Pressed.Background"
-        Color="{StaticResource BackgroundColor}" />
+        x:Key="RadioButtonActiveBrush"
+        Color="{DynamicResource SuccessColor3}" />
 
 
     <SolidColorBrush
-        x:Key="DataGrid.GridLines"
-        Color="{StaticResource DataGrid.GridLinesColor}" />
+        x:Key="ExpanderArrowStroke"
+        Color="{DynamicResource GlyphColor}" />
+
+    <!--  *******************************************  TextBox  **************************************************  -->
 
     <SolidColorBrush
-        x:Key="DataGrid.SelectAllButton"
-        Color="{StaticResource DataGrid.SelectAllButtonColor}" />
+        x:Key="TextBoxBorder"
+        Color="{DynamicResource BorderColor}" />
 
     <SolidColorBrush
-        x:Key="DataGrid.SelectAllButton.MouseOver"
-        Color="{StaticResource DataGrid.SelectAllButton.MouseOverColor}" />
+        x:Key="TextBoxBackground"
+        Color="{DynamicResource BackColor1}" />
 
+    <SolidColorBrush
+        x:Key="TextBoxForeground"
+        Color="{DynamicResource LightBlueForeColor}" />
+
+
+    <!--  ******************************************* ScrollViewer  *********************************************  -->
+
+    <Color x:Key="ScrollBarBackColor">#FF785801</Color>
+
+    <Color x:Key="ScrollBarBorderColor">#C3C3C3</Color>
+
+    <SolidColorBrush
+        x:Key="ScrollBarBackground"
+        Color="{DynamicResource ScrollBarBackColor}" />
+
+    <SolidColorBrush
+        x:Key="ScrollBarHoverBackground"
+        Color="{DynamicResource ScrollBarBackColor}" />
+
+    <SolidColorBrush
+        x:Key="ScrollBarPressedBackground"
+        Color="{DynamicResource ScrollBarBackColor}" />
+
+
+    <SolidColorBrush
+        x:Key="ScrollBarBorder"
+        Color="{DynamicResource ScrollBarBackColor}" />
+
+    <SolidColorBrush
+        x:Key="ScrollBarMouseHoverBorder"
+        Color="{DynamicResource ScrollBarBackColor}" />
+
+    <SolidColorBrush
+        x:Key="ScrollBarPressedBorder"
+        Color="{DynamicResource ScrollBarBackColor}" />
+
+    <SolidColorBrush
+        x:Key="ScrollBarGlyph"
+        Color="{DynamicResource GlyphColor}" />
+
+    <SolidColorBrush
+        x:Key="ScrollBarPressedGlyph"
+        Color="{DynamicResource GlyphColor}" />
+
+    <SolidColorBrush
+        x:Key="ScrollBarMouseOverGlyph"
+        Color="{DynamicResource GlyphColor}" />
+
+    <SolidColorBrush
+        x:Key="ScrollBarThumbBorder"
+        Color="{DynamicResource BorderColor}" />
+
+    <SolidColorBrush
+        x:Key="ScrollBarPressedThumbBorder"
+        Color="{DynamicResource ScrollBarBorderColorDark}" />
+
+    <!--  *******************************************  DataGrid  *******************************************  -->
+
+    <SolidColorBrush
+        x:Key="DataGridBackground"
+        Color="{DynamicResource BackColor3}" />
+
+    <SolidColorBrush
+        x:Key="DataGridHeaderBorder"
+        Color="{DynamicResource DataGridLinesColor}" />
+
+    <SolidColorBrush
+        x:Key="DataGridLines"
+        Color="{DynamicResource DataGridLinesColor}" />
+
+    <SolidColorBrush
+        x:Key="DataGridSelectAllButton"
+        Color="{DynamicResource DataGridSelectAllButtonColor}" />
+
+    <SolidColorBrush
+        x:Key="DataGridSelectAllButtonMouseOver"
+        Color="{DynamicResource DataGridSelectAllButtonHoverColor}" />
 
 </ResourceDictionary>

@@ -5,41 +5,40 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:Sniffy"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:sync="http://schemas.syncfusion.com/wpf"
     xmlns:skin="clr-namespace:Syncfusion.SfSkinManager;assembly=Syncfusion.SfSkinManager.WPF"
+    xmlns:sync="http://schemas.syncfusion.com/wpf"
     x:Name="SissyView"
     Title="Sniffy"
     Width="710"
     Height="625"
     Padding="1,1,1,1"
-    Background="{StaticResource DefaultBackground}"
-    BorderBrush="{StaticResource BorderBrush}"
+    sync:SfSkinManager.Theme="{skin:SkinManagerExtension ThemeName=FluentDark}"
+    Background="{StaticResource FormBackground}"
+    BorderBrush="{StaticResource BlueBorderBrush}"
     BorderThickness="1,1,1,1"
     Closed="OnClosing"
-    Foreground="{StaticResource DefaultForeground}"
+    Foreground="{StaticResource FormForeground}"
     Icon="/Resources/Assets/Windows/Sissy/Application.png"
     Left="0"
     TextOptions.TextFormattingMode="Display"
     Top="0"
     WindowStartupLocation="CenterScreen"
-    sync:SfSkinManager.Theme="{skin:SkinManagerExtension ThemeName=FluentDark}"
     mc:Ignorable="d">
 
-    <!--********************************************** Resources ***********************************************-->
+    <!--  ********************************************** Resources ***********************************************  -->
 
     <Window.Resources>
 
         <Style TargetType="{x:Type ToolTip}">
             <Setter Property="BorderThickness" Value="1,1,1,1" />
-            <Setter Property="BorderBrush" Value="{StaticResource BorderBrush}" />
-            <Setter Property="Background" Value="{StaticResource Background-Black}" />
+            <Setter Property="BorderBrush" Value="{StaticResource BlueBorderBrush}" />
+            <Setter Property="Background" Value="{StaticResource BlackBackground}" />
             <Setter Property="Foreground" Value="{StaticResource LightBlueBrush}" />
         </Style>
 
     </Window.Resources>
 
-
-    <!--********************************************** Context Menu ***********************************************-->
+    <!--  ********************************************** Context Menu ***********************************************  -->
 
     <Window.ContextMenu>
         <ContextMenu Name="SniffyContextMenu">
@@ -61,7 +60,7 @@
                 </sync:MenuItemAdv.Icon>
             </sync:MenuItemAdv>
 
-            <Separator Foreground="{StaticResource BorderBrush}"/>
+            <Separator Background="{StaticResource BlueBorderBrush}" />
 
             <sync:MenuItemAdv
                 Click="OnChromeOptionClick"
@@ -71,6 +70,7 @@
                     <Image Source="/Resources/Assets/MenuItems/ChromeItem.png" />
                 </sync:MenuItemAdv.Icon>
             </sync:MenuItemAdv>
+
             <sync:MenuItemAdv
                 Click="OnEdgeOptionClick"
                 Header="Edge"
@@ -88,7 +88,9 @@
                     <Image Source="/Resources/Assets/MenuItems/FirefoxItem.png" />
                 </sync:MenuItemAdv.Icon>
             </sync:MenuItemAdv>
-            <Separator />
+
+            <Separator Background="{StaticResource BlueBorderBrush}" />
+
             <sync:MenuItemAdv
                 Click="OnCalculatorMenuOptionClick"
                 Header="Calculator"
@@ -116,7 +118,7 @@
                 </sync:MenuItemAdv.Icon>
             </sync:MenuItemAdv>
 
-            <Separator Foreground="{StaticResource BorderBrush}"/>
+            <Separator Background="{StaticResource BlueBorderBrush}" />
 
             <sync:MenuItemAdv
                 Click="OnCloseOptionClick"
@@ -131,11 +133,11 @@
     </Window.ContextMenu>
 
 
-    <!--********************************************** Layout ***********************************************-->
+    <!--  ********************************************** Layout ***********************************************  -->
 
     <Canvas
         x:Name="SissyCanvas"
-        Background="{StaticResource DefaultBackground}">
+        Background="{StaticResource FormBackground}">
         <Label
             x:Name="HostLabel"
             Canvas.Left="177"
@@ -151,7 +153,7 @@
             HorizontalAlignment="Left"
             VerticalAlignment="Center"
             Content="Protocol:"
-            Foreground="{StaticResource LightBlueBrush}"  />
+            Foreground="{StaticResource LightBlueBrush}" />
         <Label
             x:Name="PortLabel"
             Canvas.Left="499"
@@ -160,7 +162,7 @@
             HorizontalAlignment="Right"
             VerticalAlignment="Top"
             Content="Port:"
-            Foreground="{StaticResource LightBlueBrush}"  />
+            Foreground="{StaticResource LightBlueBrush}" />
         <CheckBox
             x:Name="SslCheckBox"
             Canvas.Left="10"
@@ -169,7 +171,7 @@
             VerticalAlignment="Top"
             Checked="OnUseSslCheckBoxChanged"
             Content="Use TLS"
-            Foreground="{StaticResource LightBlueBrush}" 
+            Foreground="{StaticResource LightBlueBrush}"
             Unchecked="OnUseSslCheckBoxChanged" />
         <CheckBox
             x:Name="IgnoreCertErrorsCheckBox"
@@ -178,7 +180,7 @@
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Content="Ignore Cert Errors (Insecure!)"
-            Foreground="{StaticResource LightBlueBrush}"  />
+            Foreground="{StaticResource LightBlueBrush}" />
         <CheckBox
             x:Name="Tls1CheckBox"
             Canvas.Left="336"
@@ -186,7 +188,7 @@
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Content="TLS 1.0"
-            Foreground="{StaticResource LightBlueBrush}"  />
+            Foreground="{StaticResource LightBlueBrush}" />
         <CheckBox
             x:Name="Tls11CheckBox"
             Canvas.Left="397"
@@ -194,7 +196,7 @@
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Content="TLS 1.1"
-            Foreground="{StaticResource LightBlueBrush}"  />
+            Foreground="{StaticResource LightBlueBrush}" />
         <CheckBox
             x:Name="Tls12CheckBox"
             Canvas.Left="458"
@@ -202,7 +204,7 @@
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Content="TLS 1.2"
-            Foreground="{StaticResource LightBlueBrush}" 
+            Foreground="{StaticResource LightBlueBrush}"
             IsChecked="True" />
         <CheckBox
             x:Name="Tls13CheckBox"
@@ -211,16 +213,16 @@
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Content="TLS 1.3"
-            Foreground="{StaticResource LightBlueBrush}" 
+            Foreground="{StaticResource LightBlueBrush}"
             IsChecked="True" />
         <Rectangle
             x:Name="Separartor"
             Canvas.Left="10"
             Canvas.Top="100"
             Width="678"
-            Height="1"
+            Height="3"
             VerticalAlignment="Top"
-            Stroke="{StaticResource BorderBrush}"/>
+            Stroke="{StaticResource BlueBorderBrush}" />
         <RichTextBox
             x:Name="InputTextBox"
             Canvas.Left="15"
@@ -230,16 +232,15 @@
             Padding="10,1,1,1"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
-            Background="{StaticResource Background-Black}"
-            BorderBrush="{StaticResource BorderBrush}"
-            CaretBrush="White"
+            Background="{StaticResource ControlInterior}"
+            BorderBrush="{StaticResource BlueBorderBrush}"
+            CaretBrush="{StaticResource WhiteForeground}"
             FontFamily="Segoe UI"
-            Foreground="{StaticResource DefaultForeground}"
+            Foreground="{StaticResource FormForeground}"
             IsReadOnly="True"
             IsReadOnlyCaretVisible="True"
             VerticalScrollBarVisibility="Auto">
-            <FlowDocument 
-                x:Name="FlowDocument" />
+            <FlowDocument x:Name="FlowDocument" />
         </RichTextBox>
         <TextBox
             x:Name="OutputTextBox"
@@ -251,7 +252,7 @@
             HorizontalAlignment="Center"
             VerticalAlignment="Top"
             Background="{StaticResource ControlInterior}"
-            BorderBrush="{StaticResource BorderBrush}"
+            BorderBrush="{StaticResource BlueBorderBrush}"
             FontFamily="Consolas"
             KeyDown="OnSendTextBoxKeyDown"
             TextWrapping="Wrap"
@@ -263,7 +264,7 @@
             HorizontalAlignment="Right"
             VerticalAlignment="Bottom"
             Content="Line Ending:"
-            Foreground="{StaticResource LightBlueBrush}"  />
+            Foreground="{StaticResource LightBlueBrush}" />
         <CheckBox
             x:Name="SingleLineCheckBox"
             Canvas.Left="15"
@@ -272,7 +273,7 @@
             VerticalAlignment="Top"
             Checked="OnSingleLineCheckChanged"
             Content="Single Line Text Box"
-            Foreground="{StaticResource LightBlueBrush}" 
+            Foreground="{StaticResource LightBlueBrush}"
             Unchecked="OnSingleLineCheckChanged" />
         <Label
             x:Name="EncodingLabel"
@@ -281,7 +282,7 @@
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Content="Binary Message Encoding:"
-            Foreground="{StaticResource LightBlueBrush}"  />
+            Foreground="{StaticResource LightBlueBrush}" />
         <Label
             x:Name="ProtocolsLabel"
             Canvas.Left="268"
@@ -289,7 +290,7 @@
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Content="Protocols:"
-            Foreground="{StaticResource LightBlueBrush}"  />
+            Foreground="{StaticResource LightBlueBrush}" />
         <sync:ComboBoxAdv
             x:Name="DualModeComboBox"
             Canvas.Left="585"
@@ -301,21 +302,21 @@
             HorizontalContentAlignment="Center"
             AllowMultiSelect="False"
             Background="{StaticResource ControlInterior}"
-            BorderBrush="{StaticResource BorderBrush}"
+            BorderBrush="{StaticResource BlueBorderBrush}"
             DefaultText="Select Mode"
-            Foreground="{StaticResource DefaultForeground}"
+            Foreground="{StaticResource FormForeground}"
             SelectedIndex="0">
             <sync:ComboBoxItemAdv
                 Content="Dual Mode"
-                Foreground="{StaticResource DefaultForeground}"
+                Foreground="{StaticResource FormForeground}"
                 Tag="Dual" />
             <sync:ComboBoxItemAdv
                 Content="IPv4"
-                Foreground="{StaticResource DefaultForeground}"
+                Foreground="{StaticResource FormForeground}"
                 Tag="IPV4" />
             <sync:ComboBoxItemAdv
                 Content="IPv6"
-                Foreground="{StaticResource DefaultForeground}"
+                Foreground="{StaticResource FormForeground}"
                 Tag="IPV6" />
         </sync:ComboBoxAdv>
         <sync:ComboBoxAdv
@@ -329,16 +330,16 @@
             HorizontalContentAlignment="Center"
             AllowMultiSelect="false"
             Background="{StaticResource ControlInterior}"
-            BorderBrush="{StaticResource BorderBrush}"
+            BorderBrush="{StaticResource BlueBorderBrush}"
             DefaultText="Select Protocol"
-            Foreground="{StaticResource DefaultForeground}">
+            Foreground="{StaticResource FormForeground}">
             <sync:ComboBoxItemAdv
                 Content="TCP (Raw)"
-                Foreground="{StaticResource DefaultForeground}"
+                Foreground="{StaticResource FormForeground}"
                 Tag="TCP" />
             <sync:ComboBoxItemAdv
                 Content="WebSocket"
-                Foreground="{StaticResource DefaultForeground}"
+                Foreground="{StaticResource FormForeground}"
                 Tag="WebSocket" />
         </sync:ComboBoxAdv>
         <sync:ComboBoxAdv
@@ -352,21 +353,21 @@
             HorizontalContentAlignment="Center"
             AllowMultiSelect="False"
             Background="{StaticResource ControlInterior}"
-            BorderBrush="{StaticResource BorderBrush}"
+            BorderBrush="{StaticResource BlueBorderBrush}"
             DefaultText="Select Encoding"
-            Foreground="{StaticResource DefaultForeground}"
+            Foreground="{StaticResource FormForeground}"
             SelectedIndex="0">
             <sync:ComboBoxItemAdv
                 Content="CR+LF (0x0D, 0x0A)"
-                Foreground="{StaticResource DefaultForeground}"
+                Foreground="{StaticResource FormForeground}"
                 Tag="&#xd;&#xa;" />
             <sync:ComboBoxItemAdv
                 Content="LF (0x0A)"
-                Foreground="{StaticResource DefaultForeground}"
+                Foreground="{StaticResource FormForeground}"
                 Tag="&#xa;" />
             <sync:ComboBoxItemAdv
                 Content="CR (0x0D)"
-                Foreground="{StaticResource DefaultForeground}"
+                Foreground="{StaticResource FormForeground}"
                 Tag="&#xd;" />
             <sync:ComboBoxItemAdv Content="None" />
         </sync:ComboBoxAdv>
@@ -381,17 +382,17 @@
             HorizontalContentAlignment="Center"
             AllowMultiSelect="false"
             Background="{StaticResource ControlInterior}"
-            BorderBrush="{StaticResource BorderBrush}"
+            BorderBrush="{StaticResource BlueBorderBrush}"
             DefaultText="Encodings"
-            Foreground="{StaticResource DefaultForeground}"
+            Foreground="{StaticResource FormForeground}"
             SelectedIndex="0">
             <sync:ComboBoxItemAdv
                 Content="Windows-1252 (Single Byte)"
-                Foreground="{StaticResource DefaultForeground}"
+                Foreground="{StaticResource FormForeground}"
                 Tag="Windows-1252" />
             <sync:ComboBoxItemAdv
                 Content="UTF-8 (Multi Byte)"
-                Foreground="{StaticResource DefaultForeground}"
+                Foreground="{StaticResource FormForeground}"
                 Tag="UTF-8" />
 
         </sync:ComboBoxAdv>
@@ -399,10 +400,10 @@
             x:Name="SendTextLabel"
             Canvas.Left="10"
             Canvas.Top="455"
-            Foreground="{StaticResource LightBlueBrush}"
             HorizontalAlignment="Center"
             VerticalAlignment="Top"
-            Content="Text to send:" />
+            Content="Text to send:"
+            Foreground="{StaticResource LightBlueBrush}" />
         <local:MetroTextBox
             x:Name="UrlTextBox"
             Canvas.Left="271"
@@ -446,9 +447,9 @@
             Canvas.Top="48"
             Width="75"
             Height="30"
-            Foreground="{StaticResource LightBlueBrush}" 
             HorizontalAlignment="Center"
             VerticalAlignment="Top"
+            Foreground="{StaticResource LightBlueBrush}"
             Header="" />
         <local:MetroTile
             x:Name="CloseSendChannelButton"
@@ -463,10 +464,10 @@
             Canvas.Left="10"
             Canvas.Top="560"
             Width="125"
-            Foreground="{StaticResource LightBlueBrush}"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Content="MetroLabel"
-            FontSize="10" />
+            FontSize="10"
+            Foreground="{StaticResource LightBlueBrush}" />
     </Canvas>
 </Window>

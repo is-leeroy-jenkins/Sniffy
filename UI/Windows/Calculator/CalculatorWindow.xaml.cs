@@ -113,9 +113,8 @@ namespace Sniffy
             FontSize = 12d;
             Height = 480;
             Width = 430;
-            Padding = new Thickness( 1 );
-            Margin = new Thickness( 1 );
-            BorderThickness = new Thickness( 1 );
+            Padding = new Thickness( 3 );
+            Margin = new Thickness( 3 );
             WindowStyle = WindowStyle.None;
             Title = "Calculator";
             WindowStartupLocation = WindowStartupLocation.CenterScreen;

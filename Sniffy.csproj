@@ -9,7 +9,7 @@
     <UseWPF>true</UseWPF>
     <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
     <StartupObject>Sniffy.App</StartupObject>
-    <ApplicationIcon>Application.ico</ApplicationIcon>
+    <ApplicationIcon>Resources\Assets\Github\s-icon.ico</ApplicationIcon>
     <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
     <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
     <AnalysisLevel>6.0-recommended</AnalysisLevel>
@@ -17,7 +17,7 @@
     <Company>Terry Eppler</Company>
     <Description>A simple .NET WPF application that can be used to establish TCP (raw) or WebSocket connections and exchange text messages for testing and debugging purposes.</Description>
     <Copyright>2022 Terry Eppler</Copyright>
-    <PackageIcon>Application.png</PackageIcon>
+    <PackageIcon>s-icon.png</PackageIcon>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <RepositoryUrl>https://github.com/is-leeroy-jenkins/Sniffy</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
@@ -133,7 +133,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="Application.ico" />
+    <Content Include="Resources\Assets\Github\s-icon.ico" />
   </ItemGroup>
 
   <ItemGroup>
@@ -284,6 +284,10 @@
       <PackagePath>\</PackagePath>
     </None>
     <None Update="README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Update="Resources\Assets\Github\s-icon.png">
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
     </None>

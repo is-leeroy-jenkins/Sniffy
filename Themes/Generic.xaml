@@ -310,68 +310,6 @@
         </Setter>
     </Style>
 
-    <!--  Window Resources  -->
-
-    <SolidColorBrush
-        x:Key="DarkBackColor"
-        Color="#FF141414" />
-
-    <SolidColorBrush
-        x:Key="WhiteColor"
-        Color="#FFFFFFFF" />
-
-    <SolidColorBrush
-        x:Key="ForeColor"
-        Color="#FFDEDEDE" />
-
-    <SolidColorBrush
-        x:Key="BorderColor"
-        Color="#FF0078D4" />
-
-    <SolidColorBrush
-        x:Key="DarkBlueColor"
-        Color="#FF325D81" />
-
-    <SolidColorBrush
-        x:Key="Transparent"
-        Color="#00000000" />
-
-    <SolidColorBrush
-        x:Key="SteelBlueColor"
-        Color="SteelBlue" />
-
-    <SolidColorBrush
-        x:Key="BlackColor"
-        Color="#FF000000" />
-
-    <SolidColorBrush
-        x:Key="DarkGrayColor"
-        Color="DarkGray" />
-
-    <SolidColorBrush
-        x:Key="YellowColor"
-        Color="Yellow" />
-
-    <SolidColorBrush
-        x:Key="GreenColor"
-        Color="DarkOliveGreen" />
-
-    <SolidColorBrush
-        x:Key="RedColor"
-        Color="Maroon" />
-
-    <SolidColorBrush
-        x:Key="KhakiColor"
-        Color="DarkKhaki" />
-
-    <SolidColorBrush
-        x:Key="LightBlueColor"
-        Color="#FF6ABDFC" />
-
-    <SolidColorBrush
-        x:Key="ControlBackColor"
-        Color="#FF2D2D2D" />
-
     <!--  Context Menu Resources  -->
 
     <Image
