@@ -1,3 +1,4 @@
+## Sniffy
 # ![](https://github.com/is-leeroy-jenkins/Sniffy/blob/master/Resources/Assets/Github/Sniffy.png)
 A simple .NET WPF application that can be used to establish TCP (raw) or WebSocket connections and exchange
 text messages for testing/debugging purposes.
