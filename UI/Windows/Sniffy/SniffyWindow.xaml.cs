@@ -167,10 +167,6 @@ namespace Sniffy
             RegisterCallbacks( );
 
             // Window Properties
-            Height = 625;
-            Width = 725;
-            Padding = new Thickness( 1 );
-            Margin = new Thickness( 1 );
             BorderThickness = new Thickness( 1 );
             WindowStyle = WindowStyle.SingleBorderWindow;
             Title = "Sniffy";
