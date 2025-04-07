@@ -73,9 +73,9 @@ namespace Sniffy
                     collection.Add( value );
                     return true;
                 }
-                catch( Exception _ex )
+                catch( Exception ex )
                 {
-                    Fail( _ex );
+                    Fail( ex );
                     return false;
                 }
             }
@@ -105,9 +105,9 @@ namespace Sniffy
                         collection.Add( _value );
                     }
                 }
-                catch( Exception _ex )
+                catch( Exception ex )
                 {
-                    Fail( _ex );
+                    Fail( ex );
                 }
             }
         }
@@ -129,9 +129,9 @@ namespace Sniffy
             {
                 return !( collection?.Count > 0 );
             }
-            catch( Exception _ex )
+            catch( Exception ex )
             {
-                Fail( _ex );
+                Fail( ex );
                 return false;
             }
         }
@@ -150,9 +150,9 @@ namespace Sniffy
                 {
                     collection.Remove( value );
                 }
-                catch( Exception _ex )
+                catch( Exception ex )
                 {
-                    Fail( _ex );
+                    Fail( ex );
                 }
             }
         }
@@ -174,9 +174,9 @@ namespace Sniffy
                         collection.Remove( _item );
                     }
                 }
-                catch( Exception _ex )
+                catch( Exception ex )
                 {
-                    Fail( _ex );
+                    Fail( ex );
                 }
             }
         }
@@ -200,9 +200,9 @@ namespace Sniffy
                     _list.ForEach( t => collection.Remove( t ) );
                 }
             }
-            catch( Exception _ex )
+            catch( Exception ex )
             {
-                Fail( _ex );
+                Fail( ex );
             }
         }
 
@@ -222,9 +222,9 @@ namespace Sniffy
             {
                 return !( collection?.Count > 0 );
             }
-            catch( Exception _ex )
+            catch( Exception ex )
             {
-                Fail( _ex );
+                Fail( ex );
                 return true;
             }
         }
@@ -249,9 +249,9 @@ namespace Sniffy
                     ? _list
                     : default( BindingList<T> );
             }
-            catch( Exception _ex )
+            catch( Exception ex )
             {
-                Fail( _ex );
+                Fail( ex );
                 return default( BindingList<T> );
             }
         }
